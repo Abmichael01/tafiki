@@ -16,6 +16,8 @@ import { useMutation } from "@tanstack/react-query";
 import { partnerSignup } from "@/api/apiEndpoints";
 import { PartnerSignupData } from "@/types";
 import usePartnerSignupStore from "@/stores/partnerSingupStore";
+import { toast } from "sonner";
+import errorMessage from "@/lib/errorMessage";
 
 const schema = z.object({
   email: z.string().email("Enter a valid email address"),
@@ -35,7 +37,8 @@ const Stage2: React.FC = () => {
     onSuccess: () => {
       navigate("/partner/register?stage=3");
     },
-    onError: (error: unknown) => {
+    onError: (error: Error) => {
+      toast.error(errorMessage(error))
       console.log(error)
     }
   })

@@ -17,6 +17,7 @@ import { PartnerSignupData } from "@/types";
 import usePartnerSignupStore from "@/stores/partnerSingupStore";
 import { verifyOtp } from "@/api/apiEndpoints";
 import { toast } from "sonner";
+import errorMessage from "@/lib/errorMessage";
 
 const otpSlotClassName =
   "size-13 sm:h-16 sm:w-16 text-[28px] md:text-[32px] data-[active=true]:ring-[0px] border first:rounded-l-[4px] last:rounded-r-[4px] rounded-[4px] shadow-none border-[#15221B1A] data-[active=true]:border-[#494949]";
@@ -40,9 +41,9 @@ const Stage3: React.FC = () => {
       toast.success("OTP verified successfully!");
       navigate("/partner/register?stage=4");
     },
-    onError: (error: unknown) => {
+    onError: (error: Error) => {
       console.log(error)
-      toast.error("Failed to verify OTP. Please try again.");
+      toast.error(errorMessage(error));
     }
   })
 

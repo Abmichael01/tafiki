@@ -17,6 +17,7 @@ import { useMutation } from "@tanstack/react-query";
 import { PartnerSignupData } from "@/types";
 import { partnerSignup } from "@/api/apiEndpoints";
 import { toast } from "sonner";
+import errorMessage from "@/lib/errorMessage";
 
 const schema = z.object({
   username: z.string().min(3, "Username must be at least 3 characters"),
@@ -37,6 +38,10 @@ const Stage5: React.FC = () => {
       toast.success("Account created successfully!");
       navigate("/partner/login");
     },
+    onError: (error: Error) => {
+      toast.error(errorMessage(error))
+      console.log(error)
+    }
   })
 
   const onSubmit = (values: FormData) => {
