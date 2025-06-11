@@ -35,7 +35,7 @@ const Orders: React.FC<Props> = ({ orders, tab }) => {
                 </h1>
               </div>
               <p className="text-[14px] font-[500] text-[#6E6E6E]">
-                {order.products?.length} Products
+                {order.product?.length} Products
               </p>
             </div>
           </div>

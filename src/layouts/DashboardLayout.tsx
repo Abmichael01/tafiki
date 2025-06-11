@@ -19,6 +19,7 @@ import { Loader2 } from "lucide-react";
 import EditProfileDialog from "@/components/PartnerDashboard/Profile/EditProfile/EditProfileDialog";
 import Taskbar from "@/components/PartnerDashboard/Layouts/Taskbar";
 import Logo from "@/components/Others/Logo";
+import { motion } from "framer-motion";
 
 const DashboardLayout: React.FC = () => {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ const DashboardLayout: React.FC = () => {
       if (data) {
         setUserDetails(data as UserDetails);
       }
-      if(!data && !isLoading) {
+      if (!data && !isLoading) {
         toast.info("Login to continue");
       }
     };
@@ -78,9 +79,17 @@ const DashboardLayout: React.FC = () => {
       <div className="flex-1 min-h-[90vh] w-full sm:pb-10 flex flex-col pb-25 md:pb-0">
         <Navbar />
         <div className="md:px-14 sm:px-10 px-2 lg:px-10 h-full">
-          <div className="bg-white rounded-[6px]  border border-[#F0F0F0] md:px-14 sm:px-10 px-5 lg:px-10 py-5 sm:py-10 flex-grow h-full">
+            <motion.div
+            key={location.pathname}
+            initial={{ y: 200, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{
+            duration: 0.5,
+            }}
+            className="bg-white rounded-[6px]  border border-[#F0F0F0] md:px-14 sm:px-10 px-5 lg:px-10 py-5 sm:py-10 flex-grow h-full"
+            >
             <Outlet />
-          </div>
+            </motion.div>
         </div>
 
         <FundWalletDialog />
