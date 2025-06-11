@@ -1,12 +1,18 @@
 interface ApiError extends Error {
-    response?: {
-        data: {
-            detail: string;
-            email: string;
-        };
+  response?: {
+    data: {
+      detail: string;
+      email: string;
+      username: string;
     };
+  };
 }
 
-export default function errorMessage (error: ApiError) {
-    return error.response?.data.detail ?? error.response?.data.email ?? error.message;
+export default function errorMessage(error: ApiError) {
+  return (
+    error.response?.data.detail ??
+    error.response?.data.email ??
+    error.response?.data.email ??
+    error.message
+  );
 }
