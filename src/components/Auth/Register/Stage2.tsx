@@ -35,7 +35,8 @@ const Stage2: React.FC = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: (data: Partial<PartnerSignupData>) =>
       partnerSignup(data, { method: "POST" }),
-    onSuccess: () => {
+    onSuccess: (data) => {
+      console.log(data)
       navigate("/partner/register?stage=3");
     },
     onError: (error: Error) => {

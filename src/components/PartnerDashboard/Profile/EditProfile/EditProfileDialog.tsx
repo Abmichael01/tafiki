@@ -185,9 +185,6 @@ const EditProfileDialog: React.FC = () => {
                   render={({ field }) => (
                     <FormItem>
                       <input
-                        onClick={() => {
-                          toast.info("Name cannot be changed");
-                        }}
                         {...field}
                         readOnly
                         className={inputClassname}
@@ -204,9 +201,6 @@ const EditProfileDialog: React.FC = () => {
                   render={({ field }) => (
                     <FormItem>
                       <input
-                        onClick={() => {
-                          toast.info("Name cannot be changed");
-                        }}
                         {...field}
                         readOnly
                         className={inputClassname}
@@ -228,9 +222,6 @@ const EditProfileDialog: React.FC = () => {
                     Email address
                   </FormLabel>
                   <input
-                    onClick={() => {
-                      toast.info("Email cannot be changed");
-                    }}
                     {...field}
                     readOnly
                     type="email"
