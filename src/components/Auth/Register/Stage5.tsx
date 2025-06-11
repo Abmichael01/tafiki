@@ -30,14 +30,14 @@ const Stage5: React.FC = () => {
     resolver: zodResolver(schema),
   });
   const navigate = useNavigate();
-  const { updateUserData, userData, resetUserData } = usePartnerSignupStore();
+  const { updateUserData, userData } = usePartnerSignupStore();
 
   const { mutate, isPending } = useMutation({
     mutationFn: (data: Partial<PartnerSignupData>) => partnerSignup(data, { method: "PATCH" }),
     onSuccess: () => {
       toast.success("Account created successfully!");
       navigate("/partner/login");
-      resetUserData();
+      
     },
     onError: (error: Error) => {
       toast.error(errorMessage(error))

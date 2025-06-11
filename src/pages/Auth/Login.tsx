@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -20,6 +20,7 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import useAuthStore from "@/stores/authStore";
 import { AxiosError } from "axios";
+import usePartnerSignupStore from "@/stores/partnerSingupStore";
 
 const formSchema = z.object({
   usernameEmail: z.string(),
@@ -52,6 +53,11 @@ const Login: React.FC = () => {
   });
   const navigate = useNavigate();
   const { setAuth } = useAuthStore();
+
+  const { resetUserData } = usePartnerSignupStore();
+  useEffect(() => {
+    resetUserData();
+  })
 
   const { mutate, isPending } = useMutation({
     mutationFn: (data: PartnerSigninData) => partnerSignin(data),
