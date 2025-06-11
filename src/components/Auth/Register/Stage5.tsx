@@ -45,10 +45,18 @@ const Stage5: React.FC = () => {
   })
 
   const onSubmit = (values: FormData) => {
-    console.log("Final Registration Data:", values);
+    console.log("Final Registration Data:", {
+      username: values.username,
+      password: userData.password
+    });
     updateUserData(values);
-    mutate(userData);
+    mutate({
+      email: userData.email,
+      username: values.username,
+      password: userData.password,
+    });
   };
+
 
   return (
     <Form {...form}>
