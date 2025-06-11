@@ -21,7 +21,7 @@ const AuthLayout: React.FC = () => {
       </div>
 
       <div className=" relative md:ml-[50%] w-full md:w-1/2 pb-10 pt-24 p-2 px-5 sm:px-10 lg:px-14 items-center justify-center md:justify-start min-h-screen ">
-        <div className=" max-md:mb-[180px] max-md:mt-[20px] bg-white w-full md:bg-transparent rounded-xl md:p-0 p-6 max-sm:px-[20px] max-sm:py-[40px] h-fit md:h-full">
+        <div className=" max-[500px]:mb-[120px] max-md:mb-[180px] max-md:mt-[20px] bg-white w-full md:bg-transparent rounded-xl md:p-0 p-6 max-sm:px-[20px] max-sm:py-[40px] h-fit md:h-full">
           <Outlet />
         </div>
         <img
