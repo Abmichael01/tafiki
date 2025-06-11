@@ -16,9 +16,17 @@ import { Eye, EyeOff } from "lucide-react";
 import usePartnerSignupStore from "@/stores/partnerSingupStore";
 
 // Define schema with password and confirm password
+
 const schema = z
   .object({
-    password: z.string().min(6, "Password must be at least 6 characters"),
+    password: z
+      .string()
+      .min(8, "Password must be at least 8 characters")
+      .regex(
+        // eslint-disable-next-line no-useless-escape
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]).{8,}$/,
+        "Password must contain uppercase, lowercase, number, and special character"
+      ),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {

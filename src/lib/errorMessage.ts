@@ -14,6 +14,7 @@ export default function errorMessage(error: ApiError) {
     error.response?.data.detail ??
     error.response?.data.email ??
     error.response?.data.password ??
+    error.response?.data.password ??
     error.response?.data.username ??
     error.message
   );
