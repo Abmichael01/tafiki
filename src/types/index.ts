@@ -164,7 +164,7 @@ export type WalletTransaction = {
   amount: string;
   from_user: string;
   to: string;
-  transaction_type: 'fund' | 'withdrawal' | 'investment'; // Add other types if needed
+  transaction_type: 'fund' | 'withdraw' | 'investment'; // Add other types if needed
   status: 'completed' | 'pending' | 'failed'; // Add other statuses if needed
   created_at: string;
   available_balance_at_time: string;

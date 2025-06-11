@@ -28,7 +28,7 @@ const Activities: React.FC<Props> = ({ title }) => {
             switch (transaction.transaction_type) {
               case "fund":
                 return "Wallet Funding";
-              case "withdrawal":
+              case "withdraw":
                 return "Withdrawal";
               case "investment":
                 return "Investment";

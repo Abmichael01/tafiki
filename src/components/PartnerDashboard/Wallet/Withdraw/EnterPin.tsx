@@ -7,7 +7,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import useWithdrawalStore from "@/stores/useWithdrawalStore"; // Adjust path as needed
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { walletWithdrawal } from "@/api/apiEndpoints";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import errorMessage from "@/lib/errorMessage";
@@ -19,7 +19,7 @@ const EnterPin: React.FC = () => {
   const navigate = useNavigate();
   const [otp, setOtp] = useState("");
   const { updateWithdrawal, withdrawal } = useWithdrawalStore();
-
+  const queryClient = useQueryClient()
   const { mutate, isPending, error } = useMutation({
     mutationFn: (data: {
       transaction_pin: string;
@@ -27,6 +27,7 @@ const EnterPin: React.FC = () => {
       to: string;
     }) => walletWithdrawal(data),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["userDetails"] })
       navigate(
         "/partner/portfolio/wallet?dialog=walletWithdrawal&dialogCurrent=processing"
       );
@@ -41,11 +42,15 @@ const EnterPin: React.FC = () => {
   const handleSubmit = () => {
     // Update the withdrawal store with the OTP
     updateWithdrawal({ transaction_pin: otp });
-
+    console.log({
+      transaction_pin: otp,
+      amount: withdrawal.amount,
+      to: withdrawal.to.name.split(" ")[0],
+    })
     mutate({
       transaction_pin: otp,
       amount: withdrawal.amount,
-      to: withdrawal.to.name,
+      to: withdrawal.to.name.split(" ")[0],
     });
   };
 
