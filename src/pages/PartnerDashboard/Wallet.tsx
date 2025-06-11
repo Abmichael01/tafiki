@@ -1,62 +1,20 @@
-import { getWalletTransactions } from "@/api/apiEndpoints";
-import History from "@/components/PartnerDashboard/Portfolio/History";
 import OverviewCard from "@/components/PartnerDashboard/Portfolio/OverviewCard";
 import SelectPage from "@/components/PartnerDashboard/Portfolio/SelectPage";
 import { Separator } from "@/components/ui/separator";
 import { useDialogStore } from "@/stores/dialogStore";
 import useUserDetailsStore from "@/stores/userStore";
-import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { FaPlus } from "react-icons/fa6";
 import { FiUpload } from "react-icons/fi";
 import { GoArrowLeft } from "react-icons/go";
 import { Link } from "react-router-dom";
-import { format } from 'date-fns';
-import { WalletTransaction } from '@/types';
+import Activities from "@/components/PartnerDashboard/Wallet/Activities";
 
 
 const Wallet: React.FC = () => {
   const { openDialog } = useDialogStore();
   const { userDetails } = useUserDetailsStore()
-  const  { data } = useQuery({
-    queryKey: ["walletTransactions"],
-    queryFn: getWalletTransactions
-  })
-
-  console.log(data)
-
-  const formatTransactions = (transactions: WalletTransaction[] = []) => {
-    return transactions.map(transaction => {
-      // Determine transaction type and sign
-      const isInflow = transaction.transaction_type === "fund";
-      const sign = isInflow ? "+" : "-";
-      
-      // Format the type label
-      const typeLabel = (() => {
-        switch (transaction.transaction_type) {
-          case "fund":
-            return "Wallet Funding";
-          case "withdrawal":
-            return "Withdrawal";
-          case "investment":
-            return "Investment";
-          default:
-            return transaction.transaction_type;
-        }
-      })();
-
-      return {
-        type: typeLabel,
-        time: format(new Date(transaction.created_at), "H:mma, do MMM. yyyy"),
-        amount: `${sign}£${parseFloat(transaction.amount).toFixed(2)}`
-      };
-    });
-  };
-
-  const formattedTransactions = data 
-    ? formatTransactions(data.results.transactions)
-    : [];
-
+ 
   return (
     <div className="space-y-10">
       <div className="flex justify-between items-center">
@@ -102,7 +60,7 @@ const Wallet: React.FC = () => {
           </div>
         </OverviewCard>
       </div>
-      <History heading="Transactions" data={formattedTransactions} />
+      <Activities title="Transactions" />
     </div>
   );
 };

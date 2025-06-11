@@ -1,10 +1,10 @@
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+// import {
+//   Select,
+//   SelectContent,
+//   SelectItem,
+//   SelectTrigger,
+//   SelectValue,
+// } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import React from "react";
 import { FiPlus, FiUpload } from "react-icons/fi";
@@ -24,7 +24,7 @@ const History: React.FC<Props> = ({ heading, data }) => {
     <div className="space-y-[12px]">
       <div className="flex justify-between items-center">
         <h1 className="font-[600] text-[18px]">{heading}</h1>
-        <Select>
+        {/* <Select>
           <SelectTrigger className="min-w-[100px] rounded-[4px]">
             <SelectValue placeholder="All" />
           </SelectTrigger>
@@ -33,7 +33,7 @@ const History: React.FC<Props> = ({ heading, data }) => {
             <SelectItem value="dark">Withdrawal</SelectItem>
             <SelectItem value="system">Remittance Inflow</SelectItem>
           </SelectContent>
-        </Select>
+        </Select> */}
       </div>
       <div className="space-y-[4px]">
         {data.map((item, index) => (

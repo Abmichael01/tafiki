@@ -64,9 +64,9 @@ const App = () => {
 
           <Route path="my-orders">
             <Route index element={<MyOrders />} />
-            <Route path=":orderId" element={<OrderDetails />} />
+            <Route path=":id" element={<OrderDetails />} />
             <Route
-              path=":orderId/transactions"
+              path=":id/transactions"
               element={<OrderTransactionFlow />}
             />
           </Route>

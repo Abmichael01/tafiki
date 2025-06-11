@@ -59,7 +59,7 @@ const PortfolioDetail: React.FC = () => {
         </OverviewCard>
       </div>
       <MyOrders pending />
-      <History heading="Transactions" data={transactions} />
+      <History heading="Expected ROI Over Time" data={transactions} />
     </div>
   );
 };

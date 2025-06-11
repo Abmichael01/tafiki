@@ -1,16 +1,15 @@
 import React from "react";
 import orderBox from "@/assets/svgs/orderBox.svg";
 import { Separator } from "@/components/ui/separator";
-import { useLocation } from "react-router-dom";
 import useUserDetailsStore from "@/stores/userStore";
 import { Order } from "@/types";
 import { format } from 'date-fns';
+import { useParams } from "react-router-dom";
 
 const Overview: React.FC = () => {
   const { userDetails } = useUserDetailsStore();
   const orders = userDetails?.investment_summary as Order[];
-  const location = useLocation()
-  const id = location.pathname.split('/').pop() || '';
+  const { id } = useParams<{ id: string }>();
   const order = orders?.find((order) => order.order_id === id)
   const formattedDate = order?.created_at ? new Date(order.created_at) : null;
   return (
@@ -49,7 +48,7 @@ const Overview: React.FC = () => {
           <p className="text-[14px] sm:text-[16px] font-[700] text-[#16A34A]">
             <span className="">+{order?.roi_rate}%</span> 
             <span className=""> | </span> 
-            <span className="">£{order?.roi_expected}</span>
+            <span className="">£{order?.future_roi}</span>
           </p>
         </div>
       </div>

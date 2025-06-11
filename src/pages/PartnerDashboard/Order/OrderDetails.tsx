@@ -5,22 +5,6 @@ import React from "react";
 import { GoArrowLeft } from "react-icons/go";
 import { Link } from "react-router-dom";
 
-const products = [
-  {
-    id: "1a9f84f2-6d73-48cb-9f72-3941c2b8723e",
-    name: "Food Hybrid Rice",
-    price: 350,
-    units: "5 units (25 bags)",
-    type: "rice",
-  },
-  {
-    id: "8b21d3e9-43fb-4d18-b798-4e3ef5ac2d3a",
-    name: "Food Hybrid Beans",
-    price: 350,
-    units: "3 units (15 bags)",
-    type: "beans",
-  },
-];
 
 
 const OrderDetails: React.FC = () => {
@@ -35,7 +19,7 @@ const OrderDetails: React.FC = () => {
         </div>
       </div>
       <Overview />
-      <Products products={products} />
+      <Products  />
       <Timeline />
     </div>
   );

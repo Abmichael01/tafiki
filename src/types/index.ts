@@ -17,6 +17,18 @@ export type PersonalDetails = {
   username: string;
 };
 
+export type ShopProduct = {
+  id: number;
+  name: string;
+  price: string;
+  product_id: string;
+  roi_percentage: string;
+  stock_quantity: number;
+  description: string;
+  kg_per_unit: string;
+  quantity_per_unit: string;
+}
+
 export type Order = {
   amount_invested: number;
   created_at: string;
@@ -26,7 +38,12 @@ export type Order = {
   roi_pending: number;
   roi_rate: number;
   status: string;
-  products: unknown[];
+  product: ShopProduct[];
+  future_roi: number;
+  payout_schedule: {
+    payout_date: string;
+    amount: number;
+  }[];
 };
 
 export type RoiOverTime = {
@@ -70,17 +87,7 @@ export type ResponseData = {
   message?: string;
 };
 
-export type ShopProduct = {
-  id: number;
-  name: string;
-  price: string;
-  product_id: string;
-  roi_percentage: string;
-  stock_quantity: number;
-  description: string;
-  kg_per_unit: string;
-  quantity_per_unit: string;
-}
+
 
 export type BeneficiaryData = {
   id?: number;
