@@ -30,18 +30,19 @@ const Stage2: React.FC = () => {
     resolver: zodResolver(schema),
   });
   const navigate = useNavigate();
-  const { updateUserData, userData } = usePartnerSignupStore()
+  const { updateUserData, userData } = usePartnerSignupStore();
 
   const { mutate, isPending } = useMutation({
-    mutationFn: (data: Partial<PartnerSignupData>) => partnerSignup(data, { method: "POST" }),
+    mutationFn: (data: Partial<PartnerSignupData>) =>
+      partnerSignup(data, { method: "POST" }),
     onSuccess: () => {
       navigate("/partner/register?stage=3");
     },
     onError: (error: Error) => {
-      toast.error(errorMessage(error))
-      console.log(error)
-    }
-  })
+      toast.error(errorMessage(error));
+      console.log(error);
+    },
+  });
 
   const onSubmit = (values: FormData) => {
     console.log("Submitted Stage 2:", values);
@@ -50,20 +51,28 @@ const Stage2: React.FC = () => {
       first_name: userData.first_name,
       last_name: userData.last_name,
       email: values.email,
-    })
+    });
   };
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
-        <h2 className="text-center font-[700] text-[#3C4741] text-[28px]">Let’s get your email</h2>
+        <h2 className="text-center font-[700] text-[#3C4741] text-[28px]">
+          Let’s get your email
+        </h2>
         <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-[#6E6E6E] text-[14px]">Email</FormLabel>
-              <input {...field} placeholder="you@example.com" className="auth-input" />
+              <FormLabel className="text-[#6E6E6E] text-[14px]">
+                Email
+              </FormLabel>
+              <input
+                {...field}
+                placeholder="you@example.com"
+                className="auth-input"
+              />
               <FormMessage />
             </FormItem>
           )}
@@ -73,12 +82,14 @@ const Stage2: React.FC = () => {
           disabled={!form.formState.isDirty || isPending}
           className="disabled:bg-[#15221B]/50 w-full"
         >
-          { isPending ? "Please wait..." : "Next"}
+          {isPending ? "Please wait..." : "Next"}
         </Button>
 
         <h2 className="flex gap-1 justify-center font-satoshi text-[#6E6E6E] font-[500] text-center text-[16px]">
           Already have an account?
-          <Link to="/partner/login" className="text-[#15221B] underline">Signin</Link>
+          <Link to="/partner/login" className="text-[#15221B] underline">
+            Signin
+          </Link>
         </h2>
       </form>
     </Form>

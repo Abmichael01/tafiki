@@ -26,7 +26,7 @@ const usePartnerSignupStore = create<UserSignupStore>()(
     }),
     {
       name: "partner-signup-storage",
-      storage: createJSONStorage(() => localStorage), 
+      storage: createJSONStorage(() => sessionStorage), 
       partialize: (state) => ({ userData: state.userData }),
       version: 1,
     }
