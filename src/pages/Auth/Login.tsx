@@ -57,7 +57,7 @@ const Login: React.FC = () => {
   const { resetUserData } = usePartnerSignupStore();
   useEffect(() => {
     resetUserData();
-  })
+  }, [resetUserData])
 
   const { mutate, isPending } = useMutation({
     mutationFn: (data: PartnerSigninData) => partnerSignin(data),
