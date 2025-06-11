@@ -1,0 +1,96 @@
+// src/layouts/DashboardLayout.tsx
+import React, { useEffect } from "react";
+import useAuthStore from "@/stores/authStore";
+import { useDialogStore } from "@/stores/dialogStore";
+import { Outlet, useSearchParams, useNavigate } from "react-router-dom";
+
+// Components
+import Navbar from "@/components/PartnerDashboard/Layouts/Navbar";
+import Sidebar from "@/components/PartnerDashboard/Layouts/Sidebar";
+import FundWalletDialog from "@/components/PartnerDashboard/Wallet/Fund/FundWalletDialog";
+import WithdrawFromWallet from "@/components/PartnerDashboard/Wallet/Withdraw/WithdrawalDialog";
+import WithdrawFromPortfolio from "@/components/PartnerDashboard/Portfolio/Withdraw/WithdrawalDialog";
+import { toast } from "sonner";
+import { getCurrentUser } from "@/api/apiEndpoints";
+import useUserDetailsStore from "@/stores/userStore";
+import { useQuery } from "@tanstack/react-query";
+import { UserDetails } from "@/types";
+import { Loader2 } from "lucide-react";
+import EditProfileDialog from "@/components/PartnerDashboard/Profile/EditProfile/EditProfileDialog";
+import Taskbar from "@/components/PartnerDashboard/Layouts/Taskbar";
+import Logo from "@/components/Others/Logo";
+
+const DashboardLayout: React.FC = () => {
+  const navigate = useNavigate();
+  const { isAuthenticated, logout } = useAuthStore();
+  const { openDialog } = useDialogStore();
+  const [searchParams] = useSearchParams();
+  const dialog = searchParams.get("dialog");
+  const { setUserDetails } = useUserDetailsStore();
+
+  // Trigger dialog if present in URL
+  useEffect(() => {
+    if (dialog) {
+      openDialog(dialog);
+    }
+  }, [dialog, openDialog]);
+
+  const { data, isLoading } = useQuery({
+    queryFn: getCurrentUser,
+    queryKey: ["userDetails"],
+  });
+  console.log(data);
+  useEffect(() => {
+    const verifyUser = async () => {
+      if (data) {
+        setUserDetails(data as UserDetails);
+      }
+      if(!data && !isLoading) {
+        toast.info("Login to continue");
+      }
+    };
+
+    verifyUser();
+  }, [setUserDetails, data, navigate, logout, isLoading]);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      toast.info("Session expired, login to continue");
+      navigate("/partner/login");
+    }
+  }, [isAuthenticated, navigate]);
+
+  // Optional: Show loading state or splash screen here
+  if (isLoading) {
+    return (
+      <div className="h-screen flex flex-col gap-5 items-center justify-center">
+        <Logo />
+        <Loader2 className="animate-spin" />
+      </div>
+    ); // Or a loader/spinner
+  }
+
+  return (
+    <div className="bg-[#F9F9F9] flex relative text-[#494949] min-h-screen">
+      <div className="sticky top-0 bottom-0 h-full z-[999]">
+        <Sidebar />
+      </div>
+      <div className="flex-1 min-h-[90vh] w-full sm:pb-10 flex flex-col pb-25 md:pb-0">
+        <Navbar />
+        <div className="md:px-14 sm:px-10 px-2 lg:px-10 h-full">
+          <div className="bg-white rounded-[6px]  border border-[#F0F0F0] md:px-14 sm:px-10 px-5 lg:px-10 py-5 sm:py-10 flex-grow h-full">
+            <Outlet />
+          </div>
+        </div>
+
+        <FundWalletDialog />
+        <WithdrawFromWallet />
+        <WithdrawFromPortfolio />
+        <EditProfileDialog />
+      </div>
+      <Taskbar />
+    </div>
+  );
+};
+
+export default DashboardLayout;
