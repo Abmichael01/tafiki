@@ -1,7 +1,6 @@
-// src/store/useUserSignupStore.ts
 import { PartnerSignupData } from "@/types";
 import { create } from "zustand";
-
+import { persist, createJSONStorage } from "zustand/middleware";
 
 type UserSignupStore = {
   userData: Partial<PartnerSignupData>;
@@ -9,19 +8,29 @@ type UserSignupStore = {
   resetUserData: () => void;
 };
 
-const usePartnerSignupStore = create<UserSignupStore>((set) => ({
-  userData: {},
-  updateUserData: (fields) =>
-    set((state) => ({
-      userData: {
-        ...state.userData,
-        ...fields,
-      },
-    })),
-  resetUserData: () =>
-    set({
+const usePartnerSignupStore = create<UserSignupStore>()(
+  persist(
+    (set) => ({
       userData: {},
+      updateUserData: (fields) =>
+        set((state) => ({
+          userData: {
+            ...state.userData,
+            ...fields,
+          },
+        })),
+      resetUserData: () =>
+        set({
+          userData: {},
+        }),
     }),
-}));
+    {
+      name: "partner-signup-storage",
+      storage: createJSONStorage(() => localStorage), 
+      partialize: (state) => ({ userData: state.userData }),
+      version: 1,
+    }
+  )
+);
 
 export default usePartnerSignupStore;

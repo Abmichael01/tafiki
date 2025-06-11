@@ -11,29 +11,29 @@ const timeline = [
   {
     status: "Request Approved",
     description: "Your request has been approved and is being processed.",
-    passed: true,
+    passed: false,
   },
   {
     status: "Product Picked up",
     description:
       "Your product has been picked up by the courier and is on its way.",
-    passed: true,
+    passed: false,
   },
   {
     status: "In-Transit",
     description: "Your product is in transit and will arrive soon.",
-    passed: true,
+    passed: false,
   },
   {
     status: "Product Delivered",
     description: "Your product has been delivered. Thank you for choosing us!",
-    passed: true,
+    passed: false,
   },
   {
     status: "Pending Settlement",
     description:
       "Your returns are pending and would be paid 5 weeks after order placement.",
-    passed: true,
+    passed: false,
   },
   {
     status: "Settled",
