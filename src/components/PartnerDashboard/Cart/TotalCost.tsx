@@ -3,7 +3,7 @@ import React from 'react'
 
 const TotalCost: React.FC = () => {
     const { items } = useCartStore()
-    const total_amount = items.reduce((sum, item) => sum + item.price, 0)
+    const total_amount = items.reduce((sum, item) => sum + item.total_amount, 0)
     
   return (
     <div className="space-y-[8px] text-[14px] font-satoshi">
