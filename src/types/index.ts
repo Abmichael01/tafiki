@@ -34,7 +34,7 @@ export type Order = {
   created_at: string;
   order_id: string;
   roi_expected: number;
-  roi_paid: number;
+  total_roi_paid: number;
   roi_pending: number;
   roi_rate: number;
   status: string;

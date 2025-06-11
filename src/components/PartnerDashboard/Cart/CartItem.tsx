@@ -35,7 +35,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
     },
   });
   return (
-    <div className="flex justify-between p-5 border-b ">
+    <div className="flex flex-col min-[600px]:flex-row pb-5 justify-between border-b gap-4">
       <div className="space-y-2">
         <div className="flex gap-[24px] items-center">
           <img src={garri} alt="" className="w-[106px]" />
@@ -56,7 +56,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
           <X />
         </button>
       </div>
-      <div className="flex flex-col justify-between items-end">
+      <div className="flex flex-row-reverse min-[600px]:flex-col justify-between items-end">
         <p className="">{item.price * item.quantity}</p>
         <div className="px-2 py-2 bg-[#F9F9F9] rounded-[8px] flex items-center gap-3 text-[#6E6E6E] font-satoshi">
           <button

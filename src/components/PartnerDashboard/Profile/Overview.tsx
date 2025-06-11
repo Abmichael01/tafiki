@@ -51,11 +51,11 @@ const Overview: React.FC = () => {
           <div className="text-center font-satoshi">
             <h1 className="text-center text-[24px] font-satoshi font-[700] gap-[1px] flex items-center justify-center">
               {" "}
-              <span className=" text-[18px] text-[#FFFFFF99]">£</span> {userDetails?.total_roi}
+              <span className=" text-[18px] text-[#FFFFFF99]">£</span> {userDetails?.total_roi_paid}
             </h1>
             <h1 className="text-[12px]">
               {" "}
-              <span className="text-[#16A34A]">(+{((userDetails?.daily_roi || 0) / (userDetails?.total_roi || 1) * 100).toFixed(2)}%)</span>(+£{userDetails?.daily_roi}) Today
+              <span className="text-[#16A34A]">(+{((userDetails?.daily_roi || 0) / (userDetails?.total_roi_paid || 1) * 100).toFixed(2)}%)</span>(+£{userDetails?.daily_roi}) Today
             </h1>
           </div>
           <Link to="?dialog=withdrawFromPortfolio" className="text-center flex flex-col gap-[2px] items-center cursor-pointer">
