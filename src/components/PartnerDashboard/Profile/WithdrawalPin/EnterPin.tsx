@@ -18,7 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import useUserDetailsStore from "@/stores/userStore";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { setTransactionPin } from "@/api/apiEndpoints";
 import { TransactionPinData } from "@/types";
 import { Loader2 } from "lucide-react";
@@ -45,6 +45,7 @@ const EnterPin: React.FC = () => {
   });
 
   const { updatePinData } = useTransactionPinStore();
+  const queryClient = useQueryClient()
 
   const { mutate, isPending } = useMutation({
     mutationFn: (data?: Partial<TransactionPinData>) => setTransactionPin(data),
@@ -58,6 +59,7 @@ const EnterPin: React.FC = () => {
           "/partner/profile/withdrawal-pin/change-pin?current=confirmOtp"
         );
       } else {
+        queryClient.invalidateQueries({ queryKey: ["userDetails"] })
         toast.success("PIN set successfully");
         navigate("/partner/profile/withdrawal-pin/");
       }
