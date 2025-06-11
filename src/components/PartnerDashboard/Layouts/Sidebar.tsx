@@ -57,7 +57,7 @@ const Sidebar: React.FC = () => {
           <div
             onClick={toggle}
             className={cn(
-              "px-2 py-2 rounded-xl bg-white absolute left-[210px] top-[5px] opacity-[0] cursor-pointer",
+              "px-2 py-2 md:hidden rounded-xl bg-white absolute left-[210px] top-[5px] opacity-[0] cursor-pointer",
               isOpen && "opacity-[1]"
             )}
           >
@@ -66,7 +66,7 @@ const Sidebar: React.FC = () => {
         )}
         <div
           className={cn(
-            "w-[205px] left-[-210px] lg:left-[0] fixed lg:relative h-[100vh] shrink-0 bg-white flex flex-col gap-4 pb-10 justify-between transition-all duration-500 z-[9999]",
+            "w-[205px] left-[-210px] lg:left-[0] fixed lg:sticky h-[100vh] shrink-0 bg-white flex flex-col gap-4 pb-10 justify-between transition-all duration-500 z-[9999]",
             isOpen && "left-[0] "
           )}
         >
