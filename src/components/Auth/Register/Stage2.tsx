@@ -30,7 +30,7 @@ const Stage2: React.FC = () => {
     resolver: zodResolver(schema),
   });
   const navigate = useNavigate();
-  const { updateUserData } = usePartnerSignupStore()
+  const { updateUserData, userData } = usePartnerSignupStore()
 
   const { mutate, isPending } = useMutation({
     mutationFn: (data: Partial<PartnerSignupData>) => partnerSignup(data, { method: "POST" }),
@@ -46,7 +46,11 @@ const Stage2: React.FC = () => {
   const onSubmit = (values: FormData) => {
     console.log("Submitted Stage 2:", values);
     updateUserData(values);
-    mutate(values)
+    mutate({
+      first_name: userData.first_name,
+      last_name: userData.last_name,
+      email: values.email,
+    })
   };
 
   return (
