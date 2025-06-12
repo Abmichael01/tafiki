@@ -34,10 +34,6 @@ const Wallet: React.FC = () => {
               {" "}
               <span className=" text-[18px] text-[#FFFFFF99]">£</span> {userDetails?.wallet_balance}
             </h1>
-            <h1 className="text-[12px]">
-              {" "}
-              <span className="text-[#16A34A]">+5.16%</span> (+£105) Today
-            </h1>
           </div>
           <div className="flex justify-center">
             <div className="grid grid-cols-3 justify-center gap-[20px] w-[50%]">
