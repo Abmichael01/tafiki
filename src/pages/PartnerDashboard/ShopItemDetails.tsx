@@ -98,6 +98,9 @@ const ShopItemDetails: React.FC = () => {
               <span className="text-[#16A34A]">{data?.roi_percentage}% Returns</span>
               <span className="text-[#494949]"> on overall purchase</span>
             </h1>
+            <h1 className="text-[16px] font-satoshi font-[700] ">
+              Trade terminates for cashout or reinvestment at the end of the 3rd cycle
+            </h1>
             <p className="text-[18px] text-wrap font-satoshi rounded-[12px] bg-[#F9F9F9] lg:w-[770px] py-[16px] px-[12px]">
               {data?.description}
             </p>
