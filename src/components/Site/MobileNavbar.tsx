@@ -54,25 +54,25 @@ const MobileNavbar: React.FC = () => {
             </div>
 
             <nav className="flex flex-col gap-8 text-[#252525] px-10">
-              <Link to="/home">Home</Link>
+              <Link to="/home" onClick={toggle}>Home</Link>
               <DropdownMenu>
                 <DropdownMenuTrigger className="flex gap-1 items-center outline-none cursor-pointer w-full">
                   Company
                   <ChevronDown className="w-4 h-4" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start" className="z-[99999]">
-                  <DropdownMenuItem onClick={() => navigate("/about")}>
+                  <DropdownMenuItem onClick={() => {navigate("/about"); toggle()}}>
                     About us
                   </DropdownMenuItem>
                   <DropdownMenuItem
-                    onClick={() => navigate("/reward-loyalty-program")}
+                    onClick={() => {navigate("/reward-loyalty-program"); toggle()}}
                   >
                     Rewards & Loyalty Program
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <Link to="/contact">Contact</Link>
-              <Link to={isAuthenticated ? "partner/portfolio" : "/partner"} className="w-full shadow-xl">
+              <Link onClick={toggle} to="/contact">Contact</Link>
+              <Link onClick={toggle} to={isAuthenticated ? "partner/portfolio" : "/partner"} className="w-full shadow-xl">
                 <button className="bg-[#15221B] w-full cursor-pointer rounded-sm border border-primary text-white py-[10px] px-7 ">
                   {isAuthenticated ? "Dashboard" : "Login"}
                 </button>
