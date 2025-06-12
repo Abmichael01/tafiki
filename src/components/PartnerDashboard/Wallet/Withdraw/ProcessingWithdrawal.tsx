@@ -6,7 +6,7 @@ import { FaMoneyBill } from "react-icons/fa6";
 
 const ProcessingWithdrawal: React.FC = () => {
     const close = useCloseDialog("withdrawFromWallet")
-    const { withdrawal } = useWithdrawalStore();
+    const { withdrawal, clearWithdrawal } = useWithdrawalStore();
   return (
     <div className="">
       <div className="flex flex-col items-center text-center gap-[14px]">
@@ -16,7 +16,7 @@ const ProcessingWithdrawal: React.FC = () => {
           Your withdrawal request of £{withdrawal.amount} is being processed
         </p>
       </div>
-      <Button onClick={close} className="w-full bg-[#15221B] mt-[60px]">Done</Button>
+      <Button onClick={() => {close(); clearWithdrawal()}} className="w-full bg-[#15221B] mt-[60px]">Done</Button>
     </div>
   );
 };
