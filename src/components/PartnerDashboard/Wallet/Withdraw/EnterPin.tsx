@@ -18,7 +18,7 @@ const otpSlotClassName =
 const EnterPin: React.FC = () => {
   const navigate = useNavigate();
   const [otp, setOtp] = useState("");
-  const { updateWithdrawal, withdrawal } = useWithdrawalStore();
+  const { updateWithdrawal, withdrawal, clearWithdrawal } = useWithdrawalStore();
   const queryClient = useQueryClient()
   const { mutate, isPending, error } = useMutation({
     mutationFn: (data: {
@@ -28,6 +28,8 @@ const EnterPin: React.FC = () => {
     }) => walletWithdrawal(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["userDetails"] })
+      queryClient.invalidateQueries({ queryKey: ["walletTransactions"] })
+      clearWithdrawal()
       navigate(
         "/partner/portfolio/wallet?dialog=walletWithdrawal&dialogCurrent=processing"
       );

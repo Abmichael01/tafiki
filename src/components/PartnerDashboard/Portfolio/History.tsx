@@ -16,6 +16,7 @@ interface Props {
     type: string;
     time: string;
     amount: string;
+    status?: string
   }[];
 }
 
@@ -42,21 +43,23 @@ const History: React.FC<Props> = ({ heading, data }) => {
             className="flex justify-between items-center p-[12px] border-b border-[#F0F0F0]"
           >
             <div className="flex gap-[16px] items-center">
-              <div
+                <div
                 className={cn(
                   "p-2 rounded-full",
-                  item.type === "Remittance Inflow" ||
-                    item.type === "Wallet Funding"
-                    ? "bg-[#16A34A1A] text-[#16A34A]"
-                    : "bg-[#B522171A] text-[#B52217]"
+                  (item.type === "Remittance Inflow" ||
+                  item.type === "Wallet Funding")
+                  ? "bg-[#16A34A1A] text-[#16A34A]"
+                  : item.status === "pending" 
+                  ? "bg-[#FEF3C7] text-[#D97706]"
+                  : "bg-[#B522171A] text-[#B52217]"
                 )}
-              >
+                >
                 {item.type == "Withdrawal" ? (
                   <FiUpload className="size-[15px]" />
                 ) : (
                   <FiPlus className="size-[15px]" />
                 )}
-              </div>
+                </div>
               <div className="space-y-[2px] font-satoshi">
                 <h1 className="text-[18px]">{item.type}</h1>
                 <p className="text-[12px]">{item.time}</p>
