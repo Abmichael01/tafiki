@@ -29,7 +29,7 @@ const Activities: React.FC<Props> = ({ title }) => {
               case "fund":
                 return "Wallet Funding";
               case "withdraw":
-                return "Withdrawal";
+                return transaction.status === "pending" ? "Pending Withdrawal" : "Withdrawal";
               case "investment":
                 return "Investment";
               default:
