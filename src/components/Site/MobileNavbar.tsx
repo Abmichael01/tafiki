@@ -64,6 +64,9 @@ const MobileNavbar: React.FC = () => {
                   <DropdownMenuItem onClick={() => {navigate("/about"); toggle()}}>
                     About us
                   </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => {navigate("/faq"); toggle()}}>
+                    FAQ
+                  </DropdownMenuItem>
                   <DropdownMenuItem
                     onClick={() => {navigate("/reward-loyalty-program"); toggle()}}
                   >

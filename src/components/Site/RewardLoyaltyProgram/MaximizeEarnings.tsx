@@ -60,9 +60,16 @@ const steps = [
   },
 ];
 
-const MaximizeEarnings: React.FC = () => {
+interface Props {
+  dashboard?: boolean
+}
+
+const MaximizeEarnings: React.FC<Props> = ({ dashboard = false }) => {
   return (
-    <div className="space-y-[60px] section-padding mt-[200px]">
+    <div className={cn(
+      "space-y-[60px] ",
+      dashboard && "mt-[200px] section-padding"
+    )}>
       <h1 className="text-[18px] lg:text-[22px] font-[700]">
         Explore how to maximize your earnings with cashback, bonuses, and
         exclusive perks;

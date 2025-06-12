@@ -1,7 +1,7 @@
 import React from "react";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { FiShoppingBag } from "react-icons/fi";
-import { RiBox3Line,  } from "react-icons/ri";
+import { RiBox3Line, RiGift2Line,  } from "react-icons/ri";
 import { FaCircleUser } from "react-icons/fa6";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -9,28 +9,28 @@ import { cn } from "@/lib/utils";
 const navs = [
   {
     name: "Portfolio",
-    icon: <IoBagHandleOutline className="size-6" />,
+    icon: <IoBagHandleOutline className="size-5" />,
     slug: "portfolio",
     link: "/partner/portfolio",
   },
   {
     name: "Shop",
-    icon: <FiShoppingBag className="size-6" />,
+    icon: <FiShoppingBag className="size-5" />,
     slug: "shop",
     link: "/partner/shop",
   },
   {
     name: "My Orders",
-    icon: <RiBox3Line className="size-6" />,
+    icon: <RiBox3Line className="size-5" />,
     slug: "my-orders",
     link: "/partner/my-orders?tab=processing",
   },
-//   {
-//     name: "Website",
-//     icon: <IoGlobeOutline className="size-6" />,
-//     slug: "visit-website",
-//     link: "/home",
-//   },
+  {
+    name: "Rewards",
+    icon: <RiGift2Line className="size-5" />,
+    slug: "my-rewards",
+    link: "/partner/my-rewards",
+  },
   {
     name: "Profile",
     icon: <FaCircleUser className="size-6" />,
@@ -51,7 +51,7 @@ const Taskbar: React.FC = () => {
             key={nav.slug}
             to={nav.link}
             className={cn(
-              "flex flex-col items-center justify-center min-w-0 flex-1 px-2 py-2 rounded-lg transition-all duration-200",
+              "flex flex-col items-center justify-center min-w-0 flex-1 px-1 py-2 rounded-lg transition-all duration-200",
               currentPath === nav.slug
                 ? "text-primary"
                 : "text-primary/80"
@@ -64,7 +64,7 @@ const Taskbar: React.FC = () => {
               {nav.icon}
             </div>
             <span className={cn(
-              "text-xs font-medium leading-none",
+              "text-xs text-center font-medium leading-none",
               currentPath === nav.slug ? "text-primary font-semibold" : "text-primary/80"
             )}>
               {nav.name}

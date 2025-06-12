@@ -15,7 +15,7 @@ const Portfolio: React.FC = () => {
       </h1>
       <Overview />
       <MyOrders />
-      <Activities title="Activities" />
+      <Activities title="Transaction Summary" />
     </div>
   );
 };

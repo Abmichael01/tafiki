@@ -1,19 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { GoArrowLeft } from "react-icons/go";
-import { FiUpload } from "react-icons/fi";
+// import { FiUpload } from "react-icons/fi";
 import OverviewCard from "@/components/PartnerDashboard/Portfolio/OverviewCard";
 import MyOrders from "@/components/PartnerDashboard/Portfolio/MyOrders";
 import History from "@/components/PartnerDashboard/Portfolio/History";
 import SelectPage from "@/components/PartnerDashboard/Portfolio/SelectPage";
-import { useDialogStore } from "@/stores/dialogStore";
+// import { useDialogStore } from "@/stores/dialogStore";
 import useUserDetailsStore from "@/stores/userStore";
 import { format } from 'date-fns';
 import { Transaction } from '@/types';
 
 
 const PortfolioDetail: React.FC = () => {
-  const { openDialog } = useDialogStore()
+  // const { openDialog } = useDialogStore()
   const { userDetails } = useUserDetailsStore()
 
   const formatTransactions = (): Transaction[] => {
@@ -35,7 +35,7 @@ const PortfolioDetail: React.FC = () => {
           <Link to="/partner/portfolio">
             <GoArrowLeft className="size-[24px]" />
           </Link>
-          <h1 className="text-[24px]">Portfolio</h1>
+          <h1 className="text-[16px] min-[400px]:text-[20px] min-[600px]:text-[24px]">Account Inflow</h1>
         </div>
         <SelectPage />
       </div>
@@ -52,10 +52,10 @@ const PortfolioDetail: React.FC = () => {
               <span className="text-[#16A34A]">(+{((userDetails?.daily_roi || 0) / (userDetails?.total_roi_paid || 1) * 100).toFixed(2)}%)</span>(+£{userDetails?.daily_roi}) Today
             </h1>
           </div>
-          <div onClick={() => openDialog("withdrawFromPortfolio")} className="text-center flex flex-col gap-[2px] items-center cursor-pointer">
+          {/* <div onClick={() => openDialog("withdrawFromPortfolio")} className="text-center flex flex-col gap-[2px] items-center cursor-pointer">
             <FiUpload className="size-[15px]" />
             <h1 className="text-[12px]">Withdraw</h1>
-          </div>
+          </div> */}
         </OverviewCard>
       </div>
       <MyOrders pending />

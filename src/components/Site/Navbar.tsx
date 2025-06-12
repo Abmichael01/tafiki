@@ -40,6 +40,9 @@ const Navbar: React.FC = () => {
               <DropdownMenuItem onClick={() => navigate("/about")}>
                 About us
               </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/faq")}>
+                FAQ
+              </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() => navigate("/reward-loyalty-program")}
               >

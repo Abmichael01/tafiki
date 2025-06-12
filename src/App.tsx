@@ -29,6 +29,8 @@ import RewardLoyaltyProgram from "./pages/RewardLoyaltyProgram";
 import Cart from "./pages/PartnerDashboard/Cart/Cart";
 import DeliveryInformation from "./pages/PartnerDashboard/Cart/DeliveryInfo";
 import Checkout from "./components/PartnerDashboard/Cart/Checkout";
+import FAQ from "./pages/FAQ";
+import MyRewards from "./pages/PartnerDashboard/MyRewards";
 
 const App = () => {
   return (
@@ -38,7 +40,11 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/reward-loyalty-program" element={<RewardLoyaltyProgram />} />
+          <Route
+            path="/reward-loyalty-program"
+            element={<RewardLoyaltyProgram />}
+          />
+          <Route path="/faq" element={<FAQ />} />
         </Route>
 
         <Route path="/" element={<LandingPage />} />
@@ -65,16 +71,18 @@ const App = () => {
           <Route path="my-orders">
             <Route index element={<MyOrders />} />
             <Route path=":id" element={<OrderDetails />} />
-            <Route
-              path=":id/transactions"
-              element={<OrderTransactionFlow />}
-            />
+            <Route path=":id/transactions" element={<OrderTransactionFlow />} />
           </Route>
-          
+
+          <Route path="my-rewards" element={<MyRewards />} />
+
           <Route path="cart">
             <Route index element={<Cart />} />
-            <Route path="delivery-information" element={<DeliveryInformation />} />
-            <Route path="checkout" element={<Checkout /> } />
+            <Route
+              path="delivery-information"
+              element={<DeliveryInformation />}
+            />
+            <Route path="checkout" element={<Checkout />} />
           </Route>
 
           <Route path="profile">

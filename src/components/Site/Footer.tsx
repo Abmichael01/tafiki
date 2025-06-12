@@ -15,6 +15,7 @@ import { Separator } from "../ui/separator";
 const links = [
   { name: "Home", link: "/" },
   { name: "About", link: "/about" },
+  { name: "FAQ", link: "/faq" },
   { name: "Reward and loyalty programme", link: "/loyalty" },
   { name: "Contact", link: "/contact" },
 ];
@@ -63,6 +64,9 @@ const Footer: React.FC = () => {
               <DropdownMenuItem onClick={() => navigate("/about")}>
                 About us
               </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/faq")}>
+                FAQ
+              </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() => navigate("/reward-loyalty-program")}
               >
@@ -104,7 +108,7 @@ const Footer: React.FC = () => {
               </h2>
             </div>
           </div>
-          <div className="lg:flex hidden lg:block gap-[10px] pl-[32px]">
+          <div className="lg:flex hidden gap-[10px] pl-[32px]">
             <FaFacebook />
             <FaInstagram />
             <FaXTwitter />
@@ -122,7 +126,7 @@ const Footer: React.FC = () => {
           <button className="bg-white text-[#15221B] rounded-[4px] w-[70%] sm:w-full py-[10px] hover:bg-gray-100 transition">
             Sign up
           </button>
-          <div className="flex block lg:hidden justify-center lg:justify-start gap-[40px] lg:gap-[10px] pl-[32px]">
+          <div className="flex lg:hidden justify-center lg:justify-start gap-[40px] lg:gap-[10px] pl-[32px]">
             <FaFacebook className="size-[40px]" />
             <FaInstagram className="size-[40px]" />
             <FaXTwitter className="size-[40px]" />
@@ -131,7 +135,7 @@ const Footer: React.FC = () => {
       </div>
       <div className="flex items-center justify-center flex-col text-center pb-20 relative ">
         <h2 className="">Copyright © 2024 Food Hybrid. All Rights Reserved</h2>
-        <h2 className="absolute -bottom-[clamp(30px,5vw,100px)] left-0 right-0 text-[clamp(50.82px,10vw,177.65px)] text-[127.63px] text-nowrap lg:text-[177.65px] bg-gradient-to-b from-[#FFFFFF]/20 to-[#15221B]/20 font-[700] bg-clip-text text-transparent ">
+        <h2 className="absolute -bottom-[clamp(30px,5vw,100px)] left-0 right-0 text-[clamp(50.82px,10vw,177.65px)] text-nowrap lg:text-[177.65px] bg-gradient-to-b from-[#FFFFFF]/20 to-[#15221B]/20 font-[700] bg-clip-text text-transparent ">
           Food Hybrid
         </h2>
       </div>

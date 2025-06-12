@@ -3,7 +3,7 @@ import { Separator } from "@/components/ui/separator";
 import React from "react";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { FiShoppingBag, FiX } from "react-icons/fi";
-import { RiBox3Line } from "react-icons/ri";
+import { RiBox3Line, RiGift2Line } from "react-icons/ri";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { FaCircleUser } from "react-icons/fa6";
@@ -13,7 +13,7 @@ import useUserDetailsStore from "@/stores/userStore";
 
 const navs = [
   {
-    name: "Portfolio",
+    name: "My Account",
     icon: <IoBagHandleOutline />,
     slug: "portfolio",
     link: "/partner/portfolio",
@@ -29,6 +29,12 @@ const navs = [
     icon: <RiBox3Line />,
     slug: "my-orders",
     link: "/partner/my-orders?tab=processing",
+  },
+  {
+    name: "My Rewards",
+    icon: <RiGift2Line />,
+    slug: "my-rewards",
+    link: "/partner/my-rewards",
   },
   {
     name: "Visit Website",

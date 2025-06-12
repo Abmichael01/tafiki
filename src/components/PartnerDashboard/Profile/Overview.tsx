@@ -11,7 +11,7 @@ const Overview: React.FC = () => {
   const { userDetails } = useUserDetailsStore()
   return (
     <div className=" flex flex-col sm:flex-row justify-center gap-y-[50px] gap-x-[50px] lg:gap-x-[120px]">
-        <OverviewCard className="w-full sm:w-[313px]">
+        <OverviewCard className="w-full sm:w-[313px] bg-[#2D4A22]">
           <div className="flex justify-between items-center text-[12px]">
             <div className="flex items-center gap-1">
               <IoMdWallet className="w-[8px]" />
@@ -38,11 +38,11 @@ const Overview: React.FC = () => {
             </Link>
           </div>
         </OverviewCard>
-        <OverviewCard className="w-full sm:w-[313px]">
+        <OverviewCard className="w-full sm:w-[313px] bg-[#1B4332]">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-1 text-[12px]">
               <FaBagShopping className="w-[8px]" />
-              <h1>Portfolio (RI)</h1>
+              <h1>Account Inflow</h1>
             </div>
             <Link to="/partner/portfolio/portfolio">
               <FaChevronRight />
@@ -58,10 +58,10 @@ const Overview: React.FC = () => {
               <span className="text-[#16A34A]">(+{((userDetails?.daily_roi || 0) / (userDetails?.total_roi_paid || 1) * 100).toFixed(2)}%)</span>(+£{userDetails?.daily_roi}) Today
             </h1>
           </div>
-          <Link to="?dialog=withdrawFromPortfolio" className="text-center flex flex-col gap-[2px] items-center cursor-pointer">
+          {/* <Link to="?dialog=withdrawFromPortfolio" className="text-center flex flex-col gap-[2px] items-center cursor-pointer">
             <FiUpload className="size-[15px]" />
             <h1 className="text-[12px]">Withdraw</h1>
-          </Link>
+          </Link> */}
         </OverviewCard>
       </div>
   )
