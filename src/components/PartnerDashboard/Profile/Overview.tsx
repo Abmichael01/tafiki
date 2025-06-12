@@ -38,7 +38,7 @@ const Overview: React.FC = () => {
             </Link>
           </div>
         </OverviewCard>
-        <OverviewCard className="w-full sm:w-[313px] bg-[#1B4332] h-[160px] lg:h-full">
+        <OverviewCard className="w-full sm:w-[313px] bg-[#1B4332] h-[160px]">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-1 text-[12px]">
               <FaBagShopping className="w-[8px]" />

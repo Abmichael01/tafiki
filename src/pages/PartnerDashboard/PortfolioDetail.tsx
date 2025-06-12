@@ -40,7 +40,7 @@ const PortfolioDetail: React.FC = () => {
         <SelectPage />
       </div>
       <div className="flex justify-center">
-        <OverviewCard className="w-full md:w-[698px]">
+        <OverviewCard className="w-full md:w-[698px] bg-[#1B4332] h-[160px]">
           <h1 className="text-[#FFFFFFCC] text-[14px] text-center">Balance</h1>
           <div className="text-center font-satoshi">
             <h1 className="text-center text-[24px] font-satoshi font-[700] gap-[1px] flex items-center justify-center">
