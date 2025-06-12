@@ -16,7 +16,7 @@ const Overview: React.FC = () => {
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-1 text-[12px]">
             <FaBagShopping className="w-[8px]" />
-            <h1>Portfolio (RSI)</h1>
+            <h1>Portfolio (RI)</h1>
           </div>
           <Link to="/partner/portfolio/portfolio">
             <FaChevronRight />

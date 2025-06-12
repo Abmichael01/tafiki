@@ -15,11 +15,12 @@ import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { motion, AnimatePresence } from "framer-motion";
+import useAuthStore from "@/stores/authStore";
 
 const MobileNavbar: React.FC = () => {
   const { isOpen, toggle } = useSidebarStore();
   const navigate = useNavigate();
-
+  const { isAuthenticated } = useAuthStore()
   return (
     <AnimatePresence>
       {isOpen && (
@@ -71,9 +72,9 @@ const MobileNavbar: React.FC = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
               <Link to="/contact">Contact</Link>
-              <Link to="/partner/login" className="w-full shadow-xl">
+              <Link to={isAuthenticated ? "partner/portfolio" : "/partner"} className="w-full shadow-xl">
                 <button className="bg-[#15221B] w-full cursor-pointer rounded-sm border border-primary text-white py-[10px] px-7 ">
-                  Login
+                  {isAuthenticated ? "Dashboard" : "Login"}
                 </button>
               </Link>
             </nav>

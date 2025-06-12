@@ -37,14 +37,14 @@ const OrderTransactionFlow: React.FC = () => {
           <h1 className="text-[24px]">
             Order details
             <span className=" text-[16px] text-[#929292]">
-              /Transaction flow
+              /RI flow
             </span>
           </h1>
         </div>
       </div>
       <Overview />
       <Products transactionsPage />
-      <History heading="Expected ROI Over Time" data={transactions} />
+      <History heading="Expected RI Over Time" data={transactions} />
     </div>
   );
 };

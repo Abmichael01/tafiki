@@ -47,8 +47,7 @@ const DashboardLayout: React.FC = () => {
         setUserDetails(data as UserDetails);
       }
       if (!data && !isLoading && isError) {
-        toast.info("Login to continue");
-        navigate("/partner/login");
+        logout()
       }
     };
 
@@ -77,7 +76,7 @@ const DashboardLayout: React.FC = () => {
       <div className="sticky top-0 bottom-0 h-full z-[999]">
         <Sidebar />
       </div>
-      <div className="flex-1 min-h-[90vh] w-full sm:pb-10 flex flex-col pb-25 md:pb-0">
+      <div className="flex-1 min-h-[90vh] w-full sm:pb-10 flex flex-col pb-25 sm:pb-30 lg:pb-0">
         <Navbar />
         <div className="md:px-14 sm:px-10 px-2 lg:px-10 h-full">
             <motion.div

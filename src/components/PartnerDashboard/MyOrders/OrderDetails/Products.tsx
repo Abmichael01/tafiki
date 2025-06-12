@@ -26,7 +26,7 @@ const Products: React.FC<Props> = ({ transactionsPage }) => {
             to={`/partner/my-orders/${id}/transactions`}
             className="flex gap-2 items-center text-[16px] font-[500] font-satoshi text-[#15221B]"
           >
-            View ROI flow
+            View RI flow
             <FiChevronRight />
           </Link>
         )}

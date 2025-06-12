@@ -12,11 +12,12 @@ import {
 import { cn } from "@/lib/utils";
 import MobileNavbar from "./MobileNavbar";
 import { useSidebarStore } from "@/stores/sidebarStore";
+import useAuthStore from "@/stores/authStore";
 
 const Navbar: React.FC = () => {
   const { isOpen, toggle } = useSidebarStore();
   const navigate = useNavigate();
-
+  const { isAuthenticated } = useAuthStore()
   return (
     <>
       <header
@@ -47,9 +48,9 @@ const Navbar: React.FC = () => {
             </DropdownMenuContent>
           </DropdownMenu>
           <Link to="/contact">Contact</Link>
-          <Link to="/partner">
+          <Link to={isAuthenticated ? "partner/portfolio" : "/partner"}>
             <button className="bg-transparent hover:bg-transparent text-[#252525] rounded-sm border border-primary py-[5px] px-7 ">
-              Login
+              {isAuthenticated ? "Dashboard" : "Login"}
             </button>
           </Link>
         </nav>
