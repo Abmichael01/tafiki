@@ -54,7 +54,7 @@ const Navbar: React.FC = () => {
             {userDetails?.personal_details?.username?.charAt(0).toUpperCase()}
           </div>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-48 ml-5">
+        <DropdownMenuContent align="start" className="w-48 ml-5">
           <DropdownMenuItem onClick={() => navigate("/home")}>
             <FiGlobe className="mr-2 h-4 w-4" />
             <span>Visit website</span>
