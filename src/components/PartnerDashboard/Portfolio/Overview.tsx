@@ -12,7 +12,7 @@ const Overview: React.FC = () => {
   const { userDetails } = useUserDetailsStore()
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-[20px] gap-y-[50px]">
-      <OverviewCard className="bg-[#1B4332]">
+      <OverviewCard className="bg-[#1B4332] h-[160px] lg:h-full">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-1 text-[12px]">
             <FaBagShopping className="w-[8px]" />
