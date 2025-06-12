@@ -36,7 +36,7 @@ const DashboardLayout: React.FC = () => {
     }
   }, [dialog, openDialog]);
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryFn: getCurrentUser,
     queryKey: ["userDetails"],
   });
@@ -46,13 +46,14 @@ const DashboardLayout: React.FC = () => {
       if (data) {
         setUserDetails(data as UserDetails);
       }
-      if (!data && !isLoading) {
+      if (!data && !isLoading && isError) {
         toast.info("Login to continue");
+        navigate("/partner/login");
       }
     };
 
     verifyUser();
-  }, [setUserDetails, data, navigate, logout, isLoading]);
+  }, [setUserDetails, data, navigate, logout, isLoading, isError]);
 
   useEffect(() => {
     if (!isAuthenticated) {

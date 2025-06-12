@@ -43,7 +43,10 @@ const CartSummary: React.FC<CartSummaryProps> = ({
 
   const sortedCycles = Object.values(groupedCycles).sort(
     (a, b) => a.cycle - b.cycle
-  );
+  ).map((cycle, index, array) => ({
+    ...cycle,
+    start_date: index === 0 ? new Date().toISOString().split('T')[0] : array[index - 1].payout_date
+  }));
 
   const formatCurrency = (amount: number) => {
     return `£${amount.toLocaleString()}`;
@@ -93,11 +96,11 @@ const CartSummary: React.FC<CartSummaryProps> = ({
           <li key={cycle.cycle} className="text-[14px]">
             <div className="flex justify-between gap-4 items-center">
               <span className="text-[#6E6E6E]">
-                Cycle {cycle.cycle}: {formatDate(cycle.payout_date)} -{" "}
-                {formatDate(cycle.payout_date)} (+{roiPercentage}% to Portfolio)
+              Cycle {cycle.cycle}: {formatDate(cycle.start_date)} -{" "}
+              {formatDate(cycle.payout_date)} (+{roiPercentage}% to Portfolio)
               </span>
               <span className="font-medium text-nowrap">
-                +{formatCurrency(cycle.amount)}
+              +{formatCurrency(cycle.amount)}
               </span>
             </div>
           </li>
