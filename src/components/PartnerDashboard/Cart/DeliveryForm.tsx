@@ -147,7 +147,7 @@ export default function DeliveryForm() {
       <div>
         <Select onValueChange={handleVendorChange} value={selectedVendor}>
           <SelectTrigger className="w-fit p-3 py-[22px] border border-gray-200 rounded-lg text-[14px] bg-white shadow-none">
-            <SelectValue placeholder="Vendor List" />
+            <SelectValue placeholder="Retail Shop" />
           </SelectTrigger>
           <SelectContent>
             {vendorOptions.map((opt) => (
