@@ -12,7 +12,7 @@ const Overview: React.FC = () => {
   const { userDetails } = useUserDetailsStore()
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-[20px] gap-y-[50px]">
-      <OverviewCard className="bg-[#1B4332] h-[160px] lg:h-full">
+      <OverviewCard className="bg-[#002400] h-[160px] lg:h-full">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-1 text-[12px]">
             <FaBagShopping className="w-[8px]" />
@@ -38,7 +38,7 @@ const Overview: React.FC = () => {
         </Link> */}
       </OverviewCard>
 
-      <OverviewCard className="h-[160px] lg:h-full bg-[#2D4A22]">
+      <OverviewCard className="h-[160px] lg:h-full bg-[#003700]">
         <div className="flex justify-between items-center text-[12px]">
           <div className="flex items-center gap-1">
             <FaTag className="w-[8px]" />
@@ -56,7 +56,7 @@ const Overview: React.FC = () => {
         </div>
       </OverviewCard>
 
-      <OverviewCard className="bg-[#0F3325]">
+      <OverviewCard className="bg-[#004a00]">
         <div className="flex justify-between items-center text-[12px]">
           <div className="flex items-center gap-1">
             <IoMdWallet className="w-[8px]" />

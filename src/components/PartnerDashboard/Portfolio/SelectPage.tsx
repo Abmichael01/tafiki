@@ -21,11 +21,11 @@ const SelectPage: React.FC = () => {
 
   return (
     <Select onValueChange={handleNavigation} defaultValue={value}>
-      <SelectTrigger className="w-[150px] rounded-[4px]">
+      <SelectTrigger className="w-fit rounded-[4px]">
         <SelectValue placeholder="Select Page" />
       </SelectTrigger>
       <SelectContent align="end">
-        <SelectItem value="portfolio">Portfolio (RIO)</SelectItem>
+        <SelectItem value="portfolio">Account Inflow</SelectItem>
         <SelectItem value="wallet">Wallet</SelectItem>
       </SelectContent>
     </Select>

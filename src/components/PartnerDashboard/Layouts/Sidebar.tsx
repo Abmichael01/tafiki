@@ -19,13 +19,13 @@ const navs = [
     link: "/partner/portfolio",
   },
   {
-    name: "Shop",
+    name: "Market",
     icon: <FiShoppingBag />,
     slug: "shop",
     link: "/partner/shop",
   },
   {
-    name: "My Orders",
+    name: "My Shop",
     icon: <RiBox3Line />,
     slug: "my-orders",
     link: "/partner/my-orders?tab=processing",

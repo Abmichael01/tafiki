@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 const navs = [
   {
-    name: "Portfolio",
+    name: "My Account",
     icon: <IoBagHandleOutline className="size-5" />,
     slug: "portfolio",
     link: "/partner/portfolio",
@@ -64,7 +64,7 @@ const Taskbar: React.FC = () => {
               {nav.icon}
             </div>
             <span className={cn(
-              "text-xs text-center font-medium leading-none",
+              "text-xs text-center text-nowrap font-medium leading-none",
               currentPath === nav.slug ? "text-primary font-semibold" : "text-primary/80"
             )}>
               {nav.name}
