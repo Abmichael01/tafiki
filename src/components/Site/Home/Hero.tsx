@@ -30,7 +30,7 @@ const Hero: React.FC = () => {
         </motion.h1>
 
         <motion.div variants={bounceIn}>
-          <Link to="/partner/register">
+          <Link to="/partner/register?stage=1">
             <Button className="py-[12px] px-[20px]">Get Started</Button>
           </Link>
         </motion.div>
