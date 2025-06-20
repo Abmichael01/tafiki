@@ -20,7 +20,7 @@ const WelcomeText: React.FC = () => {
       {/* Mobile heading */}
       <h1
         className="
-          sm:hidden flex flex-col text-[54px] tracking-tighter font-extrabold
+          sm:hidden flex flex-col text-[48px] tracking-tighter font-extrabold
           text-transparent bg-clip-text
           bg-gradient-to-b from-white  to-[#15221B]
         "
