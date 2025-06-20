@@ -1,4 +1,3 @@
-import React from "react";
 import { FaBoxOpen, FaTruck, FaStore } from "react-icons/fa";
 import { MdWarehouse, MdAttachMoney } from "react-icons/md";
 import { AiOutlineSync } from "react-icons/ai";
