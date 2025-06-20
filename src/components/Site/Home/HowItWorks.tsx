@@ -48,7 +48,7 @@ const benefitsData = [
 
 export default function HowItWorks() {
   return (
-    <section className="mt-[120px] md:mt-[180px] space-y-16 bg-white text-center">
+    <section className="mt-[120px] md:mt-[180px] space-y-16 bg-white text-center section-padding">
       {/* How It Works */}
       <div>
         <h2 className="text-xl font-bold mb-8 uppercase text-[#15221B]">
