@@ -35,7 +35,7 @@ const WelcomeText: React.FC = () => {
         initial="initial"
         whileInView="animate"
         viewport={{ once: true }}
-        className="bg-[#F9F9F9] rounded-lg p-5 text-start sm:p-0 sm:bg-background text-[16px] lg:text-[24px] sm:text-[18px] sm:text-center font-satoshi flex flex-col sm:block"
+        className="bg-[#F9F9F9] rounded-lg p-5 text-start sm:p-0 sm:bg-background text-[16px] lg:text-[24px] sm:text-[18px] sm:text-center font-satoshi flex flex-col sm:block space-y-4"
       >
         <p>
           We connect virtual distributors with retail shops in one seamless food
