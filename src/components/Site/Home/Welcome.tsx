@@ -35,17 +35,17 @@ const countries = [
 
 const stats = [
   {
-    name: "Happy Clients",
+    name: "Retail Shops",
     icon: <Smile />,
     value: "2000+",
   },
   {
-    name: "Our Farms",
+    name: "Vendors",
     icon: <TreePalm className="lg:size-[24px] sm:size-[20px]" />,
     value: "5",
   },
   {
-    name: "Testimonies",
+    name: "Partners and Distributors",
     icon: <Stars className="lg:size-[24px] sm:size-[20px]" />,
     value: "3000+",
   },

@@ -11,7 +11,7 @@ const WelcomeText: React.FC = () => {
         className="
           hidden sm:block sm:text-[64.58px] lg:text-[95.57px] tracking-tighter leading-tight font-extrabold 
           text-transparent bg-clip-text
-          bg-gradient-to-b from-white  to-[#15221B]
+          bg-gradient-to-b from-green-300 to-green-800
         "
       >
         Smarter Food Distribution Starts Here

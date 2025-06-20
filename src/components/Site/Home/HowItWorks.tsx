@@ -11,7 +11,7 @@ const howItWorksData = [
     icon: <FaBoxOpen className="w-10 h-10 text-[#d8291b]" />,
   },
   {
-    title: "Tafiki Fulfil Orders to Shops",
+    title: "Food Hybrid Fulfil Orders to Shops",
     desc: "We deliver directly to partnered retailers from manufacturers.",
     icon: <FaTruck className="w-10 h-10 text-[#d8291b]" />,
   },
@@ -25,7 +25,7 @@ const howItWorksData = [
 const benefitsData = [
   {
     title: "No Warehouse Needed",
-    desc: "Entrepreneurs invest in inventory without handling any warehouse.",
+    desc: "Entrepreneurs sponsors inventory supply without the need for a warehouse.",
     icon: <MdWarehouse className="w-10 h-10 text-[#d8291b]" />,
   },
   {
@@ -75,7 +75,7 @@ export default function HowItWorks() {
         <h2 className="text-xl font-bold mb-8 uppercase text-[#15221B]">
           Benefits
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-4 gap-8 max-w-5xl mx-auto px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto px-4">
           {benefitsData.map((item) => (
             <div
               key={item.title}

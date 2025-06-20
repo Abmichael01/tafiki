@@ -9,7 +9,7 @@ import { FiHelpCircle } from "react-icons/fi";
 
 const links = [
   {
-    name: "Vendor List",
+    name: "Retail Shop List",
     icon: <CiShop className="size-[20px] stroke-1" />,
     link: "#",
   },

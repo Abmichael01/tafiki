@@ -97,7 +97,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
             <div className="flex justify-between gap-4 items-center">
               <span className="text-[#6E6E6E]">
               Cycle {cycle.cycle}: {formatDate(cycle.start_date)} -{" "}
-              {formatDate(cycle.payout_date)} (+{roiPercentage}% to Portfolio)
+              {formatDate(cycle.payout_date)} (+{roiPercentage}% to Account Inflow)
               </span>
               <span className="font-medium text-nowrap">
               +{formatCurrency(cycle.amount)}
