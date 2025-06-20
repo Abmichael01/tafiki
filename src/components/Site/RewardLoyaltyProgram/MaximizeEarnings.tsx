@@ -68,7 +68,7 @@ const MaximizeEarnings: React.FC<Props> = ({ dashboard = false }) => {
   return (
     <div className={cn(
       "space-y-[60px] ",
-      dashboard && "mt-[200px] section-padding"
+      dashboard ? "mt-[200px]" : "section-padding"
     )}>
       <h1 className="text-[18px] lg:text-[22px] font-[700]">
         Explore how to maximize your earnings with cashback, bonuses, and

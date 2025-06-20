@@ -1,5 +1,6 @@
 import HowWeOperate from '@/components/LandingPage/HowWeOperate'
 import Hero from '@/components/Site/Home/Hero'
+import HowItWorks from '@/components/Site/Home/HowItWorks'
 import NewsLetter from '@/components/Site/Home/NewsLetter'
 import OurFacility from '@/components/Site/Home/OurFacility'
 import OurStandards from '@/components/Site/Home/OurStandards'
@@ -15,6 +16,7 @@ const Home: React.FC = () => {
         <Welcome />
         <OurFacility />
         <OurStandards />
+        <HowItWorks />
         <OurTaste  />
         <HowWeOperate title />
         <Testimonials />

@@ -63,6 +63,8 @@ const Welcome: React.FC = () => {
         <WelcomeText />
       </motion.div>
 
+      
+
       <motion.div variants={fadeInUp} initial="initial" whileInView="animate" viewport={{ once: true }}>
         <p className="bg-[#F9F9F9] rounded-lg p-5 text-start sm:p-0 sm:bg-background text-[16px] lg:text-[24px] sm:text-[18px] sm:text-center font-satoshi flex flex-col sm:block">
           <span>We are more than just a food processing and packaging company. </span> <br />{" "}
