@@ -6,6 +6,15 @@
   <title>Your Money Is On The Way</title>
   <style>
     /* For clients that support style tags */
+    /* *{
+      padding: 0;
+      margin: 0;
+    } */
+    :root {
+      color-scheme: light;
+      supported-color-schemes: light;
+    }
+
     @media screen {
       @font-face {
         font-family: "Inter";
@@ -27,8 +36,8 @@
         <table cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width: 600px">
           <!-- Header -->
           <tr>
-            <td bgcolor="#14292c" style="padding: 40px 20px; border-radius: 0 0 40px 40px; background: #14292c; /* fallback */
-background: linear-gradient(135deg, #0a1415 0%, #3a5a5e 50%, #0a1415 100%);
+            <td bgcolor="#13201a" style="padding: 40px 20px; border-radius: 0 0 40px 40px; background: #13201a; /* fallback */
+background: linear-gradient(135deg, #0a140f 0%, #39584a 50%, #0a140f 100%);
 ">
               <table width="100%">
                 <tr>
@@ -54,26 +63,26 @@ background: linear-gradient(135deg, #0a1415 0%, #3a5a5e 50%, #0a1415 100%);
                       Your money is </br> on the way.
                     </h1>
                   </td>
-                  <!-- <td align="right">
+                  <td align="right">
                     <img
                         src="https://bluemoji.io/cdn-proxy/646218c67da47160c64a84d5/64fae0949d4749301c6fa63b_90.png"
                         alt="Thumbs Up Emoji"
-                        width="200"
+                        width="150"
                         style="display: block; margin-top: 10px"
                       />
-                  </td> -->
+                  </td>
                 </tr>
               </table>
             </td>
           </tr>
 
           <!-- Body Text -->
-          <table cellspacing="20" style="
-                    padding: 10px 5px;
+          <table style="
+                    padding: 10px 20px;
                     font-family: Inter, Arial, sans-serif;
                     background: #fff;
                   ">
-            <tr style="background: #fff;">
+            <tr style="background: #fff !important;">
               <td>
 
                 <h3 style="font-size: 20px; color: #000000;">Hi {{ username }}</h3>
@@ -99,14 +108,23 @@ background: linear-gradient(135deg, #0a1415 0%, #3a5a5e 50%, #0a1415 100%);
           </table>
 
           <tr>
+            <td style="
+                    padding: 10px 20px;
+                    font-family: Inter, Arial, sans-serif;
+                    background: #fff;
+                    font-size: 16px;
+                  ">Regards,</td>
+          </tr>
+
+          <tr>
             <td align="left">
-                    <img
+              <img
                         src="https://food-hybrid-demo.vercel.app/signature.jpg"
                         alt="Food Hybrid Logo"
                         width="100%"
                         style="display: block; border-top: 1px solid #14292c"
                       />
-                  </td>
+            </td>
           </tr>
 
           <!-- Social Footer -->
@@ -114,8 +132,6 @@ background: linear-gradient(135deg, #0a1415 0%, #3a5a5e 50%, #0a1415 100%);
             <td bgcolor="#d82821" align="center" style="
                   padding: 15px;
                   color: #ffffff;
-                  <!-- border-radius: 40px 40px 0 0; -->
-                  font-family: Inter, Arial, sans-serif;
                 ">
               <!-- <p style="margin: 0; font-size: 16px">We hope you follow us</p> -->
               <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px">
@@ -154,14 +170,15 @@ background: linear-gradient(135deg, #0a1415 0%, #3a5a5e 50%, #0a1415 100%);
 
           <!-- Legal Info -->
           <tr>
-            <td bgcolor="#132026" style="
+            <td bgcolor="#13201a" style="
                   padding: 30px 20px;
-                  color: #e2e8f0;
+                  color: #e2e8f0 !important;
                   font-size: 13px;
                   line-height: 1.6;
                   font-family: Inter, Arial, sans-serif;
-                  background: #14292c; /* fallback */
-background: linear-gradient(135deg, #0a1415 0%, #3a5a5e 50%, #0a1415 100%);
+                  background: #13201a; /* fallback */
+background: linear-gradient(135deg, #0a140f 0%, #39584a 50%, #0a140f 100%);
+
                 ">
               <p style="margin: 0; text-align:center ">© 2025 All Rights Reserved</p>
               <hr style="
