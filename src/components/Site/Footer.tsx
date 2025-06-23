@@ -85,7 +85,7 @@ const Footer: React.FC = () => {
             <div className="flex items-center gap-2">
               <PhoneIcon />
               <h2 className="text-[18px] text-nowrap">
-                1800-121-3637, +91-7052-101-786
+                02035762136
               </h2>
             </div>
 
