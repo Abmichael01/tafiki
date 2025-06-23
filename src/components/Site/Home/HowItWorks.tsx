@@ -7,7 +7,7 @@ import { HiShieldCheck } from "react-icons/hi";
 const howItWorksData = [
   {
     title: "Fund Food Products Virtually",
-    desc: "Entrepreneurs invest in inventory without handling any goods.",
+    desc: "Entrepreneur sponsors inventory supply to retail shops without handling any goods",
     icon: <FaBoxOpen className="w-10 h-10 text-[#d8291b]" />,
   },
   {
