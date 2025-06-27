@@ -2,6 +2,7 @@ import { FaBoxOpen, FaTruck, FaStore } from "react-icons/fa";
 import { MdWarehouse, MdAttachMoney } from "react-icons/md";
 import { AiOutlineSync } from "react-icons/ai";
 import { HiShieldCheck } from "react-icons/hi";
+import FlowDropdown from "./FlowDropdown";
 
 // Data arrays
 const howItWorksData = [
@@ -65,9 +66,7 @@ export default function HowItWorks() {
             </div>
           ))}
         </div>
-        <a href="#" className="text-green-700 underline mt-4 block">
-          See Fulfillment Flow ›
-        </a>
+        <FlowDropdown />
       </div>
 
       {/* Benefits */}

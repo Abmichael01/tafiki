@@ -22,7 +22,7 @@ const WelcomeText: React.FC = () => {
         className="
           sm:hidden flex flex-col text-[48px] tracking-tighter font-extrabold
           text-transparent bg-clip-text
-          bg-gradient-to-b from-white  to-[#15221B]
+          bg-gradient-to-b from-green-300 to-green-800
         "
       >
         <span>Smarter Food</span>

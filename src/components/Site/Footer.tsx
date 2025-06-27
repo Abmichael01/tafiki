@@ -102,7 +102,7 @@ const Footer: React.FC = () => {
                   Lagere <br /> Ile-Ife, Nigeria
                 </span>
                 <span>
-                  Food Hybrid (UK) Limited <br /> 128, City road, London <br />{" "}
+                  Food Hybrid (UK) Limited 128 <br />City road, London <br />{" "}
                   EC1V 2NX
                 </span>
               </h2>
