@@ -48,7 +48,6 @@ const WelcomeText: React.FC = () => {
       </motion.div>
 
       <RandomStars />
-
       <style>{`
         @keyframes gradientShift {
           0%, 100% {

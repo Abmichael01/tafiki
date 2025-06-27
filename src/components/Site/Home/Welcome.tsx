@@ -130,11 +130,11 @@ const Welcome: React.FC = () => {
           <motion.div
             key={index}
             variants={fadeInUp}
-            className="space-y-2 border-l-2 pl-[20px] border-[#911B13]"
+            className="space-y-2 pl-[20px] border-[#911B13] flex flex-col items-center text-center"
           >
             {stat.icon}
             <p className="sm:text-[14px] lg:text-[18px]">{stat.name}</p>
-            <h1 className="text-[#15221B] sm:text-[24px] lg:text-[40px] font-semibold">
+            <h1 className="text-[#15221B] text-[28px] sm:text-[35px] lg:text-[40px] font-semibold">
               {stat.value}
             </h1>
           </motion.div>
