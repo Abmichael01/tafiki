@@ -1,5 +1,5 @@
 import React from "react";
-import OverviewCard from "./OverviewCard";
+import OverviewCard from "../../Others/OverviewCard";
 import { Link } from "react-router-dom";
 import { FaBagShopping, FaChevronRight } from "react-icons/fa6";
 import { FiUpload } from "react-icons/fi";

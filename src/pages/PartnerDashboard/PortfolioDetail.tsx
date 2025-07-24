@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { GoArrowLeft } from "react-icons/go";
 // import { FiUpload } from "react-icons/fi";
-import OverviewCard from "@/components/PartnerDashboard/Portfolio/OverviewCard";
+import OverviewCard from "@/components/Others/OverviewCard";
 import MyOrders from "@/components/PartnerDashboard/Portfolio/MyOrders";
 import History from "@/components/PartnerDashboard/Portfolio/History";
 import SelectPage from "@/components/PartnerDashboard/Portfolio/SelectPage";

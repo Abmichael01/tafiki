@@ -68,7 +68,7 @@ const History: React.FC<Props> = ({ heading, data }) => {
                 <p className="text-[12px]">{item.time}</p>
               </div>
             </div>
-            <h1 className="text-[16px] font-[700] font-satoshi">
+            <h1 className="text-[16px] font-[700] font-satoshi text-start">
               {item.amount}
             </h1>
           </div>

@@ -1,4 +1,4 @@
-import OverviewCard from "@/components/PartnerDashboard/Portfolio/OverviewCard";
+import OverviewCard from "@/components/Others/OverviewCard";
 import SelectPage from "@/components/PartnerDashboard/Portfolio/SelectPage";
 import { Separator } from "@/components/ui/separator";
 import { useDialogStore } from "@/stores/dialogStore";

@@ -31,6 +31,12 @@ import DeliveryInformation from "./pages/PartnerDashboard/Cart/DeliveryInfo";
 import Checkout from "./components/PartnerDashboard/Cart/Checkout";
 import FAQ from "./pages/FAQ";
 import MyRewards from "./pages/PartnerDashboard/MyRewards";
+import AdminLayout from "./layouts/AdminLayout";
+import Overview from "./pages/Admin/Overview";
+import Orders from "./pages/Admin/Orders";
+import AdminOrderDetails from "./pages/Admin/OrderDetails";
+import Partners from "./pages/Admin/Partners/Partners";
+import WithdrawalRequest from "./pages/Admin/Partners/WithdrawalRequest";
 
 const App = () => {
   return (
@@ -54,6 +60,16 @@ const App = () => {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
+        </Route>
+
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route path="overview" element={<Overview />} />
+          <Route path="orders" element={<Orders />} />
+          <Route path="orders/:id" element={<AdminOrderDetails />} />
+          <Route path="partners">
+            <Route index element={<Partners />} />
+            <Route path="withdrawal-requests" element={<WithdrawalRequest />} />
+          </Route>
         </Route>
 
         <Route path="/partner" element={<DashboardLayout />}>

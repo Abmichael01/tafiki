@@ -3,7 +3,7 @@ import { FaBagShopping, FaChevronRight } from "react-icons/fa6";
 import { FiUpload } from "react-icons/fi";
 import { IoMdWallet } from "react-icons/io";
 import { FaPlus } from "react-icons/fa6";
-import OverviewCard from "@/components/PartnerDashboard/Portfolio/OverviewCard";
+import OverviewCard from "@/components/Others/OverviewCard";
 import { Link } from "react-router-dom";
 import useUserDetailsStore from '@/stores/userStore';
 
