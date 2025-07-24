@@ -25,7 +25,7 @@ const RecentOrders = () => {
 
       {/* Table */}
       <div className="overflow-x-auto border-none">
-        <table className="min-w-full table-auto border-none text-center">
+        <table className="min-w-full table-auto border-none text-center text-nowrap">
           <thead>
             <tr className="text-[16px] text-[#6E6E6E] bg-[#F9F9F9] font-medium">
               <th className="px-4 py-2">Order ID and Date</th>
