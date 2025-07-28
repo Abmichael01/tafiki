@@ -7,6 +7,7 @@ import history from "@/assets/svgs/history.svg";
 interface OrderListProps {
   orders: Order[];
   tab?: string;
+  status?: boolean;
 }
 
 // Helper function to group orders by date for history view
@@ -29,10 +30,10 @@ const groupOrdersByDate = (orders: Order[]) => {
 // Individual order row component
 
 // Main OrderList component
-const OrderList: React.FC<OrderListProps> = ({ orders, tab }) => {
+const OrderList: React.FC<OrderListProps> = ({ orders, tab, status }) => {
   const renderOngoingOrders = () =>
     orders.length > 0 ? (
-      orders.map((order) => <OrderRow key={order.id} order={order} />)
+      orders.map((order) => <OrderRow key={order.id} order={order} status={status as boolean} />)
     ) : (
       <tr>
         <td colSpan={5} className="h-[60vh] text-center text-gray-500">
@@ -75,7 +76,7 @@ const OrderList: React.FC<OrderListProps> = ({ orders, tab }) => {
         </td>
       </tr>,
       // Rows under that date
-      ...dateOrders.map((order) => <OrderRow key={order.id} order={order} />),
+      ...dateOrders.map((order) => <OrderRow key={order.id} order={order} status={status as boolean} />),
     ]);
   };
 

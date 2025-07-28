@@ -115,7 +115,7 @@ const RecentOrders: React.FC<RecentOrdersProps> = ({ status = false, link = "/ad
               <tr key={idx} className="border-b border-[#F0F0F0]">
                 {/* Order ID and Date */}
                 <td className="px-4 py-3">
-                  <div className="flex items-start gap-2">
+                  <div className="flex items-start gap-2 mr-10">
                     <img
                       src={orderIcon}
                       className="size-[33.3px] text-gray-500 mt-1"

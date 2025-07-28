@@ -26,7 +26,7 @@ export default function PartnerList() {
     <div className="bg-white text-sm overflow-hidden font-satoshi">
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto text-center border-collapse overflow-auto text-nowrap overflow-hidden">
+        <table className="min-w-full table-auto text-center border-collapse overflow-x-auto text-nowrap overflow-hidden">
           <thead>
             <tr className="text-[15px] text-[#6E6E6E] bg-[#F9F9F9] font-medium">
               <th className="px-4 py-2">Details</th>
@@ -43,7 +43,7 @@ export default function PartnerList() {
               >
                 {/* Details: Avatar, Name, Email */}
                 <td className="px-4 py-3 text-left">
-                  <Link to={`/admin/partners/${user.id}`} className="flex items-center gap-3">
+                  <Link to={`/admin/partners/${user.id}`} className="flex items-center gap-3 mr-10">
                     <img
                       src={user.avatar}
                       alt={user.name}

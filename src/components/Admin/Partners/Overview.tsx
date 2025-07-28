@@ -39,15 +39,9 @@ export default function Overview() {
             to={data.id}
           key={data.id}
           className={`
-            flex-1 pl-[20px] py-[5px]
-            border shadow-sm sm:shadow-none
-            sm:border-0 sm:pl-[20px] sm:py-[5px]
-            sm:${["", "border-l", "", "border-l"][statsData.findIndex(d => d.id === data.id)]}
-            lg:border-0 md:pl-[20px] md:py-[5px]
-            lg:${["", "border-l", "", "border-l"][statsData.findIndex(d => d.id === data.id)]}
-            lg:border-0 lg:pl-[20px] lg:py-[5px]
-            rounded-[8px] sm:rounded-none
-            ${statsData.findIndex(d => d.id === data.id) !== 0 ? "lg:border-l" : ""}
+            flex-1 py-[15px] shadow-sm rounded-[8px] px-[20px]
+            sm:px-0 sm:shadow-none sm:border-l sm:first:border-0 sm:nth-[3]:border-0 sm:pl-[20px] sm:py-[15px] sm:rounded-none
+            lg:border-0 lg:border-l lg:first:border-0
           `}
         >
           <div className="space-y-[12px]">

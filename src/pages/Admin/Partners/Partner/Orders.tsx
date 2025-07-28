@@ -14,8 +14,8 @@ export default function Orders() {
             <Separator />
             <div className="space-y-[24px]">
                 <Tab />
-                {currentTab === "ongoing" && <OrdersList orders={ongoingOrders} tab="ongoing" />}
-                {currentTab === "history" && <OrdersList orders={historyOrders} tab="history" />}
+                {currentTab === "ongoing" && <OrdersList orders={ongoingOrders} tab="ongoing" status={true} />}
+                {currentTab === "history" && <OrdersList orders={historyOrders} tab="history" status={true} />}
             </div>
         </div>
     );

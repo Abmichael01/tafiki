@@ -92,7 +92,7 @@ const ApproveWithdrawal: React.FC = () => {
           </button>
           <button
             type="button"
-            className="px-4 py-3 bg-green-600 bg-primary text-white rounded-[8px] hover:bg-primary/90 flex-1"
+            className="px-4 py-3 bg-primary text-white rounded-[8px] hover:bg-primary/90 flex-1"
             onClick={handleApprove}
           >
             Approve
