@@ -1,5 +1,7 @@
 import { Order } from "@/types/admin";
 
+// Statuses for ongoing: 'pending', 'in-transit', 'delivered', 'settlement pending'
+// For history: use 'return-settled'
 
 export const ongoingOrders: Order[] = [
   {
@@ -11,7 +13,7 @@ export const ongoingOrders: Order[] = [
     amount: 12300,
     currency: 'GBP',
     items: '5 units of Rice, 2 units of...',
-    
+    status: 'pending',
   },
   {
     id: '2',
@@ -22,7 +24,7 @@ export const ongoingOrders: Order[] = [
     amount: 8500,
     currency: 'GBP',
     items: '3 units of Wheat, 4 units of...',
-    
+    status: 'in-transit',
   },
   {
     id: '3',
@@ -33,7 +35,7 @@ export const ongoingOrders: Order[] = [
     amount: 15600,
     currency: 'GBP',
     items: '8 units of Corn, 1 unit of...',
-    
+    status: 'delivered',
   },
   {
     id: '4',
@@ -44,7 +46,7 @@ export const ongoingOrders: Order[] = [
     amount: 9800,
     currency: 'GBP',
     items: '2 units of Sugar, 6 units of...',
-    
+    status: 'settlement pending',
   },
   {
     id: '5',
@@ -55,7 +57,7 @@ export const ongoingOrders: Order[] = [
     amount: 11200,
     currency: 'GBP',
     items: '10 units of Flour, 3 units of...',
-    
+    status: 'pending',
   },
   {
     id: '6',
@@ -66,7 +68,7 @@ export const ongoingOrders: Order[] = [
     amount: 7300,
     currency: 'GBP',
     items: '1 unit of Honey, 7 units of...',
-    
+    status: 'in-transit',
   },
   {
     id: '7',
@@ -77,7 +79,7 @@ export const ongoingOrders: Order[] = [
     amount: 6500,
     currency: 'GBP',
     items: '4 units of Pasta, 2 units of...',
-    
+    status: 'delivered',
   },
   {
     id: '8',
@@ -88,7 +90,7 @@ export const ongoingOrders: Order[] = [
     amount: 13400,
     currency: 'GBP',
     items: '6 units of Beans, 3 units of...',
-    
+    status: 'pending',
   },
   {
     id: '9',
@@ -99,7 +101,7 @@ export const ongoingOrders: Order[] = [
     amount: 9900,
     currency: 'GBP',
     items: '7 units of Barley, 2 units of...',
-    
+    status: 'in-transit',
   },
   {
     id: '10',
@@ -110,7 +112,7 @@ export const ongoingOrders: Order[] = [
     amount: 16800,
     currency: 'GBP',
     items: '15 units of Quinoa, 3 units of...',
-    
+    status: 'settlement pending',
   }
 ];
 
@@ -125,7 +127,8 @@ export const historyOrders: Order[] = [
     amount: 9600,
     currency: 'GBP',
     items: '5 units of Nuts, 2 units of...',
-    date: 'Today'
+    date: 'Today',
+    status: 'return-settled'
   },
   {
     id: '12',
@@ -136,7 +139,8 @@ export const historyOrders: Order[] = [
     amount: 8200,
     currency: 'GBP',
     items: '3 units of Coffee, 4 units of...',
-    date: 'Today'
+    date: 'Today',
+    status: 'return-settled'
   },
   {
     id: '13',
@@ -147,7 +151,8 @@ export const historyOrders: Order[] = [
     amount: 12800,
     currency: 'GBP',
     items: '8 units of Oats, 4 units of...',
-    date: 'Today'
+    date: 'Today',
+    status: 'return-settled'
   },
   {
     id: '14',
@@ -158,7 +163,8 @@ export const historyOrders: Order[] = [
     amount: 10500,
     currency: 'GBP',
     items: '7 units of Spices, 1 unit of...',
-    date: 'Today'
+    date: 'Today',
+    status: 'return-settled'
   },
   {
     id: '15',
@@ -169,7 +175,8 @@ export const historyOrders: Order[] = [
     amount: 14200,
     currency: 'GBP',
     items: '12 units of Rice, 5 units of...',
-    date: 'Today'
+    date: 'Today',
+    status: 'return-settled'
   },
 
   // Yesterday
@@ -182,7 +189,8 @@ export const historyOrders: Order[] = [
     amount: 11300,
     currency: 'GBP',
     items: '6 units of Salt, 8 units of...',
-    date: 'Yesterday'
+    date: 'Yesterday',
+    status: 'return-settled'
   },
   {
     id: '17',
@@ -193,7 +201,8 @@ export const historyOrders: Order[] = [
     amount: 7800,
     currency: 'GBP',
     items: '4 units of Oil, 3 units of...',
-    date: 'Yesterday'
+    date: 'Yesterday',
+    status: 'return-settled'
   },
   {
     id: '18',
@@ -204,7 +213,8 @@ export const historyOrders: Order[] = [
     amount: 13600,
     currency: 'GBP',
     items: '9 units of Lentils, 2 units of...',
-    date: 'Yesterday'
+    date: 'Yesterday',
+    status: 'return-settled'
   },
   {
     id: '19',
@@ -215,7 +225,8 @@ export const historyOrders: Order[] = [
     amount: 9400,
     currency: 'GBP',
     items: '5 units of Seeds, 6 units of...',
-    date: 'Yesterday'
+    date: 'Yesterday',
+    status: 'return-settled'
   },
   {
     id: '20',
@@ -226,7 +237,8 @@ export const historyOrders: Order[] = [
     amount: 12100,
     currency: 'GBP',
     items: '8 units of Tea, 4 units of...',
-    date: 'Yesterday'
+    date: 'Yesterday',
+    status: 'return-settled'
   },
   {
     id: '21',
@@ -237,7 +249,8 @@ export const historyOrders: Order[] = [
     amount: 15700,
     currency: 'GBP',
     items: '11 units of Corn, 3 units of...',
-    date: 'Yesterday'
+    date: 'Yesterday',
+    status: 'return-settled'
   },
 
   // This week
@@ -250,7 +263,8 @@ export const historyOrders: Order[] = [
     amount: 8900,
     currency: 'GBP',
     items: '4 units of Sauce, 7 units of...',
-    date: 'This week'
+    date: 'This week',
+    status: 'return-settled'
   },
   {
     id: '23',
@@ -261,7 +275,8 @@ export const historyOrders: Order[] = [
     amount: 10800,
     currency: 'GBP',
     items: '6 units of Wheat, 5 units of...',
-    date: 'This week'
+    date: 'This week',
+    status: 'return-settled'
   },
   {
     id: '24',
@@ -272,7 +287,8 @@ export const historyOrders: Order[] = [
     amount: 13900,
     currency: 'GBP',
     items: '10 units of Sugar, 2 units of...',
-    date: 'This week'
+    date: 'This week',
+    status: 'return-settled'
   },
   {
     id: '25',
@@ -283,7 +299,8 @@ export const historyOrders: Order[] = [
     amount: 7600,
     currency: 'GBP',
     items: '3 units of Honey, 9 units of...',
-    date: 'This week'
+    date: 'This week',
+    status: 'return-settled'
   },
   {
     id: '26',
@@ -294,7 +311,8 @@ export const historyOrders: Order[] = [
     amount: 16200,
     currency: 'GBP',
     items: '14 units of Flour, 1 unit of...',
-    date: 'This week'
+    date: 'This week',
+    status: 'return-settled'
   },
 
   // Last week
@@ -307,7 +325,8 @@ export const historyOrders: Order[] = [
     amount: 11700,
     currency: 'GBP',
     items: '8 units of Pasta, 4 units of...',
-    date: 'Last week'
+    date: 'Last week',
+    status: 'return-settled'
   },
   {
     id: '28',
@@ -318,7 +337,8 @@ export const historyOrders: Order[] = [
     amount: 9200,
     currency: 'GBP',
     items: '5 units of Beans, 6 units of...',
-    date: 'Last week'
+    date: 'Last week',
+    status: 'return-settled'
   },
   {
     id: '29',
@@ -329,7 +349,8 @@ export const historyOrders: Order[] = [
     amount: 14500,
     currency: 'GBP',
     items: '12 units of Nuts, 3 units of...',
-    date: 'Last week'
+    date: 'Last week',
+    status: 'return-settled'
   },
   {
     id: '30',
@@ -340,6 +361,7 @@ export const historyOrders: Order[] = [
     amount: 8400,
     currency: 'GBP',
     items: '4 units of Coffee, 8 units of...',
-    date: 'Last week'
+    date: 'Last week',
+    status: 'return-settled'
   }
 ];

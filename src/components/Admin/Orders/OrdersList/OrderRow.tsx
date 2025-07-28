@@ -15,7 +15,7 @@ const OrderRow: React.FC<{ order: Order }> = ({ order }) => (
 
     {/* Order ID and Date */}
     <td className=" w-full min-w-0 p-[12px] font-satoshi">
-      <Link to="/admin/orders/2p3878423498" className="flex gap-2 items-center">
+      <Link to="/admin/orders/2p3878423498" className="flex gap-2 items-center mr-5">
         <img src={orderBox} alt="order-box" className="w-[40px]" />
         <div className="">
           <div className="font-[700] text-[18px]">{order.orderNumber}</div>

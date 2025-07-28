@@ -53,13 +53,13 @@ const OrderList: React.FC<OrderListProps> = ({ orders, tab }) => {
       return (
         <tr>
           <td colSpan={5} className="h-[60vh] text-center text-gray-500">
-          <div className="flex flex-col gap-[4px] justify-center items-center">
-            <img src={history} alt="" className="size-[80px]" />
-            <h3 className="text-[#929292] font-[700] font-satoshi">
-              There is no order history
-            </h3>
-          </div>
-        </td>
+            <div className="flex flex-col gap-[4px] justify-center items-center">
+              <img src={history} alt="" className="size-[80px]" />
+              <h3 className="text-[#929292] font-[700] font-satoshi">
+                There is no order history
+              </h3>
+            </div>
+          </td>
         </tr>
       );
     }
@@ -80,20 +80,22 @@ const OrderList: React.FC<OrderListProps> = ({ orders, tab }) => {
   };
 
   return (
-    <table className="space-y-3 w-full">
-      <thead className="bg-[#F9F9F9] w-full">
-        <tr className="text-[#6E6E6E] text-[16px] font-[500] text-center w-full">
-          <td className="p-[8px]">Order ID and Date</td>
-          <td className="">By: Partner</td>
-          <td className="">To: Vendor</td>
-          <td className="">Amount</td>
-          <td className="">Order Details</td>
-        </tr>
-      </thead>
-      <tbody>
-        {tab === "history" ? renderHistoryOrders() : renderOngoingOrders()}
-      </tbody>
-    </table>
+    <div className="overflow-x-auto overflow-hidden">
+      <table className="space-y-3 w-full text-nowrap overflow-x-auto overflow-hidden">
+        <thead className="bg-[#F9F9F9] w-full">
+          <tr className="text-[#6E6E6E] text-[16px] font-[500] text-center w-full">
+            <td className="p-[8px]">Order ID and Date</td>
+            <td className="">By: Partner</td>
+            <td className="">To: Vendor</td>
+            <td className="">Amount</td>
+            <td className="">Order Details</td>
+          </tr>
+        </thead>
+        <tbody>
+          {tab === "history" ? renderHistoryOrders() : renderOngoingOrders()}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

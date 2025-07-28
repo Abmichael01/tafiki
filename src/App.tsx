@@ -37,6 +37,9 @@ import Orders from "./pages/Admin/Orders";
 import AdminOrderDetails from "./pages/Admin/OrderDetails";
 import Partners from "./pages/Admin/Partners/Partners";
 import WithdrawalRequest from "./pages/Admin/Partners/WithdrawalRequest";
+import PartnerDetails from "./pages/Admin/Partners/Partner/PartnerDetails";
+import PartnerOrders from "./pages/Admin/Partners/Partner/Orders";
+import PartnerTransactions from "./pages/Admin/Partners/Partner/Transactions";
 
 const App = () => {
   return (
@@ -61,7 +64,7 @@ const App = () => {
           <Route path="register" element={<Register />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
         </Route>
-
+        
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="overview" element={<Overview />} />
           <Route path="orders" element={<Orders />} />
@@ -69,6 +72,9 @@ const App = () => {
           <Route path="partners">
             <Route index element={<Partners />} />
             <Route path="withdrawal-requests" element={<WithdrawalRequest />} />
+            <Route path=":id" element={<PartnerDetails />} />
+            <Route path=":id/orders" element={<PartnerOrders />} />
+            <Route path=":id/transactions" element={<PartnerTransactions />} />
           </Route>
         </Route>
 

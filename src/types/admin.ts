@@ -14,4 +14,5 @@ export type Order = {
   currency: string;
   items: string;
   date?: string; // For grouping in history
+  status?: string;
 }

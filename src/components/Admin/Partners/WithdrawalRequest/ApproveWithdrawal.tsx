@@ -2,6 +2,9 @@ import { GlobalDialog } from "@/components/ui/CustomDialog";
 import { DialogContent } from "@/components/ui/dialog";
 import React from "react";
 import WR from "@/assets/svgs/WR.svg";
+import { toast } from "sonner";
+import { Toast } from "./Toast";
+import { useCloseDialog } from "@/hooks/closeDialog";
 
 const dummyWithdrawalRequest = {
   name: "John Doe",
@@ -13,14 +16,25 @@ const dummyWithdrawalRequest = {
 };
 
 const ApproveWithdrawal: React.FC = () => {
+  const closeDialog = useCloseDialog("approve-withdrawal");
   const handleApprove = () => {
-    // Dummy approve handler
-    alert("Approved!");
+    toast.custom((t: any) => (
+      <Toast text="Withdrawal Approved" />
+    ), {
+      duration: 4000,
+      position: "top-right",
+    });
+    closeDialog();
   };
 
   const handleDecline = () => {
-    // Dummy decline handler
-    alert("Declined!");
+    toast.custom((t: any) => (
+      <Toast text="Withdrawal Declined" decline />
+    ), {
+      duration: 4000,
+      position: "top-right",
+    });
+    closeDialog();
   };
 
   return (

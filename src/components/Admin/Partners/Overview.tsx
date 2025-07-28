@@ -33,12 +33,22 @@ const statsData = [
 
 export default function Overview() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 justify-between items-center font-satoshi ">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-[15px] lg:grid-cols-4 justify-between items-center font-satoshi ">
       {statsData.map((data) => (
         <Link
             to={data.id}
           key={data.id}
-          className="border-l first:border-0 flex-1  pl-[20px] py-[5px] "
+          className={`
+            flex-1 pl-[20px] py-[5px]
+            border shadow-sm sm:shadow-none
+            sm:border-0 sm:pl-[20px] sm:py-[5px]
+            sm:${["", "border-l", "", "border-l"][statsData.findIndex(d => d.id === data.id)]}
+            lg:border-0 md:pl-[20px] md:py-[5px]
+            lg:${["", "border-l", "", "border-l"][statsData.findIndex(d => d.id === data.id)]}
+            lg:border-0 lg:pl-[20px] lg:py-[5px]
+            rounded-[8px] sm:rounded-none
+            ${statsData.findIndex(d => d.id === data.id) !== 0 ? "lg:border-l" : ""}
+          `}
         >
           <div className="space-y-[12px]">
             <div className="flex gap-1 items-center">

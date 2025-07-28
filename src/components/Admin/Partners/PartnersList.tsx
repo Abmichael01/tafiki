@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const users = new Array(4).fill([
   {
@@ -42,7 +43,7 @@ export default function PartnerList() {
               >
                 {/* Details: Avatar, Name, Email */}
                 <td className="px-4 py-3 text-left">
-                  <div className="flex items-center gap-3">
+                  <Link to={`/admin/partners/${user.id}`} className="flex items-center gap-3">
                     <img
                       src={user.avatar}
                       alt={user.name}
@@ -52,7 +53,7 @@ export default function PartnerList() {
                       <div className="font-semibold text-[15px]">{user.name}</div>
                       <div className="text-[14px] font-[500] text-[#929292]">{user.email}</div>
                     </div>
-                  </div>
+                  </Link>
                 </td>
 
                 {/* Username */}
