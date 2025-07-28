@@ -18,7 +18,7 @@ const dummyWithdrawalRequest = {
 const ApproveWithdrawal: React.FC = () => {
   const closeDialog = useCloseDialog("approve-withdrawal");
   const handleApprove = () => {
-    toast.custom((t: any) => (
+    toast.custom(() => (
       <Toast text="Withdrawal Approved" />
     ), {
       duration: 4000,
@@ -28,7 +28,7 @@ const ApproveWithdrawal: React.FC = () => {
   };
 
   const handleDecline = () => {
-    toast.custom((t: any) => (
+    toast.custom(() => (
       <Toast text="Withdrawal Declined" decline />
     ), {
       duration: 4000,

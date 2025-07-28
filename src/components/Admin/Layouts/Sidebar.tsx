@@ -75,7 +75,7 @@ const Sidebar: React.FC = () => {
         ></div>
       )}
       <div className="relative size-fit z-[999]">
-        {/* {isOpen && (
+        {isOpen && (
           <div
             onClick={toggle}
             className={cn(
@@ -85,7 +85,7 @@ const Sidebar: React.FC = () => {
           >
             <FiX className="size-[20px]" />
           </div>
-        )} */}
+        )}
         <div
           className={cn(
             "w-[205px] fixed lg:sticky h-[100vh] shrink-0 bg-white flex flex-col pb-10 justify-between transition-transform duration-300 ease-in-out z-[9999] transform lg:translate-x-0",
