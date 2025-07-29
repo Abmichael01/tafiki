@@ -32,7 +32,7 @@ const PartnerDetails = () => {
             {/* Header: Back and Title */}
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
                 <div className="flex items-center gap-[8px]">
-                    <Link to="/partner/portfolio">
+                    <Link to="">
                         <GoArrowLeft className="size-[24px]" />
                     </Link>
                     <h1 className="text-[20px] sm:text-[24px]">

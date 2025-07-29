@@ -40,6 +40,7 @@ import WithdrawalRequest from "./pages/Admin/Partners/WithdrawalRequest";
 import PartnerDetails from "./pages/Admin/Partners/Partner/PartnerDetails";
 import PartnerOrders from "./pages/Admin/Partners/Partner/Orders";
 import PartnerTransactions from "./pages/Admin/Partners/Partner/Transactions";
+import Vendors from "./pages/Admin/Vendors/Vendors";
 
 const App = () => {
   return (
@@ -71,6 +72,13 @@ const App = () => {
           <Route path="orders/:id" element={<AdminOrderDetails />} />
           <Route path="partners">
             <Route index element={<Partners />} />
+            <Route path="withdrawal-requests" element={<WithdrawalRequest />} />
+            <Route path=":id" element={<PartnerDetails />} />
+            <Route path=":id/orders" element={<PartnerOrders />} />
+            <Route path=":id/transactions" element={<PartnerTransactions />} />
+          </Route>
+          <Route path="vendors">
+            <Route index element={<Vendors />} />
             <Route path="withdrawal-requests" element={<WithdrawalRequest />} />
             <Route path=":id" element={<PartnerDetails />} />
             <Route path=":id/orders" element={<PartnerOrders />} />

@@ -1,33 +1,26 @@
-import { IoMdBriefcase } from "react-icons/io";
 import { HiUsers } from "react-icons/hi2";
-import { BiMoneyWithdraw } from "react-icons/bi";
-import { FaClock } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { FaCirclePlus } from "react-icons/fa6";
+import { BsArrowUpRightCircleFill } from "react-icons/bs";
 
 const statsData = [
   {
-    id: "total-investment",
-    label: "Total Investment",
-    icon: IoMdBriefcase, // Briefcase emoji representing investment
-    value: "£124,300",
-  },
-  {
-    id: "total-partners",
-    label: "Total Partners",
-    icon: HiUsers, // People emoji representing partners
+    id: "total-vendors",
+    label: "Total Vendors",
+    icon: HiUsers, // People icon representing vendors
     value: "12",
   },
   {
-    id: "withdrawal-requests",
-    label: "Withdrawal Requests",
-    icon: BiMoneyWithdraw, // Warning sign emoji representing requests
-    value: "5",
+    id: "todays-remittance",
+    label: "Today's Remittance",
+    icon: FaCirclePlus, // Briefcase icon for remittance
+    value: "£15,300.21",
   },
   {
-    id: "due-for-remittance",
-    label: "Due for Remittance",
-    icon: FaClock, // Alarm clock emoji representing due dates
-    value: "3",
+    id: "total-remittance",
+    label: "Total Remittance",
+    icon: BsArrowUpRightCircleFill, // Money withdraw icon for total remittance
+    value: "£110,900.72",
   },
 ];
 
@@ -36,12 +29,12 @@ export default function Overview() {
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-[15px] lg:grid-cols-4 justify-between items-center font-satoshi ">
       {statsData.map((data) => (
         <Link
-          to={data.id}
+            to={data.id}
           key={data.id}
           className={`
             flex-1 py-[15px] shadow-sm rounded-[8px] px-[20px]
             sm:px-0 sm:shadow-none sm:border-l sm:first:border-0 sm:nth-[3]:border-0 sm:pl-[20px] sm:py-[15px] sm:rounded-none
-            lg:border-l lg:nth-[3]:border-l lg:first:border-0
+            lg:border-0 lg:border-l lg:first:border-0 lg:nth-[3]:border-l
           `}
         >
           <div className="space-y-[12px]">
