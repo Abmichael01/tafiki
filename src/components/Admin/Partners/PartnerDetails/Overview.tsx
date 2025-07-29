@@ -1,5 +1,4 @@
 import { IoMdBriefcase } from "react-icons/io";
-import { HiUsers } from "react-icons/hi2";
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { FaWallet } from "react-icons/fa";
 import { Link } from "react-router-dom";
