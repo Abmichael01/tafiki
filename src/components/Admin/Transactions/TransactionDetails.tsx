@@ -17,17 +17,15 @@ export interface TransactionDetailData {
 
 interface TransactionDetailsProps {
   transaction?: TransactionDetailData;
-  onClose?: () => void;
   onViewOrder?: () => void;
 }
 
 export default function TransactionDetails({ 
   transaction, 
-  onClose, 
   onViewOrder 
 }: TransactionDetailsProps) {
-  if (!transaction) return null;
   const closeDialog = useCloseDialog("transaction-details");
+  if (!transaction) return null;
 
   const getTransactionIcon = () => {
     switch (transaction.type) {

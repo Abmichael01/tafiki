@@ -58,7 +58,7 @@ const PartnerDetails = () => {
             {/* Contact Info */}
             <ContactDetails data={contactData} />   
             <RecentOrders status={true} link={`/admin/partners/${id}/orders`} />
-            <Transactions heading="Transactions" showViewAll={true} />
+            <Transactions showViewAll={true} />
         </div>
     );
 };

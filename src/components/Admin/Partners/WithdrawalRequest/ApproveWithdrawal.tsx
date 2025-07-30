@@ -5,7 +5,7 @@ import WR from "@/assets/svgs/WR.svg";
 import { toast } from "sonner";
 import { Toast } from "../../Toast";
 import { useCloseDialog } from "@/hooks/closeDialog";
-import { CheckCircle2, Upload } from "lucide-react";
+import { Upload } from "lucide-react";
 
 const dummyWithdrawalRequest = {
   name: "John Doe",

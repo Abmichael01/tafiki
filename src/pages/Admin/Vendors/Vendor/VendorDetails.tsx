@@ -92,7 +92,7 @@ export default function VendorDetails() {
                 </div>
             </div>
             <RecentOrders status={true} link={`/admin/vendors/1/orders`} />
-            <Transactions heading="Transactions" showViewAll={true} />
+            <Transactions showViewAll={true} />
             <AddEditVendor data={true} />
             <RemoveVendor />
         </div>
