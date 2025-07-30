@@ -77,7 +77,7 @@ export default function VendorsList() {
               <tr key={user.id}>
                 {/* Details: Avatar, Name, Email */}
                 <td className="px-4 py-3">
-                  <Link to={`/admin/partners/${user.id}`} className="flex items-center gap-3 max-[500px]:mr-10">
+                  <Link to={`/admin/vendors/${user.id}`} className="flex items-center gap-3 max-[500px]:mr-10">
                     <img
                       src={user.avatar}
                       alt={user.name}

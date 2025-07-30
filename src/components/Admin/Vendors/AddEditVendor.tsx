@@ -2,14 +2,16 @@ import { GlobalDialog } from "@/components/ui/CustomDialog";
 import { DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { useRef, useState } from "react";
-// import { HiOutlineUserCircle } from "react-icons/hi2";
+import { useRef, useState, useEffect } from "react";
 import { HiMiniBuildingStorefront } from "react-icons/hi2";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { cn } from "@/lib/utils";
 import imgIcon from "@/assets/svgs/img.svg"
+import { Toast } from "../Toast";
+import { toast } from "sonner";
+import { useCloseDialog } from "@/hooks/closeDialog";
 
 // Zod schema for form validation
 const vendorSchema = z.object({
@@ -45,7 +47,12 @@ const formFields = [
   },
 ];
 
-export default function NewVendor() {
+// Add edit and data props
+type NewVendorProps = {
+  data?: boolean; // for now, boolean, later will be object
+};
+
+export default function AddEditVendor({ data = false }: NewVendorProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
@@ -67,8 +74,13 @@ export default function NewVendor() {
     },
   });
 
-  // Watch image for preview
-//   const image = watch("image");
+  // If editing and data is present, set up the preview (simulate for now)
+  useEffect(() => {
+    if (data) {
+      // Simulate a vendor image for edit mode
+      setImagePreview("https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=256&h=256&q=80");
+    }
+  }, [data]);
 
   // Handle image upload and preview
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,19 +90,27 @@ export default function NewVendor() {
       setImagePreview(URL.createObjectURL(file));
     }
   };
+  const closeDialog = useCloseDialog("add-edit-vendor");
 
   // Handle form submit
-  const onSubmit = (data: VendorFormValues) => {
-    // Print debug info
-    console.log("Submitting New Vendor:", data);
-    // TODO: Add actual submit logic
-    // Optionally reset form after submit
-    // reset();
+  const onSubmit = (formData: VendorFormValues) => {
+    if (data) {
+      console.log("Editing Vendor:", formData);
+      toast.custom(() => (
+        <Toast text="Vendor Info Updated" icon={<HiMiniBuildingStorefront />} />
+      ));
+    } else {
+      console.log("Submitting New Vendor:", formData);
+      toast.custom(() => (
+        <Toast text="Vendor Added" icon={<HiMiniBuildingStorefront />} />
+      ));
+    }
+    closeDialog();
   };
 
   return (
-    <GlobalDialog dialogName="new-vendor">
-      <DialogContent className=" max-h-[80vh] overflow-y-auto fancy-scrollbar">
+    <GlobalDialog dialogName="add-edit-vendor">
+      <DialogContent className="max-h-[80vh] overflow-y-auto fancy-scrollbar">
         <form
           className={cn(
             "w-full py-8 flex flex-col items-center gap-6 relative"
@@ -100,11 +120,13 @@ export default function NewVendor() {
           {/* Top Icon */}
           <div className="flex flex-col items-center gap-1 w-full">
             <span className="flex items-center justify-center p-[10px] rounded-full bg-[#15221B33]">
-              <HiMiniBuildingStorefront className=" size-[21.3px] text-[#15221B]" />
+              <HiMiniBuildingStorefront className="size-[21.3px] text-[#15221B]" />
             </span>
-            <h2 className="text-[20px] font-bold text-[#15221B]">New Vendor</h2>
+            <h2 className="text-[20px] font-bold text-[#15221B]">
+              {data ? "Edit Info" : "New Vendor"}
+            </h2>
             <span className="text-[12px] font-medium -mt-2">
-              Fill in Vendor's details
+              {data ? "Make changes in Vendor's Info" : "Fill in Vendor's details"}
             </span>
           </div>
 
@@ -142,7 +164,7 @@ export default function NewVendor() {
                 className="text-[13px] text-[#6B7280] bg-[#F3F4F6] px-6 py-2 h-fit rounded-full font-medium"
                 onClick={() => fileInputRef.current?.click()}
               >
-                Add Display image
+                {data ? "Change image" : "Add Display image"}
               </button>
               {errors.image && (
                 <span className="text-xs text-red-500">{errors.image.message as string}</span>
@@ -161,7 +183,7 @@ export default function NewVendor() {
                   placeholder={field.placeholder}
                   {...register(field.id as keyof VendorFormValues)}
                   className={cn(
-                    "rounded-md px-[20px] py-[18px] text-[15px] bg-[#F9F9F9] focus:outline-none focus:ring-2 focus:ring-primary placeholder:text-[#B6B6B6]",
+                    "rounded-md px-[20px] py-[18px] text-[15px] bg-[#F9F9F9] focus:outline-none placeholder:text-[#B6B6B6]",
                     errors[field.id as keyof VendorFormValues] && "border-red-500"
                   )}
                 />
@@ -179,7 +201,13 @@ export default function NewVendor() {
               className="w-full bg-[#15221B] text-white px-4 py-2 rounded-md font-medium"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Creating..." : "Create Vendor"}
+              {isSubmitting
+                ? data
+                  ? "Saving..."
+                  : "Creating..."
+                : data
+                  ? "Save Changes"
+                  : "Create Vendor"}
             </Button>
           </div>
         </form>

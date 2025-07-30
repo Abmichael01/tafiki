@@ -92,7 +92,7 @@ const RecentOrders: React.FC<RecentOrdersProps> = ({ status = false, link = "/ad
       {/* Header */}
       <div className="flex items-center justify-between py-2">
         {status ? <h2 className="font-semibold text-[20px]">Orders</h2> : <h2 className="font-semibold text-[20px]">Recent Orders</h2>}
-        <Link  to={link} className="text-[14px] text-gray-500 hover:border-b border-[#6E6E6E] flex items-center gap-1">
+        <Link  to={link} className="text-[14px] text-gray-500 hover:underline flex items-center gap-1">
           View all <ChevronRightIcon className="size-[16px] text-[#6E6E6E]" />
         </Link>
       </div>

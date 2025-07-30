@@ -3,8 +3,9 @@ import { DialogContent } from "@/components/ui/dialog";
 import React from "react";
 import WR from "@/assets/svgs/WR.svg";
 import { toast } from "sonner";
-import { Toast } from "./Toast";
+import { Toast } from "../../Toast";
 import { useCloseDialog } from "@/hooks/closeDialog";
+import { CheckCircle2, Upload } from "lucide-react";
 
 const dummyWithdrawalRequest = {
   name: "John Doe",
@@ -19,7 +20,7 @@ const ApproveWithdrawal: React.FC = () => {
   const closeDialog = useCloseDialog("approve-withdrawal");
   const handleApprove = () => {
     toast.custom(() => (
-      <Toast text="Withdrawal Approved" />
+        <Toast text="Withdrawal Approved" icon={<Upload />} />
     ), {
       duration: 4000,
       position: "top-right",
@@ -29,11 +30,11 @@ const ApproveWithdrawal: React.FC = () => {
 
   const handleDecline = () => {
     toast.custom(() => (
-      <Toast text="Withdrawal Declined" decline />
+      <Toast text="Withdrawal Declined" decline icon={<Upload />} />
     ), {
       duration: 4000,
-      position: "top-right",
-    });
+        position: "top-right",
+      });
     closeDialog();
   };
 
