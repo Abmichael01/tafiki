@@ -45,10 +45,10 @@ const Navbar: React.FC = () => {
         />
       </div>
 
-      <Link to="?dialog=upload-product">
+      <Link to="?dialog=upload-product" className="text-nowrap">
         <button className="h-full py-[12px] text-[16px] rounded-[12px] bg-primary flex gap-1 items-center px-3 text-white">
           <Plus className="size-[18px]"/>
-          Upload Product
+          <span className="hidden sm:block">Upload Product</span>
         </button>
       </Link>
     </div>
