@@ -89,7 +89,6 @@ const VendorsList: React.FC<VendorsListProps> = ({ select = false }) => {
         setSelected,
         isSelected,
         isAllSelected,
-        getSelectedCount,
         clearSelection
     } = useDataSelect();
 

@@ -2,7 +2,7 @@ import { FiTrash2, FiRotateCw } from "react-icons/fi";
 import riceImage from "@/assets/images/rice.webp";
 import beansImage from "@/assets/images/beans.webp";
 import plantainFlourImage from "@/assets/images/plantainFlour.webp";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import PageTitle from "@/components/ui/PageTitle";
 import { ChevronLeft, ChevronRight, Edit3 } from "lucide-react";
@@ -27,7 +27,6 @@ const quantityStatusStyles: Record<
 };
 
 export default function ProductInfo() {
-    const navigate = useNavigate();
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     // Mock product data with multiple images

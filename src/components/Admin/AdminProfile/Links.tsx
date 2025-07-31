@@ -1,4 +1,4 @@
-import { FiLock, FiKey, FiLogOut } from "react-icons/fi";
+import { FiLock, FiLogOut } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { CiShop } from "react-icons/ci";
 import { PiPackage } from "react-icons/pi";

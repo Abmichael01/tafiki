@@ -1,7 +1,6 @@
 import { IoMdBriefcase } from "react-icons/io";
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { FaWallet } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import { Package } from "lucide-react";
 
 // Updated statsData array to match the data and order in the provided image
