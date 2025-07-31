@@ -1,5 +1,4 @@
-import { GoArrowLeft } from "react-icons/go";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Overview from "../../../../components/Admin/Partners/PartnerDetails/Overview";
 import { MailIcon } from "lucide-react";
 import RecentOrders from "@/components/Admin/Overview/RecentOrders";
@@ -7,6 +6,7 @@ import Transactions from "../../../../components/Admin/Partners/PartnerDetails/T
 import Info from "../../../../components/Admin/Partners/PartnerDetails/Info";
 import ContactDetails from "@/components/Admin/ContactDetails";
 import { AiOutlinePhone } from "react-icons/ai";
+import PageTitle from "@/components/ui/PageTitle";
 
 const contactData = [
     {
@@ -29,21 +29,13 @@ const contactData = [
 const PartnerDetails = () => {
     const { id } = useParams();
     return (
-        <div className="space-y-10 px-2 sm:px-4 md:px-8 max-w-5xl mx-auto">
+        <div className="space-y-10">
             {/* Header: Back and Title */}
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-                <div className="flex items-center gap-[8px]">
-                    <Link to="">
-                        <GoArrowLeft className="size-[24px]" />
-                    </Link>
-                    <h1 className="text-[20px] sm:text-[24px]">
-                        Partners
-                        <span className="font-[500] text-[14px] sm:text-[16px] text-[#929292]">
-                            /John Doe
-                        </span>
-                    </h1>
-                </div>
-            </div>
+            <PageTitle 
+                title="Partners" 
+                subtitle="John Doe" 
+                showBack={true} 
+            />
             {/* Profile and Remittance Button */}
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
                 <Info />

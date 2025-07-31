@@ -5,7 +5,6 @@ import useCartStore from "@/stores/cartStore";
 import { useQuery } from "@tanstack/react-query";
 import { CartItem } from "@/types";
 import { viewCart } from "@/api/apiEndpoints";
-import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
@@ -47,10 +46,10 @@ const Navbar: React.FC = () => {
       </div>
 
       <Link to="?dialog=upload-product">
-        <Button className="h-fit py-[16px] rounded-[12px]">
-          <Plus />
+        <button className="h-full py-[12px] text-[16px] rounded-[12px] bg-primary flex gap-1 items-center px-3 text-white">
+          <Plus className="size-[18px]"/>
           Upload Product
-        </Button>
+        </button>
       </Link>
     </div>
   );

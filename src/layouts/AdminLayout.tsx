@@ -68,10 +68,10 @@ const AdminLayout: React.FC = () => {
 
   return (
     <div className="bg-[#F9F9F9] flex relative text-[#494949] min-h-screen">
-      <div className="sticky top-0 bottom-0 h-full z-[999]">
+      <div className="fixed top-0 bottom-0 h-full z-[999]">
         <Sidebar />
       </div>
-      <div className="flex-1 min-h-[90vh] w-full sm:pb-10 flex flex-col pb-25 sm:pb-30 lg:pb-10">
+      <div className="flex-1 lg:ml-[205px] w-full min-h-[90vh] flex flex-col pb-25 sm:pb-30 lg:pb-10">
         <Navbar />
         <div className="md:px-14 sm:px-10 px-2 lg:px-10 h-full">
             <motion.div

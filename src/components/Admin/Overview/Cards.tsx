@@ -15,7 +15,7 @@ const Cards: React.FC = () => {
             <Clock className="w-[14px] fill-primary stroke-white" />
             <h1>Pending Withrawals</h1>
           </div>
-          <Link to="/partner/portfolio/portfolio">
+          <Link to="#">
             <FaChevronRight className="" />
           </Link>
         </div>
@@ -57,7 +57,7 @@ const Cards: React.FC = () => {
             <IoMdWallet className="w-[14px]" />
             <h1>Total Balance</h1>
           </div>
-          <Link to="/partner/portfolio/wallet">
+          <Link to="#">
             <FaChevronRight />
           </Link>
         </div>

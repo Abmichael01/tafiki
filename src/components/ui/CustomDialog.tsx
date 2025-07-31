@@ -18,6 +18,15 @@ const GlobalDialog = React.forwardRef<
   const navigate = useNavigate();
   const location = useLocation();
 
+  React.useEffect(() => {
+    // Close all dialogs on mount
+    Object.keys(dialogs).forEach((name) => {
+      if (dialogs[name]) {
+        closeDialog(name);
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
 
   return (

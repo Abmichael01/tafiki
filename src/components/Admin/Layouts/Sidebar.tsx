@@ -8,10 +8,10 @@ import { cn } from "@/lib/utils";
 import { useSidebarStore } from "@/stores/sidebarStore";
 // import useUserDetailsStore from "@/stores/userStore";
 import { LuLayoutGrid, LuPackage } from "react-icons/lu";
-import notification from "@/assets/svgs/notification.svg"
+import notification from "@/assets/svgs/notification.svg";
 import { CiShop } from "react-icons/ci";
-import { CiReceipt } from "react-icons/ci";
 import { FaUserCircle } from "react-icons/fa";
+import { TbReceipt } from "react-icons/tb";
 
 const navs = [
   {
@@ -40,7 +40,7 @@ const navs = [
   },
   {
     name: "Transactions",
-    icon: <CiReceipt className="size-[20px]" />,
+    icon: <TbReceipt className="size-[20px]" />,
     slug: "transactions",
     link: "/admin/transactions",
   },
@@ -51,13 +51,13 @@ const bottomNavs = [
     name: "Notifications",
     icon: <img src={notification} className="size-[20px]" />,
     slug: "notifications",
-    link: "/partner/notifications",
+    link: "/admin/notifications",
   },
   {
     name: "Admin",
     icon: <FaUserCircle className="size-[20px]" />,
     slug: "admin",
-    link: "/partner/admin",
+    link: "/admin/profile",
   },
 ];
 
@@ -88,7 +88,7 @@ const Sidebar: React.FC = () => {
         )}
         <div
           className={cn(
-            "w-[205px] fixed lg:sticky h-[100vh] shrink-0 bg-white flex flex-col pb-10 justify-between transition-transform duration-300 ease-in-out z-[9999] transform lg:translate-x-0",
+            "w-[205px] fixed h-[100vh] shrink-0 bg-white flex flex-col pb-10 justify-between transition-transform duration-300 ease-in-out z-[9999] transform lg:translate-x-0",
             isOpen ? "translate-x-0" : "-translate-x-[210px]"
           )}
         >
@@ -123,8 +123,8 @@ const Sidebar: React.FC = () => {
                   key={index}
                   to={`${nav.link}`}
                   className={cn(
-                    "w-full flex items-center gap-3 px-[30px] py-[12px] text-[#6B7280] hover:bg-[#F9FAFB] transition-colors",
-                    currentPath === nav.slug ? "bg-[#15221B1F] text-[#111827] border-r-2 border-r-[#10B981]" : ""
+                    "w-full flex items-center gap-3 px-[30px] py-[12px] text-[#6B7280] hover:bg-[#F9FAFB] transition-colors ",
+                    currentPath.includes(nav.link.split("?")[0]) ? "bg-[#15221B1F] text-[#111827] border-r-2 border-r-primary [&_svg]:fill-primary" : ""
                   )}
                   onClick={toggle}
                 >

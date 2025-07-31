@@ -57,7 +57,7 @@ export default function PartnerList() {
                 </td>
 
                 {/* Username */}
-                <td className="px-4 py-3 text-[15px]">{user.username}</td>
+                <td className="px-4 py-3 text-[15px] font-semibold">{user.username}</td>
 
                 {/* Total Purchase */}
                 <td className="px-4 py-3 font-semibold text-[15px]">

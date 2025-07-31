@@ -24,7 +24,7 @@ const statsData = [
     value: "5",
   },
   {
-    id: "due-for-remittance",
+    id: "?dialog=due-for-remittance",
     label: "Due for Remittance",
     icon: FaClock, // Alarm clock emoji representing due dates
     value: "3",

@@ -30,8 +30,7 @@ export default function Overview() {
         <div className="space-y-[20px]">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-[15px] lg:grid-cols-4 justify-between items-center font-satoshi ">
                 {statsData.map((data) => (
-                    <Link
-                        to={data.id}
+                    <div
                         key={data.id}
                         className={`
                             flex-1 py-[15px] shadow-sm rounded-[8px] px-[20px]
@@ -50,7 +49,7 @@ export default function Overview() {
                                 {data.value}
                             </h2>
                         </div>
-                    </Link>
+                    </div>
                 ))}
             </div>
         </div >

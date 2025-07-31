@@ -113,7 +113,7 @@ export default function TransactionDetails({
 
   return (
     <GlobalDialog dialogName="transaction-details">
-      <DialogContent className="max-w-md p-0 bg-white rounded-lg">
+      <DialogContent className="max-w-[546px] p-0 bg-white rounded-lg">
         {/* Header */}
         <div className="flex flex-col items-center pt-8 pb-6 px-6">
           <div className={`p-3 rounded-full ${getIconBackgroundColor()} mb-4`}>

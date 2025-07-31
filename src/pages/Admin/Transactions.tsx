@@ -1,4 +1,5 @@
 import TransactionsList from "@/components/Admin/Transactions/TransactionList";
+import PageTitle from "@/components/ui/PageTitle";
 
 // Dynamically generate "today" and "yesterday" dates in ISO format
 const today = new Date();
@@ -111,6 +112,7 @@ const transactions = [
 export default function Transactions() {
     return (
         <div className="space-y-10">
+            <PageTitle title="Transactions" />
             <TransactionsList transactions={transactions} vendor={false} groupByDate={true} />
         </div>
     );

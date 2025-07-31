@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { GoArrowLeft } from "react-icons/go";
 import Info from "@/components/Admin/Vendors/VendorDetails/Info";
 import Overview from "@/components/Admin/Vendors/VendorDetails/Overview";
 import Transactions from "@/components/Admin/Vendors/VendorDetails/Transactions";
@@ -11,6 +10,7 @@ import { Edit3, MailIcon, Trash } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import AddEditVendor from "@/components/Admin/Vendors/AddEditVendor";
 import RemoveVendor from "@/components/Admin/Vendors/VendorDetails/RemoveVendor";
+import PageTitle from "@/components/ui/PageTitle";
 
 const vendorContactData = [
     {
@@ -52,19 +52,11 @@ const ownerContactData = [
 export default function VendorDetails() {
     return (
         <div className="space-y-10">
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-                <div className="flex items-center gap-[8px]">
-                    <Link to="/admin/vendors">
-                        <GoArrowLeft className="size-[24px]" />
-                    </Link>
-                    <h1 className="text-[20px] sm:text-[24px]">
-                        Partners
-                        <span className="font-[500] text-[14px] sm:text-[16px] text-[#929292]">
-                            /John Doe
-                        </span>
-                    </h1>
-                </div>
-            </div>
+            <PageTitle 
+                title="Partners" 
+                subtitle="John Doe" 
+                showBack={true}
+            />
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
                 <Info />
                 <div className="flex gap-[12px] text-[14px]">

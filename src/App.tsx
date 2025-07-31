@@ -45,6 +45,16 @@ import VendorDetails from "./pages/Admin/Vendors/Vendor/VendorDetails";
 import VendorOrders from "./pages/Admin/Vendors/Vendor/Orders";
 import VendorTransactions from "./pages/Admin/Vendors/Vendor/Transactions";
 import Transactions from "./pages/Admin/Transactions";
+import AdminProfile from "./pages/Admin/AdminProfile/AdminProfile";
+import ManageProducts from "./pages/Admin/AdminProfile/ManageProducts";
+import ProductInfo from "./pages/Admin/AdminProfile/ProductInfo";
+import VendorsList from "./pages/Admin/AdminProfile/VendorsList";
+import AdminWithdrawalPin from "./pages/Admin/AdminProfile/WithdrawalPin/WithdrawalPin";
+import AdminCheckPin from "./pages/Admin/AdminProfile/WithdrawalPin/CheckPin";
+import AdminChangePin from "./pages/Admin/AdminProfile/WithdrawalPin/ChangePin";
+import Notifications from "./pages/Admin/Notifications";
+import DeliveryForm from "./pages/Vendors/DeliveryForm";
+import DeliveryLayout from "./layouts/DeliveryLayout";
 
 const App = () => {
   return (
@@ -68,8 +78,12 @@ const App = () => {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
-          </Route>
-          
+        </Route>
+
+        <Route path="/vendor" element={<DeliveryLayout />}>
+          <Route path="delivery-form" element={<DeliveryForm />} />
+        </Route>
+
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="overview" element={<Overview />} />
           <Route path="orders" element={<Orders />} />
@@ -88,9 +102,20 @@ const App = () => {
             <Route path=":id/orders" element={<VendorOrders />} />
             <Route path=":id/transactions" element={<VendorTransactions />} />
           </Route>
+          <Route path="notifications" element={<Notifications />} />
           <Route path="transactions" element={<Transactions />} />
+          <Route path="profile">
+            <Route index element={<AdminProfile />} />
+            <Route path="manage-products" element={<ManageProducts />} />
+            <Route path="manage-products/:id" element={<ProductInfo />} />
+            <Route path="vendors-list" element={<VendorsList />} />
+            <Route path="withdrawal-pin">
+              <Route index element={<AdminWithdrawalPin />} />
+              <Route path="check-pin" element={<AdminCheckPin />} />
+              <Route path="change-pin" element={<AdminChangePin />} />
+            </Route>
+          </Route>
         </Route>
-
 
         <Route path="/partner" element={<DashboardLayout />}>
           <Route path="portfolio">
