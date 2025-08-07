@@ -55,6 +55,7 @@ import AdminChangePin from "./pages/Admin/AdminProfile/WithdrawalPin/ChangePin";
 import Notifications from "./pages/Admin/Notifications";
 import DeliveryForm from "./pages/Vendors/DeliveryForm";
 import DeliveryLayout from "./layouts/DeliveryLayout";
+import AdminLogin from "./pages/Admin/Login"
 
 const App = () => {
   return (
@@ -84,7 +85,10 @@ const App = () => {
           <Route path="delivery-form" element={<DeliveryForm />} />
         </Route>
 
+        <Route path="/admin/login" element={<AdminLogin />} />
+
         <Route path="/admin" element={<AdminLayout />}>
+          
           <Route path="overview" element={<Overview />} />
           <Route path="orders" element={<Orders />} />
           <Route path="orders/:id" element={<AdminOrderDetails />} />

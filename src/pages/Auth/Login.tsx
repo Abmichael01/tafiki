@@ -64,7 +64,7 @@ const Login: React.FC = () => {
     onSuccess: (data) => {
       setAuth(data?.tokens as { access: string; refresh: string });
       toast.success(data?.detail || "Login successful");
-      navigate('/partner/portfolio')
+      navigate("/partner/portfolio")
     },
     onError: (error: AxiosError) => {
       const errorMessage = (error.response?.data as { detail: string }).detail;
