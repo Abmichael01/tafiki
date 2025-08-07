@@ -10,10 +10,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import PageTitle from "@/components/Auth/PageTitle";
 import { Loader2Icon, LockKeyhole, User, Eye, EyeOff } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { partnerSignin } from "@/api/apiEndpoints";
 import { PartnerSigninData } from "@/types";
 import { useMutation } from "@tanstack/react-query";
