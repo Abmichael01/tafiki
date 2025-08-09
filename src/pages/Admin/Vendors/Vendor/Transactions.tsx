@@ -3,8 +3,23 @@ import Info from "@/components/Admin/Vendors/VendorDetails/Info";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import TransactionsList from "@/components/Admin/Vendors/VendorDetails/Transactions";
 import PageTitle from "@/components/ui/PageTitle";
+import { useQuery } from "@tanstack/react-query";
+import { getVendor } from "@/api/adminEndpoints";
+import { Vendor } from "@/types/admin";
+import { useParams } from "react-router-dom";
 
 export default function Transactions() {
+    const { id } = useParams();
+
+  console.log(id)
+  
+
+//   const vendor = vendors?.find((vendor) => vendor.id == Number(id));
+
+  const { data } = useQuery({
+    queryKey: ["vendor", id],
+    queryFn: () => getVendor(Number(id))
+  })
     return (
         <div className="space-y-10">
             <PageTitle 
@@ -13,7 +28,7 @@ export default function Transactions() {
                 showBack={true} 
             />
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-                <Info />
+                <Info data={data as Vendor} />
                 <div className="">
                     <Select
                         defaultValue="all"
