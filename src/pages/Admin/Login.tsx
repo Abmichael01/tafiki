@@ -51,7 +51,7 @@ const Login: React.FC = () => {
     },
   });
   const navigate = useNavigate();
-  const { setAuth } = useAuthStore();
+  const { setAuth, logout } = useAuthStore();
 
   const { resetUserData } = usePartnerSignupStore();
   useEffect(() => {
@@ -67,6 +67,7 @@ const Login: React.FC = () => {
     },
     onError: (error: AxiosError) => {
       const errorMessage = (error.response?.data as { detail: string }).detail;
+      logout()
       toast.error(errorMessage);
       console.error("Login error:", error);
     },
