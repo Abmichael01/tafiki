@@ -14,6 +14,7 @@ import PageTitle from "@/components/ui/PageTitle";
 import useVendorsStore from "@/stores/vendorsStore";
 import { useQuery } from "@tanstack/react-query";
 import { getVendor } from "@/api/adminEndpoints";
+import { Vendor } from "@/types/admin";
 
 const ownerContactData = [
   {
@@ -69,7 +70,7 @@ export default function VendorDetails() {
     <div className="space-y-10">
       <PageTitle title="Partners" subtitle="John Doe" showBack={true} />
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-        <Info data={data} />
+        <Info data={data as Vendor } />
         <div className="flex gap-[12px] text-[14px]">
           <Link
             to="?dialog=add-edit-vendor"
