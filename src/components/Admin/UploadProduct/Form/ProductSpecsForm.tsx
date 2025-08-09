@@ -22,14 +22,20 @@ export default function ProductSpecsForm() {
   const { productData, updateProductData, prepareFormData } = useProductStore();
   const navigate = useNavigate();
 
-  const form = useForm({
+  const form = useForm<{
+    price: string;
+    stock_quantity: string;
+    roi_percentage: string;
+    quantity_per_unit: string;
+    kg_per_unit: string;
+  }>({
     resolver: zodResolver(productSpecsSchema),
     defaultValues: {
-      price: productData.price || "",
-      stock_quantity: productData.stock_quantity || "",
-      roi_percentage: productData.roi_percentage || "",
-      quantity_per_unit: productData.quantity_per_unit || "",
-      kg_per_unit: productData.kg_per_unit || "",
+      price: productData.price?.toString() || "",
+      stock_quantity: productData.stock_quantity?.toString() || "",
+      roi_percentage: productData.roi_percentage?.toString() || "",
+      quantity_per_unit: productData.quantity_per_unit?.toString() || "",
+      kg_per_unit: productData.kg_per_unit?.toString() || "",
     },
   });
 
