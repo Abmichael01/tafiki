@@ -2,29 +2,31 @@ import { HiUsers } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import { FaCirclePlus } from "react-icons/fa6";
 import { BsArrowUpRightCircleFill } from "react-icons/bs";
+import { Vendors } from "@/types/admin";
 
-const statsData = [
-  {
-    id: "total-vendors",
-    label: "Total Vendors",
-    icon: HiUsers, // People icon representing vendors
-    value: "12",
-  },
-  {
-    id: "todays-remittance",
-    label: "Today's Remittance",
-    icon: FaCirclePlus, // Briefcase icon for remittance
-    value: "£15,300.21",
-  },
-  {
-    id: "total-remittance",
-    label: "Total Remittance",
-    icon: BsArrowUpRightCircleFill, // Money withdraw icon for total remittance
-    value: "£110,900.72",
-  },
-];
+export default function Overview( data: Vendors ) {
+  
+  const statsData = [
+    {
+      id: "total-vendors",
+      label: "Total Vendors",
+      icon: HiUsers, // People icon representing vendors
+      value: data.count,
+    },
+    {
+      id: "todays-remittance",
+      label: "Today's Remittance",
+      icon: FaCirclePlus, // Briefcase icon for remittance
+      value: "£15,300.21",
+    },
+    {
+      id: "total-remittance",
+      label: "Total Remittance",
+      icon: BsArrowUpRightCircleFill, // Money withdraw icon for total remittance
+      value: "£110,900.72",
+    },
+  ];
 
-export default function Overview() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-[15px] lg:grid-cols-4 justify-between items-center font-satoshi ">
       {statsData.map((data) => (

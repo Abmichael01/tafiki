@@ -18,15 +18,16 @@ export type PersonalDetails = {
 };
 
 export type ShopProduct = {
-  id: number;
+  id?: number;
   name: string;
   price: string;
-  product_id: string;
-  roi_percentage: string;
-  stock_quantity: number;
+  product_id?: string;
+  roi_percentage: number | string;
+  stock_quantity: number | string;
   description: string;
-  kg_per_unit: string;
-  quantity_per_unit: string;
+  kg_per_unit: number | string;
+  quantity_per_unit: number | string;
+  images: File[]
 }
 
 export type Order = {

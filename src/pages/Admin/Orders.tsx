@@ -5,17 +5,26 @@ import { Order } from '@/types/admin'
 import React from 'react'
 import { useSearchParams } from 'react-router-dom'
 import PageTitle from '@/components/ui/PageTitle'
+import { useQuery } from '@tanstack/react-query'
+import { getOrders } from '@/api/adminEndpoints'
 
 const Orders: React.FC = () => {
   const [params] = useSearchParams();
   const currentTab = params.get("tab");
-  const data = currentTab === "ongoing" ? ongoingOrders : historyOrders
+  const ordersData = currentTab === "ongoing" ? ongoingOrders : historyOrders
+
+  const { data } = useQuery({
+    queryKey: ["orders"],
+    queryFn: getOrders
+  })
+
+  console.log(data)
 
   return (
     <div className='space-y-10 h-full w-full'>
-      <PageTitle title={`Orders (${data.length})`} />
+      <PageTitle title={`Orders (${ordersData.length})`} />
       <Tab />
-      <OrdersList orders={data as Order[]}  tab={currentTab as string} />
+      <OrdersList orders={ordersData as Order[]}  tab={currentTab as string} />
     </div>
   )
 }

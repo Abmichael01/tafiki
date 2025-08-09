@@ -16,18 +16,12 @@ export default function UploadProduct() {
   return (
     <div>
       <GlobalDialog dialogName="upload-product">
-        <DialogContent className="max-h-[90vh] w-full overflow-hidden">
+        <DialogContent
+          className="max-h-[80vh] w-full overflow-hidden fancy-scrollbar
+             overflow-y-auto"
+        >
           <div
             className="
-              h-full max-h-[80vh] overflow-y-scroll
-              scrollbar-thin scrollbar-thumb-gray-400
-              scrollbar-thumb-rounded-md
-              hover:scrollbar-thumb-gray-500
-              [&::-webkit-scrollbar]:w-1
-              [&::-webkit-scrollbar]:opacity-0
-              hover:[&::-webkit-scrollbar]:opacity-[1]
-              [&::-webkit-scrollbar-thumb]:rounded-full
-              hover:[&::-webkit-scrollbar-thumb]:bg-neutral-400
             "
           >
             {current === "landing" && <Landing />}

@@ -1,15 +1,10 @@
 // stores/productStore.ts
+import { ShopProduct } from '@/types';
 import { create } from 'zustand'
 
 // Define the shape of product data
-export type ProductData = {
-  selectedImageId: string | null;
-  productName: string;
-  aboutProduct: string;
-  productWeight: string;
-  bagsPerUnit: number;
-  pricePerUnit: string;
-  quantity: string;
+export type ProductData = ShopProduct & {
+  images: File[];
 }
 
 // Define the state and actions
@@ -17,18 +12,22 @@ type ProductStore = {
   productData: ProductData;
 
   updateProductData: (newData: Partial<ProductData>) => void;
+  addImage: (file: File) => void;
+  removeImage: (index: number) => void;
   resetProductData: () => void;
   getProductData: () => ProductData;
+  prepareFormData: (additionalData?: Partial<ProductData>) => FormData;
 }
 
 const initialData: ProductData = {
-  selectedImageId: null,
-  productName: '',
-  aboutProduct: '',
-  productWeight: '',
-  bagsPerUnit: 1,
-  pricePerUnit: '',
-  quantity: '',
+  images: [],
+  name: '',
+  description: '',
+  price: '',
+  stock_quantity: '',
+  roi_percentage: '',
+  quantity_per_unit: '',
+  kg_per_unit: '',
 }
 
 const useProductStore = create<ProductStore>((set, get) => ({
@@ -42,9 +41,53 @@ const useProductStore = create<ProductStore>((set, get) => ({
       },
     })),
 
+  addImage: (file: File) =>
+    set((state) => ({
+      productData: {
+        ...state.productData,
+        images: [...state.productData.images, file],
+      },
+    })),
+
+  removeImage: (index: number) =>
+    set((state) => ({
+      productData: {
+        ...state.productData,
+        images: state.productData.images.filter((_, i) => i !== index),
+      },
+    })),
+
   resetProductData: () => set({ productData: initialData }),
 
   getProductData: () => get().productData,
+
+  prepareFormData: (additionalData = {}) => {
+    const { productData } = get();
+    
+    // Merge store data with any additional data passed in
+    const completeData = {
+      ...productData,
+      ...additionalData,
+    };
+    
+    const formData = new FormData();
+    
+    // Add images to FormData
+    completeData.images.forEach((file) => {
+      formData.append(`images`, file);
+    });
+    
+    // Add other product data
+    formData.append('name', completeData.name);
+    formData.append('description', completeData.description);
+    formData.append('price', completeData.price);
+    formData.append('stock_quantity', completeData.stock_quantity as string);
+    formData.append('roi_percentage', completeData.roi_percentage as string);
+    formData.append('quantity_per_unit', completeData.quantity_per_unit as string );
+    formData.append('kg_per_unit', completeData.kg_per_unit as string);
+    
+    return formData;
+  },
 }))
 
 export default useProductStore

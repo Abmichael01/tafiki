@@ -55,10 +55,10 @@ const WithdrawalRequests: React.FC<Props> = ({ all: viewAll }) => {
         </div>
 
         {!viewAll && (
-          <button className="hover:underline font-medium text-[14px] flex gap-[1px] items-center">
+          <Link to="/admin/overview/withdrawal-requests" className="hover:underline font-medium text-[14px] flex gap-[1px] items-center">
             View all
             <ChevronRight className="h-[15px] text-[#494949]" />
-          </button>
+          </Link>
         )}
       </div>
 

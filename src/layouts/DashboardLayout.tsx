@@ -36,11 +36,11 @@ const DashboardLayout: React.FC = () => {
     }
   }, [dialog, openDialog]);
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryFn: getCurrentUser,
     queryKey: ["userDetails"],
   });
-  console.log(data);
+  console.log(error);
   useEffect(() => {
     const verifyUser = async () => {
       if (data) {

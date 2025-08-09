@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import Header from "./../Header";
 import useProductStore, { ProductData } from "@/stores/productStore";
 import { productDetailsSchema, productDetailsFields } from "./formSchemas";
-import ImageSelector from "../ImageSelector";
+import ProductImages from "../ImageSelector";
 import { useNavigate } from "react-router-dom";
 
 export default function ProductDetailsForm() {
@@ -20,17 +20,17 @@ export default function ProductDetailsForm() {
   const navigate = useNavigate() 
 
   const form = useForm({
-    resolver: zodResolver(productDetailsSchema),
+    resolver: zodResolver(productDetailsSchema), 
     defaultValues: {
-      productName: productData.productName || "",
-      aboutProduct: productData.aboutProduct || "",
+      name: productData.name || "",
+      description: productData.description || "",
     },
   });
 
   const onSubmit = (data: Partial<ProductData>) => {
     updateProductData(data);
     navigate("?dialog=upload-product&current=product-specs")
-    console.log("Product Details:", data);
+    console.log("Product Details:", productData);
   };
 
   return (
@@ -39,7 +39,7 @@ export default function ProductDetailsForm() {
 
       <div className="flex justify-center w-full">
         <div className="grid grid-cols-3 gap-5 scale-[0.7] w-full max-w-[80%]">
-          <ImageSelector />
+          <ProductImages />
         </div>
       </div>
 

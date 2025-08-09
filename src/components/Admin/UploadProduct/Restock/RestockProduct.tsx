@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import Header from "../Header";
 import { Button } from "@/components/ui/button";
-import ImageSelector from "../ImageSelector";
+import ProductImages from "../ImageSelector";
 import {
   Form,
   FormField,
@@ -13,6 +13,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { updateProduct } from "@/api/adminEndpoints";
+import useProductStore from "@/stores/productStore";
 
 const formSchema = z.object({
   quantity: z
@@ -31,6 +34,14 @@ export default function RestockProduct() {
     },
   });
   const navigate = useNavigate()
+  const { productData } = useProductStore()
+
+  const { mutate, isPending } = useMutation<unknown, unknown, { id: number; quantity: string }>({
+    mutationFn: ({ id, quantity }) => updateProduct(id, quantity),
+    onSuccess: () => {
+      navigate(`?dialog=upload-product&current=success&title=Product Restocked&description=${productData.name} has successfully been restocked!`)
+    }
+  })
 
   const quantity = form.watch("quantity");
   const bagsPerUnit = 5;
@@ -39,10 +50,10 @@ export default function RestockProduct() {
   const totalBags = isValidNumber ? units * bagsPerUnit : 0;
 
   const handleSubmit = (values: { quantity: string }) => {
-    // handle actual submit here
-    console.log("Submitting: ", values);
-    navigate('?dialog=upload-product&current=success&title=Product Restocked&description=Food Hybrid Rice has successfully been restocked!')
+    mutate({ id: productData.id as number, quantity: values.quantity })
   };
+
+
 
   return (
     <div className="">
@@ -58,7 +69,7 @@ export default function RestockProduct() {
               </h2>
               <div className="flex justify-center w-full">
                 <div className="grid grid-cols-3 gap-5 scale-[0.7] w-full max-w-[80%]">
-                  <ImageSelector />
+                  <ProductImages />
                 </div>
               </div>
             </div>
@@ -67,7 +78,7 @@ export default function RestockProduct() {
             <div className="space-y-2">
               <label className="text-[14px] font-[500] text-gray-700 ">
                 Quantity{" "}
-                <span className="text-gray-400 font-[400] font-[12px]">
+                <span className="text-gray-400 font-[400] text-[12px]">
                   (Number of units to be uploaded)
                 </span>
               </label>
@@ -85,7 +96,7 @@ export default function RestockProduct() {
                         />
                       </FormControl>
                       <div className="bg-[#F9F9F9] px-[20px] py-[14px] rounded-[4px] text-[14px]">
-                        <span className="text-[#6E6E6E] text-sm font-[700] font-satoshi text-[700]">
+                        <span className="text-[#6E6E6E] text-sm font-satoshi font-[700]">
                           Unit(s)
                         </span>
                       </div>
@@ -110,9 +121,9 @@ export default function RestockProduct() {
             <Button
               type="submit"
               className="w-full rounded-[8px]"
-              disabled={!form.formState.isValid}
+              disabled={!form.formState.isValid || isPending}
             >
-              Restock
+              {isPending ? 'Restocking...' : 'Restock'}
             </Button>
           </form>
         </Form>

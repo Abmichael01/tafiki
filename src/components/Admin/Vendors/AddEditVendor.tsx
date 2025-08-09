@@ -8,10 +8,13 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { cn } from "@/lib/utils";
-import imgIcon from "@/assets/svgs/img.svg"
+import imgIcon from "@/assets/svgs/img.svg";
 import { Toast } from "../Toast";
 import { toast } from "sonner";
 import { useCloseDialog } from "@/hooks/closeDialog";
+import { createVendor } from "@/api/adminEndpoints";
+import { useMutation } from "@tanstack/react-query";
+import errorMessage from "@/lib/errorMessage";
 
 // Zod schema for form validation
 const vendorSchema = z.object({
@@ -61,7 +64,7 @@ export default function AddEditVendor({ data = false }: NewVendorProps) {
     register,
     handleSubmit,
     setValue,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     // reset,
     // watch,
   } = useForm<VendorFormValues>({
@@ -74,11 +77,39 @@ export default function AddEditVendor({ data = false }: NewVendorProps) {
     },
   });
 
+  const closeDialog = useCloseDialog("add-edit-vendor");
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: (data: FormData) => createVendor(data),
+    onSuccess: () => {
+      if (data) {
+        toast.custom(() => (
+          <Toast
+            text="Vendor Info Updated"
+            icon={<HiMiniBuildingStorefront />}
+          />
+        ));
+      } else {
+        toast.custom(() => (
+          <Toast text="Vendor Added" icon={<HiMiniBuildingStorefront />} />
+        ));
+      }
+      closeDialog()
+    },
+    onError: (error: Error) => {
+      toast.custom(() => (
+        <Toast text={errorMessage(error)} decline icon={<HiMiniBuildingStorefront />} />
+      ));
+    }
+  });
+
   // If editing and data is present, set up the preview (simulate for now)
   useEffect(() => {
     if (data) {
       // Simulate a vendor image for edit mode
-      setImagePreview("https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=256&h=256&q=80");
+      setImagePreview(
+        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=256&h=256&q=80"
+      );
     }
   }, [data]);
 
@@ -90,22 +121,20 @@ export default function AddEditVendor({ data = false }: NewVendorProps) {
       setImagePreview(URL.createObjectURL(file));
     }
   };
-  const closeDialog = useCloseDialog("add-edit-vendor");
+ 
 
+  const toFormData = (values: VendorFormValues) => {
+    const fd = new FormData();
+    fd.append("name", values.vendorName);
+    fd.append("email", values.email);
+    fd.append("phone", values.phone);
+    if (values.image) fd.append("profile_picture", values.image);
+    return fd;
+  };
   // Handle form submit
-  const onSubmit = (formData: VendorFormValues) => {
-    if (data) {
-      console.log("Editing Vendor:", formData);
-      toast.custom(() => (
-        <Toast text="Vendor Info Updated" icon={<HiMiniBuildingStorefront />} />
-      ));
-    } else {
-      console.log("Submitting New Vendor:", formData);
-      toast.custom(() => (
-        <Toast text="Vendor Added" icon={<HiMiniBuildingStorefront />} />
-      ));
-    }
-    closeDialog();
+  const onSubmit = async (formData: VendorFormValues) => {
+    const data = toFormData(formData);
+    mutate(data);
   };
 
   return (
@@ -126,7 +155,9 @@ export default function AddEditVendor({ data = false }: NewVendorProps) {
               {data ? "Edit Info" : "New Vendor"}
             </h2>
             <span className="text-[12px] font-medium -mt-2">
-              {data ? "Make changes in Vendor's Info" : "Fill in Vendor's details"}
+              {data
+                ? "Make changes in Vendor's Info"
+                : "Fill in Vendor's details"}
             </span>
           </div>
 
@@ -167,14 +198,19 @@ export default function AddEditVendor({ data = false }: NewVendorProps) {
                 {data ? "Change image" : "Add Display image"}
               </button>
               {errors.image && (
-                <span className="text-xs text-red-500">{errors.image.message as string}</span>
+                <span className="text-xs text-red-500">
+                  {errors.image.message as string}
+                </span>
               )}
             </div>
 
             {/* Mapped Form Fields */}
             {formFields.map((field) => (
               <div key={field.id} className="flex flex-col gap-1">
-                <Label htmlFor={field.id} className="text-[14px] font-medium text-[#6E6E6E]">
+                <Label
+                  htmlFor={field.id}
+                  className="text-[14px] font-medium text-[#6E6E6E]"
+                >
                   {field.label}
                 </Label>
                 <input
@@ -184,12 +220,16 @@ export default function AddEditVendor({ data = false }: NewVendorProps) {
                   {...register(field.id as keyof VendorFormValues)}
                   className={cn(
                     "rounded-md px-[20px] py-[18px] text-[15px] bg-[#F9F9F9] focus:outline-none placeholder:text-[#B6B6B6]",
-                    errors[field.id as keyof VendorFormValues] && "border-red-500"
+                    errors[field.id as keyof VendorFormValues] &&
+                      "border-red-500"
                   )}
                 />
                 {errors[field.id as keyof VendorFormValues] && (
                   <span className="text-xs text-red-500">
-                    {errors[field.id as keyof VendorFormValues]?.message as string}
+                    {
+                      errors[field.id as keyof VendorFormValues]
+                        ?.message as string
+                    }
                   </span>
                 )}
               </div>
@@ -199,15 +239,15 @@ export default function AddEditVendor({ data = false }: NewVendorProps) {
             <Button
               type="submit"
               className="w-full bg-[#15221B] text-white px-4 py-2 rounded-md font-medium"
-              disabled={isSubmitting}
+              disabled={isPending}
             >
-              {isSubmitting
+              {isPending
                 ? data
                   ? "Saving..."
                   : "Creating..."
                 : data
-                  ? "Save Changes"
-                  : "Create Vendor"}
+                ? "Save Changes"
+                : "Create Vendor"}
             </Button>
           </div>
         </form>

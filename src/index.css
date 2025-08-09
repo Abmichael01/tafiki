@@ -216,7 +216,7 @@ html{
 
 .fancy-scrollbar {
   scrollbar-width: thin; /* Firefox */
-  scrollbar-color: #b5b5b5 #f0f0f0; /* Firefox */
+  scrollbar-color: transparent; /* Firefox */
   /* Hide scrollbar by default for Webkit browsers */
 }
 
@@ -229,7 +229,7 @@ html{
 }
 
 .fancy-scrollbar:hover::-webkit-scrollbar {
-  background: #f0f0f0;
+  background: transparent;
   opacity: 1;
 }
 
@@ -242,7 +242,8 @@ html{
 }
 
 .fancy-scrollbar:hover::-webkit-scrollbar-thumb {
-  background: #888888;
+  /* background: #888888; */
+  background: transparent;
 }
 
 .fancy-scrollbar::-webkit-scrollbar-track {
@@ -250,9 +251,7 @@ html{
   @apply rounded-full;
 }
 
-.fancy-scrollbar:hover::-webkit-scrollbar-track {
-  background: #f0f0f0;
-}
+
 
 /* Optional: Smooth transition for scrollbar appearance */
 .fancy-scrollbar {

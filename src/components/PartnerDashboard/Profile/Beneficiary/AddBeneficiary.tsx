@@ -169,7 +169,7 @@ const AddBeneficiary: React.FC<Props> = ({ redirectTo }) => {
                       <SelectValue placeholder="Barclays Bank" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
+                  <SelectContent className="z-[100]">
                     {banks.map((bank) => (
                       <SelectItem key={bank.code} value={bank.name}>
                         {bank.name}

@@ -2,15 +2,16 @@ import * as z from "zod";
 
 // Zod Schemas
 export const productDetailsSchema = z.object({
-  productName: z.string().min(1, "Product name is required"),
-  aboutProduct: z.string().min(10, "Product description must be at least 10 characters"),
+  name: z.string().min(1, "Product name is required"),
+  description: z.string().min(10, "Product description must be at least 10 characters"),
 });
 
 export const productSpecsSchema = z.object({
-  productWeight: z.string().min(1, "Product weight is required"),
-  bagsPerUnit: z.number().min(1, "Bags per unit must be at least 1"),
-  pricePerUnit: z.string().min(1, "Price per unit is required"),
-  quantity: z.string().min(1, "Quantity is required"),
+  price: z.string().min(1, "Price is required"),
+  stock_quantity: z.string().min(1, "Stock quantity is required"),
+  roi_percentage: z.string().min(1, "ROI percentage is required"),
+  quantity_per_unit: z.string().min(1, "Quantity per unit is required"),
+  kg_per_unit: z.string().min(1, "KG per unit is required"),
 });
 
 // Infer types from schemas
@@ -26,13 +27,13 @@ export const productDetailsFields: {
   rows?: number;
 }[] = [
   {
-    name: "productName",
+    name: "name",
     label: "Product Name",
     placeholder: "Enter Product name",
     type: "input",
   },
   {
-    name: "aboutProduct",
+    name: "description",
     label: "About Product",
     placeholder: "Enter Product Bio",
     type: "textarea",
@@ -51,33 +52,38 @@ export const productSpecsFields: {
   defaultValue?: number;
 }[] = [
   {
-    name: "productWeight",
-    label: "Product Weight",
-    placeholder: "Enter weight of product",
-    type: "input",
-    suffix: "KG",
-  },
-  {
-    name: "bagsPerUnit",
-    label: "Bags per Unit",
-    placeholder: "Number of Bags",
-    type: "number",
-    suffix: "Unit",
-    defaultValue: 1,
-  },
-  {
-    name: "pricePerUnit",
-    label: "Price per Unit",
-    placeholder: "Enter weight of product",
+    name: "price",
+    label: "Price",
+    placeholder: "Enter product price",
     type: "input",
     suffix: "£",
   },
   {
-    name: "quantity",
-    label: "Quantity",
-    placeholder: "1 - 20",
+    name: "stock_quantity",
+    label: "Stock Quantity",
+    placeholder: "Enter available stock",
     type: "input",
-    suffix: "Unit(s)",
-    helperText: "(Number of units to be uploaded)",
+    suffix: "Units",
+  },
+  {
+    name: "roi_percentage",
+    label: "ROI Percentage",
+    placeholder: "Enter ROI percentage",
+    type: "input",
+    suffix: "%",
+  },
+  {
+    name: "quantity_per_unit",
+    label: "Quantity per Unit",
+    placeholder: "Enter quantity per unit",
+    type: "input",
+    suffix: "Units",
+  },
+  {
+    name: "kg_per_unit",
+    label: "KG per Unit",
+    placeholder: "Enter KG per unit",
+    type: "input",
+    suffix: "KG",
   },
 ];

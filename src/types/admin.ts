@@ -36,3 +36,22 @@ export type AdminReport = {
   all_orders: IndexOrder[];
 }
 
+export type DataBaseType = {
+  count: number;
+  next: number | null;
+  previous: number | null;
+}
+
+export type Vendor = {
+  id: number;
+  vendor_id: string;
+  name: string;
+  email: string;
+  phone: string;
+  profile_picture: string | null;
+  created_at: string;
+};
+
+export type Vendors = DataBaseType & {
+  results: Vendor[]
+}

@@ -13,27 +13,54 @@ import Header from "./../Header";
 import clsx from "clsx";
 import useProductStore, { ProductData } from "@/stores/productStore";
 import { productSpecsSchema, productSpecsFields } from "./formSchemas";
-import ImageSelector from "../ImageSelector";
+import ProductImages from "../ImageSelector";
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { addProduct } from "@/api/adminEndpoints";
 
 export default function ProductSpecsForm() {
-  const { productData, updateProductData } = useProductStore();
+  const { productData, updateProductData, prepareFormData } = useProductStore();
   const navigate = useNavigate();
 
   const form = useForm({
     resolver: zodResolver(productSpecsSchema),
     defaultValues: {
-      productWeight: productData.productWeight || "",
-      bagsPerUnit: productData.bagsPerUnit || 1,
-      pricePerUnit: productData.pricePerUnit || "",
-      quantity: productData.quantity || "",
+      price: productData.price || "",
+      stock_quantity: productData.stock_quantity || "",
+      roi_percentage: productData.roi_percentage || "",
+      quantity_per_unit: productData.quantity_per_unit || "",
+      kg_per_unit: productData.kg_per_unit || "",
     },
   });
 
-  const onSubmit = (data: Partial<ProductData>) => {
+  const { mutate, isPending } = useMutation({
+    mutationFn: (data: FormData) => addProduct(data),
+    onSuccess: () => {
+      navigate(
+        "?dialog=upload-product&current=success&title=New Product Added&description=Food Hybrid Beans has successfully been added!"
+      );
+    },
+  });
+
+  const onSubmit = async (data: Partial<ProductData>) => {
+    // First update the store with the current form data
     updateProductData(data);
-    navigate('?dialog=upload-product&current=success&title=New Product Added&description=Food Hybrid Beans has successfully been added!')
-    console.log("Product Specs:", data);
+
+    // Create the complete product data by merging current form data with existing store data
+    const completeProductData = {
+      ...productData,
+      ...data,
+    };
+
+    // Prepare FormData for submission with the complete data
+    const formData = prepareFormData(data);
+
+    // Here you would call your API to submit the product
+    // Example: await uploadProduct(formData);
+    console.log("Complete Product Data:", completeProductData);
+    console.log("FormData for submission:", formData);
+    mutate(formData);
+    // Navigate to success page
   };
 
   return (
@@ -45,7 +72,7 @@ export default function ProductSpecsForm() {
 
       <div className="flex justify-center w-full">
         <div className="grid grid-cols-3 gap-5 scale-[0.7] w-full max-w-[80%]">
-          <ImageSelector />
+          <ProductImages />
         </div>
       </div>
 
@@ -102,9 +129,10 @@ export default function ProductSpecsForm() {
 
           <Button
             type="submit"
-            className="w-full text-white py-[16px] rounded-[8px] font-[500] text-[16px] "
+            className="w-full text-white py-[16px] rounded-[8px] font-[500] text-[16px]"
+            disabled={isPending}
           >
-            Next
+            {isPending ? "Adding Product..." : "Next"}
           </Button>
         </form>
       </Form>

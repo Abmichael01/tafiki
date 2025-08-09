@@ -1,39 +1,41 @@
-import garri from "@/assets/images/garriProduct.webp";
 import clsx from "clsx";
 import useProductStore from "@/stores/productStore";
+import { X } from "lucide-react";
 
-export default function ImageSelector() {
-  const { productData, updateProductData } = useProductStore();
-  const { selectedImageId } = productData;
+export default function ProductImages() {
+  const { productData, removeImage } = useProductStore();
+  const { images } = productData;
 
-  const handleSelect = (index: number) => {
-    const imageId = `image_${index}`;
-    updateProductData({ selectedImageId: imageId });
+  const handleRemoveImage = (index: number) => {
+    removeImage(index);
   };
 
   return (
     <>
-      {Array.from({ length: 3 }).map((_, index) => {
-        const imageId = `image_${index}`;
-        const isSelected = selectedImageId === imageId;
-
-        return (
-          <div
-            key={index}
-            onClick={() => handleSelect(index)}
-            className={clsx(
-              "p-[18px] w-fit border rounded-[8px] flex items-center justify-center cursor-pointer",
-              isSelected ? "border-primary border-2" : "border-[#15221B99]"
-            )}
+      {images?.map((image, index) => (
+        <div
+          key={index}
+          className={clsx(
+            "p-[18px] w-fit border rounded-[8px] flex items-center justify-center cursor-pointer relative",
+            "border-primary border-2"
+          )}
+        >
+          <img
+            src={URL.createObjectURL(image)}
+            className="size-[76.5px] object-cover rounded-[6px]"
+            alt={`product-img-${index}`}
+          />
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handleRemoveImage(index);
+            }}
+            className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition-colors"
           >
-            <img
-              src={garri}
-              className="size-[76.5px] object-cover rounded-[6px]"
-              alt="garri-img"
-            />
-          </div>
-        );
-      })}
+            <X className="h-3 w-3" />
+          </button>
+        </div>
+      ))}
     </>
   );
 }
