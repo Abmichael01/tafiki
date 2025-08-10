@@ -2,40 +2,40 @@ import React from "react";
 import TransactionList from "../Transactions/TransactionList";
 import { Transaction } from "@/types/admin";
 
-const dummyRemittanceData = [
-  {
-    type: "Remittance Inflow",
-    time: "Today, 10:15 AM",
-    amount: "18,000",
-    description: "from Vendor 1",
-    status: "remittance",
-    isCredit: true,
-  },
-  {
-    type: "Remittance Inflow",
-    time: "Yesterday, 04:45 PM",
-    amount: "9,500",
-    description: "from Vendor 2",
-    status: "remittance",
-    isCredit: true,
-  }, 
-  {
-    type: "Remittance Inflow",
-    time: "13th July, 2025 - 11:30 AM",
-    amount: "12,750",
-    description: "from Vendor 3",
-    status: "remittance",
-    isCredit: true,
-  },
-  {
-    type: "Remittance Inflow",
-    time: "12th July, 2025 - 09:00 AM",
-    amount: "7,200",
-    description: "from Vendor 4",
-    status: "remittance",
-    isCredit: true,
-  },
-];
+// const dummyRemittanceData = [
+//   {
+//     type: "Remittance Inflow",
+//     time: "Today, 10:15 AM",
+//     amount: "18,000",
+//     description: "from Vendor 1",
+//     status: "remittance",
+//     isCredit: true,
+//   },
+//   {
+//     type: "Remittance Inflow",
+//     time: "Yesterday, 04:45 PM",
+//     amount: "9,500",
+//     description: "from Vendor 2",
+//     status: "remittance",
+//     isCredit: true,
+//   }, 
+//   {
+//     type: "Remittance Inflow",
+//     time: "13th July, 2025 - 11:30 AM",
+//     amount: "12,750",
+//     description: "from Vendor 3",
+//     status: "remittance",
+//     isCredit: true,
+//   },
+//   {
+//     type: "Remittance Inflow",
+//     time: "12th July, 2025 - 09:00 AM",
+//     amount: "7,200",
+//     description: "from Vendor 4",
+//     status: "remittance",
+//     isCredit: true,
+//   },
+// ];
 
 const RemittanceInflow: React.FC = () => {
   return (
