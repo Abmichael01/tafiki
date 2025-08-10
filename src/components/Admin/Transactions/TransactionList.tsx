@@ -1,19 +1,12 @@
 import React from "react";
-import { ChevronRight, Upload, Plus, ArrowUpRight } from "lucide-react";
+import { ChevronRight, Upload, Plus, ArrowUpRight, Package } from "lucide-react";
 import history from "@/assets/svgs/history.svg";
 import { Link } from "react-router-dom";
 import TransactionDetails from "./TransactionDetails";
+import { Transaction } from "@/types/admin";
 
-export interface Transaction {
-  id?: string;
-  type?: string;
-  time: string;
-  amount?: string;
-  status?: string;
-  description?: string;
-  isCredit?: boolean;
-  isDebit?: boolean;
-}
+// Transaction type based on the provided data structure
+
 
 interface TransactionListProps {
   transactions: Transaction[];
@@ -39,6 +32,7 @@ const TransactionList: React.FC<TransactionListProps> = ({
   className = "",
   vendor = false,
 }) => {
+  const [selected, setSelected] = React.useState<Transaction | null>(null);
   // Helper function to format date for display
   const formatDisplayDate = (dateString: string) => {
     const transactionDate = new Date(dateString);
@@ -93,72 +87,135 @@ const TransactionList: React.FC<TransactionListProps> = ({
 
   // Group transactions by date if groupByDate is true
   const groupedTransactions = groupByDate
-    ? transactions.reduce((groups, transaction) => {
-      const displayDate = formatDisplayDate(transaction.time);
+    ? transactions?.reduce((groups, transaction) => {
+        const displayDate = formatDisplayDate(transaction.created_at);
 
-      if (!groups[displayDate]) {
-        groups[displayDate] = [];
-      }
-      groups[displayDate].push(transaction);
-      return groups;
-    }, {} as Record<string, Transaction[]>)
+        if (!groups[displayDate]) {
+          groups[displayDate] = [];
+        }
+        groups[displayDate].push(transaction);
+        return groups;
+      }, {} as Record<string, Transaction[]>)
     : null;
+
+  // Helper to determine if transaction is credit or debit
+  const isCredit = (transaction: Transaction) => {
+    // You can adjust this logic based on your business rules
+    // For example, if transaction_type is "investment" and to is "investment", it's a debit
+    // If from_user is "Available Balance" and to is "investment", it's a debit
+    // If from_user is "investment" and to is "Available Balance", it's a credit
+    // Here, let's assume "investment" is a debit, "Available Balance" to "investment" is a debit, etc.
+    // You can refine this as needed.
+    if (
+      transaction.transaction_type === "investment" &&
+      transaction.from_user === "Available Balance"
+    ) {
+      return false; // debit
+    }
+    if (
+      transaction.transaction_type === "remittance" &&
+      transaction.to === "Available Balance"
+    ) {
+      return true; // credit
+    }
+    // fallback: treat "completed" as credit, "pending"/"failed" as debit
+    return transaction.status === "completed";
+  };
+
+  const isDebit = (transaction: Transaction) => !isCredit(transaction);
+
+  // Compose a "type" label from the transaction data
+  const getTypeLabel = (transaction: Transaction) => {
+    // Example: "Investment from Available Balance"
+    if (transaction.transaction_type && transaction.from_user && transaction.to) {
+      return `${capitalize(transaction.transaction_type)} from ${transaction.from_user} to ${transaction.to}`;
+    }
+    if (transaction.transaction_type && transaction.from_user) {
+      return `${capitalize(transaction.transaction_type)} from ${transaction.from_user}`;
+    }
+    return transaction.transaction_type
+      ? capitalize(transaction.transaction_type)
+      : "Transaction";
+  };
+
+  function capitalize(str: string) {
+    if (!str) return "";
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  // Compose a description if needed
+  // const getDescription = (transaction: Transaction) => {
+  //   // Example: "Order ID: TXN-E453CB00B4, Partner: Oyekola Michael"
+  //   const desc = [];
+  //   if (transaction.order_id) desc.push(`Order ID: ${transaction.order_id}`);
+  //   if (transaction.partner_name) desc.push(`Partner: ${transaction.partner_name}`);
+  //   if (transaction.payment_method) desc.push(`Payment: ${capitalize(transaction.payment_method)}`);
+  //   if (transaction.reference) desc.push(`Ref: ${transaction.reference}`);
+  //   return desc.join(" | ");
+  // };
+
+  const handleSelect = (t: Transaction) => setSelected(t);
 
   const renderTransaction = (transaction: Transaction, index: number) => (
     <Link
       key={transaction.id || index}
       className="flex justify-between items-center py-3"
       to={`?dialog=transaction-details`}
+      onClick={() => handleSelect(transaction)}
     >
       <div className="flex gap-3 items-center min-w-0 flex-1">
         <div
-          className={`flex items-center justify-center rounded-full w-7 h-7 ${transaction.isCredit
-            ? "bg-[#16A34A1A] text-[#16A34A]"
-            : transaction.status === "withdrawal"
+          className={`flex items-center justify-center rounded-full w-7 h-7 ${
+            transaction.transaction_type === "inflow" || transaction.transaction_type === "fund"
+              ? "bg-[#16A34A1A] text-[#16A34A]"
+              : transaction.transaction_type === "withdrawal"
               ? "bg-[#B522171A] text-[#B52217]"
               : "bg-primary/10 text-primary"
-            }`}
+          }`}
         >
-          {transaction.status === "withdrawal" ? (
+          {transaction.transaction_type === "withdrawal" ? (
             <Upload className="size-[16px]" />
+          ) : transaction.transaction_type === "remittance-inflow" ? (
+            <Plus className="size-[16px]" />
+          ) : transaction.transaction_type === "fund" ? (
+            <Plus className="size-[16px]" />
+          ) : transaction.transaction_type === "investment" ? (
+            <Package className="size-[16px]" />
+          ) : !vendor ? (
+            <Plus className="size-[16px]" />
           ) : (
-            !vendor ? <Plus className="size-[16px]" /> : <ArrowUpRight className="size-[16px]" />
+            <ArrowUpRight className="size-[16px]" />
           )}
+          
         </div>
         <div className="min-w-0 flex-1">
           <div className="font-satoshi font-[600] text-[15px] truncate text-nowrap">
-            {transaction.type}
+            {getTypeLabel(transaction)}
           </div>
-          {transaction.description && (
-            <div className="text-[12px] text-[#666] font-satoshi">
-              {transaction.description}
-            </div>
-          )}
+          {/* <div className="text-[12px] text-[#666] font-satoshi">
+            {getDescription(transaction)}
+          </div> */}
           <div className="text-[12px] text-[#929292] font-satoshi truncate text-nowrap">
-            {formatDisplayTime(transaction.time)}
+            {formatDisplayTime(transaction.created_at)}
           </div>
-
         </div>
       </div>
       <div className="flex items-center">
         {showTransactionSign && (
           <span className="text-[12px] font-medium">
-            {transaction.isCredit ? "+" : transaction.isDebit ? "-" : ""}
+            {isCredit(transaction) ? "+" : isDebit(transaction) ? "-" : ""}
           </span>
         )}
-        <div
-          className={`font-satoshi font-bold text-[15px] text-nowrap text-primary"
-            }`}
-        >
-          {transaction.amount}
+        <div className="font-satoshi font-bold text-[15px] text-nowrap text-primary">
+          ₦{Number(transaction.amount).toLocaleString()}
         </div>
       </div>
     </Link>
   );
 
   const renderTransactionList = (transactionList: Transaction[]) => (
-    <div className="">
-      {transactionList.length > 0 ? (
+    <div>
+      {transactionList?.length > 0 ? (
         transactionList.map((transaction, index) => renderTransaction(transaction, index))
       ) : (
         <div className="flex flex-col gap-5 justify-center items-center h-32">
@@ -205,29 +262,20 @@ const TransactionList: React.FC<TransactionListProps> = ({
         renderTransactionList(transactions)
       )}
 
-      <TransactionDetails transaction={{
-        type: (() => {
-          if (!transactions.length) return "order-purchase";
-          const randomIndex = Math.floor(Math.random() * transactions.length);
-          const t = transactions[randomIndex];
-          if (t.status === "remittance") {
-            return t.isCredit ? "remittance-inflow" : "remittance-paid";
-          } else if (t.status === "withdrawal") {
-            return "withdrawal";
-          } else {
-            return "order-purchase";
-          }
-        })(),
-        amount: "£1000",
-        time: "2025-01-01T00:00:00",
-        from: "John Doe",
-        to: "Jane Doe",
-        orderId: "1234567890",
-        availableBalance: "£1000",
-      }} />
-
+      {/* Example TransactionDetails, you may want to pass real data */}
+      <TransactionDetails
+        transaction={selected ? {
+          type: selected.transaction_type,
+          amount: String(selected.amount ?? '0.00'),
+          time: selected.created_at ?? new Date().toISOString(),
+          from: selected.from_user,
+          to: selected.to,
+          orderId: (selected as unknown as { order_id?: string }).order_id,
+          availableBalance: String(selected.available_balance_at_time ?? ''),
+        } : undefined}
+      />
     </div>
   );
 };
 
-export default TransactionList; 
+export default TransactionList;

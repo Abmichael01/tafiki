@@ -16,6 +16,7 @@ const Hero: React.FC = () => {
           src={heroBgImage}
           alt="hero-background"
           className="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
         />
 
         <div className="w-full absolute top-10 flex sm:hidden sm:justify-center">

@@ -26,10 +26,12 @@ import { PiMountainsThin } from "react-icons/pi";
 
 import { Building2, MapPin, Phone, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getVendorsist } from "@/api/adminEndpoints";
 
 // 🔥 Schema
 const deliveryFormSchema = z.object({
-  vendor: z.string().min(1, "Vendor name is required"),
+  name: z.string().min(1, "Vendor name is required"),
   location: z.string().min(1, "Location is required"),
   phone: z.string().min(1, "Phone number is required"),
   email: z.string().email("Invalid email address"),
@@ -38,27 +40,7 @@ const deliveryFormSchema = z.object({
 
 type DeliveryFormData = z.infer<typeof deliveryFormSchema>;
 
-// Dummy vendor options
-const vendorOptions = [
-  { value: "vendor1", label: "Vendor List 1" },
-  { value: "vendor2", label: "Vendor List 2" },
-];
 
-// Simulated vendor data
-const vendorDataMap = {
-  vendor1: {
-    vendor: "Acme Inc",
-    location: "New York",
-    phone: "+1 555 123 4567",
-    email: "contact@acme.com",
-  },
-  vendor2: {
-    vendor: "XYZ Corp",
-    location: "San Francisco",
-    phone: "+1 555 987 6543",
-    email: "info@xyzcorp.com",
-  },
-};
 
 // Define form field config type
 type FormFieldConfig<T extends keyof DeliveryFormData> = {
@@ -75,7 +57,7 @@ export default function DeliveryForm() {
   const form = useForm<DeliveryFormData>({
     resolver: zodResolver(deliveryFormSchema),
     defaultValues: {
-      vendor: "",
+      name: "",
       location: "",
       phone: "",
       email: "",
@@ -83,14 +65,21 @@ export default function DeliveryForm() {
     },
   });
 
+  const { data } = useQuery({
+    queryKey: ["Vendors"],
+    queryFn: getVendorsist,
+  });
+
+  console.log(data)
+
   const handleVendorChange = (value: string) => {
     setSelectedVendor(value);
-    const data = vendorDataMap[value as keyof typeof vendorDataMap];
+    const vendor = data?.results.find( vendor => vendor.vendor_id === value ) 
     if (data) {
-      form.reset(data);
+      form.reset(vendor);
     } else {
       form.reset({
-        vendor: "",
+        name: "",
         location: "",
         phone: "",
         email: "",
@@ -108,7 +97,7 @@ export default function DeliveryForm() {
     Exclude<keyof DeliveryFormData, "addToVendorList">
   >[] = [
     {
-      name: "vendor",
+      name: "name",
       label: "Vendor",
       placeholder: "Enter vendor's name",
       icon: <Building2 className="h-4 w-4 text-gray-500 pointer-events-none" />,
@@ -150,9 +139,9 @@ export default function DeliveryForm() {
             <SelectValue placeholder="Retail Shop" />
           </SelectTrigger>
           <SelectContent>
-            {vendorOptions.map((opt) => (
-              <SelectItem key={opt.value} value={opt.value}>
-                {opt.label}
+            {data?.results.map((vendor) => (
+              <SelectItem key={vendor.id} value={vendor.vendor_id || vendor.id.toString() }>
+                {vendor.name}
               </SelectItem>
             ))}
           </SelectContent>
@@ -212,7 +201,7 @@ export default function DeliveryForm() {
           />
 
           {/* Submit Button */}
-          <Link to="/partner/cart/checkout">
+          <Link to={`/partner/cart/checkout?vendor=${selectedVendor}`}>
             <Button
               disabled={form.formState.disabled}
               type="submit"

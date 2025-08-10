@@ -64,6 +64,7 @@ const Root: React.FC = () => {
             src={pattern}
             alt=""
             className="w-[150px] h-[150px] sm:size-[278px] lg:size-[480px] rounded-full sm:translate-x-[70px] absolute top-[-100px] right-[-50px] sm:top-0 sm:right-0 sm:relative object-cover"
+            loading="lazy"
           />
         </motion.div>
       </div>

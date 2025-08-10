@@ -1,22 +1,23 @@
-import { AdminReport, Vendor, Vendors } from "@/types/admin";
+import { AdminReport, Orders, Transactions, Vendor, Vendors } from "@/types/admin";
 import apiClient, { formDataClient } from "./apiClient";
+import { WithdrawalData } from "@/types/admin";
 
 export const getAdminReport = async (): Promise<AdminReport> => {
   const res = await apiClient.get("/users/admin/report/");
   return res.data;
 };
 
-export const getTransactions = async (): Promise<unknown> => {
+export const getTransactions = async (): Promise<Transactions> => {
   const res = await apiClient.get("/users/alltransactionHistory/admin/");
   return res.data;
 };
 
-export const getOrders = async (): Promise<unknown> => {
+export const getOrders = async (): Promise<Orders> => {
   const res = await apiClient.get("/users/admin/orders/");
   return res.data;
 };
 
-export const getWithdrawalList = async (): Promise<unknown> => {
+export const getWithdrawalList = async (): Promise<{ user_summaries: WithdrawalData[] }> => {
   const res = await apiClient.get("/users/admin/withdrawal/");
   return res.data;
 };

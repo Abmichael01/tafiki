@@ -24,7 +24,7 @@ const Orders: React.FC = () => {
     <div className='space-y-10 h-full w-full'>
       <PageTitle title={`Orders (${ordersData.length})`} />
       <Tab />
-      <OrdersList orders={ordersData as Order[]}  tab={currentTab as string} />
+      <OrdersList orders={data?.results as Order[]}  tab={currentTab as string} />
     </div>
   )
 }

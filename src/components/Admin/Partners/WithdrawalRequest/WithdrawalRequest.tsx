@@ -4,6 +4,8 @@ import { ChevronRight } from "lucide-react";
 import { GoArrowLeft } from "react-icons/go";
 import { Link } from "react-router-dom";
 import ApproveWithdrawal from "./ApproveWithdrawal";
+import { useQuery } from "@tanstack/react-query";
+import { getWithdrawalList } from "@/api/adminEndpoints";
 
 const dummyWithdrawalData = [
   {
@@ -37,6 +39,12 @@ interface Props {
 }
 
 const WithdrawalRequests: React.FC<Props> = ({ all: viewAll }) => {
+  const { data } = useQuery({
+    queryKey: ["withdrawal-requests"],
+    queryFn: getWithdrawalList
+  })
+
+  console.log(data?.user_summaries)
   return (
     <div className="space-y-[12px]">
       <div className="flex justify-between items-center">
@@ -49,7 +57,7 @@ const WithdrawalRequests: React.FC<Props> = ({ all: viewAll }) => {
           <h1 className="font-[600] text-[20px]">
             Withdraw Requests{" "}
             <span className="font-[400] text-[14px]">
-              ({dummyWithdrawalData.length})
+              ({data?.user_summaries.length})
             </span>
           </h1>
         </div>
@@ -63,7 +71,7 @@ const WithdrawalRequests: React.FC<Props> = ({ all: viewAll }) => {
       </div>
 
       <div className="space-y-[4px]">
-        {dummyWithdrawalData.map((item, index) => (
+        {data?.user_summaries.map((item, index) => (
           <div
             key={index}
             className="flex justify-between items-center p-[12px] border-b border-[#F0F0F0]"
@@ -78,13 +86,13 @@ const WithdrawalRequests: React.FC<Props> = ({ all: viewAll }) => {
 
               <div className="space-y-[2px] font-satoshi">
                 <h1 className="text-[16px] font-[700]">Withdrawal Request</h1>
-                <p className="text-[12px] text-[#6E6E6E]">by {item.name}</p>
-                <p className="text-[12px] text-[#6E6E6E]">{item.time}</p>
+                <p className="text-[12px] text-[#6E6E6E]">by {item.user_name}</p>
+                {/* <p className="text-[12px] text-[#6E6E6E]">{item.time}</p> */}
               </div>
             </Link>
 
             <h1 className="text-[18px] font-[700] font-satoshi text-end">
-              £{item.amount}
+              £{item.pending_withdrawals_amount}
             </h1>
           </div>
         ))}

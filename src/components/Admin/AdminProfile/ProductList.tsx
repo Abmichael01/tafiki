@@ -1,73 +1,28 @@
-import React from "react";
-import riceImage from "@/assets/images/rice.webp";
-import beansImage from "@/assets/images/beans.webp";
-import plantainFlourImage from "@/assets/images/plantainFlour.webp";
 import yamFlourImage from "@/assets/images/yamFlour.webp";
 import { Link } from "react-router-dom";
+import { ShopProduct } from "@/types";
 
 // Quantity status badge color mapping
-const quantityStatusStyles: Record<
-  string,
-  { bg: string; text: string }
-> = {
-  Good: {
-    bg: "bg-green-100",
-    text: "text-green-600",
-  },
-  Average: {
-    bg: "bg-yellow-100",
-    text: "text-yellow-600",
-  },
-  Low: {
-    bg: "bg-red-100",
-    text: "text-red-600",
-  },
-};
+// const quantityStatusStyles: Record<string, { bg: string; text: string }> = {
+//   Good: {
+//     bg: "bg-green-100",
+//     text: "text-green-600",
+//   },
+//   Average: {
+//     bg: "bg-yellow-100",
+//     text: "text-yellow-600",
+//   },
+//   Low: {
+//     bg: "bg-red-100",
+//     text: "text-red-600",
+//   },
+// };
 
-const products = [
-  {
-    id: 1,
-    name: "FoodHybrid Rice",
-    image: riceImage,
-    pricePerUnit: "£50",
-    bagsPerUnit: "5 bags",
-    unitsAvailable: 15,
-    totalBags: 75,
-    quantityStatus: "Good",
-  },
-  {
-    id: 2,
-    name: "FoodHybrid Beans",
-    image: beansImage,
-    pricePerUnit: "£50",
-    bagsPerUnit: "5 bags",
-    unitsAvailable: 10,
-    totalBags: 50,
-    quantityStatus: "Average",
-  },
-  {
-    id: 3,
-    name: "FoodHybrid Plantain Flour",
-    image: plantainFlourImage,
-    pricePerUnit: "£50",
-    bagsPerUnit: "5 bags",
-    unitsAvailable: 13,
-    totalBags: 65,
-    quantityStatus: "Good",
-  },
-  {
-    id: 4,
-    name: "FoodHybrid Yam Flour",
-    image: yamFlourImage,
-    pricePerUnit: "£50",
-    bagsPerUnit: "5 bags",
-    unitsAvailable: 3,
-    totalBags: 15,
-    quantityStatus: "Low",
-  },
-];
+interface Props {
+  data: ShopProduct[];
+}
 
-const ProductList: React.FC = () => {
+function ProductList({ data }: Props) {
   return (
     <div className="bg-white text-sm overflow-hidden font-satoshi">
       {/* Table */}
@@ -83,45 +38,47 @@ const ProductList: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
+            {data?.map((product) => (
               <tr key={product.id} className="border-b border-[#F0F0F0]">
                 {/* Product */}
                 <td className="px-4 py-3">
-                  <Link to={`/admin/profile/manage-products/${product.id}`} className="flex items-center gap-3">
+                  <Link
+                    to={`/admin/profile/manage-products/${product.product_id}`}
+                    className="flex items-center gap-3 mr-10"
+                  >
                     <img
-                      src={product.image}
+                      src={yamFlourImage}
                       alt={product.name}
                       className="w-[48px] h-[48px] rounded object-cover"
                     />
-                    <span className="text-[16px] font-bold">{product.name}</span>
+                    <span className="text-[16px] font-bold">
+                      {product.name}
+                    </span>
                   </Link>
                 </td>
 
                 {/* Price per unit */}
                 <td className="px-4 py-3 text-center text-[16px] font-bold">
-                  {product.pricePerUnit}
+                  £{product.price}
                 </td>
 
                 {/* Bags per unit */}
                 <td className="px-4 py-3 text-center text-[16px] font-bold">
-                  {product.bagsPerUnit}
+                  {product.quantity_per_unit}
                 </td>
 
                 {/* Units available */}
                 <td className="px-4 py-3 text-[16px] text-center font-bold">
-                  {product.unitsAvailable} units ({product.totalBags} bags)
+                  {product.stock_quantity} units ({product.quantity_per_unit}{" "}
+                  bags)
                 </td>
 
                 {/* Quantity status */}
                 <td className="px-4 py-3 text-center">
                   <span
-                    className={`inline-block px-3 py-1 rounded-[4px] text-[14px] font-medium ${
-                      quantityStatusStyles[product.quantityStatus]?.bg || "bg-gray-100"
-                    } ${
-                      quantityStatusStyles[product.quantityStatus]?.text || "text-gray-500"
-                    }`}
+                    className={`inline-block px-3 py-1 rounded-[4px] text-[14px] font-medium`}
                   >
-                    {product.quantityStatus}
+                    {Number(product.stock_quantity) < 10 ? "Low" : "Good"}
                   </span>
                 </td>
               </tr>
@@ -131,6 +88,6 @@ const ProductList: React.FC = () => {
       </div>
     </div>
   );
-};
+}
 
-export default ProductList; 
+export default ProductList;

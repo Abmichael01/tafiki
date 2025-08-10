@@ -14,8 +14,8 @@ interface OrderListProps {
 const groupOrdersByDate = (orders: Order[]) => {
   const groups: { [key: string]: Order[] } = {};
 
-  orders.forEach((order) => {
-    const date = order.date || "Unknown";
+  orders?.forEach((order) => {
+    const date = order.created_at || "Unknown";
     if (!groups[date]) {
       groups[date] = [];
     }
@@ -32,8 +32,8 @@ const groupOrdersByDate = (orders: Order[]) => {
 // Main OrderList component
 const OrderList: React.FC<OrderListProps> = ({ orders, tab, status }) => {
   const renderOngoingOrders = () =>
-    orders.length > 0 ? (
-      orders.map((order) => <OrderRow key={order.id} order={order} status={status as boolean} />)
+    orders?.length > 0 ? (
+      orders?.map((order) => <OrderRow key={order.id} order={order} status={status as boolean} />)
     ) : (
       <tr>
         <td colSpan={5} className="h-[60vh] text-center text-gray-500">
@@ -50,7 +50,7 @@ const OrderList: React.FC<OrderListProps> = ({ orders, tab, status }) => {
   const renderHistoryOrders = () => {
     const groupedOrders = groupOrdersByDate(orders);
 
-    if (Object.keys(groupedOrders).length === 0) {
+    if (Object.keys(groupedOrders)?.length === 0) {
       return (
         <tr>
           <td colSpan={5} className="h-[60vh] text-center text-gray-500">
@@ -65,7 +65,7 @@ const OrderList: React.FC<OrderListProps> = ({ orders, tab, status }) => {
       );
     }
 
-    return Object.entries(groupedOrders).flatMap(([date, dateOrders]) => [
+    return Object?.entries(groupedOrders).flatMap(([date, dateOrders]) => [
       // Date header row
       <tr key={`header-${date}`}>
         <td

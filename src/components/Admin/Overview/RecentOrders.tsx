@@ -1,81 +1,11 @@
+import { getOrders } from "@/api/adminEndpoints";
 import orderIcon from "@/assets/svgs/orderBox.svg";
+import { useQuery } from "@tanstack/react-query";
 import { ChevronRightIcon } from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
 
 // Status badge color mapping for clarity and maintainability
-const statusStyles: Record<
-  string,
-  { bg: string; text: string }
-> = {
-  Pending: {
-    bg: "bg-[#FFD60A1A]",
-    text: "text-[##FFD60A]",
-  },
-  "In-Transit": {
-    bg: "bg-[#1C274C1A]",
-    text: "text-[#1C274C]",
-  },
-  Delivered: {
-    bg: "bg-[#16A34A1A]",
-    text: "text-[#16A34A]",
-  },
-  "Settlement pending": {
-    bg: "bg-[#B522171A]",
-    text: "text-[#1C274C]",
-  },
-};
-
-const orders = [
-  {
-    id: "#5210",
-    time: "17:56",
-    date: "21st Jan., 2025",
-    partnerName: "John Doe",
-    vendorName: "Kapac Ventures",
-    amount: "£12,300",
-    status: "Pending",
-    details: "5 units of Rice, 2 units of...",
-    partnerAvatar: "https://i.pravatar.cc/40?img=1",
-    vendorAvatar: "https://i.pravatar.cc/40?img=2",
-  },
-  {
-    id: "#5210",
-    time: "17:56",
-    date: "21st Jan., 2025",
-    partnerName: "John Doe",
-    vendorName: "Kapac Ventures",
-    amount: "£12,300",
-    status: "In-Transit",
-    details: "5 units of Rice, 2 units of...",
-    partnerAvatar: "https://i.pravatar.cc/40?img=1",
-    vendorAvatar: "https://i.pravatar.cc/40?img=2",
-  },
-  {
-    id: "#5210",
-    time: "17:56",
-    date: "21st Jan., 2025",
-    partnerName: "John Doe",
-    vendorName: "Kapac Ventures",
-    amount: "£12,300",
-    status: "Delivered",
-    details: "5 units of Rice, 2 units of...",
-    partnerAvatar: "https://i.pravatar.cc/40?img=1",
-    vendorAvatar: "https://i.pravatar.cc/40?img=2",
-  },
-  {
-    id: "#5210",
-    time: "17:56",
-    date: "21st Jan., 2025",
-    partnerName: "John Doe",
-    vendorName: "Kapac Ventures",
-    amount: "£12,300",
-    status: "Settlement pending",
-    details: "5 units of Rice, 2 units of...",
-    partnerAvatar: "https://i.pravatar.cc/40?img=1",
-    vendorAvatar: "https://i.pravatar.cc/40?img=2",
-  },
-];
 
 interface RecentOrdersProps {
   status?: boolean;
@@ -87,6 +17,12 @@ interface RecentOrdersProps {
  * @param status - if true, show Status column instead of Order details
  */
 const RecentOrders: React.FC<RecentOrdersProps> = ({ status = false, link = "/admin/orders" }) => {
+  const { data } = useQuery({
+    queryKey: ["orders"],
+    queryFn: getOrders
+  })
+
+  console.log(data) 
   return (
     <div className="bg-white text-sm overflow-hidden font-satoshi">
       {/* Header */}
@@ -111,7 +47,7 @@ const RecentOrders: React.FC<RecentOrdersProps> = ({ status = false, link = "/ad
             </tr>
           </thead>
           <tbody>
-            {orders.map((order, idx) => (
+            {data?.results?.map((order, idx) => (
               <tr key={idx} className="border-b border-[#F0F0F0]">
                 {/* Order ID and Date */}
                 <td className="px-4 py-3">
@@ -126,7 +62,7 @@ const RecentOrders: React.FC<RecentOrdersProps> = ({ status = false, link = "/ad
                         Order {order.id}
                       </div>
                       <div className="text-[14px] text-gray-500">
-                        {order.time}, {order.date}
+                         {order.created_at}
                       </div>
                     </div>
                   </div>
@@ -136,22 +72,22 @@ const RecentOrders: React.FC<RecentOrdersProps> = ({ status = false, link = "/ad
                 <td className="px-4 py-3 text-center">
                   <div className="flex items-center gap-2 justify-center">
                     <img
-                      src={order.vendorAvatar}
+                      src={order.vendor_name}
                       alt="Vendor"
                       className="size-[24px] rounded-full object-cover"
                     />
-                    <span className="text-[16px]">{order.vendorName}</span>
+                    <span className="text-[16px]">{order.vendor_name}</span>
                   </div>
                 </td>
 
                 {/* Amount */}
                 <td className="px-4 py-3 font-bold text-[18px] text-center">
-                  {order.amount}
+                  {order.total_amount}
                 </td>
 
                 {/* Order Details or Status */}
                 <td className="px-4 py-3 text-[16px] text-center">
-                  {!status ? (
+                  {/* {!status ? (
                     order.details
                   ) : (
                     <span
@@ -161,7 +97,8 @@ const RecentOrders: React.FC<RecentOrdersProps> = ({ status = false, link = "/ad
                     >
                       {order.status}
                     </span>
-                  )}
+                  )} */}
+                  Detais of the prder
                 </td>
               </tr>
             ))}

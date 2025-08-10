@@ -1,22 +1,13 @@
 import { Order as IndexOrder } from './index';
 
 export type Order = {
-  id: string;
-  orderNumber: string;
-  timestamp: string;
-  partner: {
-    name: string;
-    avatar: string;
-  };
-  vendor: {
-    name: string;
-    avatar: string;
-  };
-  amount: number;
-  currency: string;
-  items: string;
-  date?: string; // For grouping in history
-  status?: string;
+  id: number;
+  order_id: string;
+  created_at: string;
+  partner_name: string;
+  vendor_name: string;
+  product: unknown[]; // You may want to define a Product type if structure is known
+  total_amount: number;
 }
 
 export type Partner = {
@@ -55,3 +46,36 @@ export type Vendor = {
 export type Vendors = DataBaseType & {
   results: Vendor[]
 }
+
+export type Transaction = {
+  id: number;
+  amount: string;
+  available_balance_at_time: string;
+  created_at: string;
+  from_user: string;
+  order_id: string;
+  partner_name: string;
+  payment_method: string;
+  reference: string;
+  status: string;
+  to: string;
+  transaction_type: string;
+  user: number;
+}
+
+export type Transactions = DataBaseType & {
+  results: Transaction[]
+}
+
+export type Orders = DataBaseType & {
+  results: Order[];
+} 
+
+export type WithdrawalData = {
+  approved_withdrawals_amount: number;
+  approved_withdrawals_count: number;
+  pending_withdrawals_amount: number;
+  pending_withdrawals_count: number;
+  user_id: number;
+  user_name: string;
+};

@@ -1,27 +1,12 @@
+import { Partner } from "@/types/admin";
 import { Link } from "react-router-dom";
 
-const users = new Array(4).fill([
-  {
-    name: "John Doe",
-    username: "John_doe",
-    email: "john@example.com",
-    avatar: "https://i.pravatar.cc/40?img=1",
-    totalPurchase: "£25,600",
-    totalOrders: 45,
-    totalBalance: "£7,000",
-  },
-  {
-    name: "Maria West",
-    username: "maria_w",
-    email: "maria@example.com",
-    avatar: "https://i.pravatar.cc/40?img=2",
-    totalPurchase: "£18,200",
-    totalOrders: 38,
-    totalBalance: "£5,300",
-  },
-]).flat();
 
-export default function PartnerList() {
+interface Props {
+  data: Partner[]
+}
+
+export default function PartnerList({ data }: Props) {
   return (
     <div className="bg-white text-sm overflow-hidden font-satoshi">
       {/* Table */}
@@ -37,15 +22,15 @@ export default function PartnerList() {
             </tr>
           </thead>
           <tbody className="divide-y">
-            {users.map((user, idx) => (
+            {data?.map((user, idx) => (
               <tr
                 key={idx}
               >
                 {/* Details: Avatar, Name, Email */}
                 <td className="px-4 py-3 text-left">
-                  <Link to={`/admin/partners/${user.id}`} className="flex items-center gap-3 mr-10">
+                  <Link to={`/admin/partners/${user.email}`} className="flex items-center gap-3 mr-10">
                     <img
-                      src={user.avatar}
+                      src={user.name}
                       alt={user.name}
                       className="w-[36px] h-[36px] rounded-full object-cover"
                     />
@@ -61,15 +46,15 @@ export default function PartnerList() {
 
                 {/* Total Purchase */}
                 <td className="px-4 py-3 font-semibold text-[15px]">
-                  {user.totalPurchase}
+                  {user.total_purchase}
                 </td>
 
                 {/* Total Orders */}
-                <td className="px-4 py-3 font-semibold text-[15px]">{user.totalOrders}</td>
+                <td className="px-4 py-3 font-semibold text-[15px]">{user.total_orders}</td>
 
                 {/* Total Balance */}
                 <td className="px-4 py-3 font-semibold text-[15px]">
-                  {user.totalBalance}
+                  {user.balance}
                 </td>
               </tr>
             ))}

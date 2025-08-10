@@ -5,7 +5,7 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { Button } from "@/components/ui/button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { checkoutCart } from "@/api/apiEndpoints";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -24,9 +24,13 @@ const Checkout: React.FC = () => {
   const { userDetails } = useUserDetailsStore()
   const queryClient = useQueryClient()
   const navigate = useNavigate()
+  const [params] = useSearchParams()
+  const vendor = params.get("vendor")
+
   const { mutate, isPending, error } = useMutation({
     mutationFn: (data: {
       transaction_pin: string;
+      vendor_id: string
     }) => checkoutCart(data),
     onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["cartItems"] })
@@ -51,6 +55,7 @@ const Checkout: React.FC = () => {
 
     mutate({
       transaction_pin: otp,
+      vendor_id: vendor as string
     });
   };
 

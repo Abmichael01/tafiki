@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useCloseDialog } from "@/hooks/closeDialog";
 
 export interface TransactionDetailData {
-  type: "remittance-inflow" | "remittance-paid" | "withdrawal" | "order-purchase";
+  type: string;
   amount: string;
   time: string;
   from?: string;
@@ -29,14 +29,16 @@ export default function TransactionDetails({
 
   const getTransactionIcon = () => {
     switch (transaction.type) {
+      case "fund":
+        return <Plus className="size-5 text-[#16A34A]" />;
       case "remittance-inflow":
         return <Plus className="size-5 text-[#16A34A]" />;
       case "remittance-paid":
         return <Minus className="size-5 text-[#B52217]" />;
       case "withdrawal":
         return <Upload className="size-5 text-white" />;
-      case "order-purchase":
-        return <Package className="size-5 text-white" />;
+      case "investment":
+        return <Package className="size-5 text-primary" />;
       default:
         return <Plus className="size-5 text-white" />;
     }
@@ -44,13 +46,15 @@ export default function TransactionDetails({
 
   const getTransactionTitle = () => {
     switch (transaction.type) {
+      case "fund":
+        return "Fund"
       case "remittance-inflow":
         return "Remittance Inflow";
       case "remittance-paid":
         return "Remittance Paid";
       case "withdrawal":
         return "Withdrawal";
-      case "order-purchase":
+      case "investment":
         return "Order Purchase";
       default:
         return "Transaction";
@@ -65,7 +69,7 @@ export default function TransactionDetails({
         return "bg-red-100";
       case "withdrawal":
         return "bg-blue-100";
-      case "order-purchase":
+      case "investment":
         return "bg-blue-100";
       default:
         return "bg-green-100";
@@ -80,7 +84,7 @@ export default function TransactionDetails({
         return "text-red-600";
       case "withdrawal":
         return "text-blue-600";
-      case "order-purchase":
+      case "investment":
         return "text-blue-600";
       default:
         return "text-green-600";
@@ -183,10 +187,10 @@ export default function TransactionDetails({
         {/* Action Button */}
         <div className="px-6 pb-6">
           <Button
-            onClick={transaction.type === "order-purchase" ? onViewOrder : closeDialog}
+            onClick={transaction.type === "investment" ? onViewOrder : closeDialog}
             className="w-full"
           >
-            {transaction.type === "order-purchase" ? "View order" : "Done"}
+            {transaction.type === "investment" ? "View order" : "Done"}
           </Button>
         </div>
       </DialogContent>

@@ -18,6 +18,7 @@ const Banners: React.FC = () => {
           src={riceBanner}
           alt="rice-banner"
           className="rounded-[10px] sm:rounded-[14px] lg:rounded-[20px]  w-[80%] min-[450px]:size-[400px] sm:size-[300px] lg:size-[400px] overflow-hidden"
+          loading="lazy"
         />
       </motion.div>
 
@@ -26,6 +27,7 @@ const Banners: React.FC = () => {
           src={beansBanner}
           alt="beans-banner"
           className="rounded-[10px] sm:rounded-[14px] lg:rounded-[20px]  w-[80%] min-[450px]:size-[400px] sm:size-[300px] lg:size-[400px] overflow-hidden"
+          loading="lazy"
         />
       </motion.div>
     </motion.div>

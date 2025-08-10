@@ -29,6 +29,7 @@ const HowWeOperate: React.FC<Props> = ({ title }) => {
           src={partLogo}
           alt=""
           className="hidden sm:block sm:w-[381px] sm:h-[139px] lg:w-[538px] lg:h-[328.7px] object-contain"
+          loading="lazy"
         />
 
         <motion.div
