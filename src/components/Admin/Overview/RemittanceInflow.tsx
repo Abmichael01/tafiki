@@ -1,5 +1,6 @@
 import React from "react";
 import TransactionList from "../Transactions/TransactionList";
+import { Transaction } from "@/types/admin";
 
 const dummyRemittanceData = [
   {
@@ -80,7 +81,7 @@ const RemittanceInflow: React.FC = () => {
     //     )}
     //   </div>
     // </div>
-    <TransactionList transactions={dummyRemittanceData} heading="Remittance Inflow" showViewAll={true} viewAllLink="/admin/transactions" vendor={false} />
+    <TransactionList transactions={[] as Transaction[]} heading="Remittance Inflow" showViewAll={true} viewAllLink="/admin/transactions" vendor={false} />
   );
 };
 
