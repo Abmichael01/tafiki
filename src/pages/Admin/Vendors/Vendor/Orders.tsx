@@ -1,6 +1,5 @@
 import Info from "@/components/Admin/Vendors/VendorDetails/Info";
 import OrdersList from "@/components/Admin/Orders/OrdersList/OrdersList";
-import { historyOrders, ongoingOrders } from "@/components/Admin/Orders/OrdersList/mockData";
 import Tab from "@/components/Admin/Orders/Tab";
 import { useSearchParams } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
