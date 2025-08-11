@@ -21,7 +21,7 @@ export default function ProductImages() {
           )}
         >
           <img
-            src={URL.createObjectURL(image)}
+            src={image}
             className="size-[76.5px] object-cover rounded-[6px]"
             alt={`product-img-${index}`}
           />
