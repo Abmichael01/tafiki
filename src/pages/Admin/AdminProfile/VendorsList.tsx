@@ -7,11 +7,23 @@ import { Edit3Icon, Trash } from "lucide-react";
 import { useDataSelect } from "@/stores/useDataSelect";
 import { cn } from "@/lib/utils";
 import RemoveVendor from "@/components/Admin/Vendors/VendorDetails/RemoveVendor";
+import { useQuery } from "@tanstack/react-query";
+import { getVendorsist } from "@/api/adminEndpoints";
+import { Vendor } from "@/types/admin";
+import LoadingData from "@/components/Admin/LoadingData";
 
 export default function VendorsList() {
   const [params] = useSearchParams();
   const editList = params.get("action");
   const { getSelectedCount } = useDataSelect();
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["Vendors"],
+    queryFn: getVendorsist,
+  });
+
+  if (isLoading) return <LoadingData />;
+
   return (
     <div className="space-y-5">
       <PageTitle
@@ -51,15 +63,22 @@ export default function VendorsList() {
               to={`?${params.toString()}&dialog=remove-vendor`}
               className={cn(
                 "bg-[#B522171A] text-[#B52217]/40 px-4 py-2 rounded-full text-[14px] font-medium flex items-center gap-2",
-                getSelectedCount() > 0 ? " text-[#B52217]" : "cursor-not-allowed"
-            )}>
+                getSelectedCount() > 0
+                  ? " text-[#B52217]"
+                  : "cursor-not-allowed"
+              )}
+            >
               <Trash className="size-[16px]" />
-              Remove Vendor(s) 
+              Remove Vendor(s)
             </Link>
           </div>
         )}
       </div>
-      {editList ? <VendorsListComponent select /> : <VendorsListComponent />}
+      {editList ? (
+        <VendorsListComponent data={data?.vendors as Vendor[]} select />
+      ) : (
+        <VendorsListComponent data={data?.vendors as Vendor[]} />
+      )}
       <RemoveVendor />
     </div>
   );

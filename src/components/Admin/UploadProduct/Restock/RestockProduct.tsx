@@ -36,8 +36,8 @@ export default function RestockProduct() {
   const navigate = useNavigate()
   const { productData } = useProductStore()
 
-  const { mutate, isPending } = useMutation<unknown, unknown, { id: number; quantity: string }>({
-    mutationFn: ({ id, quantity }) => updateProduct(id, quantity),
+  const { mutate, isPending } = useMutation<unknown, unknown, { id: number; stock_quantity: string }>({
+    mutationFn: ({ id, stock_quantity }) => updateProduct(id, stock_quantity),
     onSuccess: () => {
       navigate(`?dialog=upload-product&current=success&title=Product Restocked&description=${productData.name} has successfully been restocked!`)
     }
@@ -50,7 +50,7 @@ export default function RestockProduct() {
   const totalBags = isValidNumber ? units * bagsPerUnit : 0;
 
   const handleSubmit = (values: { quantity: string }) => {
-    mutate({ id: productData.id as number, quantity: values.quantity })
+    mutate({ id: productData.id as number, stock_quantity: values.quantity })
   };
 
 

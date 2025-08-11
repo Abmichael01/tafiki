@@ -1,4 +1,5 @@
 import { getOverview } from "@/api/adminEndpoints";
+import LoadingData from "@/components/Admin/LoadingData";
 import Cards from "@/components/Admin/Overview/Cards";
 import RecentOrders from "@/components/Admin/Overview/RecentOrders";
 import RemittanceInflow from "@/components/Admin/Overview/RemittanceInflow";
@@ -8,13 +9,14 @@ import { useQuery } from "@tanstack/react-query";
 // import { useEffect } from "react";
 
 export default function Overview() {
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["overview"],
     queryFn: getOverview,
   });
 
   console.log(data)
 
+  if(isLoading) return <LoadingData />
 
   return (
     <div className="space-y-10">

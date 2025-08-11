@@ -5,13 +5,13 @@ import { VendorDetails } from "@/types/admin";
 
 // Updated statsData array to match the data and order in the provided image
 
-export default function Overview({ total_remittance, today_remittance, recent_orders }: Partial<VendorDetails>) {
+export default function Overview({ total_remittance, today_remittance, recent_orders }: Partial<VendorDetails&{ recent_orders: number }>) {
     const statsData = [
         {
             id: "total-orders",
             label: "Total Order(s) Received",
             icon: PiPackageFill,
-            value: recent_orders?.length,
+            value: recent_orders,
         },
         {
             id: "todays-remittance",

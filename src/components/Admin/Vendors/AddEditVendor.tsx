@@ -12,11 +12,12 @@ import imgIcon from "@/assets/svgs/img.svg";
 import { Toast } from "../Toast";
 import { toast } from "sonner";
 import { useCloseDialog } from "@/hooks/closeDialog";
-import { createVendor } from "@/api/adminEndpoints";
+import { createVendor, updateVendor } from "@/api/adminEndpoints";
 import { useMutation } from "@tanstack/react-query";
 import errorMessage from "@/lib/errorMessage";
 import { Vendor } from "@/types/admin";
 import { API_BASE_URL } from "@/api/apiClient";
+// import { useParams } from "react-router-dom";
 
 // Zod schema for form validation
 const vendorSchema = z.object({
@@ -60,6 +61,8 @@ type NewVendorProps = {
 export default function AddEditVendor({ data }: NewVendorProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  // const {id} = useParams()
+  const id = data?.vendor_id
 
   // React Hook Form setup with zod
   const {
@@ -74,7 +77,7 @@ export default function AddEditVendor({ data }: NewVendorProps) {
     defaultValues: {
       vendorName: data?.name || "",
       email: data?.email || "",
-      phone: data?.phone ||"",
+      phone: data?.phone || "",
       image: undefined,
     },
   });
@@ -83,44 +86,57 @@ export default function AddEditVendor({ data }: NewVendorProps) {
     reset({
       vendorName: data?.name || "",
       email: data?.email || "",
-      phone: data?.phone ||"",
+      phone: data?.phone || "",
       image: undefined,
-    })
-  }, [data, reset])
+    });
+  }, [data, reset]);
 
   const closeDialog = useCloseDialog("add-edit-vendor");
 
   const { mutate, isPending } = useMutation({
     mutationFn: (data: FormData) => createVendor(data),
     onSuccess: () => {
-      if (data) {
-        toast.custom(() => (
-          <Toast
-            text="Vendor Info Updated"
-            icon={<HiMiniBuildingStorefront />}
-          />
-        ));
-      } else {
-        toast.custom(() => (
-          <Toast text="Vendor Added" icon={<HiMiniBuildingStorefront />} />
-        ));
-      }
-      closeDialog()
+      toast.custom(() => (
+        <Toast text="Vendor Added" icon={<HiMiniBuildingStorefront />} />
+      ));
+      closeDialog();
     },
     onError: (error: Error) => {
       toast.custom(() => (
-        <Toast text={errorMessage(error)} decline icon={<HiMiniBuildingStorefront />} />
+        <Toast
+          text={errorMessage(error)}
+          decline
+          icon={<HiMiniBuildingStorefront />}
+        />
       ));
-    }
+    },
+  });
+
+  const { mutate: update, isPending: isUpdating } = useMutation({
+    mutationFn: (data: FormData) => updateVendor(data, id?.toString() as string),
+    onSuccess: () => {
+      toast.custom(() => (
+        <Toast text="Vendor Info Updated" icon={<HiMiniBuildingStorefront />} />
+      ));
+
+      closeDialog();
+    },
+    onError: (error: Error) => {
+      toast.custom(() => (
+        <Toast
+          text={errorMessage(error)}
+          decline
+          icon={<HiMiniBuildingStorefront />}
+        />
+      ));
+    },
   });
 
   // If editing and data is present, set up the preview (simulate for now)
   useEffect(() => {
     if (data) {
       // Simulate a vendor image for edit mode
-      setImagePreview(
-        API_BASE_URL+data?.profile_picture?.toString()
-      );
+      setImagePreview(API_BASE_URL + data?.profile_picture?.toString());
     }
   }, [data]);
 
@@ -132,7 +148,6 @@ export default function AddEditVendor({ data }: NewVendorProps) {
       setImagePreview(URL.createObjectURL(file));
     }
   };
- 
 
   const toFormData = (values: VendorFormValues) => {
     const fd = new FormData();
@@ -145,7 +160,8 @@ export default function AddEditVendor({ data }: NewVendorProps) {
   // Handle form submit
   const onSubmit = async (formData: VendorFormValues) => {
     const data = toFormData(formData);
-    mutate(data);
+    const mutation = data ? update : mutate;
+    mutation(data);
   };
 
   return (
@@ -250,9 +266,9 @@ export default function AddEditVendor({ data }: NewVendorProps) {
             <Button
               type="submit"
               className="w-full bg-[#15221B] text-white px-4 py-2 rounded-md font-medium"
-              disabled={isPending}
+              disabled={isPending||isUpdating}
             >
-              {isPending
+              {isPending||isUpdating
                 ? data
                   ? "Saving..."
                   : "Creating..."

@@ -9,16 +9,20 @@ import { getVendorsist } from "@/api/adminEndpoints";
 import { Vendor, Vendors as VendorsType } from "@/types/admin";
 import useVendorsStore from "@/stores/vendorsStore";
 import { useEffect } from "react";
+import LoadingData from "@/components/Admin/LoadingData";
 
 export default function Vendors() {
   const { setVendors } = useVendorsStore()
-  const { data } = useQuery({
+  const { data, isLoading} = useQuery({
     queryKey: ["Vendors"],
     queryFn: getVendorsist,
   });
   useEffect(() => {
     setVendors(data?.vendors as Vendor[])
   }, [setVendors, data])
+
+  if(isLoading) return <LoadingData />
+
   return (
     <div className="space-y-5 h-full w-full">
       <PageTitle title="Vendors" />

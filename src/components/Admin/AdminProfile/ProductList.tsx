@@ -1,6 +1,7 @@
 import yamFlourImage from "@/assets/images/yamFlour.webp";
 import { Link } from "react-router-dom";
 import { ShopProduct } from "@/types";
+import { cn } from "@/lib/utils";
 
 // Quantity status badge color mapping
 // const quantityStatusStyles: Record<string, { bg: string; text: string }> = {
@@ -26,7 +27,7 @@ function ProductList({ data }: Props) {
   return (
     <div className="bg-white text-sm overflow-hidden font-satoshi">
       {/* Table */}
-      <div className="overflow-x-auto w-full">
+      <div className="overflow-x-auto w-full fancy-scrollbar">
         <table className="min-w-full table-auto text-nowrap">
           <thead>
             <tr className="text-[16px] text-[#6E6E6E] bg-[#F9F9F9] font-medium">
@@ -76,9 +77,20 @@ function ProductList({ data }: Props) {
                 {/* Quantity status */}
                 <td className="px-4 py-3 text-center">
                   <span
-                    className={`inline-block px-3 py-1 rounded-[4px] text-[14px] font-medium`}
+                    className={cn(
+                      `inline-block px-3 py-1 rounded-[4px] text-[14px] font-medium`,
+                      Number(product.stock_quantity) < 10
+                        ? "bg-red-100 text-red-600"
+                        : Number(product.stock_quantity) < 20
+                        ? "bg-yellow-100 text-yellow-600"
+                        : "bg-green-100 text-green-600"
+                    )}
                   >
-                    {Number(product.stock_quantity) < 10 ? "Low" : "Good"}
+                    {Number(product.stock_quantity) < 10
+                      ? "Low"
+                      : Number(product.stock_quantity) < 20
+                      ? "Average"
+                      : "Good"}
                   </span>
                 </td>
               </tr>

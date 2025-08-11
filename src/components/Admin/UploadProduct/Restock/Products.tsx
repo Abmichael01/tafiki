@@ -3,7 +3,8 @@ import rice from "@/assets/images/rice.webp";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getShopProducts } from "@/api/apiEndpoints";
-import useProductStore from "@/stores/productStore";
+import useProductStore, { ProductData } from "@/stores/productStore";
+
 
 export default function Products() {
   const { updateProductData } = useProductStore()
@@ -53,8 +54,8 @@ export default function Products() {
           {/* Product Rows */}
           <div className="divide-y divide-gray-100">
             {products?.map((product) => {
-              const units = product.stock_quantity;
-              const bags = Number(product.quantity_per_unit) || 0;
+              const units = Math.round( Number(product.stock_quantity) / Number(product.quantity_per_unit))
+              const bags = Number(product.stock_quantity) || 0;
               const status = getStatusByStock(units as number);
 
               return (
@@ -63,7 +64,7 @@ export default function Products() {
                   key={product.id}
                   className="flex items-center justify-between p-[8px] hover:bg-gray-50 cursor-pointer"
                   onClick={() => {
-                    updateProductData(product)
+                    updateProductData(product as ProductData)
                   }}
                 >
                   {/* Product Info */}

@@ -14,7 +14,7 @@ interface Props {
 
 const WithdrawalRequests: React.FC<Props> = ({ all: viewAll, data }) => {
   return (
-    <div className="space-y-[12px]">
+    <div className="space-y-[12px] h-full">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-[8px]">
           {viewAll && (
@@ -38,7 +38,7 @@ const WithdrawalRequests: React.FC<Props> = ({ all: viewAll, data }) => {
         )}
       </div>
 
-      <div className="space-y-[4px] divide-y">
+      <div className="space-y-[4px] divide-y h-full">
         {data?.map((item, index) => (
           <div
             key={index}
@@ -66,7 +66,7 @@ const WithdrawalRequests: React.FC<Props> = ({ all: viewAll, data }) => {
         ))}
 
         {data?.length === 0 && (
-          <div className="flex flex-col gap-5 justify-center items-center h-40">
+          <div className="flex flex-col gap-5 justify-center items-center h-full">
             <img
               src={history}
               alt="No history"

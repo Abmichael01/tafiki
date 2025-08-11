@@ -5,14 +5,16 @@ import { Link } from "react-router-dom";
 import ProductList from "@/components/Admin/AdminProfile/ProductList";
 import { useQuery } from "@tanstack/react-query";
 import { getShopProducts } from "@/api/apiEndpoints";
+import LoadingData from "@/components/Admin/LoadingData";
 
 export default function ManageProducts() {
-  const { data: products = [] } = useQuery({
+  const { data: products = [], isLoading } = useQuery({
     queryKey: ["shopItems"],
     queryFn: getShopProducts,
   });
 
   console.log(products);
+  if(isLoading) return <LoadingData />
   return (
     <div className="space-y-5">
       <PageTitle title="Manage Products" showBack={true} />

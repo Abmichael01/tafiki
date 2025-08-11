@@ -6,6 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getInitials } from "@/lib/getInitial";
 import { Order } from "@/types/admin";
 import { formatDisplayTime } from "@/lib/formatDateTime";
+import { cn } from "@/lib/utils";
 
 
 // Status badge color mapping for clarity and maintainability
@@ -101,18 +102,21 @@ const RecentOrders: React.FC<RecentOrdersProps> = ({
 
                 {/* Order Details or Status */}
                 <td className="px-4 py-3 text-[16px] text-center font-[700]">
-                  {/* {!status ? (
-                    order.details
+                  {!status ? (
+                    "Detais of the prder"
                   ) : (
                     <span
-                      className={`inline-block px-3 py-1 rounded-[6px] text-[14px] font-medium ${
-                        statusStyles[order.status]?.bg || "bg-gray-100"
-                      } ${statusStyles[order.status]?.text || "text-gray-500"} text-nowrap`}
+                      className={cn(
+                        `inline-block px-3 py-1 rounded-[6px] text-[14px] font-medium`,
+                        order.status === "pending" ? ""
+                        : order.status === "completed" ? ""
+                        : ""
+                      )}
                     >
                       {order.status}
                     </span>
-                  )} */}
-                  Detais of the prder
+                  )}
+                  
                 </td>
               </tr>
             ))}

@@ -6,13 +6,14 @@ import { useSearchParams } from 'react-router-dom'
 import PageTitle from '@/components/ui/PageTitle'
 import { useQuery } from '@tanstack/react-query'
 import { getOrders } from '@/api/adminEndpoints'
+import LoadingData from '@/components/Admin/LoadingData'
 
 const Orders: React.FC = () => {
   const [params] = useSearchParams();
   const currentTab = params.get("tab");
 
   
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["orders"],
     queryFn: getOrders
   })
@@ -23,6 +24,8 @@ const Orders: React.FC = () => {
   const ordersData = currentTab === "ongoing" ? ongoingOrders : historyOrders
 
   console.log(data)
+
+  if(isLoading) return <LoadingData />
 
   return (
     <div className='space-y-10 h-full w-full'>

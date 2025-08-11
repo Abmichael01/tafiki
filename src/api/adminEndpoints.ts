@@ -22,7 +22,7 @@ export const getOrders = async (): Promise<Orders> => {
   return res.data;
 };
 
-export const getWithdrawalList = async (): Promise<WithdrawalData[]> => {
+export const getWithdrawalList = async (): Promise<{user_summaries: WithdrawalData[]}> => {
   const res = await apiClient.get("/users/admin/withdrawal/");
   return res.data;
 };
@@ -37,7 +37,7 @@ export const addProduct = async (data: FormData): Promise<unknown> => {
   return res.data;
 };
 
-export const deleteProduct = async (id: number): Promise<unknown> => {
+export const deleteProduct = async (id: string): Promise<unknown> => {
   const res = await apiClient.post(`/shops/product/delete/${id}/`);
   return res.data;
 };
@@ -56,6 +56,20 @@ export const createVendor = async (data: FormData): Promise<unknown> => {
   return res.data;
 };
 
+export const updateVendor = async (data: FormData, id: string): Promise<unknown> => {
+  const res = await apiClient.put(`/users/vendors/${id}/update/`, data, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return res.data;
+};
+
+export const deleteVendor = async (id: string): Promise<unknown> => {
+  const res = await apiClient.delete(`/users/vendors/${id}/delete/`);
+  return res.data;
+};
+
 export const getVendorsist = async (): Promise<Vendors> => {
   const res = await apiClient.get("/users/admin/vendors/dashboard/");
   return res.data;
@@ -65,6 +79,9 @@ export const getVendor = async (id: string): Promise<VendorDetails> => {
   const res = await apiClient.get(`/users/admin/vendors/${id}/`);
   return res.data;
 };
+
+
+
 
 
 

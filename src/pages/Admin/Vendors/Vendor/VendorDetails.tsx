@@ -13,7 +13,8 @@ import RemoveVendor from "@/components/Admin/Vendors/VendorDetails/RemoveVendor"
 import PageTitle from "@/components/ui/PageTitle";
 import { useQuery } from "@tanstack/react-query";
 import { getVendor } from "@/api/adminEndpoints";
-import { Order, Vendor } from "@/types/admin";
+import { Order, Vendor, VendorDetails as VendorDetailsType } from "@/types/admin";
+import LoadingData from "@/components/Admin/LoadingData";
 
 const ownerContactData = [
   {
@@ -36,14 +37,14 @@ const ownerContactData = [
 export default function VendorDetails() {
   const { id } = useParams();
 
-  console.log(id)
+  console.log(id);
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery<VendorDetailsType>({
     queryKey: ["vendor", id],
-    queryFn: () => getVendor(id as string)
-  })
+    queryFn: () => getVendor(id as string),
+  });
 
-  console.log(data)
+  console.log(data);
   const vendorContactData = [
     {
       label: "Address",
@@ -51,22 +52,28 @@ export default function VendorDetails() {
     },
     {
       label: "Email",
-      value: data?.email as string,
+      value: data?.vendor_details?.email as string,
       icon: MailIcon,
       copy: true,
     },
     {
       label: "Phone",
-      value: data?.phone as string,
+      value: data?.vendor_details?.phone as string,
       icon: AiOutlinePhone,
     },
   ];
 
+  if (isLoading) return <LoadingData />;
+
   return (
     <div className="space-y-10">
-      <PageTitle title="Vendors" subtitle={data?.name} showBack={true} />
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-        <Info data={data as Vendor } />
+      <PageTitle
+        title="Vendors"
+        subtitle={data?.vendor_details?.name}
+        showBack={true}
+      />
+      <div className="flex flex-col md:flex-row sm:justify-between md:items-center gap-4">
+        <Info data={data?.vendor_details as Vendor} />
         <div className="flex gap-[12px] text-[14px]">
           <Link
             to="?dialog=add-edit-vendor"
@@ -85,7 +92,11 @@ export default function VendorDetails() {
         </div>
       </div>
       {/* Overview Cards */}
-      <Overview total_remittance={data?.total_remittance} today_remittance={data?.today_remittance} recent_orders={data?.recent_orders} />
+      <Overview
+        total_remittance={data?.total_remittance}
+        today_remittance={data?.today_remittance}
+        recent_orders={data?.vendor_details?.recent_orders?.length as number}
+      />
 
       <Separator className="-mt-[20px]" />
 
@@ -97,10 +108,14 @@ export default function VendorDetails() {
           <ContactDetails data={ownerContactData} />
         </div>
       </div>
-      <RecentOrders status={true} data={data?.recent_orders as Order[]} link={`/admin/vendors/1/orders`} />
+      <RecentOrders
+        status={true}
+        data={data?.vendor_details?.recent_orders as Order[]}
+        link={`/admin/vendors/1/orders`}
+      />
       <Transactions showViewAll={true} />
-      <AddEditVendor data={data as Vendor} />
-      <RemoveVendor />
+      <AddEditVendor data={data?.vendor_details as Vendor} />
+      <RemoveVendor data={data?.vendor_details as Vendor} />
     </div>
   );
 }

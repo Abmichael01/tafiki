@@ -56,7 +56,7 @@ export default function PartnerList({ data }: Props) {
 
                 {/* Total Purchase */}
                 <td className="px-4 py-3 font-semibold text-[15px]">
-                  {user.total_purchase}
+                  £{user.total_purchase}
                 </td>
 
                 {/* Total Orders */}

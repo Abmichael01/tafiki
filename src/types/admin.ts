@@ -45,6 +45,7 @@ export type Vendor = {
   created_at: string;
   total_remittance: number;
   today_remittance: number;
+  recent_orders?: Order[];
 };
 
 export type Vendors = {
@@ -93,6 +94,8 @@ export type Overview = {
   withdrawal_request: WithdrawalData[];
 };
 
-export type VendorDetails = Vendor & {
-  recent_orders: Order[];
+export type VendorDetails =  {
+  total_remittance: number;
+  today_remittance: number;
+  vendor_details: Vendor;
 }
