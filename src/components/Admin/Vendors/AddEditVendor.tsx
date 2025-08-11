@@ -15,6 +15,8 @@ import { useCloseDialog } from "@/hooks/closeDialog";
 import { createVendor } from "@/api/adminEndpoints";
 import { useMutation } from "@tanstack/react-query";
 import errorMessage from "@/lib/errorMessage";
+import { Vendor } from "@/types/admin";
+import { API_BASE_URL } from "@/api/apiClient";
 
 // Zod schema for form validation
 const vendorSchema = z.object({
@@ -52,10 +54,10 @@ const formFields = [
 
 // Add edit and data props
 type NewVendorProps = {
-  data?: boolean; // for now, boolean, later will be object
+  data?: Vendor; // for now, boolean, later will be object
 };
 
-export default function AddEditVendor({ data = false }: NewVendorProps) {
+export default function AddEditVendor({ data }: NewVendorProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
@@ -65,17 +67,26 @@ export default function AddEditVendor({ data = false }: NewVendorProps) {
     handleSubmit,
     setValue,
     formState: { errors },
-    // reset,
+    reset,
     // watch,
   } = useForm<VendorFormValues>({
     resolver: zodResolver(vendorSchema),
     defaultValues: {
-      vendorName: "",
-      email: "",
-      phone: "",
+      vendorName: data?.name || "",
+      email: data?.email || "",
+      phone: data?.phone ||"",
       image: undefined,
     },
   });
+
+  useEffect(() => {
+    reset({
+      vendorName: data?.name || "",
+      email: data?.email || "",
+      phone: data?.phone ||"",
+      image: undefined,
+    })
+  }, [data, reset])
 
   const closeDialog = useCloseDialog("add-edit-vendor");
 
@@ -108,7 +119,7 @@ export default function AddEditVendor({ data = false }: NewVendorProps) {
     if (data) {
       // Simulate a vendor image for edit mode
       setImagePreview(
-        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=256&h=256&q=80"
+        API_BASE_URL+data?.profile_picture?.toString()
       );
     }
   }, [data]);

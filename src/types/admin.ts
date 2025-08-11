@@ -1,4 +1,4 @@
-import { Order as IndexOrder } from './index';
+import { Order as IndexOrder } from "./index";
 
 export type Order = {
   id: number;
@@ -8,7 +8,9 @@ export type Order = {
   vendor_name: string;
   product: unknown[]; // You may want to define a Product type if structure is known
   total_amount: number;
-}
+  status: string;
+  amount: number
+};
 
 export type Partner = {
   name: string;
@@ -18,20 +20,20 @@ export type Partner = {
   total_orders: number;
   balance: number;
   portfolio_balance: number;
-}
+};
 
 export type AdminReport = {
   total_partners: number;
   total_investment: number;
   partners: Partner[];
   all_orders: IndexOrder[];
-}
+};
 
 export type DataBaseType = {
   count: number;
   next: number | null;
   previous: number | null;
-}
+};
 
 export type Vendor = {
   id: number;
@@ -41,11 +43,16 @@ export type Vendor = {
   phone: string;
   profile_picture: string | null;
   created_at: string;
+  total_remittance: number;
+  today_remittance: number;
 };
 
-export type Vendors = DataBaseType & {
-  results: Vendor[]
-}
+export type Vendors = {
+  total_vendors: number;
+  total_remittance: number;
+  today_remittance: number;
+  vendors: Vendor[];
+};
 
 export type Transaction = {
   id: number;
@@ -61,21 +68,31 @@ export type Transaction = {
   to: string;
   transaction_type: string;
   user: number;
-}
+};
 
 export type Transactions = DataBaseType & {
-  results: Transaction[]
-}
+  results: Transaction[];
+};
 
 export type Orders = DataBaseType & {
   results: Order[];
-} 
+};
 
 export type WithdrawalData = {
-  approved_withdrawals_amount: number;
-  approved_withdrawals_count: number;
   pending_withdrawals_amount: number;
   pending_withdrawals_count: number;
   user_id: number;
   user_name: string;
 };
+
+export type Overview = {
+  pending_withdrawals: number;
+  total_balance: number;
+  todays_remittance: number;
+  recent_orders: Order[];
+  withdrawal_request: WithdrawalData[];
+};
+
+export type VendorDetails = Vendor & {
+  recent_orders: Order[];
+}

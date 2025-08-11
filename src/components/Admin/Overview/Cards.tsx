@@ -5,11 +5,15 @@ import { FaChevronRight } from "react-icons/fa6";
 import { IoMdWallet } from "react-icons/io";
 import { FaPlus } from "react-icons/fa6";
 import { Clock } from "lucide-react";
+import { Overview } from "@/types/admin";
 
-const Cards: React.FC = () => {
+// interface Props {
+// }
+
+const Cards: React.FC<Partial<Overview>> = ({ todays_remittance, total_balance, pending_withdrawals }) => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-[20px] gap-y-[50px]">
-      <OverviewCard isAdmin className="bg-[#F9F9F9] h-[160px] lg:h-full">
+      <OverviewCard className=" h-[160px] lg:h-full">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-1 text-[12px]">
             <Clock className="w-[14px] fill-primary stroke-white" />
@@ -21,7 +25,7 @@ const Cards: React.FC = () => {
         </div>
         <div className="text-center font-satoshi">
           <h1 className="text-center text-[24px] font-satoshi font-[700] gap-[1px] flex items-center justify-center">
-            4
+            {pending_withdrawals}
           </h1>
           <h1 className="text-[12px]">
             Withdrawals
@@ -33,7 +37,7 @@ const Cards: React.FC = () => {
         </Link> */}
       </OverviewCard>
 
-      <OverviewCard isAdmin className="h-[160px] lg:h-full bg-[#F9F9F9] ">
+      <OverviewCard className="h-[160px] lg:h-full ">
         <div className="flex justify-between items-center text-[12px]">
           <div className="flex items-center gap-1">
             <FaPlus className="w-[14px]" />
@@ -46,12 +50,12 @@ const Cards: React.FC = () => {
         <div className="text-center font-satoshi h-full mt-[10px]">
           <h1 className="text-center text-[24px] font-satoshi font-[700] gap-[1px] flex items-center justify-center">
             {" "}
-            <span className=" text-[18px] text-[#15221B99]">£</span>50000
+            <span className=" text-[18px] text-[#15221B99]">£</span>{todays_remittance}
           </h1>
         </div>
       </OverviewCard>
 
-      <OverviewCard isAdmin className="bg-[#F9F9F9]">
+      <OverviewCard isAdmin={false} className="">
         <div className="flex justify-between items-center text-[12px]">
           <div className="flex items-center gap-1">
             <IoMdWallet className="w-[14px]" />
@@ -64,7 +68,7 @@ const Cards: React.FC = () => {
         <div className="text-center font-satoshi h-full mt-[10px]">
           <h1 className="text-center text-[24px] font-satoshi font-[700] gap-[1px] flex items-center justify-center">
             {" "}
-            <span className=" text-[18px] text-[#15221B99]">£</span>40000
+            <span className=" text-[18px] text-[#15221B99]">£</span>{total_balance}
           </h1>
         </div>
       </OverviewCard>

@@ -11,19 +11,19 @@ export default function Overview( data: Vendors ) {
       id: "total-vendors",
       label: "Total Vendors",
       icon: HiUsers, // People icon representing vendors
-      value: data.count,
+      value: data.total_vendors,
     },
     {
       id: "todays-remittance",
       label: "Today's Remittance",
       icon: FaCirclePlus, // Briefcase icon for remittance
-      value: "£15,300.21",
+      value: data.today_remittance,
     },
     {
       id: "total-remittance",
       label: "Total Remittance",
       icon: BsArrowUpRightCircleFill, // Money withdraw icon for total remittance
-      value: "£110,900.72",
+      value: data.total_remittance,
     },
   ];
 

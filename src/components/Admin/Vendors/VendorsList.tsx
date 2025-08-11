@@ -1,5 +1,7 @@
 import { Vendor } from "@/types/admin";
 import { Link } from "react-router-dom";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { getInitials } from "@/lib/getInitial";
 
 // Data rewritten to match the image exactly
 // const users = [
@@ -59,12 +61,12 @@ import { Link } from "react-router-dom";
 //   },
 // ];
 
-export default function VendorsList({ data }: { data: Vendor[] } ) {
-
+export default function VendorsList({ data }: { data: Vendor[] }) {
+  console.log(data);
   return (
     <div className="bg-white text-sm overflow-hidden font-satoshi">
       {/* Table */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto fancy-scrollbar">
         <table className="min-w-full table-auto text-center border-collapse overflow-x-auto text-nowrap overflow-hidden">
           <thead>
             <tr className="text-[15px] text-[#6E6E6E] bg-[#F9F9F9] font-medium">
@@ -79,24 +81,42 @@ export default function VendorsList({ data }: { data: Vendor[] } ) {
               <tr key={user.id}>
                 {/* Details: Avatar, Name, Email */}
                 <td className="px-4 py-3">
-                  <Link to={`/admin/vendors/${user.id}`} className="flex items-center gap-3 max-[500px]:mr-10">
-                    {/* <img
-                      src={user.avatar}
-                      alt={user.name}
-                      className="w-[36px] h-[36px] rounded-full object-cover"
-                    /> */}
+                  <Link
+                    to={`/admin/vendors/${user.vendor_id}`}
+                    className="flex items-center gap-3 max-[500px]:mr-10"
+                  >
+                    <Avatar >
+                      <AvatarImage
+                        src="https://github.com/shadcn.png"
+                        alt="@shadcn"
+                        className="size-[36px]"
+                      />
+                      <AvatarFallback className="size-[36px]">
+                        {getInitials(user.name)}
+                      </AvatarFallback>
+                    </Avatar>
                     <div className="text-left">
-                      <div className="font-semibold text-[15px]">{user.name}</div>
-                      <div className="text-[14px] font-[500] text-[#929292]">{user.email}</div>
+                      <div className="font-semibold text-[15px]">
+                        {user.name}
+                      </div>
+                      <div className="text-[14px] font-[500] text-[#929292]">
+                        {user.email}
+                      </div>
                     </div>
                   </Link>
                 </td>
                 {/* Owner */}
-                <td className="px-4 py-3 font-semibold  text-[15px]">{user.name}</td>
+                <td className="px-4 py-3 font-semibold  text-[15px]">
+                  {user.name}
+                </td>
                 {/* Today's Remittance */}
-                <td className="px-4 py-3 font-semibold text-[15px]">2666</td>
+                <td className="px-4 py-3 font-semibold text-[15px]">
+                  £{user.today_remittance}
+                </td>
                 {/* Total Remittance */}
-                <td className="px-4 py-3 font-semibold text-[15px]">67777</td>
+                <td className="px-4 py-3 font-semibold text-[15px]">
+                  £{user.total_remittance}
+                </td>
               </tr>
             ))}
           </tbody>

@@ -1,53 +1,62 @@
-import { getOrders } from "@/api/adminEndpoints";
 import orderIcon from "@/assets/svgs/orderBox.svg";
-import { useQuery } from "@tanstack/react-query";
 import { ChevronRightIcon } from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { getInitials } from "@/lib/getInitial";
+import { Order } from "@/types/admin";
+import { formatDisplayTime } from "@/lib/formatDateTime";
+
 
 // Status badge color mapping for clarity and maintainability
 
 interface RecentOrdersProps {
   status?: boolean;
   link?: string;
+  data: Order[];
 }
 
 /**
  * RecentOrders component
  * @param status - if true, show Status column instead of Order details
  */
-const RecentOrders: React.FC<RecentOrdersProps> = ({ status = false, link = "/admin/orders" }) => {
-  const { data } = useQuery({
-    queryKey: ["orders"],
-    queryFn: getOrders
-  })
-
-  console.log(data) 
+const RecentOrders: React.FC<RecentOrdersProps> = ({
+  status = false,
+  link = "/admin/orders",
+  data
+}) => {
   return (
     <div className="bg-white text-sm overflow-hidden font-satoshi">
       {/* Header */}
       <div className="flex items-center justify-between py-2">
-        {status ? <h2 className="font-semibold text-[20px]">Orders</h2> : <h2 className="font-semibold text-[20px]">Recent Orders</h2>}
-        <Link  to={link} className="text-[14px] text-gray-500 hover:underline flex items-center gap-1">
+        {status ? (
+          <h2 className="font-semibold text-[20px]">Orders</h2>
+        ) : (
+          <h2 className="font-semibold text-[20px]">Recent Orders</h2>
+        )}
+        <Link
+          to={link}
+          className="text-[14px] text-gray-500 hover:underline flex items-center gap-1"
+        >
           View all <ChevronRightIcon className="size-[16px] text-[#6E6E6E]" />
         </Link>
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto border-none">
+      <div className="overflow-x-auto border-none fancy-scrollbar">
         <table className="min-w-full table-auto border-none text-left text-nowrap">
           <thead>
-            <tr className="text-[16px] text-[#6E6E6E] bg-[#F9F9F9] font-medium text-center">
-              <th className="px-4 py-2">Order ID and Date</th>
+            <tr className="text-[16px] text-[#6E6E6E] bg-[#F9F9F9] font-medium ">
+              <th className="px-4 py-2 text-center">Order ID and Date</th>
               {/* Partner column removed per screenshot */}
               <th className="px-4 py-2">To: Vendor</th>
-              <th className="px-4 py-2">Amount</th>
+              <th className="px-4 py-2 text-center">Amount</th>
               {!status && <th className="px-4 py-2">Order details</th>}
               {status && <th className="px-4 py-2">Status</th>}
             </tr>
           </thead>
           <tbody>
-            {data?.results?.map((order, idx) => (
+            {data?.map((order, idx) => (
               <tr key={idx} className="border-b border-[#F0F0F0]">
                 {/* Order ID and Date */}
                 <td className="px-4 py-3">
@@ -59,34 +68,39 @@ const RecentOrders: React.FC<RecentOrdersProps> = ({ status = false, link = "/ad
                     />
                     <div>
                       <div className="font-bold text-[18px]">
-                        Order {order.id}
+                        Order {order.order_id}
                       </div>
                       <div className="text-[14px] text-gray-500">
-                         {order.created_at}
+                        {formatDisplayTime(order.created_at)}
                       </div>
                     </div>
                   </div>
                 </td>
 
                 {/* Vendor */}
-                <td className="px-4 py-3 text-center">
-                  <div className="flex items-center gap-2 justify-center">
-                    <img
-                      src={order.vendor_name}
-                      alt="Vendor"
-                      className="size-[24px] rounded-full object-cover"
-                    />
-                    <span className="text-[16px]">{order.vendor_name}</span>
+                <td className="px-4 py-3 text-">
+                  <div className="flex items-center gap-2">
+                    <Avatar>
+                      <AvatarImage
+                        src="https://github.com/shadcn.png"
+                        alt="@shadcn"
+                        className="size-[36px]"
+                      />
+                      <AvatarFallback className="size-[36px]">
+                        {getInitials(order.vendor_name)}
+                      </AvatarFallback>
+                    </Avatar>
+                    <span className="text-[16px] font-[700]">{order.vendor_name}</span>
                   </div>
                 </td>
 
                 {/* Amount */}
                 <td className="px-4 py-3 font-bold text-[18px] text-center">
-                  {order.total_amount}
+                £{order.amount}
                 </td>
 
                 {/* Order Details or Status */}
-                <td className="px-4 py-3 text-[16px] text-center">
+                <td className="px-4 py-3 text-[16px] text-center font-[700]">
                   {/* {!status ? (
                     order.details
                   ) : (

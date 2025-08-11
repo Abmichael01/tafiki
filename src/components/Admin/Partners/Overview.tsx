@@ -15,13 +15,13 @@ export default function Overview({ data }: Props) {
       id: "total-investment",
       label: "Total Investment",
       icon: IoMdBriefcase, // Briefcase emoji representing investment
-      value: `£${data.total_investment}`,
+      value: `£${ data && data?.total_investment}`,
     },
     {
       id: "total-partners",
       label: "Total Partners",
       icon: HiUsers, // People emoji representing partners
-      value: data.total_partners,
+      value: data && data.total_partners,
     },
     {
       id: "withdrawal-requests",

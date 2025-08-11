@@ -11,10 +11,9 @@ import { Separator } from "@/components/ui/separator";
 import AddEditVendor from "@/components/Admin/Vendors/AddEditVendor";
 import RemoveVendor from "@/components/Admin/Vendors/VendorDetails/RemoveVendor";
 import PageTitle from "@/components/ui/PageTitle";
-import useVendorsStore from "@/stores/vendorsStore";
 import { useQuery } from "@tanstack/react-query";
 import { getVendor } from "@/api/adminEndpoints";
-import { Vendor } from "@/types/admin";
+import { Order, Vendor } from "@/types/admin";
 
 const ownerContactData = [
   {
@@ -38,16 +37,13 @@ export default function VendorDetails() {
   const { id } = useParams();
 
   console.log(id)
-  
-  const { vendors } = useVendorsStore();
-  console.log(vendors)
-//   const vendor = vendors?.find((vendor) => vendor.id == Number(id));
 
   const { data } = useQuery({
     queryKey: ["vendor", id],
-    queryFn: () => getVendor(Number(id))
+    queryFn: () => getVendor(id as string)
   })
 
+  console.log(data)
   const vendorContactData = [
     {
       label: "Address",
@@ -68,7 +64,7 @@ export default function VendorDetails() {
 
   return (
     <div className="space-y-10">
-      <PageTitle title="Partners" subtitle="John Doe" showBack={true} />
+      <PageTitle title="Vendors" subtitle={data?.name} showBack={true} />
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <Info data={data as Vendor } />
         <div className="flex gap-[12px] text-[14px]">
@@ -89,7 +85,7 @@ export default function VendorDetails() {
         </div>
       </div>
       {/* Overview Cards */}
-      <Overview />
+      <Overview total_remittance={data?.total_remittance} today_remittance={data?.today_remittance} recent_orders={data?.recent_orders} />
 
       <Separator className="-mt-[20px]" />
 
@@ -101,9 +97,9 @@ export default function VendorDetails() {
           <ContactDetails data={ownerContactData} />
         </div>
       </div>
-      <RecentOrders status={true} link={`/admin/vendors/1/orders`} />
+      <RecentOrders status={true} data={data?.recent_orders as Order[]} link={`/admin/vendors/1/orders`} />
       <Transactions showViewAll={true} />
-      <AddEditVendor data={true} />
+      <AddEditVendor data={data as Vendor} />
       <RemoveVendor />
     </div>
   );

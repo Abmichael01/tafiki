@@ -1,30 +1,31 @@
 import { BsArrowUpRightCircleFill } from "react-icons/bs";
 import { PiPackageFill } from "react-icons/pi";
 import { FaCirclePlus } from "react-icons/fa6";
+import { VendorDetails } from "@/types/admin";
 
 // Updated statsData array to match the data and order in the provided image
-const statsData = [
-    {
-        id: "total-orders",
-        label: "Total Order(s) Received",
-        icon: PiPackageFill,
-        value: "12",
-    },
-    {
-        id: "todays-remittance",
-        label: "Today's Remittance",
-        icon: FaCirclePlus,
-        value: "£15,300.21",
-    },
-    {
-        id: "total-remittance",
-        label: "Total Remittance",
-        icon: BsArrowUpRightCircleFill,
-        value: "£110,900.72",
-    },
-];
 
-export default function Overview() {
+export default function Overview({ total_remittance, today_remittance, recent_orders }: Partial<VendorDetails>) {
+    const statsData = [
+        {
+            id: "total-orders",
+            label: "Total Order(s) Received",
+            icon: PiPackageFill,
+            value: recent_orders?.length,
+        },
+        {
+            id: "todays-remittance",
+            label: "Today's Remittance",
+            icon: FaCirclePlus,
+            value: total_remittance,
+        },
+        {
+            id: "total-remittance",
+            label: "Total Remittance",
+            icon: BsArrowUpRightCircleFill,
+            value: today_remittance,
+        },
+    ];
     return (
         <div className="space-y-[20px]">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-[15px] lg:grid-cols-4 justify-between items-center font-satoshi ">

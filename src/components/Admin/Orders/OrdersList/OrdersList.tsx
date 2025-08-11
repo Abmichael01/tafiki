@@ -3,6 +3,7 @@ import React from "react";
 import OrderRow from "./OrderRow";
 import orderBox from "@/assets/svgs/orderBox2.svg";
 import history from "@/assets/svgs/history.svg";
+import { formatDisplayTime } from "@/lib/formatDateTime";
 
 interface OrderListProps {
   orders: Order[];
@@ -15,7 +16,10 @@ const groupOrdersByDate = (orders: Order[]) => {
   const groups: { [key: string]: Order[] } = {};
 
   orders?.forEach((order) => {
-    const date = order.created_at || "Unknown";
+    const date = formatDisplayTime(order.created_at, {
+      showTime: false,
+      isRelative: true
+    }) || "Unknown";
     if (!groups[date]) {
       groups[date] = [];
     }
@@ -81,8 +85,8 @@ const OrderList: React.FC<OrderListProps> = ({ orders, tab, status }) => {
   };
 
   return (
-    <div className="overflow-x-auto overflow-hidden">
-      <table className="space-y-3 w-full text-nowrap overflow-x-auto overflow-hidden">
+    <div className="overflow-x-auto overflow-hidden fancy-scrollbar">
+      <table className="space-y-3 w-full text-nowrap overflow-x-auto overflow-hidden fancy-scrollbar">
         <thead className="bg-[#F9F9F9] w-full">
           <tr className="text-[#6E6E6E] text-[16px] font-[500] text-center w-full">
             <td className="p-[8px]">Order ID and Date</td>

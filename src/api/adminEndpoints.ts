@@ -1,9 +1,14 @@
-import { AdminReport, Orders, Transactions, Vendor, Vendors } from "@/types/admin";
+import { AdminReport, Orders, Overview, Transactions, VendorDetails, Vendors } from "@/types/admin";
 import apiClient, { formDataClient } from "./apiClient";
 import { WithdrawalData } from "@/types/admin";
 
 export const getAdminReport = async (): Promise<AdminReport> => {
   const res = await apiClient.get("/users/admin/report/");
+  return res.data;
+};
+
+export const getOverview = async (): Promise<Overview> => {
+  const res = await apiClient.get("/users/admin/overview/");
   return res.data;
 };
 
@@ -52,12 +57,12 @@ export const createVendor = async (data: FormData): Promise<unknown> => {
 };
 
 export const getVendorsist = async (): Promise<Vendors> => {
-  const res = await apiClient.get("/users/vendors/");
+  const res = await apiClient.get("/users/admin/vendors/dashboard/");
   return res.data;
 };
 
-export const getVendor = async (id: number): Promise<Vendor> => {
-  const res = await apiClient.get(`/users/vendors/${id}/`);
+export const getVendor = async (id: string): Promise<VendorDetails> => {
+  const res = await apiClient.get(`/users/admin/vendors/${id}/`);
   return res.data;
 };
 

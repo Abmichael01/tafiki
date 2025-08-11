@@ -17,7 +17,7 @@ export default function Vendors() {
     queryFn: getVendorsist,
   });
   useEffect(() => {
-    setVendors(data?.results as Vendor[])
+    setVendors(data?.vendors as Vendor[])
   }, [setVendors, data])
   return (
     <div className="space-y-5 h-full w-full">
@@ -32,7 +32,7 @@ export default function Vendors() {
           <span className="text-[15px] font-[500]">New Vendor</span>
         </Link>
       </div>
-      <VendorsList data={data?.results as Vendor[]} />
+      <VendorsList data={data?.vendors as Vendor[]} />
       <AddEditVendor />
     </div>
   );

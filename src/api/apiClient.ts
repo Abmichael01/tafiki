@@ -2,7 +2,7 @@
 import axios from "axios";
 import useAuthStore from "@/stores/authStore";
 
-const API_BASE_URL = "https://foo-dhybrid-backend.onrender.com"; 
+export const API_BASE_URL = "https://foo-dhybrid-backend.onrender.com"; 
 
 // Create Axios instance
 const apiClient = axios.create({

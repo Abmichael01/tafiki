@@ -4,8 +4,7 @@ import { ChevronRight } from "lucide-react";
 import { GoArrowLeft } from "react-icons/go";
 import { Link } from "react-router-dom";
 import ApproveWithdrawal from "./ApproveWithdrawal";
-import { useQuery } from "@tanstack/react-query";
-import { getWithdrawalList } from "@/api/adminEndpoints";
+import { WithdrawalData } from "@/types/admin";
 
 const dummyWithdrawalData = [
   {
@@ -36,15 +35,10 @@ const dummyWithdrawalData = [
 
 interface Props {
   all?: boolean;
+  data: WithdrawalData[]
 }
 
-const WithdrawalRequests: React.FC<Props> = ({ all: viewAll }) => {
-  const { data } = useQuery({
-    queryKey: ["withdrawal-requests"],
-    queryFn: getWithdrawalList
-  })
-
-  console.log(data?.user_summaries)
+const WithdrawalRequests: React.FC<Props> = ({ all: viewAll, data }) => {
   return (
     <div className="space-y-[12px]">
       <div className="flex justify-between items-center">
@@ -57,24 +51,24 @@ const WithdrawalRequests: React.FC<Props> = ({ all: viewAll }) => {
           <h1 className="font-[600] text-[20px]">
             Withdraw Requests{" "}
             <span className="font-[400] text-[14px]">
-              ({data?.user_summaries.length})
+              ({data?.length})
             </span>
           </h1>
         </div>
 
-        {!viewAll && (
-          <Link to="/admin/overview/withdrawal-requests" className="hover:underline font-medium text-[14px] flex gap-[1px] items-center">
+        {(!viewAll && data?.length !== 0) && (
+          <Link to="/admin/partners/withdrawal-requests" className="hover:underline font-medium text-[14px] flex gap-[1px] items-center">
             View all
             <ChevronRight className="h-[15px] text-[#494949]" />
           </Link>
         )}
       </div>
 
-      <div className="space-y-[4px]">
-        {data?.user_summaries.map((item, index) => (
+      <div className="space-y-[4px] divide-y">
+        {data?.map((item, index) => (
           <div
             key={index}
-            className="flex justify-between items-center p-[12px] border-b border-[#F0F0F0]"
+            className="flex justify-between items-center p-[12px] border-[#F0F0F0]"
           >
             <Link to="?dialog=approve-withdrawal" className="flex gap-[16px] items-center">
               {/* User Avatar */}

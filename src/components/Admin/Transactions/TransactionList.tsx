@@ -4,6 +4,7 @@ import history from "@/assets/svgs/history.svg";
 import { Link } from "react-router-dom";
 import TransactionDetails from "./TransactionDetails";
 import { Transaction } from "@/types/admin";
+import { formatDisplayTime } from "@/lib/formatDateTime";
 
 // Transaction type based on the provided data structure
 
@@ -60,30 +61,7 @@ const TransactionList: React.FC<TransactionListProps> = ({
   };
 
   // Helper function to format time for display
-  const formatDisplayTime = (dateString: string) => {
-    const date = new Date(dateString);
-    // Format time: e.g., 10:15 AM
-    const timePart = date.toLocaleTimeString("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
-    });
-    // Format date: e.g., 1st Jan
-    const day = date.getDate();
-    const month = date.toLocaleString("en-US", { month: "short" });
-    // Get ordinal suffix for the day
-    const getOrdinal = (n: number) => {
-      if (n > 3 && n < 21) return "th";
-      switch (n % 10) {
-        case 1: return "st";
-        case 2: return "nd";
-        case 3: return "rd";
-        default: return "th";
-      }
-    };
-    const datePart = `${day}${getOrdinal(day)} ${month}`;
-    return `${timePart}, ${datePart}`;
-  };
+  
 
   // Group transactions by date if groupByDate is true
   const groupedTransactions = groupByDate
@@ -99,30 +77,6 @@ const TransactionList: React.FC<TransactionListProps> = ({
     : null;
 
   // Helper to determine if transaction is credit or debit
-  const isCredit = (transaction: Transaction) => {
-    // You can adjust this logic based on your business rules
-    // For example, if transaction_type is "investment" and to is "investment", it's a debit
-    // If from_user is "Available Balance" and to is "investment", it's a debit
-    // If from_user is "investment" and to is "Available Balance", it's a credit
-    // Here, let's assume "investment" is a debit, "Available Balance" to "investment" is a debit, etc.
-    // You can refine this as needed.
-    if (
-      transaction.transaction_type === "investment" &&
-      transaction.from_user === "Available Balance"
-    ) {
-      return false; // debit
-    }
-    if (
-      transaction.transaction_type === "remittance" &&
-      transaction.to === "Available Balance"
-    ) {
-      return true; // credit
-    }
-    // fallback: treat "completed" as credit, "pending"/"failed" as debit
-    return transaction.status === "completed";
-  };
-
-  const isDebit = (transaction: Transaction) => !isCredit(transaction);
 
   // Compose a "type" label from the transaction data
   const getTypeLabel = (transaction: Transaction) => {
@@ -165,26 +119,26 @@ const TransactionList: React.FC<TransactionListProps> = ({
     >
       <div className="flex gap-3 items-center min-w-0 flex-1">
         <div
-          className={`flex items-center justify-center rounded-full w-7 h-7 ${
+          className={`flex items-center justify-center rounded-full size-10 ${
             transaction.transaction_type === "inflow" || transaction.transaction_type === "fund"
               ? "bg-[#16A34A1A] text-[#16A34A]"
-              : transaction.transaction_type === "withdrawal"
+              : transaction.transaction_type === "withdraw"
               ? "bg-[#B522171A] text-[#B52217]"
               : "bg-primary/10 text-primary"
           }`}
         >
-          {transaction.transaction_type === "withdrawal" ? (
-            <Upload className="size-[16px]" />
+          {transaction.transaction_type === "withdraw" ? (
+            <Upload className="size-[20px]" />
           ) : transaction.transaction_type === "remittance-inflow" ? (
-            <Plus className="size-[16px]" />
+            <Plus className="size-[20px]" />
           ) : transaction.transaction_type === "fund" ? (
-            <Plus className="size-[16px]" />
+            <Plus className="size-[20px]" />
           ) : transaction.transaction_type === "investment" ? (
-            <Package className="size-[16px]" />
+            <Package className="size-[20px]" />
           ) : !vendor ? (
-            <Plus className="size-[16px]" />
+            <Plus className="size-[20px]" />
           ) : (
-            <ArrowUpRight className="size-[16px]" />
+            <ArrowUpRight className="size-[20px]" />
           )}
           
         </div>
@@ -203,7 +157,7 @@ const TransactionList: React.FC<TransactionListProps> = ({
       <div className="flex items-center">
         {showTransactionSign && (
           <span className="text-[12px] font-medium">
-            {isCredit(transaction) ? "+" : isDebit(transaction) ? "-" : ""}
+            {transaction.transaction_type === "fund" || transaction.transaction_type === "remittance" ? "+" : "-"}
           </span>
         )}
         <div className="font-satoshi font-bold text-[15px] text-nowrap text-primary">
@@ -235,7 +189,7 @@ const TransactionList: React.FC<TransactionListProps> = ({
       {heading && (
         <div className="flex justify-between items-center py-2">
           <h1 className="font-[600] text-[20px] text-primary">{heading}</h1>
-          {showViewAll && (
+          {(showViewAll && transactions?.length !== 0 ) && (
             <Link
               to={viewAllLink}
               className="text-xs text-[#1C274C] font-medium hover:underline flex gap-[2px] items-center"

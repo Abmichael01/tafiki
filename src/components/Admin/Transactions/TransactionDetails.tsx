@@ -35,8 +35,8 @@ export default function TransactionDetails({
         return <Plus className="size-5 text-[#16A34A]" />;
       case "remittance-paid":
         return <Minus className="size-5 text-[#B52217]" />;
-      case "withdrawal":
-        return <Upload className="size-5 text-white" />;
+      case "withdraw":
+        return <Upload className="size-5 text-[#B5221]" />;
       case "investment":
         return <Package className="size-5 text-primary" />;
       default:
@@ -52,7 +52,7 @@ export default function TransactionDetails({
         return "Remittance Inflow";
       case "remittance-paid":
         return "Remittance Paid";
-      case "withdrawal":
+      case "withdraw":
         return "Withdrawal";
       case "investment":
         return "Order Purchase";
@@ -67,8 +67,8 @@ export default function TransactionDetails({
         return "bg-green-100";
       case "remittance-paid":
         return "bg-red-100";
-      case "withdrawal":
-        return "bg-blue-100";
+      case "withdraw":
+        return "bg-red-100";
       case "investment":
         return "bg-blue-100";
       default:
@@ -82,8 +82,8 @@ export default function TransactionDetails({
         return "text-green-600";
       case "remittance-paid":
         return "text-red-600";
-      case "withdrawal":
-        return "text-blue-600";
+      case "withdraw":
+        return "text-red-600";
       case "investment":
         return "text-blue-600";
       default:

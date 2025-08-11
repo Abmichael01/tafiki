@@ -1,4 +1,3 @@
-import { historyOrders, ongoingOrders } from '@/components/Admin/Orders/OrdersList/mockData'
 import OrdersList from '@/components/Admin/Orders/OrdersList/OrdersList'
 import Tab from '@/components/Admin/Orders/Tab'
 import { Order } from '@/types/admin'
@@ -11,20 +10,25 @@ import { getOrders } from '@/api/adminEndpoints'
 const Orders: React.FC = () => {
   const [params] = useSearchParams();
   const currentTab = params.get("tab");
-  const ordersData = currentTab === "ongoing" ? ongoingOrders : historyOrders
 
+  
   const { data } = useQuery({
     queryKey: ["orders"],
     queryFn: getOrders
   })
+  
+  const ongoingOrders = data?.results.filter(order => order.status === "pending" || order.status === "ongoing" )
+  const historyOrders = data?.results.filter(order => order.status === "completed" )
+
+  const ordersData = currentTab === "ongoing" ? ongoingOrders : historyOrders
 
   console.log(data)
 
   return (
     <div className='space-y-10 h-full w-full'>
-      <PageTitle title={`Orders (${ordersData.length})`} />
+      <PageTitle title={`Orders (${ordersData?.length})`} />
       <Tab />
-      <OrdersList orders={data?.results as Order[]}  tab={currentTab as string} />
+      <OrdersList orders={ordersData as Order[]}  tab={currentTab as string} />
     </div>
   )
 }
