@@ -58,7 +58,7 @@ export default function ProductInfo() {
       />
 
       {/* Main Content */}
-      <div className="grid grid-cols-3 gap-[30px]">
+      <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-[30px]">
         {/* Product Images Section */}
         <div className="">
           {/* Main Image with Navigation */}
