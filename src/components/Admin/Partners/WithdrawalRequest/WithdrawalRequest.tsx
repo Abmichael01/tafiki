@@ -6,32 +6,6 @@ import { Link } from "react-router-dom";
 import ApproveWithdrawal from "./ApproveWithdrawal";
 import { WithdrawalData } from "@/types/admin";
 
-const dummyWithdrawalData = [
-  {
-    name: "John Doe",
-    time: "17:56, 21st Jan, 2025",
-    amount: "500",
-    avatar: "/path/to/avatar1.jpg", // You'll replace with actual image path
-  },
-  {
-    name: "John Doe",
-    time: "17:56, 21st Jan, 2025",
-    amount: "500",
-    avatar: "/path/to/avatar2.jpg", // You'll replace with actual image path
-  },
-  {
-    name: "John Doe",
-    time: "17:56, 21st Jan, 2025",
-    amount: "500",
-    avatar: "/path/to/avatar3.jpg", // You'll replace with actual image path
-  },
-  {
-    name: "John Doe",
-    time: "17:56, 21st Jan, 2025",
-    amount: "500",
-    avatar: "/path/to/avatar4.jpg", // You'll replace with actual image path
-  },
-];
 
 interface Props {
   all?: boolean;
@@ -91,7 +65,7 @@ const WithdrawalRequests: React.FC<Props> = ({ all: viewAll, data }) => {
           </div>
         ))}
 
-        {dummyWithdrawalData.length === 0 && (
+        {data.length === 0 && (
           <div className="flex flex-col gap-5 justify-center items-center h-30">
             <img
               src={history}

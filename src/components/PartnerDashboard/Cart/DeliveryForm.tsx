@@ -27,7 +27,7 @@ import { PiMountainsThin } from "react-icons/pi";
 import { Building2, MapPin, Phone, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { getVendorsist } from "@/api/adminEndpoints";
+import { getVendors } from "@/api/apiEndpoints";
 
 // 🔥 Schema
 const deliveryFormSchema = z.object({
@@ -66,8 +66,8 @@ export default function DeliveryForm() {
   });
 
   const { data } = useQuery({
-    queryKey: ["Vendors"],
-    queryFn: getVendorsist,
+    queryKey: ["user-vendors"],
+    queryFn: getVendors,
   });
 
   console.log(data)

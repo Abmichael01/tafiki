@@ -7,6 +7,7 @@ import Info from "../../../../components/Admin/Partners/PartnerDetails/Info";
 import ContactDetails from "@/components/Admin/ContactDetails";
 import { AiOutlinePhone } from "react-icons/ai";
 import PageTitle from "@/components/ui/PageTitle";
+import { Order } from "@/types/admin";
 
 const contactData = [
     {
@@ -49,7 +50,7 @@ const PartnerDetails = () => {
             <Overview />
             {/* Contact Info */}
             <ContactDetails data={contactData} />   
-            <RecentOrders status={true} link={`/admin/partners/${id}/orders`} />
+            <RecentOrders data={[] as Order[]} status={true} link={`/admin/partners/${id}/orders`} />
             <Transactions showViewAll={true} />
         </div>
     );

@@ -1,3 +1,5 @@
+import { Vendor } from "./admin";
+
 export type User = {
   id: string;
   first_name: string;
@@ -184,4 +186,11 @@ export type WalletTransactionResponse = {
   results: WalletTransactionResults;
 }
 
+
+export type Vendors =  {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: Vendor[]
+}
 

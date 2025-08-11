@@ -18,7 +18,7 @@ export default function Transactions() {
 
   const { data } = useQuery({
     queryKey: ["vendor", id],
-    queryFn: () => getVendor(Number(id))
+    queryFn: () => getVendor(id as string)
   })
     return (
         <div className="space-y-10">

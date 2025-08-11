@@ -11,6 +11,7 @@ import {
   UserDetails,
   ViewCartData,
   WalletTransactionResponse,
+  Vendors
 } from "@/types";
 
 // Auth
@@ -176,6 +177,11 @@ export const updateProfile = async (data: FormData): Promise<unknown> => {
       'Content-Type': 'multipart/form-data',
     },
   });
+  return res.data;
+};
+
+export const getVendors = async (): Promise<Vendors> => {
+  const res = await apiClient.get("/users/getDetails/");
   return res.data;
 };
 

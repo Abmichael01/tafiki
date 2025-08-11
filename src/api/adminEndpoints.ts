@@ -22,7 +22,7 @@ export const getOrders = async (): Promise<Orders> => {
   return res.data;
 };
 
-export const getWithdrawalList = async (): Promise<{ user_summaries: WithdrawalData[] }> => {
+export const getWithdrawalList = async (): Promise<WithdrawalData[]> => {
   const res = await apiClient.get("/users/admin/withdrawal/");
   return res.data;
 };
