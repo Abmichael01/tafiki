@@ -65,7 +65,7 @@ const WithdrawalRequests: React.FC<Props> = ({ all: viewAll, data }) => {
           </div>
         ))}
 
-        {data.length === 0 && (
+        {data?.length === 0 && (
           <div className="flex flex-col gap-5 justify-center items-center h-30">
             <img
               src={history}
