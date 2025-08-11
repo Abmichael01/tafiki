@@ -70,7 +70,7 @@ export default function ProductInfo() {
               <ChevronLeft className="size-5 text-gray-700" />
             </button>
             <img
-              src={(product?.images as string[])[currentImageIndex]}
+              src={URL.createObjectURL((product?.images as File[])[currentImageIndex])}
               alt={product?.name}
               className="size-[173px] object-contain rounded-lg"
 
@@ -96,7 +96,7 @@ export default function ProductInfo() {
                 }`}
               >
                 <img
-                  src={image}
+                  src={URL.createObjectURL(image)}
                   alt={`${product.name} ${index + 1}`}
                   className="w-full h-full object-contain"
                 />

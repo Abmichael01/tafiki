@@ -28,7 +28,7 @@ export default function Transactions() {
                 showBack={true} 
             />
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-                <Info data={data as Vendor} />
+                <Info data={data?.vendor_details as Vendor} />
                 <div className="">
                     <Select
                         defaultValue="all"

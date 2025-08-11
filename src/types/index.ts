@@ -29,7 +29,7 @@ export type ShopProduct = {
   description: string;
   kg_per_unit: number | string;
   quantity_per_unit: number | string;
-  images?: string[]
+  images?: File[]
 }
 
 export type Order = {
