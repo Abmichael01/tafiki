@@ -66,13 +66,13 @@ const WithdrawalRequests: React.FC<Props> = ({ all: viewAll, data }) => {
         ))}
 
         {data?.length === 0 && (
-          <div className="flex flex-col gap-5 justify-center items-center h-30">
+          <div className="flex flex-col gap-5 justify-center items-center h-40">
             <img
               src={history}
               alt="No history"
               className="size-[40px] sm:size-[60px] lg:size-[80px]"
             />
-            <h2 className="text-primary/70">You have no withdrawal requests</h2>
+            <h2 className="text-primary/70">There is no withdrawal request</h2>
           </div>
         )}
       </div>

@@ -13,7 +13,7 @@ export default function WithdrawalRequest() {
   console.log(data)
   return (
     <div className="space-y-10">
-      <WithdrawalRequests data={data as WithdrawalData[]} all />
+      <WithdrawalRequests data={[] as WithdrawalData[]} all />
     </div>
   );
 }
