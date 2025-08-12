@@ -2,7 +2,6 @@ import { FiLock, FiLogOut } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { CiShop } from "react-icons/ci";
 import { PiPackage } from "react-icons/pi";
-import pinIcon from "@/assets/svgs/passcode-lock.svg"
 
 const links = [
   {
@@ -19,11 +18,6 @@ const links = [
     label: "Reset login password",
     icon: <FiLock className="size-5 text-[#6B7280]" />,
     to: "?dialog=reset-password",
-  },
-  {
-    label: "Withdrawal PIN",
-    icon: <img src={pinIcon} alt="pin" className="size-5 text-[#6B7280]" />,
-    to: "withdrawal-pin",
   },
 ];
 

@@ -28,7 +28,7 @@ export default function PartnerList({ data }: Props) {
                 {/* Details: Avatar, Name, Email */}
                 <td className="px-4 py-3 text-left">
                   <Link
-                    to={`/admin/partners/${user.email}`}
+                    to={`/admin/partners/${user.partner_id}`}
                     className="flex items-center gap-3 mr-10"
                   >
                     <Avatar className="size-[36px]">

@@ -7,33 +7,38 @@ import Info from "../../../../components/Admin/Partners/PartnerDetails/Info";
 import ContactDetails from "@/components/Admin/ContactDetails";
 import { AiOutlinePhone } from "react-icons/ai";
 import PageTitle from "@/components/ui/PageTitle";
-import { Order } from "@/types/admin";
+import { Order, Partner, Transaction } from "@/types/admin";
 import { useQuery } from "@tanstack/react-query";
-import { getVendor } from "@/api/adminEndpoints";
+import { getPartner } from "@/api/adminEndpoints";
 import LoadingData from "@/components/Admin/LoadingData";
 
 const PartnerDetails = () => {
   const { id } = useParams();
   const { data, isLoading } = useQuery({
-    queryKey: ["vendor", id],
-    queryFn: () => getVendor(id as string),
+    queryKey: ["partner", id],
+    queryFn: () => getPartner(id as string),
   });
+
+  const partner = data?.partner
+  const orders = data?.orders
+  const trasactions = data?.transactions
+  const summary = data?.summary
 
 
   const contactData = [
     {
       label: "Phone",
-      value: "+44-1234-5678-90",
+      value: String(partner?.phone),
       icon: AiOutlinePhone,
     },
     {
       label: "Email",
-      value: "johndoe@gmail.com",
+      value: String(partner?.email),
       icon: MailIcon,
     },
     {
       label: "Address",
-      value: "16, Admiralty phase, Queensway, London",
+      value: String(partner?.address),
     },
   ];
 
@@ -44,24 +49,24 @@ const PartnerDetails = () => {
   return (
     <div className="space-y-10">
       {/* Header: Back and Title */}
-      <PageTitle title="Partners" subtitle="John Doe" showBack={true} />
+      <PageTitle title="Partners" subtitle={partner?.name} showBack={true} />
       {/* Profile and Remittance Button */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-        <Info />
+        <Info data={partner as Partner} />
         <button className="bg-[#1C274C1A] text-[#1C274C] rounded-[4px] flex items-center justify-center gap-[4px] opacity-100 px-[10px] py-[4px] text-[14px] sm:text-[16px] w-fit">
           Due for remittance
         </button>
       </div>
       {/* Overview Cards */}
-      <Overview />
+      <Overview data={summary} />
       {/* Contact Info */}
       <ContactDetails data={contactData} />
       <RecentOrders
-        data={[] as Order[]}
+        data={orders as Order[]}
         status={true}
         link={`/admin/partners/${id}/orders`}
       />
-      <Transactions showViewAll={true} />
+      <Transactions data={trasactions as Transaction[]} showViewAll={true} />
     </div>
   );
 };

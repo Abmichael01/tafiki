@@ -20,7 +20,21 @@ export type Partner = {
   total_orders: number;
   balance: number;
   portfolio_balance: number;
+  partner_id: number;
+  address: string;
+  phone: string
 };
+
+export type PartnerDetails = {
+  partner: Partner;
+  orders: Order[];
+  summary: {
+    total_invested: number;
+    total_orders: number;
+    balance: number;
+  };
+  transactions: Transaction[];
+}
 
 export type AdminReport = {
   total_partners: number;

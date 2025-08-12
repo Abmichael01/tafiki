@@ -4,6 +4,9 @@ import { Separator } from "@/components/ui/separator";
 import { Order } from "@/types";
 import { format } from "date-fns";
 import userPic from "@/assets/images/userPic.webp";
+import { useQuery } from "@tanstack/react-query";
+import { getOrder } from "@/api/adminEndpoints";
+import { useParams } from "react-router-dom";
 
 const mockOrder: Order = {
   amount_invested: 50000,
@@ -49,6 +52,14 @@ const mockOrder: Order = {
 const Overview: React.FC = () => {
   const order = mockOrder;
   const formattedDate = order?.created_at ? new Date(order.created_at) : null;
+  const { id } = useParams()
+
+  const { data } = useQuery({
+    queryKey: ["order", id],
+    queryFn: () => getOrder(id as string),
+  })
+
+  console.log(data)
 
   return (
     <div className="flex flex-col gap-y-[20px] sm:flex-row justify-between sm:items-center">

@@ -16,32 +16,35 @@ export default function Overview({ data }: Props) {
       label: "Total Investment",
       icon: IoMdBriefcase, // Briefcase emoji representing investment
       value: `£${ data && data?.total_investment}`,
-      link: ""
+      link: "#"
     },
     {
       id: "total-partners",
       label: "Total Partners",
       icon: HiUsers, // People emoji representing partners
       value: data && data.total_partners,
+      link: "#"
     },
     {
       id: "withdrawal-requests",
       label: "Withdrawal Requests",
       icon: BiMoneyWithdraw, // Warning sign emoji representing requests
       value: "5",
+      link: "#"
     },
     {
       id: "?dialog=due-for-remittance",
       label: "Due for Remittance",
       icon: FaClock, // Alarm clock emoji representing due dates
       value: "3",
+      link: "?dialog=due-for-remittance"
     },
   ];
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-[15px] lg:grid-cols-4 justify-between items-center font-satoshi ">
       {statsData.map((data) => (
         <Link
-          to={data.id}
+          to={data.link}
           key={data.id}
           className={`
             flex-1 py-[15px] shadow-sm rounded-[8px] px-[20px]

@@ -47,9 +47,9 @@ import TransactionList from "../../Transactions/TransactionList";
 //   },
 // ];
 
-export default function Transactions({ showViewAll = true }: { showViewAll: boolean }) {
+export default function Transactions({ data, showViewAll = true }: { data: Transaction[], showViewAll: boolean }) {
   return (
-    <TransactionList transactions={[] as Transaction[]} heading="Transactions" showViewAll={showViewAll} viewAllLink="/admin/partners/1/transactions" vendor={false} />
+    <TransactionList transactions={data as Transaction[]} heading="Transactions" showViewAll={showViewAll} viewAllLink="/admin/partners/1/transactions" vendor={false} />
   );
 };
 
