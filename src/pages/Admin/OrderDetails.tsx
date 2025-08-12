@@ -8,7 +8,7 @@ import Overview from "@/components/Admin/Orders/OrderDetails/Overview";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getOrder } from "@/api/adminEndpoints";
-import { Order } from "@/types/admin";
+import { Order, RoiCycle } from "@/types/admin";
 
 const OrderDetails: React.FC = () => {
   const { id } = useParams();
@@ -26,7 +26,7 @@ const OrderDetails: React.FC = () => {
       <Timeline />
       <Products />
       <DeliveryTo />
-      <PartnerReturns />
+      <PartnerReturns roiData={data?.roi_cycles as RoiCycle[]} roiPercentage={data?.roi_rate as number}  />
     </div>
   );
 };

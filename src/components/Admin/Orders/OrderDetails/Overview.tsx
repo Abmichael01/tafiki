@@ -67,7 +67,7 @@ const Overview: React.FC<Props> = ({ data }) => {
 
       <div className="space-y-[12px] text-end">
         <h1 className="text-[14px] text-[#1C274C] text-nowrap bg-[#1C274C1A] py-[4px] px-[12px] rounded-[2px] uppercase">
-          {order.status}
+          {order?.status}
         </h1>
 
         <div className="space-y-[2px] font-satoshi">

@@ -1,5 +1,13 @@
 import { Order as IndexOrder } from "./index";
 
+
+export type RoiCycle = {
+  cycle: number;
+  payout_date: string;
+  amount: number;
+  status: string;
+}
+
 export type Order = {
   id: number;
   order_id: string;
@@ -13,6 +21,7 @@ export type Order = {
   total_roi: number;
   roi_rate: number;
   amount_invested?: number;
+  roi_cycles: RoiCycle[];
 };
 
 export type Partner = {
