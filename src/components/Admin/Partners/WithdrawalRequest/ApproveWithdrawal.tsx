@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { Toast } from "../../Toast";
 import { useCloseDialog } from "@/hooks/closeDialog";
 import { Upload } from "lucide-react";
+import { WithdrawalData } from "@/types/admin";
 
 const dummyWithdrawalRequest = {
   name: "John Doe",
@@ -16,12 +17,14 @@ const dummyWithdrawalRequest = {
   requestTime: "2024-06-10 14:30",
 };
 
-const ApproveWithdrawal: React.FC = () => {
+interface Props {
+  data: WithdrawalData;
+}
+
+const ApproveWithdrawal: React.FC<Props> = ({ data }) => {
   const closeDialog = useCloseDialog("approve-withdrawal");
   const handleApprove = () => {
-    toast.custom(() => (
-        <Toast text="Withdrawal Approved" icon={<Upload />} />
-    ), {
+    toast.custom(() => <Toast text="Withdrawal Approved" icon={<Upload />} />, {
       duration: 4000,
       position: "top-right",
     });
@@ -29,12 +32,13 @@ const ApproveWithdrawal: React.FC = () => {
   };
 
   const handleDecline = () => {
-    toast.custom(() => (
-      <Toast text="Withdrawal Declined" decline icon={<Upload />} />
-    ), {
-      duration: 4000,
+    toast.custom(
+      () => <Toast text="Withdrawal Declined" decline icon={<Upload />} />,
+      {
+        duration: 4000,
         position: "top-right",
-      });
+      }
+    );
     closeDialog();
   };
 
@@ -58,24 +62,26 @@ const ApproveWithdrawal: React.FC = () => {
 
         {/* Avatar and Name */}
         <div className="flex flex-col gap-[8px] items-center mb-4">
-          <p className="text-lg font-medium">{dummyWithdrawalRequest.name}</p>
+          <p className="text-lg font-medium">{data.user_name}</p>
           <img
             src={dummyWithdrawalRequest.avatarSrc}
-            alt={dummyWithdrawalRequest.name}
+            alt={data.user_name}
             className="size-[100px] rounded-full mr-4"
           />
           <p className="text-[24px]  text-primary font-[700] font-satoshi">
-            {dummyWithdrawalRequest.amount}
+            £{data.pending_withdrawals_amount}
           </p>
         </div>
 
         {/* Details */}
         <div className="font-satoshi space-y-[8px]">
           <p className="text-sm text-gray-500">
-            Available balance:  <strong>{dummyWithdrawalRequest.availableBalance}</strong>
+            Available balance:{" "}
+            <strong>£999898</strong>
           </p>
           <p className="text-sm text-gray-500">
-            Withdrawal type: <strong>{dummyWithdrawalRequest.walletType}</strong>
+            Withdrawal type:{" "}
+            <strong>{dummyWithdrawalRequest.walletType}</strong>
           </p>
           <p className="text-sm text-gray-400">
             Request made by: {dummyWithdrawalRequest.requestTime}

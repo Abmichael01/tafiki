@@ -55,7 +55,7 @@ const Cards: React.FC<Partial<Overview>> = ({ todays_remittance, total_balance, 
         </div>
       </OverviewCard>
 
-      <OverviewCard isAdmin={false} className="">
+      <OverviewCard isAdmin={false} className="h-[160px] lg:h-full">
         <div className="flex justify-between items-center text-[12px]">
           <div className="flex items-center gap-1">
             <IoMdWallet className="w-[14px]" />

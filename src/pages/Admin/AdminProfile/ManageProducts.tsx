@@ -28,7 +28,7 @@ export default function ManageProducts() {
           </p>
         </div>
         <Link
-          to="?dialog=upload-product"
+          to="?dialog=upload-product&current=new-product"
           className="bg-[#15221B0A] text-primary px-4 py-2 rounded-full text-[14px] font-medium flex items-center gap-2"
         >
           <FiPlus />

@@ -181,7 +181,7 @@ export const updateProfile = async (data: FormData): Promise<unknown> => {
 };
 
 export const getVendors = async (): Promise<Vendors> => {
-  const res = await apiClient.get("/users/getDetails/");
+  const res = await apiClient.get("/users/vendors/");
   return res.data;
 };
 

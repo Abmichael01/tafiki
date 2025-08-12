@@ -172,11 +172,11 @@ const TransactionList: React.FC<TransactionListProps> = ({
       {transactionList?.length > 0 ? (
         transactionList.map((transaction, index) => renderTransaction(transaction, index))
       ) : (
-        <div className="flex flex-col gap-5 justify-center items-center h-full">
+        <div className="flex flex-col gap-3 lg:gap-5 justify-center items-center min-h-[100px] h-full">
           <img
             src={history}
             alt="No transactions"
-            className="size-[40px] sm:size-[60px] lg:size-[80px]"
+            className="size-[30px] sm:size-[40px] lg:size-[60px]"
           />
           <h2 className="text-primary/70">{emptyStateMessage}</h2>
         </div>

@@ -1,10 +1,10 @@
-import DeliveryTo from "@/components/Admin/Orders/DeliveryTo";
-import PartnerReturns from "@/components/Admin/Orders/PartnerReturns";
-import Timeline from "@/components/Admin/Orders/TimeLine";
-import Overview from "@/components/PartnerDashboard/MyOrders/OrderDetails/Overview";
-import Products from "@/components/PartnerDashboard/MyOrders/OrderDetails/Products";
+import DeliveryTo from "@/components/Admin/Orders/OrderDetails/DeliveryTo";
+import PartnerReturns from "@/components/Admin/Orders/OrderDetails/PartnerReturns";
+import Timeline from "@/components/Admin/Orders/OrderDetails/TimeLine";
 import React from "react";
 import PageTitle from "@/components/ui/PageTitle";
+import Products from "@/components/Admin/Orders/OrderDetails/Products";
+import Overview from "@/components/Admin/Orders/OrderDetails/Overview";
 
 const OrderDetails: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ const OrderDetails: React.FC = () => {
         title="Order details" 
         showBack={true}
       />
-      <Overview admin />
+      <Overview />
       <Timeline />
       <Products  />
       <DeliveryTo />

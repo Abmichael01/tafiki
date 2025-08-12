@@ -61,7 +61,7 @@ const RecentOrders: React.FC<RecentOrdersProps> = ({
               <tr key={idx} className="border-b border-[#F0F0F0]">
                 {/* Order ID and Date */}
                 <td className="px-4 py-3">
-                  <div className="flex items-start gap-2 mr-10">
+                  <Link to={`/admin/orders/${order.order_id}`} className="flex items-start gap-2 mr-10">
                     <img
                       src={orderIcon}
                       className="size-[33.3px] text-gray-500 mt-1"
@@ -75,7 +75,7 @@ const RecentOrders: React.FC<RecentOrdersProps> = ({
                         {formatDisplayTime(order.created_at)}
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </td>
 
                 {/* Vendor */}

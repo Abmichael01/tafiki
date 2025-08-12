@@ -16,6 +16,7 @@ export default function Overview({ data }: Props) {
       label: "Total Investment",
       icon: IoMdBriefcase, // Briefcase emoji representing investment
       value: `£${ data && data?.total_investment}`,
+      link: ""
     },
     {
       id: "total-partners",

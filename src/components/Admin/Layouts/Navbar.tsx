@@ -1,10 +1,6 @@
 import React from "react";
 import { IoSearch } from "react-icons/io5";
 import { useSidebarStore } from "@/stores/sidebarStore";
-import useCartStore from "@/stores/cartStore";
-import { useQuery } from "@tanstack/react-query";
-import { CartItem } from "@/types";
-import { viewCart } from "@/api/apiEndpoints";
 import { Plus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
@@ -14,19 +10,6 @@ import { FiMenu } from "react-icons/fi";
 const Navbar: React.FC = () => {
   const { toggle } = useSidebarStore();
   // const { userDetails } = useUserDetailsStore()
-  const { updateCart } = useCartStore();
-  // const { logout } = useAuthStore()
-  const { data } = useQuery({
-    queryKey: ["cartItems"],
-    queryFn: viewCart,
-  });
-  // const navigate = useNavigate()
-
-  React.useEffect(() => {
-    if (data) {
-      updateCart(data.items as CartItem[]);
-    }
-  }, [updateCart, data]);
 
   return (
     <div className="flex justify-between md:px-14 sm:px-10 px-2 lg:px-10 items-center gap-[10px] sm:gap-[24px] h-fit sticky top-0 py-5 bg-[#F9F9F9]/80 backdrop-blur-xl z-[9]">

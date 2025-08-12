@@ -10,7 +10,7 @@ import LoadingData from '@/components/Admin/LoadingData'
 
 const Orders: React.FC = () => {
   const [params] = useSearchParams();
-  const currentTab = params.get("tab");
+  const currentTab = params.get("tab") ?? "ongoing";
 
   
   const { data, isLoading } = useQuery({
@@ -18,8 +18,8 @@ const Orders: React.FC = () => {
     queryFn: getOrders
   })
   
-  const ongoingOrders = data?.results.filter(order => order.status === "pending" || order.status === "ongoing" )
-  const historyOrders = data?.results.filter(order => order.status === "completed" )
+  const ongoingOrders = data?.results?.filter(order => order.status !== "completed" )
+  const historyOrders = data?.results?.filter(order => order.status === "completed" )
 
   const ordersData = currentTab === "ongoing" ? ongoingOrders : historyOrders
 

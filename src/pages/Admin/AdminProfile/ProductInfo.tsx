@@ -11,11 +11,10 @@ import { ShopProduct } from "@/types";
 import { cn } from "@/lib/utils";
 import useProductStore, { ProductData } from "@/stores/productStore";
 
-
 export default function ProductInfo() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { id } = useParams();
-  const { updateProductData } = useProductStore()
+  const { updateProductData } = useProductStore();
 
   const { data, isLoading } = useQuery({
     queryKey: ["products"],
@@ -23,8 +22,8 @@ export default function ProductInfo() {
   });
 
   useEffect(() => {
-    updateProductData(data as ProductData)
-  }, [data, updateProductData])
+    updateProductData(data as ProductData);
+  }, [data, updateProductData]);
 
   console.log(data);
 
@@ -69,12 +68,15 @@ export default function ProductInfo() {
             >
               <ChevronLeft className="size-5 text-gray-700" />
             </button>
-            <img
-              src={(product?.images as string[])[currentImageIndex]}
-              alt={product?.name}
-              className="size-[173px] object-contain rounded-lg"
-
-            />
+            {(product?.images as string[]) ? (
+              <img
+                src={(product?.images as string[])[currentImageIndex]}
+                alt={product?.name}
+                className="size-[173px] object-contain rounded-lg"
+              />
+            ) : (
+              <div className="size-[173px] rounded-xl bg-[#f9f9f9]" />
+            )}
             <button
               onClick={nextImage}
               className=" bg-white p-2 rounded-full hover:shadow-md cursor-pointer"
@@ -121,7 +123,10 @@ export default function ProductInfo() {
             <div>
               <span className="text-gray-500">Units available:</span>{" "}
               <span className="font-medium">
-                {product.stock_quantity} units ({Number(product.quantity_per_unit) * Number(product.stock_quantity)} Bags)
+                {product.stock_quantity} units (
+                {Number(product.quantity_per_unit) *
+                  Number(product.stock_quantity)}{" "}
+                Bags)
               </span>
             </div>
             <div>
@@ -148,6 +153,7 @@ export default function ProductInfo() {
           <Link
             to="?dialog=upload-product&current=restock-product"
             className="flex items-center justify-center gap-2 bg-[#15221B] text-white py-3 px-6 rounded-lg font-medium hover:bg-[#15221B]/90 transition-colors mb-8"
+            onClick={() => updateProductData(data as ProductData)}
           >
             <FiRotateCw className="size-5" />
             Restock
@@ -158,9 +164,10 @@ export default function ProductInfo() {
             <Link
               to="?dialog=upload-product&current=product-details"
               className="flex items-center gap-1 text-primary rounded-full hover:text-primary text-[15px] px-3 py-2 hover:bg-primary/5 transition-all duration-300 cursor-pointer"
+              onClick={() => updateProductData(data as ProductData)}
             >
               <Edit3 className="size-4" />
-              <span className="hidden sm:inline">Edit product info</span>
+              <span className="inline">Edit product</span>
             </Link>
             <Link
               to="?dialog=delete-product"

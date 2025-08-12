@@ -139,7 +139,7 @@ export default function DeliveryForm() {
             <SelectValue placeholder="Retail Shop" />
           </SelectTrigger>
           <SelectContent>
-            {data?.results.map((vendor) => (
+            {data?.results?.map((vendor) => (
               <SelectItem key={vendor.id} value={vendor.vendor_id || vendor.id.toString() }>
                 {vendor.name}
               </SelectItem>

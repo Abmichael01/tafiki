@@ -25,7 +25,7 @@ const OrderRow: React.FC<{ order: Order; status: boolean }> = ({
       >
         <img src={orderBox} alt="order-box" className="w-[40px]" />
         <div className="mr-8">
-          <div className="font-[700] text-[18px]">{order.order_id}#ORDER_7474747</div>
+          <div className="font-[700] text-[18px]">{order.order_id}</div>
           <div className="text-[14px] font-[500] text-[#929292]">
           {formatDisplayTime(order.created_at)}
           </div>
