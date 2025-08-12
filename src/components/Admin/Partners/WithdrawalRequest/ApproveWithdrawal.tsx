@@ -7,6 +7,7 @@ import { Toast } from "../../Toast";
 import { useCloseDialog } from "@/hooks/closeDialog";
 import { Upload } from "lucide-react";
 import { WithdrawalData } from "@/types/admin";
+import { formatDisplayTime } from "@/lib/formatDateTime";
 
 const dummyWithdrawalRequest = {
   name: "John Doe",
@@ -62,14 +63,14 @@ const ApproveWithdrawal: React.FC<Props> = ({ data }) => {
 
         {/* Avatar and Name */}
         <div className="flex flex-col gap-[8px] items-center mb-4">
-          <p className="text-lg font-medium">{data.user_name}</p>
+          <p className="text-lg font-medium">{data.partner_name}</p>
           <img
             src={dummyWithdrawalRequest.avatarSrc}
-            alt={data.user_name}
+            alt={data.partner_name}
             className="size-[100px] rounded-full mr-4"
           />
           <p className="text-[24px]  text-primary font-[700] font-satoshi">
-            £{data.pending_withdrawals_amount}
+            £{data.amount}
           </p>
         </div>
 
@@ -84,7 +85,7 @@ const ApproveWithdrawal: React.FC<Props> = ({ data }) => {
             <strong>{dummyWithdrawalRequest.walletType}</strong>
           </p>
           <p className="text-sm text-gray-400">
-            Request made by: {dummyWithdrawalRequest.requestTime}
+            Request made by: {formatDisplayTime(data.requested_at)}
           </p>
         </div>
 
