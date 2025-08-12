@@ -53,9 +53,9 @@ const PartnerDetails = () => {
       {/* Profile and Remittance Button */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <Info data={partner as Partner} />
-        <button className="bg-[#1C274C1A] text-[#1C274C] rounded-[4px] flex items-center justify-center gap-[4px] opacity-100 px-[10px] py-[4px] text-[14px] sm:text-[16px] w-fit">
+        {/* <button className="bg-[#1C274C1A] text-[#1C274C] rounded-[4px] flex items-center justify-center gap-[4px] opacity-100 px-[10px] py-[4px] text-[14px] sm:text-[16px] w-fit">
           Due for remittance
-        </button>
+        </button> */}
       </div>
       {/* Overview Cards */}
       <Overview data={summary} />

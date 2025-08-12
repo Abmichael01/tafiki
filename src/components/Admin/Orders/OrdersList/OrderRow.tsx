@@ -3,6 +3,7 @@ import profile from "@/assets/images/userPic.webp";
 import orderBox from "@/assets/svgs/orderBox.svg";
 import { Link } from "react-router-dom";
 import { formatDisplayTime } from "@/lib/formatDateTime";
+import { cn } from "@/lib/utils";
 // import { cn } from "@/lib/utils";
 
 // const formatCurrency = (amount: number, currency: string) => {
@@ -27,7 +28,7 @@ const OrderRow: React.FC<{ order: Order; status: boolean }> = ({
         <div className="mr-8">
           <div className="font-[700] text-[18px]">{order.order_id}</div>
           <div className="text-[14px] font-[500] text-[#929292]">
-          {formatDisplayTime(order.created_at)}
+            {formatDisplayTime(order.created_at)}
           </div>
         </div>
       </Link>
@@ -64,8 +65,7 @@ const OrderRow: React.FC<{ order: Order; status: boolean }> = ({
     {/* Amount */}
     <td className="py-3 px-4 text-right">
       <span className="text-[16px] font-[700]">
-        {/* {formatCurrency(order.total_amount, "E")} */}
-        £{order.total_amount}
+        {/* {formatCurrency(order.total_amount, "E")} */}£{order.total_amount}
       </span>
     </td>
 
@@ -75,27 +75,24 @@ const OrderRow: React.FC<{ order: Order; status: boolean }> = ({
         <span className=" text-[16px] truncate">{order.items}</span>
       </td>
     )} */}
-    {status && (
-      // <td className="py-3 px-4 text-center">
-      //   <span
-      //     className={cn(
-      //   "text-[16px] font-[700] truncate px-2 py-1 rounded",
-        // order.status === "pending"
-        //   ? "bg-[#FFD60A1A] text-[#FFD60A]"
-        //   : order.status === "in-transit"
-        //   ? "bg-[#1C274C1A] text-[#1C274C]"
-        //   : order.status === "delivered"
-        //   ? "bg-[#16A34A1A] text-[#16A34A]"
-        //   : order.status === "settlement pending" || order.status === "return-settled"
-        //   ? "bg-[#1C274C1A] text-[#1C274C]"
-        //   : "bg-gray-100 text-gray-600"
-      //     )}
-      //   >
-      //     {order.status}
-      //   </span>
-      // </td>
-      <p></p>
-    )}
+    <td className="px-4 py-3 text-[16px] text-center font-[700]">
+      {!status ? (
+        <p className="">{order?.products?.map((prod) => <span>{prod}, </span>)}</p>
+      ) : (
+        <span
+          className={cn(
+            `inline-block px-3 py-1 rounded-[6px] text-[14px] font-medium`,
+            order.status === "pending"
+              ? ""
+              : order.status === "completed"
+              ? ""
+              : ""
+          )}
+        >
+          {order.status}
+        </span>
+      )}
+    </td>
   </tr>
 );
 

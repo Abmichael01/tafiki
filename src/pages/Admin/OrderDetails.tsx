@@ -23,7 +23,7 @@ const OrderDetails: React.FC = () => {
     <div className="space-y-10">
       <PageTitle title="Order details" showBack={true} />
       <Overview data={data as Order} />
-      <Timeline />
+      <Timeline status={data?.status as string} />
       <Products />
       <DeliveryTo />
       <PartnerReturns roiData={data?.roi_cycles as RoiCycle[]} roiPercentage={data?.roi_rate as number}  />

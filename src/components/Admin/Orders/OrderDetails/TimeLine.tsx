@@ -7,42 +7,58 @@ interface TimelineStep {
   passed: boolean;
 }
 
-const steps: TimelineStep[] = [
-  {
-    status: "Order Pending",
-    description: "Partner's order awaiting pick-up",
-    passed: true,
-  },
-  {
-    status: "Order Picked up",
-    description: "Partner's order has been picked up",
-    passed: false,
-  },
-  {
-    status: "In-Transit",
-    description: "Partner's order is on its way to the vendor",
-    passed: false,
-  },
-  {
-    status: "Order Delivered",
-    description: "Partner's order has been delivered to the vendor",
-    passed: false,
-  },
-];
+export default function Timeline({ status }: { status: string }) {
+  // Define the order of statuses, now in lowercase (slug format)
+  const statusOrder = [
+    { slug: "pending", title: "Order Pending" },
+    { slug: "approved", title: "Order Approved" },
+    { slug: "picked-up", title: "Order Picked up" },
+    { slug: "in-transit", title: "In-Transit" },
+    { slug: "delivered", title: "Order Delivered" },
+  ];
 
-export default function Timeline() {
+  // Find the index of the current status
+  const currentStatusIndex = statusOrder.findIndex((step) => step.slug === status);
+
+  // Create steps based on the status passed
+  const steps: TimelineStep[] = statusOrder.map((step, index) => ({
+    status: step.title, // Use title format for display
+    description: getDescription(step.slug), // Add a description for each step
+    passed: index <= currentStatusIndex, // Mark all steps up to the current status as passed
+  }));
+
+  // Helper function to get the description of each step based on slug
+  function getDescription(slug: string) {
+    switch (slug) {
+      case "pending":
+        return "Partner's order awaiting pick-up";
+      case "approved":
+        return "Partner's order approved for pick-up";
+      case "picked-up":
+        return "Partner's order has been picked up";
+      case "in-transit":
+        return "Partner's order is on its way to the vendor";
+      case "delivered":
+        return "Partner's order has been delivered to the vendor";
+      default:
+        return "";
+    }
+  }
+
   return (
     <div className="w-full flex flex-col items-center">
       {/* Timeline Dots and Lines */}
-      <div className="relative w-full flex justify-between items-start px-4 sm:px-8 md:px-16">
+      <div className="relative w-full flex justify-between items-start">
         {steps.map((step, index) => (
           <div key={index} className="relative flex flex-col items-center text-center w-full">
             {/* Dot + Check */}
-            <div className=" z-10 mb-2">
+            <div className="z-10 mb-2">
               <CheckCircle2
                 className={cn(
                   "size-5 text-white relative z-[2]",
-                  step.passed ? "fill-[#15221B]" : "fill-[#D0D3D1] stroke-transparent text-[#D0D3D1]"
+                  step.passed
+                    ? "fill-[#15221B]"
+                    : "fill-[#D0D3D1] stroke-transparent text-[#D0D3D1]"
                 )}
               />
               {/* Line connecting to the next step */}
@@ -50,7 +66,9 @@ export default function Timeline() {
                 <div
                   className={cn(
                     "absolute top-2 left-1/2 h-px w-full border-t-2 border-dashed",
-                    steps[index + 1].passed ? "border-[#15221B]" : "border-[#15221B]/30"
+                    steps[index + 1].passed
+                      ? "border-[#15221B]"
+                      : "border-[#15221B]/30"
                   )}
                 />
               )}
@@ -63,7 +81,7 @@ export default function Timeline() {
                 step.passed ? "text-[#15221B]" : "text-[#15221B]/40"
               )}
             >
-              {step.status}
+              {step.status} {/* Display the title as it was originally */}
             </h1>
             <p
               className={cn(

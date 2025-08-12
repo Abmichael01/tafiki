@@ -1,5 +1,6 @@
 import { Transaction } from "@/types/admin";
 import TransactionList from "../../Transactions/TransactionList";
+import { useParams } from "react-router-dom";
 
 // Transaction data for demo (replace with real data as needed)
 // const transactions = [
@@ -48,8 +49,9 @@ import TransactionList from "../../Transactions/TransactionList";
 // ];
 
 export default function Transactions({ data, showViewAll = true }: { data?: Transaction[], showViewAll: boolean }) {
+  const {id} = useParams()
   return (
-    <TransactionList transactions={data as Transaction[]} heading="Transactions" showViewAll={showViewAll} viewAllLink="/admin/partners/1/transactions" vendor={false} />
+    <TransactionList transactions={data as Transaction[]} heading="Transactions" showViewAll={showViewAll} viewAllLink={`/admin/partners/${id}/transactions`} vendor={false} />
   );
 };
 

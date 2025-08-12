@@ -10,14 +10,14 @@ export default function Landing() {
       <div className="space-y-[24px]">
         <Link
           to="?dialog=upload-product&current=new-product"
-          className="bg-[#15221B1A] py-[14px] font-[600] text-[16px] flex gap-[8px] justify-center items-center text-center rounded-[8px] font-[16px] [&_svg]:text-fit"
+          className="bg-[#15221B1A] py-[14px] font-[600] text-[16px] flex gap-[8px] justify-center items-center text-center rounded-[8px] [&_svg]:text-fit"
         >
           <Plus className="font-[600] size-[20px]" />
           Add a new product
         </Link>
         <Link
           to="?dialog=upload-product&current=products"
-          className="bg-[#15221B1A] py-[14px] font-[600] text-[16px] flex gap-[8px] justify-center items-center text-center rounded-[8px] font-[16px] [&_svg]:text-fit"
+          className="bg-[#15221B1A] py-[14px] font-[600] text-[16px] flex gap-[8px] justify-center items-center text-center rounded-[8px] [&_svg]:text-fit"
         >
           <LuRotateCcw className="font-[500] size-[20px]" />
           Restock existing products

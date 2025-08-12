@@ -14,7 +14,7 @@ export type Order = {
   created_at: string;
   partner_name: string;
   vendor_name: string;
-  product: unknown[]; // You may want to define a Product type if structure is known
+  products: string[]; // You may want to define a Product type if structure is known
   total_amount: number;
   status: string;
   amount: number;

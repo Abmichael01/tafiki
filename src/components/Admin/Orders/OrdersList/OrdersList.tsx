@@ -58,8 +58,8 @@ const OrderList: React.FC<OrderListProps> = ({ orders, tab, status }) => {
       return (
         <tr>
           <td colSpan={5} className="h-[60vh] text-center text-gray-500">
-            <div className="flex flex-col gap-[4px] justify-center items-center">
-              <img src={history} alt="" className="size-[80px]" />
+            <div className="flex flex-col gap-[4px] justify-center items-center h-full">
+              <img src={history} alt="" className="size-[40px] md:size-[60px]" />
               <h3 className="text-[#929292] font-[700] font-satoshi">
                 There is no order history
               </h3>

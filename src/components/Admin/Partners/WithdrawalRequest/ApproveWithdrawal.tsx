@@ -65,7 +65,7 @@ const ApproveWithdrawal: React.FC<Props> = ({ data }) => {
         <div className="flex flex-col gap-[8px] items-center mb-4">
           <p className="text-lg font-medium">{data.partner_name}</p>
           <img
-            src={dummyWithdrawalRequest.avatarSrc}
+            src={String(data.profile_pic)}
             alt={data.partner_name}
             className="size-[100px] rounded-full mr-4"
           />
@@ -78,7 +78,7 @@ const ApproveWithdrawal: React.FC<Props> = ({ data }) => {
         <div className="font-satoshi space-y-[8px]">
           <p className="text-sm text-gray-500">
             Available balance:{" "}
-            <strong>£999898</strong>
+            <strong>£{data.balance}</strong>
           </p>
           <p className="text-sm text-gray-500">
             Withdrawal type:{" "}

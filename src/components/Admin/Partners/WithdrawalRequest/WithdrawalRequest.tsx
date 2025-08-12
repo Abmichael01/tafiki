@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import history from "@/assets/svgs/history.svg";
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -15,11 +15,17 @@ interface Props {
 }
 
 const WithdrawalRequests: React.FC<Props> = ({ all: viewAll, data }) => {
+  const [selectedRequest, setSelectedRequest] = useState<WithdrawalData | null>(null);
+
+  const handleRequestClick = (item: WithdrawalData) => {
+    setSelectedRequest(item); // Set the selected withdrawal data when clicked
+  };
+
   return (
     <div className="space-y-[12px] h-full">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-[8px]">
-          <PageTitle title={`Withdrawal Requests (${data?.length})`} showBack={viewAll}  />
+          <PageTitle title={`Withdrawal Requests (${data?.length})`} showBack={viewAll} />
         </div>
 
         {!viewAll && data?.length !== 0 && (
@@ -42,6 +48,7 @@ const WithdrawalRequests: React.FC<Props> = ({ all: viewAll, data }) => {
             <Link
               to="?dialog=approve-withdrawal"
               className="flex gap-[16px] items-center"
+              onClick={() => handleRequestClick(item)} // When clicked, set the selected request data
             >
               {/* User Avatar */}
               <Avatar className="size-[36px]">
@@ -51,20 +58,16 @@ const WithdrawalRequests: React.FC<Props> = ({ all: viewAll, data }) => {
 
               <div className="space-y-[2px] font-satoshi">
                 <h1 className="text-[16px] font-[700]">Withdrawal Request</h1>
-                <p className="text-[12px] text-[#6E6E6E]">
-                  by {item.partner_name}
-                </p>
+                <p className="text-[12px] text-[#6E6E6E]">by {item.partner_name}</p>
                 <p className="text-[12px] text-[#6E6E6E]">
                   {formatDisplayTime(item.requested_at)}
                 </p>
-                {/* <p className="text-[12px] text-[#6E6E6E]">{item.time}</p> */}
               </div>
             </Link>
 
             <h1 className="text-[18px] font-[700] font-satoshi text-end">
               £{item.amount}
             </h1>
-            <ApproveWithdrawal data={item as WithdrawalData} />
           </div>
         ))}
 
@@ -79,6 +82,9 @@ const WithdrawalRequests: React.FC<Props> = ({ all: viewAll, data }) => {
           </div>
         )}
       </div>
+
+      {/* Show Approve Withdrawal when a request is selected */}
+      {selectedRequest && <ApproveWithdrawal data={selectedRequest} />}
     </div>
   );
 };
