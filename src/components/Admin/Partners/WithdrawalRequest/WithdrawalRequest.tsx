@@ -5,6 +5,9 @@ import { GoArrowLeft } from "react-icons/go";
 import { Link } from "react-router-dom";
 import ApproveWithdrawal from "./ApproveWithdrawal";
 import { WithdrawalData } from "@/types/admin";
+import { formatDisplayTime } from "@/lib/formatDateTime";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { getInitials } from "@/lib/getInitial";
 
 interface Props {
   all?: boolean;
@@ -49,23 +52,25 @@ const WithdrawalRequests: React.FC<Props> = ({ all: viewAll, data }) => {
               className="flex gap-[16px] items-center"
             >
               {/* User Avatar */}
-              <img
-                src="https://i.pravatar.cc/40?img=1"
-                alt=""
-                className="w-[36px] h-[36px] rounded-full object-cover"
-              />
+              <Avatar className="size-[36px]">
+                <AvatarImage src={String(item.profile_pic)} alt="@shadcn" />
+                <AvatarFallback>{getInitials(item.partner_name)}</AvatarFallback>
+              </Avatar>
 
               <div className="space-y-[2px] font-satoshi">
                 <h1 className="text-[16px] font-[700]">Withdrawal Request</h1>
                 <p className="text-[12px] text-[#6E6E6E]">
-                  by {item.user_name}
+                  by {item.partner_name}
+                </p>
+                <p className="text-[12px] text-[#6E6E6E]">
+                  {formatDisplayTime(item.requested_at)}
                 </p>
                 {/* <p className="text-[12px] text-[#6E6E6E]">{item.time}</p> */}
               </div>
             </Link>
 
             <h1 className="text-[18px] font-[700] font-satoshi text-end">
-              £{item.pending_withdrawals_amount}
+              £{item.amount}
             </h1>
             <ApproveWithdrawal data={item as WithdrawalData} />
           </div>

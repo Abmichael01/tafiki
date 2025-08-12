@@ -9,7 +9,7 @@ export type Order = {
   product: unknown[]; // You may want to define a Product type if structure is known
   total_amount: number;
   status: string;
-  amount: number
+  amount: number;
 };
 
 export type Partner = {
@@ -22,7 +22,8 @@ export type Partner = {
   portfolio_balance: number;
   partner_id: number;
   address: string;
-  phone: string
+  phone: string;
+  profile_picture: string;
 };
 
 export type PartnerDetails = {
@@ -34,7 +35,7 @@ export type PartnerDetails = {
     balance: number;
   };
   transactions: Transaction[];
-}
+};
 
 export type AdminReport = {
   total_partners: number;
@@ -94,10 +95,13 @@ export type Orders = DataBaseType & {
 };
 
 export type WithdrawalData = {
-  pending_withdrawals_amount: number;
-  pending_withdrawals_count: number;
-  user_id: number;
-  user_name: string;
+  amount: number;
+  balance: number;
+  from_user: string;
+  partner_name: string;
+  profile_pic: null;
+  requested_at: "2025-08-09T13:54:58.479478Z";
+  to: string;
 };
 
 export type Overview = {
@@ -108,8 +112,8 @@ export type Overview = {
   withdrawal_request: WithdrawalData[];
 };
 
-export type VendorDetails =  {
+export type VendorDetails = {
   total_remittance: number;
   today_remittance: number;
   vendor_details: Vendor;
-}
+};

@@ -1,5 +1,4 @@
 import { HiUsers } from "react-icons/hi2";
-import { Link } from "react-router-dom";
 import { FaCirclePlus } from "react-icons/fa6";
 import { BsArrowUpRightCircleFill } from "react-icons/bs";
 import { Vendors } from "@/types/admin";
@@ -30,8 +29,7 @@ export default function Overview( data: Vendors ) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-[15px] lg:grid-cols-4 justify-between items-center font-satoshi ">
       {statsData.map((data) => (
-        <Link
-            to={data.id}
+        <div
           key={data.id}
           className={`
             flex-1 py-[15px] shadow-sm rounded-[8px] px-[20px]
@@ -50,7 +48,7 @@ export default function Overview( data: Vendors ) {
               {data.value}
             </h2>
           </div>
-        </Link>
+        </div>
       ))}
     </div>
   );
