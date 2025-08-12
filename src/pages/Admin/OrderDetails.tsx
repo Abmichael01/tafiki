@@ -5,17 +5,26 @@ import React from "react";
 import PageTitle from "@/components/ui/PageTitle";
 import Products from "@/components/Admin/Orders/OrderDetails/Products";
 import Overview from "@/components/Admin/Orders/OrderDetails/Overview";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getOrder } from "@/api/adminEndpoints";
+import { Order } from "@/types/admin";
 
 const OrderDetails: React.FC = () => {
+  const { id } = useParams();
+
+  const { data } = useQuery({
+    queryKey: ["order", id],
+    queryFn: () => getOrder(id as string),
+  });
+
+  console.log(data);
   return (
     <div className="space-y-10">
-      <PageTitle 
-        title="Order details" 
-        showBack={true}
-      />
-      <Overview />
+      <PageTitle title="Order details" showBack={true} />
+      <Overview data={data as Order} />
       <Timeline />
-      <Products  />
+      <Products />
       <DeliveryTo />
       <PartnerReturns />
     </div>

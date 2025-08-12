@@ -19,7 +19,7 @@ const Cards: React.FC<Partial<Overview>> = ({ todays_remittance, total_balance, 
             <Clock className="w-[14px] fill-primary stroke-white" />
             <h1>Pending Withrawals</h1>
           </div>
-          <Link to="#">
+          <Link to="/admin/partners/withdrawal-requests">
             <FaChevronRight className="" />
           </Link>
         </div>

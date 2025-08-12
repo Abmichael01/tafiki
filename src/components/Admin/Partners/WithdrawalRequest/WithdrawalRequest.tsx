@@ -1,13 +1,13 @@
 import React from "react";
 import history from "@/assets/svgs/history.svg";
 import { ChevronRight } from "lucide-react";
-import { GoArrowLeft } from "react-icons/go";
 import { Link } from "react-router-dom";
 import ApproveWithdrawal from "./ApproveWithdrawal";
 import { WithdrawalData } from "@/types/admin";
 import { formatDisplayTime } from "@/lib/formatDateTime";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getInitials } from "@/lib/getInitial";
+import PageTitle from "@/components/ui/PageTitle";
 
 interface Props {
   all?: boolean;
@@ -19,15 +19,7 @@ const WithdrawalRequests: React.FC<Props> = ({ all: viewAll, data }) => {
     <div className="space-y-[12px] h-full">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-[8px]">
-          {viewAll && (
-            <Link to="/admin/partners">
-              <GoArrowLeft className="size-[24px]" />
-            </Link>
-          )}
-          <h1 className="font-[600] text-[20px]">
-            Withdraw Requests{" "}
-            <span className="font-[400] text-[14px]">({data?.length})</span>
-          </h1>
+          <PageTitle title={`Withdrawal Requests (${data?.length})`} showBack={viewAll}  />
         </div>
 
         {!viewAll && data?.length !== 0 && (

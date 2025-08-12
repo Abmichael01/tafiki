@@ -1,70 +1,27 @@
 import React from "react";
 import orderBox from "@/assets/svgs/orderBox.svg";
 import { Separator } from "@/components/ui/separator";
-import { Order } from "@/types";
-import { format } from "date-fns";
-import userPic from "@/assets/images/userPic.webp";
-import { useQuery } from "@tanstack/react-query";
-import { getOrder } from "@/api/adminEndpoints";
-import { useParams } from "react-router-dom";
+import { Order } from "@/types/admin";
+import { formatDisplayTime } from "@/lib/formatDateTime";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { getInitials } from "@/lib/getInitial";
 
-const mockOrder: Order = {
-  amount_invested: 50000,
-  created_at: "2025-07-15T10:30:00Z",
-  order_id: "ORD-INVEST-00123",
-  roi_expected: 7500,
-  total_roi_paid: 3000,
-  roi_pending: 4500,
-  roi_rate: 15,
-  status: "in_transit",
-  future_roi: 4500,
-  product: [
-    {
-      id: 1,
-      name: "Garri (Yellow)",
-      price: "25000",
-      product_id: "PROD-GARRI-001",
-      roi_percentage: "15",
-      stock_quantity: 200,
-      description: "High quality yellow garri processed locally.",
-      kg_per_unit: "5",
-      quantity_per_unit: "1 bag",
-    },
-    {
-      id: 2,
-      name: "Palm Oil",
-      price: "25000",
-      product_id: "PROD-OIL-002",
-      roi_percentage: "15",
-      stock_quantity: 150,
-      description: "Freshly extracted palm oil, 25L container.",
-      kg_per_unit: "25",
-      quantity_per_unit: "1 container",
-    },
-  ],
-  payout_schedule: [
-    { payout_date: "2025-08-15T00:00:00Z", amount: 1500 },
-    { payout_date: "2025-09-15T00:00:00Z", amount: 1500 },
-    { payout_date: "2025-10-15T00:00:00Z", amount: 1500 },
-  ],
-};
+interface Props {
+  data: Order;
+}
 
-const Overview: React.FC = () => {
-  const order = mockOrder;
-  const formattedDate = order?.created_at ? new Date(order.created_at) : null;
-  const { id } = useParams()
-
-  const { data } = useQuery({
-    queryKey: ["order", id],
-    queryFn: () => getOrder(id as string),
-  })
-
-  console.log(data)
+const Overview: React.FC<Props> = ({ data }) => {
+  const order = data;
+  // const formattedDate = order?.created_at ? new Date(order.created_at) : null;
 
   return (
     <div className="flex flex-col gap-y-[20px] sm:flex-row justify-between sm:items-center">
       <div className="flex gap-5 sm:gap-10 md:gap-14 lg:gap-20 items-center lg:pl-[60px] w-full text-end sm:text-start">
-        <img src={orderBox} alt="Order box" className="size-[116.6px] shrink-0" />
+        <img
+          src={orderBox}
+          alt="Order box"
+          className="size-[116.6px] shrink-0"
+        />
         <div className="space-y-[12px] flex-grow">
           <h1 className="text-[18px] sm:text-[22px] font-[500]">
             Order #{order?.order_id}
@@ -80,13 +37,18 @@ const Overview: React.FC = () => {
           </div>
 
           {/* Always show partner (admin-only view) */}
-          <div className="space-y-[2px] font-satoshi">
+          <div className="space-y-[2px] font-satoshi flex flex-col items-end">
             <p className="text-[12px] sm:text-[14px] font-[500] text-[#929292]">
               Partner
             </p>
-            <div className="text-[14px] sm:text-[16px] font-[700] flex gap-[4px] items-center">
-              <img src={userPic} alt="Partner avatar" className="size-[24px] rounded-full" />
-              <p className="text-[16px] font-[700]">John Doe</p>
+            <div className="text-[14px] sm:text-[16px] font-[700] flex gap-[4px] justify-end items-center w-full">
+              <Avatar className="size-[30px]">
+                <AvatarImage src="https://github.com/shadcn.pn" alt="@shadcn" />
+                <AvatarFallback className="text-[12px]">
+                  {getInitials(order?.partner_name)}
+                </AvatarFallback>
+              </Avatar>
+              <p className="text-[16px] font-[700]">{order?.partner_name}</p>
             </div>
           </div>
 
@@ -95,7 +57,7 @@ const Overview: React.FC = () => {
               Date purchased
             </p>
             <p className="text-[16px] font-[700]">
-              {formattedDate ? format(formattedDate, "MMM dd, yyyy") : "-"}
+              {formatDisplayTime(order?.created_at)}
             </p>
           </div>
         </div>
@@ -104,8 +66,8 @@ const Overview: React.FC = () => {
       <Separator className="sm:hidden" />
 
       <div className="space-y-[12px] text-end">
-        <h1 className="text-[14px] text-[#1C274C] text-nowrap bg-[#1C274C1A] py-[4px] px-[12px] rounded-[2px] ">
-          Pending Settlement
+        <h1 className="text-[14px] text-[#1C274C] text-nowrap bg-[#1C274C1A] py-[4px] px-[12px] rounded-[2px] uppercase">
+          {order.status}
         </h1>
 
         <div className="space-y-[2px] font-satoshi">
@@ -124,7 +86,7 @@ const Overview: React.FC = () => {
           <p className="text-[14px] sm:text-[16px] font-[700] text-[#16A34A]">
             <span>+{order?.roi_rate}%</span>
             <span> | </span>
-            <span>£{order?.future_roi}</span>
+            <span>£{order?.total_roi}</span>
           </p>
         </div>
       </div>

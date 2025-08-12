@@ -80,15 +80,15 @@ const OrderRow: React.FC<{ order: Order; status: boolean }> = ({
       //   <span
       //     className={cn(
       //   "text-[16px] font-[700] truncate px-2 py-1 rounded",
-      //   order.status === "pending"
-      //     ? "bg-[#FFD60A1A] text-[#FFD60A]"
-      //     : order.status === "in-transit"
-      //     ? "bg-[#1C274C1A] text-[#1C274C]"
-      //     : order.status === "delivered"
-      //     ? "bg-[#16A34A1A] text-[#16A34A]"
-      //     : order.status === "settlement pending" || order.status === "return-settled"
-      //     ? "bg-[#1C274C1A] text-[#1C274C]"
-      //     : "bg-gray-100 text-gray-600"
+        // order.status === "pending"
+        //   ? "bg-[#FFD60A1A] text-[#FFD60A]"
+        //   : order.status === "in-transit"
+        //   ? "bg-[#1C274C1A] text-[#1C274C]"
+        //   : order.status === "delivered"
+        //   ? "bg-[#16A34A1A] text-[#16A34A]"
+        //   : order.status === "settlement pending" || order.status === "return-settled"
+        //   ? "bg-[#1C274C1A] text-[#1C274C]"
+        //   : "bg-gray-100 text-gray-600"
       //     )}
       //   >
       //     {order.status}

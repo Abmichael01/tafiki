@@ -10,6 +10,9 @@ export type Order = {
   total_amount: number;
   status: string;
   amount: number;
+  total_roi: number;
+  roi_rate: number;
+  amount_invested?: number;
 };
 
 export type Partner = {
@@ -42,7 +45,7 @@ export type AdminReport = {
   total_investment: number;
   partners: Partner[];
   all_orders: IndexOrder[];
-  pending_withdrawals: number
+  pending_withdrawals: number;
 };
 
 export type DataBaseType = {
