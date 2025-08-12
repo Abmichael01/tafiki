@@ -1,4 +1,4 @@
-import { AdminReport, Order, Orders, Overview,PartnerDetails, Transactions, VendorDetails, Vendors } from "@/types/admin";
+import { AdminReport, Order, Orders, Overview,PartnerDetails, StatusData, Transactions, VendorDetails, Vendors } from "@/types/admin";
 import apiClient, { formDataClient } from "./apiClient";
 import { WithdrawalData } from "@/types/admin";
 
@@ -31,6 +31,11 @@ export const getOrders = async (): Promise<Orders> => {
 
 export const getOrder = async (id: string): Promise<Order> => {
   const res = await apiClient.get(`/users/admin/orders/${id}/`);
+  return res.data;
+};
+
+export const updateOrderStatus = async (data: StatusData): Promise<unknown> => {
+  const res = await apiClient.patch(`users/admin/updateStatus/`, data);
   return res.data;
 };
 

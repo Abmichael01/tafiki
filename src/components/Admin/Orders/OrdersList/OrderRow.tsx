@@ -21,7 +21,7 @@ const OrderRow: React.FC<{ order: Order; status: boolean }> = ({
     {/* Order ID and Date */}
     <td className=" w-full min-w-0 p-[12px] font-satoshi">
       <Link
-        to="/admin/orders/2p3878423498"
+        to={`/admin/orders/${order.order_id}`}
         className="flex gap-2 items-center mr-5"
       >
         <img src={orderBox} alt="order-box" className="w-[40px]" />
@@ -65,7 +65,7 @@ const OrderRow: React.FC<{ order: Order; status: boolean }> = ({
     {/* Amount */}
     <td className="py-3 px-4 text-right">
       <span className="text-[16px] font-[700]">
-        {/* {formatCurrency(order.total_amount, "E")} */}£{order.total_amount}
+        {/* {formatCurrency(order.total_amount, "E")} */}£{order.amount_invested}
       </span>
     </td>
 
@@ -77,7 +77,7 @@ const OrderRow: React.FC<{ order: Order; status: boolean }> = ({
     )} */}
     <td className="px-4 py-3 text-[16px] text-center font-[700]">
       {!status ? (
-        <p className="">{order?.products?.map((prod) => <span>{prod}, </span>)}</p>
+        <p className="">{order?.product?.map((prod) => <span>{prod}, </span>)}</p>
       ) : (
         <span
           className={cn(

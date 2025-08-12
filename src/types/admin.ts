@@ -1,12 +1,11 @@
 import { Order as IndexOrder } from "./index";
 
-
 export type RoiCycle = {
   cycle: number;
   payout_date: string;
   amount: number;
   status: string;
-}
+};
 
 export type Order = {
   id: number;
@@ -17,6 +16,7 @@ export type Order = {
   vendor_picture: string;
   vendor_name: string;
   products: string[]; // You may want to define a Product type if structure is known
+  product: string[]; // You may want to define a Product type if structure is known
   total_amount: number;
   status: string;
   amount: number;
@@ -24,6 +24,12 @@ export type Order = {
   roi_rate: number;
   amount_invested?: number;
   roi_cycles: RoiCycle[];
+};
+
+export type StatusData = {
+  model_type: string;
+  order_id: string;
+  status: string;
 };
 
 export type Partner = {
