@@ -14,6 +14,7 @@ import { useEffect } from "react";
 export default function UploadProduct() {
   const [params] = useSearchParams();
   const current = params.get("current") || "landing";
+  const mode = params.get("mode")
   const { resetProductData } = useProductStore();
 
   useEffect(() => {
@@ -32,7 +33,7 @@ export default function UploadProduct() {
             {current === "landing" && <Landing />}
             {current === "new-product" && <AttachImage />}
             {current === "product-details" && <ProductDetailsForm />}
-            {current === "product-specs" && <ProductSpecsForm />}
+            {current === "product-specs" && <ProductSpecsForm edit={mode === "edit" ? true : false } />}
             {current === "success" && <Success />}
             {current === "products" && <Products />}
             {current === "restock-product" && <RestockProduct />}

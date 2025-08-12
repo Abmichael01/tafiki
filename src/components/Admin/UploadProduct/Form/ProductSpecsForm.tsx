@@ -16,9 +16,13 @@ import { productSpecsSchema, productSpecsFields } from "./formSchemas";
 import ProductImages from "../ImageSelector";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
-import { addProduct } from "@/api/adminEndpoints";
+import { addProduct, updateProduct } from "@/api/adminEndpoints";
 
-export default function ProductSpecsForm() {
+interface Props {
+  edit: boolean
+}
+
+export default function ProductSpecsForm({ edit }: Props) {
   const { productData, updateProductData, prepareFormData } = useProductStore();
   const navigate = useNavigate();
 
@@ -48,6 +52,15 @@ export default function ProductSpecsForm() {
     },
   });
 
+  const { mutate: update, isPending: isUpdating } = useMutation({
+    mutationFn: (data: FormData) => updateProduct(productData.id as number, data),
+    onSuccess: () => {
+      navigate(
+        "?dialog=upload-product&current=success&title=New Product Added&description=Food Hybrid Beans has successfully been added!"
+      );
+    },
+  });
+
   const onSubmit = async (data: Partial<ProductData>) => {
     // First update the store with the current form data
     updateProductData(data);
@@ -65,7 +78,10 @@ export default function ProductSpecsForm() {
     // Example: await uploadProduct(formData);
     console.log("Complete Product Data:", completeProductData);
     console.log("FormData for submission:", formData);
-    mutate(formData);
+
+
+    const mutation = edit ? update : mutate
+    mutation(formData);
     // Navigate to success page
   };
 
@@ -136,9 +152,9 @@ export default function ProductSpecsForm() {
           <Button
             type="submit"
             className="w-full text-white py-[16px] rounded-[8px] font-[500] text-[16px]"
-            disabled={isPending}
+            disabled={isPending || isUpdating}
           >
-            {isPending ? "Adding Product..." : "Next"}
+            {isPending || isUpdating ? "Adding Product..." : "Next"}
           </Button>
         </form>
       </Form>

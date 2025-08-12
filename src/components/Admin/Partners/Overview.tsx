@@ -29,14 +29,14 @@ export default function Overview({ data }: Props) {
       id: "withdrawal-requests",
       label: "Withdrawal Requests",
       icon: BiMoneyWithdraw, // Warning sign emoji representing requests
-      value: "5",
+      value: data && data.pending_withdrawals,
       link: "#"
     },
     {
       id: "?dialog=due-for-remittance",
       label: "Due for Remittance",
       icon: FaClock, // Alarm clock emoji representing due dates
-      value: "3",
+      value: "0",
       link: "?dialog=due-for-remittance"
     },
   ];

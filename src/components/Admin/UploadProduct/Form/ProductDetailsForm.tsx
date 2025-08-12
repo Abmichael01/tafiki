@@ -13,11 +13,13 @@ import Header from "./../Header";
 import useProductStore, { ProductData } from "@/stores/productStore";
 import { productDetailsSchema, productDetailsFields } from "./formSchemas";
 import ProductImages from "../ImageSelector";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export default function ProductDetailsForm() {
   const { productData, updateProductData } = useProductStore();
   const navigate = useNavigate() 
+  const [params] = useSearchParams()
+  const mode = params.get("mode")
 
   const form = useForm({
     resolver: zodResolver(productDetailsSchema), 
@@ -29,13 +31,13 @@ export default function ProductDetailsForm() {
 
   const onSubmit = (data: Partial<ProductData>) => {
     updateProductData(data);
-    navigate("?dialog=upload-product&current=product-specs")
+    navigate(`?dialog=upload-product&current=product-specs&mode=${mode}`)
     console.log("Product Details:", productData);
   };
 
   return (
     <div className="space-y-[10px]">
-      <Header title="New Product" description="Fill in details of new product" />
+      <Header title={mode === "edit" ? "Edit Product" : "New Product"} description="Fill in details of the product" />
 
       <div className="flex justify-center w-full">
         <div className="grid grid-cols-3 gap-5 scale-[0.7] w-full max-w-[80%]">

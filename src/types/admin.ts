@@ -42,6 +42,7 @@ export type AdminReport = {
   total_investment: number;
   partners: Partner[];
   all_orders: IndexOrder[];
+  pending_withdrawals: number
 };
 
 export type DataBaseType = {

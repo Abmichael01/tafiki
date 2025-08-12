@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/form";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateProduct } from "@/api/adminEndpoints";
+import { restockProduct } from "@/api/adminEndpoints";
 import useProductStore from "@/stores/productStore";
 
 const formSchema = z.object({
@@ -38,7 +38,7 @@ export default function RestockProduct() {
   const queryClient = useQueryClient()
 
   const { mutate, isPending } = useMutation<unknown, unknown, { id: number; stock_quantity: string }>({
-    mutationFn: ({ id, stock_quantity }) => updateProduct(id, stock_quantity),
+    mutationFn: ({ id, stock_quantity }) => restockProduct(id, stock_quantity),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] })
       navigate(`?dialog=upload-product&current=success&title=Product Restocked&description=${productData.name} has successfully been restocked!`)

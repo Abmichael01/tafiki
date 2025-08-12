@@ -162,7 +162,7 @@ export default function ProductInfo() {
         <div className="flex justify-end items-start">
           <div className="flex items-center gap-3">
             <Link
-              to="?dialog=upload-product&current=product-details"
+              to="?dialog=upload-product&current=product-details&mode=edit"
               className="flex items-center gap-1 text-primary rounded-full hover:text-primary text-[15px] px-3 py-2 hover:bg-primary/5 transition-all duration-300 cursor-pointer"
               onClick={() => updateProductData(data as ProductData)}
             >

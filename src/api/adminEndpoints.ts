@@ -3,7 +3,7 @@ import apiClient, { formDataClient } from "./apiClient";
 import { WithdrawalData } from "@/types/admin";
 
 export const getAdminReport = async (): Promise<AdminReport> => {
-  const res = await apiClient.get("/users/admin/report/");
+  const res = await apiClient.get("/users/admin/partners/");
   return res.data;
 };
 
@@ -54,8 +54,13 @@ export const deleteProduct = async (id: string): Promise<unknown> => {
   return res.data;
 };
 
-export const updateProduct = async (id: number, quantity: string): Promise<unknown> => {
+export const restockProduct = async (id: number, quantity: string): Promise<unknown> => {
   const res = await apiClient.put(`/shops/products/update/${id}/`, {quantity});
+  return res.data;
+};
+
+export const updateProduct = async (id: number, data: FormData): Promise<unknown> => {
+  const res = await apiClient.put(`/shops/products/update/${id}/`, data);
   return res.data;
 };
 
