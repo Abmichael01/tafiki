@@ -37,7 +37,8 @@ export default function Overview({ data }: Props) {
       label: "Due for Remittance",
       icon: FaClock, // Alarm clock emoji representing due dates
       value: "0",
-      link: "?dialog=due-for-remittance"
+      // link: "?dialog=due-for-remittance",
+      link: "#"
     },
   ];
   return (

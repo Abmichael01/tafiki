@@ -37,11 +37,11 @@ const Overview: React.FC<Props> = ({ data }) => {
           </div>
 
           {/* Always show partner (admin-only view) */}
-          <div className="space-y-[2px] font-satoshi flex flex-col items-end">
+          <div className="space-y-[2px] font-satoshi flex flex-col ">
             <p className="text-[12px] sm:text-[14px] font-[500] text-[#929292]">
               Partner
             </p>
-            <div className="text-[14px] sm:text-[16px] font-[700] flex gap-[4px] justify-end items-center w-full">
+            <div className="text-[14px] sm:text-[16px] font-[700] flex gap-[4px] justify-end sm:justify-start items-center w-full">
               <Avatar className="size-[30px]">
                 <AvatarImage src="https://github.com/shadcn.pn" alt="@shadcn" />
                 <AvatarFallback className="text-[12px]">

@@ -1,5 +1,5 @@
-import image from "@/assets/images/garriProduct.webp";
-
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { getInitials } from "@/lib/getInitial";
 interface DeliveryToProps {
   avatarSrc?: string; // URL of the avatar image
   companyName?: string;
@@ -7,6 +7,7 @@ interface DeliveryToProps {
 }
 
 export default function DeliveryTo({
+  avatarSrc,
   companyName = "Kapac Ventures",
   address = "16, Admiralty phase, Queensway, London",
 }: DeliveryToProps) {
@@ -15,11 +16,10 @@ export default function DeliveryTo({
       <h2 className="font-[600] text-[18px]">Delivery to</h2>
       <div className="flex items-center space-x-4 p-4 bg-whit font-satoshi">
         {/* Avatar */}
-        <img
-          src={image}
-          alt="Company Logo"
-          className="w-10 h-10 rounded-full"
-        />
+        <Avatar className="size-10">
+          <AvatarImage src={avatarSrc} alt="@shadcn" />
+          <AvatarFallback>{getInitials(companyName)}</AvatarFallback>
+        </Avatar>
 
         {/* Content */}
         <div>

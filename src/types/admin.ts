@@ -13,6 +13,8 @@ export type Order = {
   order_id: string;
   created_at: string;
   partner_name: string;
+  vendor_address: string;
+  vendor_picture: string;
   vendor_name: string;
   products: string[]; // You may want to define a Product type if structure is known
   total_amount: number;

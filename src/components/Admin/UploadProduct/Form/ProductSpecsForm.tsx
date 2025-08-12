@@ -154,7 +154,7 @@ export default function ProductSpecsForm({ edit }: Props) {
             className="w-full text-white py-[16px] rounded-[8px] font-[500] text-[16px]"
             disabled={isPending || isUpdating}
           >
-            {isPending || isUpdating ? "Adding Product..." : "Next"}
+            {isPending || isUpdating ? (isUpdating ? "Update Product..." : " Adding Product... " ) : (isUpdating ? "Update" : "Next" )}
           </Button>
         </form>
       </Form>

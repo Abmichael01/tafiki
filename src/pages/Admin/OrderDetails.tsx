@@ -25,7 +25,7 @@ const OrderDetails: React.FC = () => {
       <Overview data={data as Order} />
       <Timeline status={data?.status as string} />
       <Products />
-      <DeliveryTo />
+      <DeliveryTo avatarSrc={data?.vendor_picture} companyName={data?.vendor_name} address={data?.vendor_address} />
       <PartnerReturns roiData={data?.roi_cycles as RoiCycle[]} roiPercentage={data?.roi_rate as number}  />
     </div>
   );
