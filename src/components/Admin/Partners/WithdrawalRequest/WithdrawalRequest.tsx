@@ -9,6 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getInitials } from "@/lib/getInitial";
 import PageTitle from "@/components/ui/PageTitle";
 
+
 interface Props {
   all?: boolean;
   data: WithdrawalData[];

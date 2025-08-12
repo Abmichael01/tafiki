@@ -8,6 +8,8 @@ import { useCloseDialog } from "@/hooks/closeDialog";
 import { Upload } from "lucide-react";
 import { WithdrawalData } from "@/types/admin";
 import { formatDisplayTime } from "@/lib/formatDateTime";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { getInitials } from "@/lib/getInitial";
 
 const dummyWithdrawalRequest = {
   name: "John Doe",
@@ -64,12 +66,11 @@ const ApproveWithdrawal: React.FC<Props> = ({ data }) => {
         {/* Avatar and Name */}
         <div className="flex flex-col gap-[8px] items-center mb-4">
           <p className="text-lg font-medium">{data.partner_name}</p>
-          <img
-            src={String(data.profile_pic)}
-            alt={data.partner_name}
-            className="size-[100px] rounded-full mr-4"
-          />
-          <p className="text-[24px]  text-primary font-[700] font-satoshi">
+          <Avatar className="size-[100px]">
+            <AvatarImage src="https://github.com/shadcn.pn" alt="@shadcn" />
+            <AvatarFallback>{getInitials(data?.partner_name)}</AvatarFallback>
+          </Avatar>
+          <p className="text-[30px]  text-primary font-[700] font-satoshi">
             £{data.amount}
           </p>
         </div>
@@ -77,8 +78,7 @@ const ApproveWithdrawal: React.FC<Props> = ({ data }) => {
         {/* Details */}
         <div className="font-satoshi space-y-[8px]">
           <p className="text-sm text-gray-500">
-            Available balance:{" "}
-            <strong>£{data.balance}</strong>
+            Available balance: <strong>£{data.balance}</strong>
           </p>
           <p className="text-sm text-gray-500">
             Withdrawal type:{" "}
