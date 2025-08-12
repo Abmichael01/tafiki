@@ -1,4 +1,4 @@
-import { CheckCircle2, Package2 } from "lucide-react";
+import { CheckCircle2, Package } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateOrderStatus } from "@/api/adminEndpoints";
@@ -32,7 +32,7 @@ export default function Timeline({ status }: { status: string }) {
     onSuccess: () => {
       query.invalidateQueries({ queryKey: ["order", id] });
       toast.custom(
-        () => <Toast text="Withdrawal Approved" icon={<Package2 />} />,
+        () => <Toast text="Withdrawal Approved" icon={<Package />} />,
         {
           duration: 4000,
           position: "top-right",

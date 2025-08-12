@@ -114,8 +114,8 @@ const Overview: React.FC<Props> = ({ admin }) => {
       </div>
       <Separator className="sm:hidden" />
       <div className="space-y-[12px] text-end">
-        <h1 className="text-[14px] text-[#1C274C] text-nowrap bg-[#1C274C1A] py-[4px] px-[12px] rounded-[2px] ">
-          Pending Settlement
+        <h1 className="text-[14px] text-[#1C274C] text-nowrap bg-[#1C274C1A] py-[4px] px-[12px] rounded-[2px] uppercase">
+          {order?.status}
         </h1>
         <div className="space-y-[2px] font-satoshi">
           <p className="text-[12px] sm:text-[14px] font-[500] text-[#929292]">
