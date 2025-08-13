@@ -75,6 +75,10 @@ export default function Timeline({ status }: { status: string }) {
         return "Partner's order is on its way to the vendor";
       case "delivered":
         return "Partner's order has been delivered to the vendor";
+      case "pending-settlement":
+        return "Partner's order returns are pending and will be paid 5 weeks after order placement";
+      case "settled":
+        return "Partner's order returns have been credited to their portfolio";
       default:
         return "";
     }
