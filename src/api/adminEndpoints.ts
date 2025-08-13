@@ -55,7 +55,7 @@ export const addProduct = async (data: FormData): Promise<unknown> => {
 };
 
 export const deleteProduct = async (id: string): Promise<unknown> => {
-  const res = await apiClient.post(`/shops/product/delete/${id}/`);
+  const res = await apiClient.delete(`/shops/products/delete/${id}/`);
   return res.data;
 };
 
