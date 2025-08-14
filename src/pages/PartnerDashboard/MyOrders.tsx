@@ -14,7 +14,7 @@ const MyOrders: React.FC = () => {
   const currentTab = params.get("tab");
   const filteredOrders = orders?.filter( order => {
     if (currentTab === "processing") return order.status === "pending";
-    if (currentTab === "ongoing") return order.status === "ongoing" || order.status === "Approved";
+    if (currentTab === "ongoing") return order.status !== "pending" || order.status === "settled";
     if (currentTab === "history") return order.status === "settled";
   })
 
