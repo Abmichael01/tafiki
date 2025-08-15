@@ -6,19 +6,13 @@ import { toast } from "sonner";
 import { Toast } from "../../Toast";
 import { useCloseDialog } from "@/hooks/closeDialog";
 import { Upload } from "lucide-react";
-import { WithdrawalData } from "@/types/admin";
+import { ApproveData, WithdrawalData } from "@/types/admin";
 import { formatDisplayTime } from "@/lib/formatDateTime";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getInitials } from "@/lib/getInitial";
-
-const dummyWithdrawalRequest = {
-  name: "John Doe",
-  avatarSrc: "https://randomuser.me/api/portraits/men/32.jpg",
-  amount: "$500.00",
-  availableBalance: "$2,000.00",
-  walletType: "Portfolio to Wallet",
-  requestTime: "2024-06-10 14:30",
-};
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { approveWithdrawal } from "@/api/adminEndpoints";
+import { Button } from "@/components/ui/button";
 
 interface Props {
   data: WithdrawalData;
@@ -26,23 +20,52 @@ interface Props {
 
 const ApproveWithdrawal: React.FC<Props> = ({ data }) => {
   const closeDialog = useCloseDialog("approve-withdrawal");
+  const queryClient = useQueryClient()
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: (payload: Partial<ApproveData>) =>
+      approveWithdrawal(data.withdraw_id, payload),
+  });
+
   const handleApprove = () => {
-    toast.custom(() => <Toast text="Withdrawal Approved" icon={<Upload />} />, {
-      duration: 4000,
-      position: "top-right",
-    });
-    closeDialog();
+    mutate(
+      {
+        action: "approve",
+      },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ["withdrawal-requests"] })
+          toast.custom(
+            () => <Toast text="Withdrawal Approved" icon={<Upload />} />,
+            {
+              duration: 4000,
+              position: "top-right",
+            }
+          );
+          closeDialog();
+        },
+      }
+    );
   };
 
   const handleDecline = () => {
-    toast.custom(
-      () => <Toast text="Withdrawal Declined" decline icon={<Upload />} />,
+    mutate(
       {
-        duration: 4000,
-        position: "top-right",
+        action: "decline",
+      },
+      {
+        onSuccess: () => {
+          toast.custom(
+            () => <Toast text="Withdrawal Approved" icon={<Upload />} />,
+            {
+              duration: 4000,
+              position: "top-right",
+            }
+          );
+          closeDialog();
+        },
       }
     );
-    closeDialog();
   };
 
   return (
@@ -82,7 +105,9 @@ const ApproveWithdrawal: React.FC<Props> = ({ data }) => {
           </p>
           <p className="text-sm text-gray-500">
             Withdrawal type:{" "}
-            <strong>{dummyWithdrawalRequest.walletType}</strong>
+            <strong>
+              {data.from_user} to {data.to}
+            </strong>
           </p>
           <p className="text-sm text-gray-400">
             Request made by: {formatDisplayTime(data.requested_at)}
@@ -98,13 +123,14 @@ const ApproveWithdrawal: React.FC<Props> = ({ data }) => {
           >
             Decline
           </button>
-          <button
+          <Button
             type="button"
             className="px-4 py-3 bg-primary text-white rounded-[8px] hover:bg-primary/90 flex-1"
             onClick={handleApprove}
+            disabled={isPending}
           >
-            Approve
-          </button>
+            {!isPending ? "Approve" : "Approving..."}
+          </Button>
         </div>
       </DialogContent>
     </GlobalDialog>

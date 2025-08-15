@@ -159,9 +159,9 @@ export default function AddEditVendor({ data }: NewVendorProps) {
   };
   // Handle form submit
   const onSubmit = async (formData: VendorFormValues) => {
-    const data = toFormData(formData);
+    const dataLocal = toFormData(formData);
     const mutation = data ? update : mutate;
-    mutation(data);
+    mutation(dataLocal);
   };
 
   return (

@@ -33,8 +33,8 @@ import FAQ from "./pages/FAQ";
 import MyRewards from "./pages/PartnerDashboard/MyRewards";
 import AdminLayout from "./layouts/AdminLayout";
 import Overview from "./pages/Admin/Overview";
-import Orders from "./pages/Admin/Orders";
-import AdminOrderDetails from "./pages/Admin/OrderDetails";
+import Orders from "./pages/Admin/Orders/Orders";
+import AdminOrderDetails from "./pages/Admin/Orders/OrderDetails";
 import Partners from "./pages/Admin/Partners/Partners";
 import WithdrawalRequest from "./pages/Admin/Partners/WithdrawalRequest";
 import PartnerDetails from "./pages/Admin/Partners/Partner/PartnerDetails";
@@ -55,7 +55,8 @@ import AdminChangePin from "./pages/Admin/AdminProfile/WithdrawalPin/ChangePin";
 import Notifications from "./pages/Admin/Notifications";
 import DeliveryForm from "./pages/Vendors/DeliveryForm";
 import DeliveryLayout from "./layouts/DeliveryLayout";
-import AdminLogin from "./pages/Admin/Login"
+import AdminLogin from "./pages/Admin/Login";
+import AdminOrderTransactionFlow from "./pages/Admin/Orders/OrderTransactionFlow"
 
 const App = () => {
   return (
@@ -92,6 +93,7 @@ const App = () => {
           <Route path="overview" element={<Overview />} />
           <Route path="orders" element={<Orders />} />
           <Route path="orders/:id" element={<AdminOrderDetails />} />
+          <Route path="orders/:id/transactions" element={<AdminOrderTransactionFlow />} />
           <Route path="partners">
             <Route index element={<Partners />} />
             <Route path="withdrawal-requests" element={<WithdrawalRequest />} />

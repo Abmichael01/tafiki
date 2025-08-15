@@ -2,7 +2,7 @@
 import axios from "axios";
 import useAuthStore from "@/stores/authStore";
 
-export const API_BASE_URL = "https://foo-dhybrid-backend.onrender.com"; 
+export const API_BASE_URL = import.meta.env.VITE_API_URL 
 
 // Create Axios instance
 const apiClient = axios.create({

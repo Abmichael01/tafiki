@@ -1,4 +1,4 @@
-import { AdminReport, Order, Orders, Overview,PartnerDetails, StatusData, Transactions, VendorDetails, Vendors } from "@/types/admin";
+import { AdminReport, ApproveData, Notification, Order, Orders, Overview,PartnerDetails, StatusData, Transactions, VendorDetails, Vendors } from "@/types/admin";
 import apiClient, { formDataClient } from "./apiClient";
 import { WithdrawalData } from "@/types/admin";
 
@@ -44,8 +44,8 @@ export const getWithdrawalList = async (): Promise<WithdrawalData[]> => {
   return res.data;
 };
 
-export const approveWithdrawal = async (id: number): Promise<unknown> => {
-  const res = await apiClient.post(`/users/admin/approve-withdrawals/${id}/`);
+export const approveWithdrawal = async (id: string, data: Partial<ApproveData>): Promise<unknown> => {
+  const res = await apiClient.post(`/users/admin/approve-withdrawals/${id}/`, data);
   return res.data;
 };
 
@@ -103,11 +103,10 @@ export const getVendor = async (id: string): Promise<VendorDetails> => {
 };
 
 
-
-
-
-
-
+export const getNotifications = async (): Promise<Notification[]> => {
+  const res = await apiClient.get(`/users/admin/notification/`);
+  return res.data;
+};
 
 
 

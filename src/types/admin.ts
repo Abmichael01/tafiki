@@ -123,6 +123,7 @@ export type WithdrawalData = {
   profile_pic: null;
   requested_at: "2025-08-09T13:54:58.479478Z";
   to: string;
+  withdraw_id: string;
 };
 
 export type Overview = {
@@ -138,3 +139,26 @@ export type VendorDetails = {
   today_remittance: number;
   vendor_details: Vendor;
 };
+
+export type Notification = {
+  id: number;
+  event_type: string;
+  title: string;
+  message: string;
+  created_at: string;
+  is_read: boolean;
+  user: number;
+  from_user: string;
+  to_user: string;
+  account_name: string;
+  account_number: string;
+  bank_name: string;
+  payment_method: string;
+  available_balance_at_time: string;
+  type: string;
+}
+
+export type ApproveData = {
+  action: string;
+  note: string;
+}

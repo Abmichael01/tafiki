@@ -37,7 +37,7 @@ export default function Vendors() {
         </Link>
       </div>
       <VendorsList data={data?.vendors as Vendor[]} />
-      <AddEditVendor />
+      <AddEditVendor data={undefined} />
     </div>
   );
 }

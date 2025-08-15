@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export default function WithdrawalRequest() {
   const { data } = useQuery({
-    queryKey: ["withdrawal-requests-ooo"],
+    queryKey: ["withdrawal-requests"],
     queryFn: getWithdrawalList
   })
 
