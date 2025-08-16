@@ -14,7 +14,7 @@ import LoadingData from "@/components/Admin/LoadingData";
 export default function Vendors() {
   const { setVendors } = useVendorsStore()
   const { data, isLoading} = useQuery({
-    queryKey: ["Vendors"],
+    queryKey: ["vendors"],
     queryFn: getVendorsist,
   });
   useEffect(() => {

@@ -13,7 +13,7 @@ import { Toast } from "../Toast";
 import { toast } from "sonner";
 import { useCloseDialog } from "@/hooks/closeDialog";
 import { createVendor, updateVendor } from "@/api/adminEndpoints";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import errorMessage from "@/lib/errorMessage";
 import { Vendor } from "@/types/admin";
 import { API_BASE_URL } from "@/api/apiClient";
@@ -92,14 +92,17 @@ export default function AddEditVendor({ data }: NewVendorProps) {
   }, [data, reset]);
 
   const closeDialog = useCloseDialog("add-edit-vendor");
+  const queryClient = useQueryClient()
 
   const { mutate, isPending } = useMutation({
     mutationFn: (data: FormData) => createVendor(data),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["vendors"] })
       toast.custom(() => (
         <Toast text="Vendor Added" icon={<HiMiniBuildingStorefront />} />
       ));
       closeDialog();
+
     },
     onError: (error: Error) => {
       toast.custom(() => (
@@ -115,10 +118,10 @@ export default function AddEditVendor({ data }: NewVendorProps) {
   const { mutate: update, isPending: isUpdating } = useMutation({
     mutationFn: (data: FormData) => updateVendor(data, id?.toString() as string),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["vendors"] })
       toast.custom(() => (
         <Toast text="Vendor Info Updated" icon={<HiMiniBuildingStorefront />} />
       ));
-
       closeDialog();
     },
     onError: (error: Error) => {
