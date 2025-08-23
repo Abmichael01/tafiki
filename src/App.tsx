@@ -59,6 +59,8 @@ import AdminLogin from "./pages/Admin/Login";
 import AdminOrderTransactionFlow from "./pages/Admin/Orders/OrderTransactionFlow";
 import Remittance from "./pages/RetailShops/Remittance";
 import ShopDashboard from "./pages/RetailShops/ShopDashboard";
+import VendorLogin from "./pages/RetailShops/Login";
+import VendorRegister from "./pages/RetailShops/Register";
 
 const App = () => {
   return (
@@ -88,6 +90,8 @@ const App = () => {
           <Route index element={<ShopDashboard />} />
           <Route path="delivery-form" element={<DeliveryForm />} />
           <Route path="remittance" element={<Remittance />} />
+          <Route path="login" element={<VendorLogin />} />
+          <Route path="register" element={<VendorRegister />} />
         </Route>
 
         <Route path="/admin/login" element={<AdminLogin />} />

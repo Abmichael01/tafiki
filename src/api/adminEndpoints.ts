@@ -12,8 +12,6 @@ export const getPartner = async (id: string): Promise<PartnerDetails> => {
   return res.data;
 };
 
-
-
 export const getOverview = async (): Promise<Overview> => {
   const res = await apiClient.get("/users/admin/overview/");
   return res.data;
