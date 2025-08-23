@@ -79,7 +79,7 @@ export default function Form() {
 
   const onSubmit = (data: DeliveryFormData) => {
     console.log(data);
-    navigate("/vendor/delivery-form?current=2");
+    navigate("/retail-shop/delivery-form?current=2");
   }
 
   return (

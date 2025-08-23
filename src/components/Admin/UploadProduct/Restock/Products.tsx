@@ -55,7 +55,7 @@ export default function Products() {
           <div className="divide-y divide-gray-100">
             {products?.map((product) => {
               const units = Math.round( Number(product.stock_quantity) / Number(product.quantity_per_unit))
-              const bags = Number(product.stock_quantity) || 0;
+              const bags = Number(product.stock_quantity) * Number(product.quantity_per_unit) || 0;
               const status = getStatusByStock(units as number);
 
               return (

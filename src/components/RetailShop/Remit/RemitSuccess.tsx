@@ -1,0 +1,26 @@
+import { BadgeCheck } from "lucide-react";
+import { Button } from "../../ui/button";
+import { Link } from "react-router-dom";
+
+export default function RemitSuccess() {
+  return (
+    <div className="flex flex-col items-center space-y-3 w-full">
+      {/* Success Icon */}
+      <BadgeCheck className="size-35 text-white fill-[#16A34A] stroke-white -mb-4" />
+      {/* Title */}
+      <h1 className="text-[20px] font-bold text-center text-primary">
+        Remittance Complete
+      </h1>
+      {/* Subtitle */}
+      <p className="text-[14px] text-[#6E6E6E] text-center font-satoshi font-medium -mt-3">
+        Your remittance has been successfully submitted
+      </p>
+      {/* Button */}
+      <Link to="/retail-shop" className="w-full max-w-[370px]">
+        <Button className="w-full bg-[#15221B] text-white text-[16px] font-medium rounded-lg h-12 mt-2">
+          Done
+        </Button>
+      </Link>
+    </div>
+  );
+}

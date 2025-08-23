@@ -53,10 +53,12 @@ import AdminWithdrawalPin from "./pages/Admin/AdminProfile/WithdrawalPin/Withdra
 import AdminCheckPin from "./pages/Admin/AdminProfile/WithdrawalPin/CheckPin";
 import AdminChangePin from "./pages/Admin/AdminProfile/WithdrawalPin/ChangePin";
 import Notifications from "./pages/Admin/Notifications";
-import DeliveryForm from "./pages/Vendors/DeliveryForm";
-import DeliveryLayout from "./layouts/DeliveryLayout";
+import DeliveryForm from "./pages/RetailShops/DeliveryForm";
+import DeliveryLayout from "./layouts/ShopLayout";
 import AdminLogin from "./pages/Admin/Login";
-import AdminOrderTransactionFlow from "./pages/Admin/Orders/OrderTransactionFlow"
+import AdminOrderTransactionFlow from "./pages/Admin/Orders/OrderTransactionFlow";
+import Remittance from "./pages/RetailShops/Remittance";
+import ShopDashboard from "./pages/RetailShops/ShopDashboard";
 
 const App = () => {
   return (
@@ -82,18 +84,22 @@ const App = () => {
           <Route path="forgot-password" element={<ForgotPassword />} />
         </Route>
 
-        <Route path="/vendor" element={<DeliveryLayout />}>
+        <Route path="/retail-shop" element={<DeliveryLayout />}>
+          <Route index element={<ShopDashboard />} />
           <Route path="delivery-form" element={<DeliveryForm />} />
+          <Route path="remittance" element={<Remittance />} />
         </Route>
 
         <Route path="/admin/login" element={<AdminLogin />} />
 
         <Route path="/admin" element={<AdminLayout />}>
-          
           <Route path="overview" element={<Overview />} />
           <Route path="orders" element={<Orders />} />
           <Route path="orders/:id" element={<AdminOrderDetails />} />
-          <Route path="orders/:id/transactions" element={<AdminOrderTransactionFlow />} />
+          <Route
+            path="orders/:id/transactions"
+            element={<AdminOrderTransactionFlow />}
+          />
           <Route path="partners">
             <Route index element={<Partners />} />
             <Route path="withdrawal-requests" element={<WithdrawalRequest />} />

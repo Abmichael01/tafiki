@@ -1,5 +1,5 @@
-import { Button } from "../ui/button";
-import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp";
+import { Button } from "../../ui/button";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "../../ui/input-otp";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -18,7 +18,7 @@ export default function Otp() {
   const handleConfirm = () => {
     if (otp.length === 4) {
       console.log("Confirming OTP:", otp);
-      navigate("/vendor/delivery-form?current=3");
+      navigate("/retail-shop/remittance?current=3");
     }
   };
 
