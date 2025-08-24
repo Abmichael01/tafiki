@@ -54,16 +54,22 @@ const Register: React.FC = () => {
         </div>
       )}
 
-      <div className="w-full">
-        {currentStage === 1 && <Stage1 />}
-        {currentStage === 2 && <Stage2 />}
-        {currentStage === 3 && <Stage3 />}
-        {currentStage === 4 && <Stage4 />}
-        {currentStage === 5 && <Stage5 />}
-
-      </div>
-
-      {success && <Success />}
+      {/* 
+        Only show the stage components if not in success state.
+        If success is present, only show the Success component.
+        This prevents both from rendering at the same time.
+      */}
+      {!success ? (
+        <div className="w-full">
+          {currentStage === 1 && <Stage1 />}
+          {currentStage === 2 && <Stage2 />}
+          {currentStage === 3 && <Stage3 />}
+          {currentStage === 4 && <Stage4 />}
+          {currentStage === 5 && <Stage5 />}
+        </div>
+      ) : (
+        <Success />
+      )}
       
       <h3 className="italic text-[14px] md:text-[16px] text-[#636C67] justify-self-end hidden md:block text-center px-4">
         <span className="font-[700]">Retail Shop:</span> Join as a Retail Shop 

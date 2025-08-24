@@ -132,11 +132,11 @@ export default function DeliveryForm() {
           <PiMountainsThin className="text-[#8A908D] size-[28px]" />
         </div>
       </div>
-      {/* Vendor List Selection */}
+      {/* Retail Shop List Selection */}
       <div>
         <Select onValueChange={handleVendorChange} value={selectedVendor}>
           <SelectTrigger className="w-fit p-3 py-[22px] border border-gray-200 rounded-lg text-[14px] bg-white shadow-none">
-            <SelectValue placeholder="Retail Shop" />
+            <SelectValue placeholder="Select Retail Shop " />
           </SelectTrigger>
           <SelectContent>
             {data?.results?.map((vendor) => (

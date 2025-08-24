@@ -2,6 +2,7 @@ import * as z from "zod";
 
 // Zod Schemas
 export const productDetailsSchema = z.object({
+  company_name: z.string().min(1, "Company name is required"),
   name: z.string().min(1, "Product name is required"),
   description: z.string().min(10, "Product description must be at least 10 characters"),
 });
@@ -26,6 +27,12 @@ export const productDetailsFields: {
   type: "input" | "textarea";
   rows?: number;
 }[] = [
+  {
+    name: "company_name",
+    label: "Company Name",
+    placeholder: "Enter Company name",
+    type: "input",
+  },
   {
     name: "name",
     label: "Product Name",

@@ -19,12 +19,13 @@ const FundByTransfer: React.FC = () => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: (data: FundWalletData) => fundWallet(data),
-    onSuccess: () => {
+    onSuccess: (data) => {
+      console.log(data)
       queryClient.invalidateQueries({ queryKey: ["userDetails"] })
       navigate(`${location.pathname}?dialog=fundWallet&dialogCurrent=fundSuceess&amount=${amount}`);
     },
     onError: (error: Error) => {
-      toast.success(errorMessage(error))
+      toast.error(errorMessage(error))
     }
   })
 

@@ -21,7 +21,7 @@ import errorMessage from "@/lib/errorMessage";
 
 const schema = z.object({
   username: z.string().min(3, "Username must be at least 3 characters"),
-  phone_number: z.string().min(10, "Phone number must be at least 10 digits"),
+  store_phone: z.string().min(10, "Phone number must be at least 10 digits"),
   store_name: z.string().min(1, "Store name is required"),
   store_address: z.string().min(1, "Store address is required"),
   store_email: z.string().email("Enter a valid store email address"),
@@ -55,7 +55,7 @@ const Stage5: React.FC = () => {
       user_type: "vendor",
       email: userData.email,
       store_email: values.store_email,
-      phone_number: values.phone_number,
+      store_phone: values.store_phone,
       store_name: values.store_name,
       store_address: values.store_address,
     });
@@ -65,13 +65,14 @@ const Stage5: React.FC = () => {
       store_email: values.store_email,
       username: values.username,
       password: userData.password,
-      phone_number: values.phone_number,
+      store_phone: values.store_phone,
       store_name: values.store_name,
       store_address: values.store_address,
       user_type: "vendor",
     } as Partial<PartnerSignupData & { 
       user_type: string;
       store_email: string;
+      store_phone: string;
       store_name: string;
       store_address: string;
     }>);
@@ -98,10 +99,10 @@ const Stage5: React.FC = () => {
 
         <FormField
           control={form.control}
-          name="phone_number"
+          name="store_phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-[#6E6E6E] text-[14px]">Phone Number</FormLabel>
+              <FormLabel className="text-[#6E6E6E] text-[14px]">Store Phone</FormLabel>
               <input {...field} placeholder="+1234567890" className="auth-input" type="tel" />
               <FormMessage />
             </FormItem>

@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/form";
 import { Loader2Icon, LockKeyhole, User, Eye, EyeOff } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { partnerSignin } from "@/api/apiEndpoints";
 import { PartnerSigninData } from "@/types";
 import { useMutation } from "@tanstack/react-query";
@@ -150,6 +150,13 @@ const Login: React.FC = () => {
             {isPending && <Loader2Icon className="animate-spin" />}
             Log in
           </Button>
+          
+          <div className="text-center text-sm text-gray-600">
+            Don't have an account?{" "}
+            <Link to="/retail-shop/register?stage=1" className="text-[#15221B] underline hover:no-underline">
+              Sign up
+            </Link>
+          </div>
         </form>
       </Form>
     </div>

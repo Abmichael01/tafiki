@@ -61,6 +61,7 @@ import Remittance from "./pages/RetailShops/Remittance";
 import ShopDashboard from "./pages/RetailShops/ShopDashboard";
 import VendorLogin from "./pages/RetailShops/Login";
 import VendorRegister from "./pages/RetailShops/Register";
+import ProtectedRoute from "./layouts/ProtectedRoute";
 
 const App = () => {
   return (
@@ -87,11 +88,13 @@ const App = () => {
         </Route>
 
         <Route path="/retail-shop" element={<DeliveryLayout />}>
-          <Route index element={<ShopDashboard />} />
-          <Route path="delivery-form" element={<DeliveryForm />} />
-          <Route path="remittance" element={<Remittance />} />
           <Route path="login" element={<VendorLogin />} />
           <Route path="register" element={<VendorRegister />} />
+          <Route element={<ProtectedRoute />}>
+            <Route index element={<ShopDashboard />} />
+            <Route path="delivery-form" element={<DeliveryForm />} />
+            <Route path="remittance" element={<Remittance />} />
+          </Route>
         </Route>
 
         <Route path="/admin/login" element={<AdminLogin />} />

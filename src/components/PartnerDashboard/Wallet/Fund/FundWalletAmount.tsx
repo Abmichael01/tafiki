@@ -1,15 +1,58 @@
 import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { fundWallet } from "@/api/apiEndpoints";
+import { FundWalletData } from "@/types";
+import { toast } from "sonner";
+import errorMessage from "@/lib/errorMessage";
+import { Loader2Icon } from "lucide-react";
+
+type StripePaymentResponse = {
+  detail: string;
+  client_secret: string;
+  reference: string;
+};
 
 const FundWalletAmount: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const queryClient = useQueryClient();
   const [amount, setAmount] = useState("");
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: (data: FundWalletData) => fundWallet(data) as Promise<StripePaymentResponse>,
+    onSuccess: (data: StripePaymentResponse) => {
+      console.log("Stripe payment data:", data);
+      queryClient.invalidateQueries({ queryKey: ["userDetails"] });
+      
+      // Store the payment data and navigate to Stripe payment
+      if (data?.client_secret) {
+        navigate(
+          `${location.pathname}?dialog=fundWallet&dialogCurrent=stripe-payment&amount=${amount}&client_secret=${data.client_secret}&reference=${data.reference}`
+        );
+      }
+    },
+    onError: (error: Error) => {
+      toast.error(errorMessage(error));
+    }
+  });
 
   const handleAmountChange = (e: React.FormEvent<HTMLSpanElement>) => {
     const value = e.currentTarget.textContent || "";
     setAmount(value);
+  };
+
+  const handleProceedToStripePayment = () => {
+    if (!amount || parseFloat(amount) <= 0) {
+      toast.error("Please enter a valid amount");
+      return;
+    }
+
+    mutate({
+      amount: parseFloat(amount),
+      payment_method: "card"
+    });
   };
 
   return (
@@ -28,14 +71,18 @@ const FundWalletAmount: React.FC = () => {
           ></span>
         </h1>
         <Button
-          onClick={() => {
-            navigate(
-              `${location.pathname}?dialog=fundWallet&dialogCurrent=payment-method&amount=${amount}`
-            );
-          }}
+          onClick={handleProceedToStripePayment}
+          disabled={isPending || !amount || parseFloat(amount) <= 0}
           className="w-full"
         >
-          Next
+          {isPending ? (
+            <>
+              <Loader2Icon className="animate-spin mr-2" size={16} />
+              Processing...
+            </>
+          ) : (
+            "Proceed to Payment"
+          )}
         </Button>
       </div>
     </div>

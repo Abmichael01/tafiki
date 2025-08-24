@@ -185,4 +185,15 @@ export const getVendors = async (): Promise<Vendors> => {
   return res.data;
 };
 
+// Delivery
+export const initiateDelivery = async (data: { order_id: string }): Promise<unknown> => {
+  const res = await apiClient.post("/users/delivery/initiate/", data);
+  return res.data;
+};
+
+export const confirmDeliveryOtp = async (data: { otp: string }): Promise<unknown> => {
+  const res = await apiClient.post("/users/delivery/confirm/", data);
+  return res.data;
+};
+
 

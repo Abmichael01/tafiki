@@ -21,6 +21,7 @@ export type PersonalDetails = {
 
 export type ShopProduct = {
   id?: number;
+  company_name?: string;
   name: string;
   price: string;
   product_id?: string;

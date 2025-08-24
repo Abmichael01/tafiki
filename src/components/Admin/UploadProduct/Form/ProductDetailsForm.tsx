@@ -24,6 +24,7 @@ export default function ProductDetailsForm() {
   const form = useForm({
     resolver: zodResolver(productDetailsSchema), 
     defaultValues: {
+      company_name: productData.company_name || "",
       name: productData.name || "",
       description: productData.description || "",
     },

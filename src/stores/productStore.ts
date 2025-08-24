@@ -21,6 +21,7 @@ type ProductStore = {
 
 const initialData: ProductData = {
   images: [],
+  company_name: '',
   name: '',
   description: '',
   price: '',
@@ -78,6 +79,7 @@ const useProductStore = create<ProductStore>((set, get) => ({
     });
     
     // Add other product data
+    formData.append('company_name', completeData.company_name || '');
     formData.append('name', completeData.name);
     formData.append('description', completeData.description);
     formData.append('price', completeData.price);
