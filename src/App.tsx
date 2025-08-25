@@ -60,6 +60,8 @@ import Remittance from "./pages/RetailShops/Remittance";
 import ShopDashboard from "./pages/RetailShops/ShopDashboard";
 import VendorLogin from "./pages/RetailShops/Login";
 import VendorRegister from "./pages/RetailShops/Register";
+import RetailShopOrders from "./pages/RetailShops/Orders";
+import RetailShopTransactions from "./pages/RetailShops/Transactions";
 import ProtectedRoute from "./layouts/ProtectedRoute";
 import DriversDeliveryForm from "./pages/Drivers/DeliveryForm";
 
@@ -92,6 +94,8 @@ const App = () => {
           <Route path="register" element={<VendorRegister />} />
           <Route element={<ProtectedRoute />}>
             <Route index element={<ShopDashboard />} />
+            <Route path="orders" element={<RetailShopOrders />} />
+            <Route path="transactions" element={<RetailShopTransactions />} />
             <Route path="remittance" element={<Remittance />} />
           </Route>
         </Route>

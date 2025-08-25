@@ -13,6 +13,7 @@ import {
   WalletTransactionResponse,
   Vendors
 } from "@/types";
+import { Vendor, Order, Transaction } from "@/types/admin";
 
 // Auth
 
@@ -182,6 +183,22 @@ export const updateProfile = async (data: FormData): Promise<unknown> => {
 
 export const getVendors = async (): Promise<Vendors> => {
   const res = await apiClient.get("/users/vendors/");
+  return res.data;
+};
+
+// Vendor (Retail Shop)
+export const getVendor = async (): Promise<Vendor> => {
+  const res = await apiClient.get("/users/vendor/");
+  return res.data;
+};
+
+export const getVendorOrders = async (): Promise<Order[]> => {
+  const res = await apiClient.get("/users/vendor/orders/");
+  return res.data;
+};
+
+export const getVendorTransactions = async (): Promise<Transaction[]> => {
+  const res = await apiClient.get("/users/vendor/transactions/");
   return res.data;
 };
 

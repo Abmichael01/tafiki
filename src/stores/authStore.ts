@@ -1,6 +1,7 @@
 // src/store/useAuthStore.ts
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import useVendorStore from "./vendorStore";
 
 interface AuthState {
   access: string | null;
@@ -32,7 +33,11 @@ const useAuthStore = create<AuthState>()(
       setAccess: (access) => set({ access }),
 
       // Clear all auth data
-      logout: () => set({ access: null, refresh: null, isAuthenticated: false }),
+      logout: () => {
+        set({ access: null, refresh: null, isAuthenticated: false });
+        // Clear vendor data when logging out
+        useVendorStore.getState().clearVendor();
+      },
     }),
     {
       name: "foodhybrid-auth", // Key in localStorage

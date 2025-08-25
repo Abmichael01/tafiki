@@ -87,6 +87,8 @@ export type Vendor = {
   total_remittance: number;
   today_remittance: number;
   recent_orders?: Order[];
+  investments?: Order[];
+  transactions?: Transaction[];
 };
 
 export type Vendors = {
