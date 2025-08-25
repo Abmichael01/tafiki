@@ -43,11 +43,7 @@ const OrderTransactionFlow: React.FC = () => {
       <Overview data={order as Order} />
       <Products products={order?.products as string[]} transactionsPage={true} />
       <History heading="Expected RI Over Time" data={transactions} />
-      <DeliveryTo
-        avatarSrc={order?.vendor_picture}
-        companyName={order?.vendor_name}
-        address={order?.vendor_address}
-      />
+      <DeliveryTo data={order as Order} />
       
       <PartnerReturns
         roiData={order?.roi_cycles as RoiCycle[]}
