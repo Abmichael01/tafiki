@@ -25,10 +25,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { PiMountainsThin } from "react-icons/pi";
 
 import { Building2, MapPin, Phone, Mail } from "lucide-react";
-import { Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { getVendors } from "@/api/apiEndpoints";
+import { useNavigate } from "react-router-dom";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { getVendors, addVendorBeneficiary } from "@/api/apiEndpoints";
 import { Vendor } from "@/types/admin";
+import { toast } from "sonner";
+import { Toast } from "@/components/Admin/Toast";
+import { HiMiniBuildingStorefront } from "react-icons/hi2";
+import errorMessage from "@/lib/errorMessage";
 
 // 🔥 Schema
 const deliveryFormSchema = z.object({
@@ -54,6 +58,7 @@ type FormFieldConfig<T extends keyof DeliveryFormData> = {
 
 export default function DeliveryForm() {
   const [selectedVendor, setSelectedVendor] = useState<string>("");
+  const navigate = useNavigate();
 
   const form = useForm<DeliveryFormData>({
     resolver: zodResolver(deliveryFormSchema),
@@ -69,6 +74,24 @@ export default function DeliveryForm() {
   const { data } = useQuery({
     queryKey: ["user-vendors"],
     queryFn: getVendors,
+  });
+
+  const addVendorBeneficiaryMutation = useMutation({
+    mutationFn: (data: { vendor_id: string }) => addVendorBeneficiary(data),
+    onSuccess: () => {
+      toast.custom(() => (
+        <Toast text="Vendor added to beneficiary list" icon={<HiMiniBuildingStorefront />} />
+      ));
+    },
+    onError: (error: Error) => {
+      toast.custom(() => (
+        <Toast
+          text={errorMessage(error)}
+          decline
+          icon={<HiMiniBuildingStorefront />}
+        />
+      ));
+    },
   });
 
   console.log(data)
@@ -95,8 +118,21 @@ export default function DeliveryForm() {
     }
   };
 
-  const onSubmit = (data: DeliveryFormData) => {
+  const onSubmit = async (data: DeliveryFormData) => {
     console.log("Form submitted:", data);
+    
+    // If "Add to Vendor list" is checked and a vendor is selected, add to beneficiaries
+    if (data.addToVendorList && selectedVendor) {
+      try {
+        await addVendorBeneficiaryMutation.mutateAsync({ vendor_id: selectedVendor });
+      } catch {
+        // Error is already handled by the mutation's onError
+        return; // Don't proceed to checkout if saving fails
+      }
+    }
+    
+    // Navigate to checkout after successful save (or if no save was needed)
+    navigate(`/partner/cart/checkout?vendor=${selectedVendor}`);
   };
 
   // Define all input fields
@@ -207,16 +243,14 @@ export default function DeliveryForm() {
             )}
           />
 
-          {/* Submit Button */}
-          <Link to={`/partner/cart/checkout?vendor=${selectedVendor}`}>
-            <Button
-              disabled={form.formState.disabled}
-              type="submit"
-              className="w-full disabled:bg-primary/50 text-white py-3 rounded-lg text-[14px] font-medium"
-            >
-              Proceed
-            </Button>
-          </Link>
+                    {/* Submit Button */}
+          <Button
+            disabled={form.formState.disabled || addVendorBeneficiaryMutation.isPending}
+            type="submit"
+            className="w-full disabled:bg-primary/50 text-white py-3 rounded-lg text-[14px] font-medium"
+          >
+            {addVendorBeneficiaryMutation.isPending ? "Adding..." : "Proceed"}
+          </Button>         
         </form>
       </Form>
     </div>

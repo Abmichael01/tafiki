@@ -45,7 +45,7 @@ const Products: React.FC<Props> = ({ transactionsPage }) => {
               <h1 className="text-[18px] font-[500] text-[#494949]">
                 {product.name}
               </h1>
-              <p className="font-[900] text-[14px]">£{product.price}</p>
+              <p className="font-[900] text-[14px]">£{Number(product.price).toLocaleString('en-GB')}</p>
               <p className="text-[14px] font-[500] text-[#6E6E6E]">
                 {Math.floor(order_amount / Number(product.price))} units (
                 {Math.floor(

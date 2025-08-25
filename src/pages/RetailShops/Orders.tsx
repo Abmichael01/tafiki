@@ -33,6 +33,8 @@ export default function Orders() {
   // Use orders from vendor store
   const orders = vendor.investments || [];
 
+  console.log(orders)
+
   // Filter orders based on current tab
   const ongoingOrders = orders.filter((order: Order) => 
     order.status !== "completed"

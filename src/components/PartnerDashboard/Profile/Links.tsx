@@ -11,7 +11,7 @@ const links = [
   {
     name: "Retail Shop List",
     icon: <CiShop className="size-[20px] stroke-1" />,
-    link: "#",
+    link: "/partner/profile/saved-vendors",
   },
   {
     name: "Beneficiary",

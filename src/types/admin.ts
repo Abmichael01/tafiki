@@ -73,7 +73,9 @@ export type DataBaseType = {
 
 export type Vendor = {
   id: number;
-  name?: string;
+  name: string;
+  first_name?: string;
+  last_name?: string;
   email?: string;
   vendor_id: string;
   store_name: string;
@@ -89,6 +91,10 @@ export type Vendor = {
   recent_orders?: Order[];
   investments?: Order[];
   transactions?: Transaction[];
+  // Fields for saved vendor beneficiaries
+  vendor_name?: string;
+  vendor_email?: string;
+  vendor_phone?: string;
 };
 
 export type Vendors = {

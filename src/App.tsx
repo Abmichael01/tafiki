@@ -64,6 +64,7 @@ import RetailShopOrders from "./pages/RetailShops/Orders";
 import RetailShopTransactions from "./pages/RetailShops/Transactions";
 import ProtectedRoute from "./layouts/ProtectedRoute";
 import DriversDeliveryForm from "./pages/Drivers/DeliveryForm";
+import SavedVendors from "./pages/PartnerDashboard/Profile/SavedVendors";
 
 const App = () => {
   return (
@@ -186,6 +187,8 @@ const App = () => {
             </Route>
             <Route path="reset-password" element={<ResetPassword />} />
           </Route>
+
+          <Route path="profile/saved-vendors" element={<SavedVendors />} />
         </Route>
       </Routes>
     </BrowserRouter>

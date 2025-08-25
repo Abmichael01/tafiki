@@ -165,7 +165,7 @@ const TransactionList: React.FC<TransactionListProps> = ({
         )}
         <div className="flex flex-col items-end">
           <div className="font-satoshi font-bold text-[15px] text-nowrap text-primary">
-            ₦{Number(transaction.amount).toLocaleString()}
+                          £{Number(transaction.amount).toLocaleString('en-GB')}
           </div>
           {(transaction.transaction_type === "fund" || transaction.transaction_type === "withdraw") &&
             transaction.status?.toLowerCase() === "pending" && (

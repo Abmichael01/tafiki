@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getOrder } from "@/api/adminEndpoints";
 import { Order, RoiCycle } from "@/types/admin";
 import LoadingData from "@/components/Admin/LoadingData";
+import VendorDeliveryDetails from "@/components/Admin/Orders/VendorDeliveryDetails";
 
 const OrderDetails: React.FC = () => {
   const { id } = useParams();
@@ -29,8 +30,11 @@ const OrderDetails: React.FC = () => {
       <Overview data={data as Order} />
       <Timeline status={data?.status as string} />
       <Products products={data?.products as string[]} />
-      <DeliveryTo avatarSrc={data?.vendor_picture} companyName={data?.vendor_name} address={data?.vendor_address} />
+      <DeliveryTo data={data as Order} />
       <PartnerReturns roiData={data?.roi_cycles as RoiCycle[]} roiPercentage={data?.roi_rate as number}  />
+      
+      {/* Vendor Delivery Details Dialog */}
+      <VendorDeliveryDetails />
     </div>
   );
 };

@@ -32,7 +32,7 @@ const Wallet: React.FC = () => {
           <div className="text-center font-satoshi">
             <h1 className="text-center text-[24px] font-satoshi font-[700] gap-[1px] flex items-center justify-center">
               {" "}
-              <span className=" text-[18px] text-[#FFFFFF99]">£</span> {userDetails?.wallet_balance}
+              <span className=" text-[18px] text-[#FFFFFF99]">£</span> {userDetails?.wallet_balance?.toLocaleString('en-GB')}
             </h1>
           </div>
           <div className="flex justify-center">

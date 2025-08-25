@@ -1,7 +1,13 @@
 import { Button } from "../../ui/button";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "../../ui/input-otp";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { confirmRemittanceOtp } from "@/api/apiEndpoints";
+import { toast } from "sonner";
+import { Toast } from "@/components/Admin/Toast";
+import { HiMiniBuildingStorefront } from "react-icons/hi2";
+import errorMessage from "@/lib/errorMessage";
 
 const otpSlotClassName =
   "h-16 w-16 text-[32px] data-[active=true]:ring-[0px] border  first:rounded-l-[4px] last:rounded-r-[4px] rounded-[4px] shadow-none  border-[#15221B1A] data-[active=true]:border-[#494949]";
@@ -9,16 +15,35 @@ const otpSlotClassName =
 export default function Otp() {
   const [otp, setOtp] = useState("");
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const amount = searchParams.get("amount");
+
+  const confirmOtpMutation = useMutation({
+    mutationFn: (data: { amount: string; otp: string }) => confirmRemittanceOtp(data),
+    onSuccess: () => {
+      toast.custom(() => (
+        <Toast text="Remittance successful" icon={<HiMiniBuildingStorefront />} />
+      ));
+      navigate("/retail-shop/remittance?current=3");
+    },
+    onError: (error: Error) => {
+      toast.custom(() => (
+        <Toast
+          text={errorMessage(error)}
+          decline
+          icon={<HiMiniBuildingStorefront />}
+        />
+      ));
+    },
+  });
 
   const handleOtpChange = (value: string) => {
     setOtp(value);
-    console.log("OTP entered:", value);
   };
 
   const handleConfirm = () => {
-    if (otp.length === 4) {
-      console.log("Confirming OTP:", otp);
-      navigate("/retail-shop/remittance?current=3");
+    if (otp.length === 4 && amount) {
+      confirmOtpMutation.mutate({ amount, otp });
     }
   };
 
@@ -51,9 +76,9 @@ export default function Otp() {
       <Button 
         className="w-full bg-[#15221B] text-white py-3 px-4 rounded-lg font-medium"
         onClick={handleConfirm}
-        disabled={otp.length !== 4}
+        disabled={otp.length !== 4 || confirmOtpMutation.isPending}
       >
-        Verify
+        {confirmOtpMutation.isPending ? "Verifying..." : "Verify"}
       </Button>
     </div>
   );

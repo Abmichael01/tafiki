@@ -57,7 +57,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
         </button>
       </div>
       <div className="flex flex-row-reverse min-[600px]:flex-col justify-between items-end">
-        <p className="">{item.price * item.quantity}</p>
+        <p className="">£{(item.price * item.quantity).toLocaleString('en-GB')}</p>
         <div className="px-2 py-2 bg-[#F9F9F9] rounded-[8px] flex items-center gap-3 text-[#6E6E6E] font-satoshi">
           <button
             disabled={adding || removing}

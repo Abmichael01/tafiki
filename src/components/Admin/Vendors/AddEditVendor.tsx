@@ -21,7 +21,8 @@ import { API_BASE_URL } from "@/api/apiClient";
 
 // Zod schema for form validation
 const vendorSchema = z.object({
-  vendorName: z.string().min(2, "Vendor name is required"),
+  first_name: z.string().min(2, "First name is required"),
+  last_name: z.string().min(2, "Last name is required"),
   email: z.string().email("Invalid email address"),
   phone: z.string().min(7, "Phone is required"),
   store_name: z.string().min(2, "Store name is required"),
@@ -40,10 +41,16 @@ type VendorFormValues = z.infer<typeof vendorSchema>;
 // Form fields configuration
 const formFields = [
   {
-    id: "vendorName",
-    label: "Vendor Name",
+    id: "first_name",
+    label: "First Name",
     type: "text",
-    placeholder: "Enter Vendor's name",
+    placeholder: "Enter first name",
+  },
+  {
+    id: "last_name",
+    label: "Last Name",
+    type: "text",
+    placeholder: "Enter last name",
   },
   {
     id: "email",
@@ -117,14 +124,15 @@ export default function AddEditVendor({ data }: NewVendorProps) {
   } = useForm<VendorFormValues>({
     resolver: zodResolver(vendorSchema),
     defaultValues: {
-      vendorName: data?.store_name || "",
+      first_name: data?.name.split(" ")[0] || "",
+      last_name: data?.name.split(" ")[1] || "",
       email: data?.store_email || "",
       phone: data?.store_phone || "",
       store_name: data?.store_name || "",
       store_email: data?.store_email || "",
       store_phone: data?.store_phone || "",
       store_address: data?.store_address || "",
-      username: "",
+      username: data?.username || "",
       password: "",
       image: undefined,
     },
@@ -132,14 +140,15 @@ export default function AddEditVendor({ data }: NewVendorProps) {
 
   useEffect(() => {
     reset({
-      vendorName: data?.store_name || "",
+      first_name: data?.name.split(" ")[0] || "",
+      last_name: data?.name.split(" ")[1] || "",
       email: data?.store_email || "",
       phone: data?.store_phone || "",
       store_name: data?.store_name || "",
       store_email: data?.store_email || "",
       store_phone: data?.store_phone || "",
       store_address: data?.store_address || "",
-      username: "",
+      username: data?.username || "",
       password: "",
       image: undefined,
     });
@@ -174,6 +183,7 @@ export default function AddEditVendor({ data }: NewVendorProps) {
     mutationFn: (data: FormData) => updateVendor(data, id?.toString() as string),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["vendors"] })
+      queryClient.invalidateQueries({ queryKey: ["vendor", data?.vendor_id] })
       toast.custom(() => (
         <Toast text="Vendor Info Updated" icon={<HiMiniBuildingStorefront />} />
       ));
@@ -210,7 +220,8 @@ export default function AddEditVendor({ data }: NewVendorProps) {
   const toFormData = (values: VendorFormValues) => {
     console.log(values)
     const fd = new FormData();
-    fd.append("vendorName", values.vendorName);
+    fd.append("first_name", values.first_name);
+    fd.append("last_name", values.last_name);
     fd.append("email", values.email);
     fd.append("phone", values.phone);
     fd.append("store_name", values.store_name);

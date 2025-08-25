@@ -24,7 +24,7 @@ export default function Overview({
       id: "total-purchases",
       label: "Total Purchase(s)",
       icon: IoMdBriefcase, // Using briefcase for purchases
-      value: "£"+data?.total_invested,
+      value: "£"+data?.total_invested?.toLocaleString('en-GB'),
     },
     {
       id: "portfolio-balance",
@@ -36,7 +36,7 @@ export default function Overview({
       id: "wallet-balance",
       label: "Wallet Balance",
       icon: FaWallet, // Using wallet icon for wallet balance
-      value: "£"+data?.balance.toString(),
+      value: "£"+data?.balance?.toLocaleString('en-GB'),
     },
   ];
   return (

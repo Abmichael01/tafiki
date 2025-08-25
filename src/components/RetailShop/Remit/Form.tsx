@@ -4,6 +4,12 @@ import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Form as FormRoot, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Link, useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { initiateRemittance } from "@/api/apiEndpoints";
+import { toast } from "sonner";
+import { Toast } from "@/components/Admin/Toast";
+import { HiMiniBuildingStorefront } from "react-icons/hi2";
+import errorMessage from "@/lib/errorMessage";
 
 const remitFormSchema = z.object({
   amount: z
@@ -23,9 +29,27 @@ export default function Form() {
     },
   });
 
+  const remittanceMutation = useMutation({
+    mutationFn: (data: { amount: string }) => initiateRemittance(data),
+    onSuccess: (_, variables) => {
+      toast.custom(() => (
+        <Toast text="OTP sent successfully" icon={<HiMiniBuildingStorefront />} />
+      ));
+      navigate(`/retail-shop/remittance?current=2&amount=${variables.amount}`);
+    },
+    onError: (error: Error) => {
+      toast.custom(() => (
+        <Toast
+          text={errorMessage(error)}
+          decline
+          icon={<HiMiniBuildingStorefront />}
+        />
+      ));
+    },
+  });
+
   const onSubmit = (data: RemitFormData) => {
-    console.log(data);
-    navigate("/retail-shop/remittance?current=2");
+    remittanceMutation.mutate({ amount: data.amount });
   };
 
   return (
@@ -60,9 +84,9 @@ export default function Form() {
         <Button
           type="submit"
           className="w-full bg-[#15221B] text-white py-3 rounded-sm font-medium"
-          disabled={!form.formState.isDirty}
+          disabled={!form.formState.isDirty || remittanceMutation.isPending}
         >
-          Remit
+          {remittanceMutation.isPending ? "Processing..." : "Remit"}
         </Button>
 
         <Link

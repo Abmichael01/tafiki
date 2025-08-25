@@ -111,6 +111,16 @@ export const addBeneficiary = async (
   return res.data;
 };
 
+export const addVendorBeneficiary = async (data: { vendor_id: string }): Promise<unknown> => {
+  const res = await apiClient.post("/wallet/vendor/beneficiaries/", data);
+  return res.data;
+};
+
+export const getVendorBeneficiaries = async (): Promise<Vendor[]> => {
+  const res = await apiClient.get("/wallet/vendor/beneficiaries/");
+  return res.data;
+};
+
 export const deleteBeneficiary = async (id: number): Promise<unknown> => {
   const res = await apiClient.delete(`/wallet/beneficiaries/${id}/`);
   return res.data;
@@ -128,6 +138,16 @@ export const walletWithdrawal = async (data: {
 
 export const fundWallet = async (data: FundWalletData): Promise<unknown> => {
   const res = await apiClient.post("/wallet/fund/", data);
+  return res.data;
+};
+
+export const initiateRemittance = async (data: { amount: string }): Promise<unknown> => {
+  const res = await apiClient.post("/wallet/remittance/", data);
+  return res.data;
+};
+
+export const confirmRemittanceOtp = async (data: { amount: string; otp: string }): Promise<unknown> => {
+  const res = await apiClient.post("/wallet/remittance/confirm/", data);
   return res.data;
 };
 

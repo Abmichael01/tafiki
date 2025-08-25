@@ -50,10 +50,7 @@ const OrderRow: React.FC<{ order: Order; status: boolean }> = ({
 
     {/* Vendor */}
     <td className="py-3 px-4 w-full min-w-0">
-      <Link 
-        to={`?dialog=vendor-delivery-details&status=${order.status}`}
-        className="flex items-center justify-start shrink-0 hover:bg-gray-50 rounded-md p-1 -m-1 transition-colors cursor-pointer"
-      >
+      <div className="flex items-center justify-start shrink-0 hover:bg-gray-50 rounded-md p-1 -m-1 transition-colors cursor-pointer">
         <img
           src={profile}
           alt={order.vendor_name}
@@ -62,13 +59,13 @@ const OrderRow: React.FC<{ order: Order; status: boolean }> = ({
         <span className="text-[16px] font-[700] truncate hover:text-primary">
           {order.vendor_name}
         </span>
-      </Link>
+      </div>
     </td>
 
     {/* Amount */}
     <td className="py-3 px-4 text-right">
       <span className="text-[16px] font-[700]">
-        {/* {formatCurrency(order.total_amount, "E")} */}£{order.amount_invested}
+                 £{Number(order.amount_invested).toLocaleString('en-GB')}
       </span>
     </td>
 
@@ -80,7 +77,11 @@ const OrderRow: React.FC<{ order: Order; status: boolean }> = ({
     )} */}
     <td className="px-4 py-3 text-[16px] text-center font-[700]">
       {!status ? (
-        <p className="">{order?.product?.map((prod) => <span>{prod}, </span>)}</p>
+        <p className="">
+          {order?.product?.map((prod) => (
+            <span>{prod}, </span>
+          ))}
+        </p>
       ) : (
         <span
           className={cn(

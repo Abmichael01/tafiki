@@ -74,7 +74,7 @@ const TransactionCard: React.FC<TransactionCardProps> = ({ transaction }) => {
               isCredit ? "text-green-600" : "text-red-600"
             }`}
           >
-            {isCredit ? "+" : "-"}₦{Number(transaction.amount).toLocaleString()}
+            {isCredit ? "+" : "-"}£{Number(transaction.amount).toLocaleString('en-GB')}
           </span>
         </div>
       </div>
@@ -110,7 +110,7 @@ const TransactionCard: React.FC<TransactionCardProps> = ({ transaction }) => {
           <div className="flex justify-between text-sm">
             <span className="text-gray-600">Balance at time:</span>
             <span className="font-medium">
-              ₦{Number(transaction.available_balance_at_time).toLocaleString()}
+              £{Number(transaction.available_balance_at_time).toLocaleString('en-GB')}
             </span>
           </div>
         )}
