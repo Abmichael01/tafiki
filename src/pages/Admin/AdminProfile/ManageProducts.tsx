@@ -24,7 +24,7 @@ export default function ManageProducts() {
             <img src={orderBox} alt="" className="size-[14px]" />
           </div>
           <p className="text-[16px] font-medium font-satoshi">
-            Total Products: <span className="text-primary">10</span>
+            Total Products: <span className="text-primary">{products?.length}</span>
           </p>
         </div>
         <Link

@@ -120,7 +120,10 @@ const TransactionList: React.FC<TransactionListProps> = ({
       <div className="flex gap-3 items-center min-w-0 flex-1">
         <div
           className={`flex items-center justify-center rounded-full size-10 ${
-            transaction.transaction_type === "inflow" || transaction.transaction_type === "fund"
+            (transaction.status?.toLowerCase() === "pending" &&
+              (transaction.transaction_type === "fund" || transaction.transaction_type === "withdraw"))
+              ? "bg-[#FFA5001A] text-[#FFA500]" // Orange for pending (only for fund/withdraw)
+              : transaction.transaction_type === "inflow" || transaction.transaction_type === "fund"
               ? "bg-[#16A34A1A] text-[#16A34A]"
               : transaction.transaction_type === "withdraw"
               ? "bg-[#B522171A] text-[#B52217]"
@@ -155,13 +158,21 @@ const TransactionList: React.FC<TransactionListProps> = ({
         </div>
       </div>
       <div className="flex items-center">
-        {showTransactionSign && (
-          <span className="text-[12px] font-medium">
-            {transaction.transaction_type === "fund" || transaction.transaction_type === "remittance" ? "+" : "-"}
+        {(transaction.transaction_type === "fund" || transaction.transaction_type === "withdraw") && showTransactionSign && (
+          <span className="text-[12px] font-medium mr-1 flex items-center justify-center h-full">
+            {transaction.transaction_type === "fund" ? "+" : "-"}
           </span>
         )}
-        <div className="font-satoshi font-bold text-[15px] text-nowrap text-primary">
-          ₦{Number(transaction.amount).toLocaleString()}
+        <div className="flex flex-col items-end">
+          <div className="font-satoshi font-bold text-[15px] text-nowrap text-primary">
+            ₦{Number(transaction.amount).toLocaleString()}
+          </div>
+          {(transaction.transaction_type === "fund" || transaction.transaction_type === "withdraw") &&
+            transaction.status?.toLowerCase() === "pending" && (
+              <span className="text-[12px] font-medium text-[#FFA500] mt-1">
+                Pending
+              </span>
+          )}
         </div>
       </div>
     </Link>

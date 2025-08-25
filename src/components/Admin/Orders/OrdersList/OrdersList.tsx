@@ -4,6 +4,7 @@ import OrderRow from "./OrderRow";
 import orderBox from "@/assets/svgs/orderBox2.svg";
 import history from "@/assets/svgs/history.svg";
 import { formatDisplayTime } from "@/lib/formatDateTime";
+import VendorDeliveryDetails from "../VendorDeliveryDetails";
 
 interface OrderListProps {
   orders: Order[];
@@ -100,6 +101,9 @@ const OrderList: React.FC<OrderListProps> = ({ orders, tab, status }) => {
           {tab === "history" ? renderHistoryOrders() : renderOngoingOrders()}
         </tbody>
       </table>
+      
+      {/* Vendor Delivery Details Dialog */}
+      <VendorDeliveryDetails />
     </div>
   );
 };

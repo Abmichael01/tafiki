@@ -2,15 +2,11 @@ import { GlobalDialog } from "@/components/ui/CustomDialog";
 import { DialogContent } from "@/components/ui/dialog";
 import { HiOutlineClipboardDocumentList } from "react-icons/hi2";
 import { CheckCircle2, Clock } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
 
-// Props type for the component
-type VendorDeliveryDetailsProps = {
-  orderStatus: string;
-};
-
-export default function VendorDeliveryDetails({
-  orderStatus,
-}: VendorDeliveryDetailsProps) {
+export default function VendorDeliveryDetails() {
+  const [searchParams] = useSearchParams();
+  const orderStatus = searchParams.get("status") || "";
 
   // Determine delivery status based on order status
   const isDelivered = orderStatus.toLowerCase() === "delivered";
@@ -33,10 +29,8 @@ export default function VendorDeliveryDetails({
         {/* Delivery Status Content */}
         <div className="text-center py-8">
           {isDelivered ? (
-            <div className="space-y-6">
-              <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mx-auto">
-                <CheckCircle2 className="size-12 text-gray-700" />
-              </div>
+            <div className="space-y-1 flex flex-col justify-center items-center">
+              <CheckCircle2 className="size-24 fill-primary text-white" />
               <div className="space-y-2">
                 <h3 className="text-2xl font-bold text-gray-800">Delivered</h3>
                 <p className="text-gray-500">
@@ -50,7 +44,9 @@ export default function VendorDeliveryDetails({
                 <Clock className="size-12 text-gray-700" />
               </div>
               <div className="space-y-2">
-                <h3 className="text-2xl font-bold text-gray-800">Pending</h3>
+                <h3 className="text-2xl font-bold text-gray-800">
+                  Pending Delivery
+                </h3>
                 <p className="text-gray-500">
                   Form not yet filled (Delivery Incomplete)
                 </p>

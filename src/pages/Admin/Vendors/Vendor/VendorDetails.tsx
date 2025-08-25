@@ -32,7 +32,7 @@ export default function VendorDetails() {
   const vendorContactData = [
     {
       label: "Address",
-      value: "16, Admiralty phase, Queensway, London",
+      value: data?.vendor_details?.store_address as string,
     },
     {
       label: "Email",

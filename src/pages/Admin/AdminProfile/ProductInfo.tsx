@@ -63,6 +63,8 @@ export default function ProductInfo() {
           {/* Main Image with Navigation */}
           <div className="relative mb-4 flex items-center gap-2 p-2">
             <button
+              title="Previous Image"
+              type="button"
               onClick={prevImage}
               className=" bg-white p-2 rounded-full hover:shadow-md cursor-pointer"
             >
@@ -78,6 +80,8 @@ export default function ProductInfo() {
               <div className="size-[173px] rounded-xl bg-[#f9f9f9]" />
             )}
             <button
+              title="Next Image"
+              type="button"
               onClick={nextImage}
               className=" bg-white p-2 rounded-full hover:shadow-md cursor-pointer"
             >

@@ -4,7 +4,6 @@ import orderBox from "@/assets/svgs/orderBox.svg";
 import { Link } from "react-router-dom";
 import { formatDisplayTime } from "@/lib/formatDateTime";
 import { cn } from "@/lib/utils";
-import VendorDeliveryDetails from "../VendorDeliveryDetails";
 // import { cn } from "@/lib/utils";
 
 // const formatCurrency = (amount: number, currency: string) => {
@@ -52,7 +51,7 @@ const OrderRow: React.FC<{ order: Order; status: boolean }> = ({
     {/* Vendor */}
     <td className="py-3 px-4 w-full min-w-0">
       <Link 
-        to="?dialog=vendor-delivery-details"
+        to={`?dialog=vendor-delivery-details&status=${order.status}`}
         className="flex items-center justify-start shrink-0 hover:bg-gray-50 rounded-md p-1 -m-1 transition-colors cursor-pointer"
       >
         <img
@@ -97,9 +96,6 @@ const OrderRow: React.FC<{ order: Order; status: boolean }> = ({
         </span>
       )}
     </td>
-    
-    {/* Vendor Delivery Details Dialog */}
-    <VendorDeliveryDetails orderStatus={order.status} />
   </tr>
 );
 
