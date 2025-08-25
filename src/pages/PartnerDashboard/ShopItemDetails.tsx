@@ -14,17 +14,15 @@ import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import ShopDetailsSkeleton from "@/components/PartnerDashboard/Shop/ShopDetailsSkeleton";
 
-
-
 const ShopItemDetails: React.FC = () => {
   const [unit, setUnit] = React.useState(1);
-  const location = useLocation()
-  const id = location.pathname.split("/").pop()
+  const location = useLocation();
+  const id = location.pathname.split("/").pop();
 
   const { data, isLoading } = useQuery({
     queryKey: ["shopItem"],
-    queryFn: () => getShopProduct(id as string)
-  })
+    queryFn: () => getShopProduct(id as string),
+  });
 
   const queryClient = useQueryClient();
   const { mutate, isPending } = useMutation({
@@ -46,8 +44,8 @@ const ShopItemDetails: React.FC = () => {
     });
   };
 
-  if(isLoading) {
-    return <ShopDetailsSkeleton />
+  if (isLoading) {
+    return <ShopDetailsSkeleton />;
   }
 
   return (
@@ -68,10 +66,13 @@ const ShopItemDetails: React.FC = () => {
                 </p> */}
                 <h1 className="text-[24px] text-[#494949] ">{data?.name}</h1>
               </div>
-              <div className="space-y-[4px]">
+              <div className="space-y-[10px]">
                 <p className="text-[14px] font-satoshi font-[500]">
                   1 unit = {data?.quantity_per_unit} bags
                 </p>
+                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
+                  Vendor: {data?.company_name}
+                </span>
                 <PriceCalculator
                   price={Number(data?.price as string)}
                   unit={unit}
@@ -79,27 +80,30 @@ const ShopItemDetails: React.FC = () => {
                 />
               </div>
               <Button
-          disabled={isPending}
-          onClick={handleAddToCart}
-          variant={"outline"}
-          className="border border-[#15221B] text-[#15221B] w-full py-[8px] rounded-[2px]"
-        >
-          {isPending ? "Making Order" : "Make Order"}
-          {isPending ? (
-            <Loader2 className="size-[20px] animate-spin" />
-          ) : (
-            <FiPlus />
-          )}
-        </Button>
+                disabled={isPending}
+                onClick={handleAddToCart}
+                variant={"outline"}
+                className="border border-[#15221B] text-[#15221B] w-full py-[8px] rounded-[2px]"
+              >
+                {isPending ? "Making Order" : "Make Order"}
+                {isPending ? (
+                  <Loader2 className="size-[20px] animate-spin" />
+                ) : (
+                  <FiPlus />
+                )}
+              </Button>
             </div>
           </div>
           <div className="space-y-[12px]">
             <h1 className="text-[16px] font-satoshi font-[700]">
-              <span className="text-[#16A34A]">{data?.roi_percentage}% Returns</span>
+              <span className="text-[#16A34A]">
+                {data?.roi_percentage}% Returns
+              </span>
               <span className="text-[#494949]"> on overall purchase</span>
             </h1>
             <h1 className="text-[16px] font-satoshi font-[700] ">
-              Trade terminates for cashout or reinvestment at the end of the 3rd cycle
+              Trade terminates for cashout or reinvestment at the end of the 3rd
+              cycle
             </h1>
             <p className="text-[18px] text-wrap font-satoshi rounded-[12px] bg-[#F9F9F9] lg:w-[770px] py-[16px] px-[12px]">
               {data?.description}
