@@ -46,11 +46,11 @@ const ShopItem: React.FC<Props> = ({ item }) => {
               {item.name} ({item.kg_per_unit}kg)
             </h1>
           </div>
-          <p className="text-sm sm:text-base">
+          <p className="text-[14px]">
             1 unit ={" "}
             <span className="font-semibold">{item.quantity_per_unit} bags</span>
           </p>
-          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
+          <span className="inline-flex items-center px-2 py-1 rounded-full text-[11px] font-semibold bg-primary/10 text-primary">
               Vendor: {item.company_name}
             </span>
         </div>
