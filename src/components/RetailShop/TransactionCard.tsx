@@ -1,14 +1,14 @@
 import React from "react";
 import { Transaction } from "@/types/admin";
 import { formatDisplayTime } from "@/lib/formatDateTime";
-import { TrendingUp, TrendingDown, Clock, CheckCircle, XCircle } from "lucide-react";
+import { TrendingUp, Clock, CheckCircle, XCircle } from "lucide-react";
 
 interface TransactionCardProps {
   transaction: Transaction;
 }
 
 const TransactionCard: React.FC<TransactionCardProps> = ({ transaction }) => {
-  const getTransactionIcon = (type: string) => {
+  const getTransactionIcon = () => {
     // For vendors, all transactions are remittances
     return <TrendingUp className="h-5 w-5 text-green-600" />;
   };
@@ -47,19 +47,19 @@ const TransactionCard: React.FC<TransactionCardProps> = ({ transaction }) => {
       {/* Header */}
       <div className="flex justify-between items-start mb-4">
         <div className="flex items-center gap-3">
-          {getTransactionIcon(transaction.transaction_type)}
+          {getTransactionIcon()}
           <div>
-                         <h3 className="font-semibold text-lg text-gray-900">
-               Remittance
-             </h3>
-            <p className="text-sm text-gray-500">
-              {transaction.partner_name}
-            </p>
+            <h3 className="font-semibold text-lg text-gray-900">Remittance</h3>
+            <p className="text-sm text-gray-500">{transaction.partner_name}</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
           {getStatusIcon(transaction.status)}
-          <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(transaction.status)}`}>
+          <span
+            className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(
+              transaction.status
+            )}`}
+          >
             {transaction.status}
           </span>
         </div>
@@ -69,8 +69,12 @@ const TransactionCard: React.FC<TransactionCardProps> = ({ transaction }) => {
       <div className="mb-4">
         <div className="flex items-center justify-between">
           <span className="text-sm text-gray-600">Amount:</span>
-          <span className={`text-xl font-bold ${isCredit ? 'text-green-600' : 'text-red-600'}`}>
-            {isCredit ? '+' : '-'}₦{Number(transaction.amount).toLocaleString()}
+          <span
+            className={`text-xl font-bold ${
+              isCredit ? "text-green-600" : "text-red-600"
+            }`}
+          >
+            {isCredit ? "+" : "-"}₦{Number(transaction.amount).toLocaleString()}
           </span>
         </div>
       </div>
@@ -83,25 +87,31 @@ const TransactionCard: React.FC<TransactionCardProps> = ({ transaction }) => {
             <span className="font-medium">{transaction.order_id}</span>
           </div>
         )}
-        
+
         {transaction.payment_method && (
           <div className="flex justify-between text-sm">
             <span className="text-gray-600">Payment Method:</span>
-            <span className="font-medium capitalize">{transaction.payment_method}</span>
+            <span className="font-medium capitalize">
+              {transaction.payment_method}
+            </span>
           </div>
         )}
-        
+
         {transaction.reference && (
           <div className="flex justify-between text-sm">
             <span className="text-gray-600">Reference:</span>
-            <span className="font-medium font-mono text-xs">{transaction.reference}</span>
+            <span className="font-medium font-mono text-xs">
+              {transaction.reference}
+            </span>
           </div>
         )}
-        
+
         {transaction.available_balance_at_time && (
           <div className="flex justify-between text-sm">
             <span className="text-gray-600">Balance at time:</span>
-            <span className="font-medium">₦{Number(transaction.available_balance_at_time).toLocaleString()}</span>
+            <span className="font-medium">
+              ₦{Number(transaction.available_balance_at_time).toLocaleString()}
+            </span>
           </div>
         )}
       </div>
@@ -112,9 +122,7 @@ const TransactionCard: React.FC<TransactionCardProps> = ({ transaction }) => {
           <span className="text-xs text-gray-500">
             {formatDisplayTime(transaction.created_at)}
           </span>
-          <span className="text-xs text-gray-500">
-            ID: {transaction.id}
-          </span>
+          <span className="text-xs text-gray-500">ID: {transaction.id}</span>
         </div>
       </div>
     </div>

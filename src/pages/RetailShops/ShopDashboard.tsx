@@ -7,7 +7,7 @@ export default function ShopDashboard() {
   console.log(vendor);
   return (
     <div className="space-y-3 flex flex-col">
-      <div className="text-center mb-6">
+      <div className="text-center mb-4">
         <h1 className="text-sm text-gray-600">
           {isVendorLoaded && vendor ? vendor.store_name : "Loading..."}
         </h1>
