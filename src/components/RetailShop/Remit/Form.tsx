@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Form as FormRoot, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const remitFormSchema = z.object({
   amount: z
@@ -65,12 +65,12 @@ export default function Form() {
           Remit
         </Button>
 
-        <a
-          href="#"
+        <Link
+          to="/retail-shop/transactions"
           className="text-sm text-[#6E6E6E] underline text-center block mt-2"
         >
           View history
-        </a>
+        </Link>
       </form>
     </FormRoot>
   );
