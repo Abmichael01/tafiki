@@ -21,7 +21,7 @@ export default function Info({ data }: { data?: Vendor }) {
             {data?.store_name}
           </h2>
           <p className="text-[14px] sm:text-[16px] font-[500] text-[#929292]">
-            {data?.store_name} | {data?.store_email}
+            {data?.username} | {data?.store_email}
           </p>
         </div>
       </div>
