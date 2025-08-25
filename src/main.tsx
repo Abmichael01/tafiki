@@ -12,7 +12,7 @@ import { Toaster } from "@/components/ui/sonner"
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: false,
+      refetchOnWindowFocus: true,
       retry: 1,
     },
     mutations: {

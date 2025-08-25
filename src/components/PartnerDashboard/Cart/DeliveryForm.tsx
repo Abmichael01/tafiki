@@ -28,6 +28,7 @@ import { Building2, MapPin, Phone, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getVendors } from "@/api/apiEndpoints";
+import { Vendor } from "@/types/admin";
 
 // 🔥 Schema
 const deliveryFormSchema = z.object({
@@ -74,9 +75,15 @@ export default function DeliveryForm() {
 
   const handleVendorChange = (value: string) => {
     setSelectedVendor(value);
-    const vendor = data?.results.find( vendor => vendor.vendor_id === value ) 
-    if (data) {
-      form.reset(vendor);
+    const vendor = data?.results?.find((vendor: Vendor) => vendor.vendor_id === value);
+    if (vendor) {
+      form.reset({
+        name: vendor.store_name,
+        location: vendor.store_address,
+        phone: vendor.store_phone,
+        email: vendor.store_email,
+        addToVendorList: false,
+      });
     } else {
       form.reset({
         name: "",
@@ -139,9 +146,9 @@ export default function DeliveryForm() {
             <SelectValue placeholder="Select Retail Shop " />
           </SelectTrigger>
           <SelectContent>
-            {data?.results?.map((vendor) => (
-              <SelectItem key={vendor.id} value={vendor.vendor_id || vendor.id.toString() }>
-                {vendor.name}
+            {data?.results?.map((vendor: Vendor) => (
+              <SelectItem key={vendor.id} value={vendor.vendor_id}>
+                {vendor.store_name}
               </SelectItem>
             ))}
           </SelectContent>

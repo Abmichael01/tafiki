@@ -73,10 +73,15 @@ export type DataBaseType = {
 
 export type Vendor = {
   id: number;
+  name?: string;
+  email?: string;
   vendor_id: string;
-  name: string;
-  email: string;
-  phone: string;
+  store_name: string;
+  store_email: string;
+  store_phone: string;
+  store_address: string;
+  username: string;
+  password: string;
   profile_picture: string | null;
   created_at: string;
   total_remittance: number;

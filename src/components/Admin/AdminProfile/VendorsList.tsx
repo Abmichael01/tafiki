@@ -109,21 +109,21 @@ const VendorsList: React.FC<VendorsListProps> = ({ select = false, data }) => {
                         src="https://github.com/shadcn.pn"
                         alt="@shadcn"
                       />
-                      <AvatarFallback className=" bg-primary/40">{getInitials(vendor.name)}</AvatarFallback>
+                      <AvatarFallback className=" bg-primary/40">{getInitials(vendor.store_name)}</AvatarFallback>
                     </Avatar>
                     <span className="text-sm font-semibold ">
-                      {vendor.name}
+                      {vendor.store_name}
                     </span>
                   </div>
                 </td>
                 <td className="px-4 py-3 text-sm  text-center font-semibold">
-                  {vendor.name}
+                  {vendor.store_name}
                 </td>
                 <td className="px-4 py-3 text-sm text-center font-semibold">
-                  {vendor.email}
+                  {vendor.store_email}
                 </td>
                 <td className="px-4 py-3 text-sm text-center font-semibold">
-                  {vendor.phone}
+                  {vendor.store_phone}
                 </td>
               </tr>
             ))}

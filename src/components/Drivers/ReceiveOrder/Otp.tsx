@@ -1,7 +1,12 @@
 import { Button } from "../../ui/button";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "../../ui/input-otp";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { confirmDeliveryOtp } from "@/api/apiEndpoints";
+import { toast } from "sonner";
+import errorMessage from "@/lib/errorMessage";
+import { Loader2 } from "lucide-react";
 
 const otpSlotClassName =
   "h-16 w-16 text-[32px] data-[active=true]:ring-[0px] border  first:rounded-l-[4px] last:rounded-r-[4px] rounded-[4px] shadow-none  border-[#15221B1A] data-[active=true]:border-[#494949]";
@@ -9,6 +14,20 @@ const otpSlotClassName =
 export default function Otp() {
   const [otp, setOtp] = useState("");
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const orderId = searchParams.get("order_id");
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: (data: { order_id: string; otp: string }) => confirmDeliveryOtp(data),
+    onSuccess: () => {
+      toast.success("OTP verified successfully!");
+      navigate("/drivers/delivery-form?current=3");
+    },
+    onError: (error: Error) => {
+      console.log(error);
+      toast.error(errorMessage(error));
+    },
+  });
 
   const handleOtpChange = (value: string) => {
     setOtp(value);
@@ -16,9 +35,9 @@ export default function Otp() {
   };
 
   const handleConfirm = () => {
-    if (otp.length === 4) {
-      console.log("Confirming OTP:", otp);
-      navigate("/retail-shop/delivery-form?current=3");
+    if (otp.length === 4 && orderId) {
+      console.log("Confirming OTP:", otp, "for order:", orderId);
+      mutate({ order_id: orderId, otp });
     }
   };
 
@@ -51,9 +70,26 @@ export default function Otp() {
       <Button 
         className="w-full bg-[#15221B] text-white py-3 px-4 rounded-lg font-medium"
         onClick={handleConfirm}
-        disabled={otp.length !== 4}
+        disabled={otp.length !== 4 || isPending}
       >
-        Verify
+        {isPending ? (
+          <>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Verifying...
+          </>
+        ) : (
+          "Verify"
+        )}
+      </Button>
+      
+      <Button 
+        type="button"
+        variant="outline"
+        className="w-full border-[#15221B] text-[#15221B] py-3 px-4 rounded-lg font-medium"
+        onClick={() => navigate("/drivers/delivery-form?current=1")}
+        disabled={isPending}
+      >
+        Go Back
       </Button>
     </div>
   );

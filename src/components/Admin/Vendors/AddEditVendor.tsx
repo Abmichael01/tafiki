@@ -24,6 +24,12 @@ const vendorSchema = z.object({
   vendorName: z.string().min(2, "Vendor name is required"),
   email: z.string().email("Invalid email address"),
   phone: z.string().min(7, "Phone is required"),
+  store_name: z.string().min(2, "Store name is required"),
+  store_email: z.string().email("Invalid store email address"),
+  store_phone: z.string().min(7, "Store phone is required"),
+  store_address: z.string().min(1, "Store address is required"),
+  username: z.string().min(1, "Username is required"),
+  password: z.string().optional(),
   image: z
     .any()
     .refine((file) => !file || file instanceof File, "Invalid file"),
@@ -51,6 +57,42 @@ const formFields = [
     type: "tel",
     placeholder: "Enter Vendor's phone",
   },
+  {
+    id: "store_name",
+    label: "Store Name",
+    type: "text",
+    placeholder: "Enter store name",
+  },
+  {
+    id: "store_email",
+    label: "Store Email",
+    type: "email",
+    placeholder: "Enter store email",
+  },
+  {
+    id: "store_phone",
+    label: "Store Phone",
+    type: "tel",
+    placeholder: "Enter store phone",
+  },
+  {
+    id: "store_address",
+    label: "Store Address",
+    type: "text",
+    placeholder: "Enter store address",
+  },
+  {
+    id: "username",
+    label: "Username",
+    type: "text",
+    placeholder: "Enter Vendor's username",
+  },
+  {
+    id: "password",
+    label: "Password",
+    type: "password",
+    placeholder: "Enter Vendor's password",
+  },
 ];
 
 // Add edit and data props
@@ -75,18 +117,30 @@ export default function AddEditVendor({ data }: NewVendorProps) {
   } = useForm<VendorFormValues>({
     resolver: zodResolver(vendorSchema),
     defaultValues: {
-      vendorName: data?.name || "",
-      email: data?.email || "",
-      phone: data?.phone || "",
+      vendorName: data?.store_name || "",
+      email: data?.store_email || "",
+      phone: data?.store_phone || "",
+      store_name: data?.store_name || "",
+      store_email: data?.store_email || "",
+      store_phone: data?.store_phone || "",
+      store_address: data?.store_address || "",
+      username: "",
+      password: "",
       image: undefined,
     },
   });
 
   useEffect(() => {
     reset({
-      vendorName: data?.name || "",
-      email: data?.email || "",
-      phone: data?.phone || "",
+      vendorName: data?.store_name || "",
+      email: data?.store_email || "",
+      phone: data?.store_phone || "",
+      store_name: data?.store_name || "",
+      store_email: data?.store_email || "",
+      store_phone: data?.store_phone || "",
+      store_address: data?.store_address || "",
+      username: "",
+      password: "",
       image: undefined,
     });
   }, [data, reset]);
@@ -105,6 +159,7 @@ export default function AddEditVendor({ data }: NewVendorProps) {
 
     },
     onError: (error: Error) => {
+      console.log(error)
       toast.custom(() => (
         <Toast
           text={errorMessage(error)}
@@ -153,10 +208,20 @@ export default function AddEditVendor({ data }: NewVendorProps) {
   };
 
   const toFormData = (values: VendorFormValues) => {
+    console.log(values)
     const fd = new FormData();
-    fd.append("name", values.vendorName);
+    fd.append("vendorName", values.vendorName);
     fd.append("email", values.email);
     fd.append("phone", values.phone);
+    fd.append("store_name", values.store_name);
+    fd.append("store_email", values.store_email);
+    fd.append("store_phone", values.store_phone);
+    fd.append("store_address", values.store_address);
+    fd.append("username", values.username);
+    // Only append password if it exists and we're not editing
+    if (values.password && !data) {
+      fd.append("password", values.password);
+    }
     if (values.image) fd.append("profile_picture", values.image);
     return fd;
   };
@@ -235,35 +300,43 @@ export default function AddEditVendor({ data }: NewVendorProps) {
             </div>
 
             {/* Mapped Form Fields */}
-            {formFields.map((field) => (
-              <div key={field.id} className="flex flex-col gap-1">
-                <Label
-                  htmlFor={field.id}
-                  className="text-[14px] font-medium text-[#6E6E6E]"
-                >
-                  {field.label}
-                </Label>
-                <input
-                  id={field.id}
-                  type={field.type}
-                  placeholder={field.placeholder}
-                  {...register(field.id as keyof VendorFormValues)}
-                  className={cn(
-                    "rounded-md px-[20px] py-[18px] text-[15px] bg-[#F9F9F9] focus:outline-none placeholder:text-[#B6B6B6]",
-                    errors[field.id as keyof VendorFormValues] &&
-                      "border-red-500"
+            {formFields.map((field) => {
+              // Hide password field when editing
+              if (data && field.id === "password") {
+                return null;
+              }
+              
+              return (
+                <div key={field.id} className="flex flex-col gap-1">
+                  <Label
+                    htmlFor={field.id}
+                    className="text-[14px] font-medium text-[#6E6E6E]"
+                  >
+                    {field.label}
+                  </Label>
+                  <input
+                    id={field.id}
+                    type={field.type}
+                    placeholder={field.placeholder}
+                    autoComplete="off"
+                    {...register(field.id as keyof VendorFormValues)}
+                    className={cn(
+                      "rounded-md px-[20px] py-[18px] text-[15px] bg-[#F9F9F9] focus:outline-none placeholder:text-[#B6B6B6]",
+                      errors[field.id as keyof VendorFormValues] &&
+                        "border-red-500"
+                    )}
+                  />
+                  {errors[field.id as keyof VendorFormValues] && (
+                    <span className="text-xs text-red-500">
+                      {
+                        errors[field.id as keyof VendorFormValues]
+                          ?.message as string
+                      }
+                    </span>
                   )}
-                />
-                {errors[field.id as keyof VendorFormValues] && (
-                  <span className="text-xs text-red-500">
-                    {
-                      errors[field.id as keyof VendorFormValues]
-                        ?.message as string
-                    }
-                  </span>
-                )}
-              </div>
-            ))}
+                </div>
+              );
+            })}
 
             {/* Submit Button */}
             <Button

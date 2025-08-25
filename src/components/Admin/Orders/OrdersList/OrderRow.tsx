@@ -99,7 +99,7 @@ const OrderRow: React.FC<{ order: Order; status: boolean }> = ({
     </td>
     
     {/* Vendor Delivery Details Dialog */}
-    <VendorDeliveryDetails />
+    <VendorDeliveryDetails orderStatus={order.status} />
   </tr>
 );
 

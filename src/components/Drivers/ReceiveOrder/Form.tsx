@@ -6,6 +6,8 @@ import { Form as FormRoot, FormControl, FormField, FormItem, FormLabel, FormMess
 import { useNavigate } from "react-router-dom";
 import { initiateDelivery } from "@/api/apiEndpoints";
 import { useMutation } from "@tanstack/react-query";
+import { toast } from "sonner";
+import errorMessage from "@/lib/errorMessage";
 
 const orderIdSchema = z.object({
   order_id: z.string().min(1, "Order ID is required"),
@@ -25,13 +27,13 @@ export default function Form() {
 
   const initiateDeliveryMutation = useMutation({
     mutationFn: (data: { order_id: string }) => initiateDelivery(data),
-    onSuccess: (response) => {
+    onSuccess: (response, variables) => {
       console.log("Delivery initiated:", response);
-      // Navigate to OTP confirmation step
-      navigate("/retail-shop/delivery-form?current=2");
+      // Navigate to OTP confirmation step with order_id
+      navigate(`/drivers/delivery-form?current=2&order_id=${variables.order_id}`);
     },
-    onError: (error: unknown) => {
-      console.error("Error initiating delivery:", error);
+    onError: (error: Error) => {
+      toast.error(errorMessage(error));
     },
   });
 

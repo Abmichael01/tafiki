@@ -191,7 +191,7 @@ export const initiateDelivery = async (data: { order_id: string }): Promise<unkn
   return res.data;
 };
 
-export const confirmDeliveryOtp = async (data: { otp: string }): Promise<unknown> => {
+export const confirmDeliveryOtp = async (data: { order_id: string; otp: string }): Promise<unknown> => {
   const res = await apiClient.post("/users/delivery/confirm/", data);
   return res.data;
 };

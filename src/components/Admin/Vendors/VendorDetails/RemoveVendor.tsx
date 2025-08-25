@@ -17,7 +17,7 @@ export default function RemoveVendor({ data }: { data?: Vendor }) {
 
 
   // Simulate vendor name, in real use, pass as prop or context
-  const vendorName = data?.name;
+  const vendorName = data?.store_name;
 
   const { mutate, isPending } = useMutation({
     mutationFn: (id: string) => deleteVendor(id),

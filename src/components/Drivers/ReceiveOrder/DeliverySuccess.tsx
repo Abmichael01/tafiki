@@ -17,7 +17,7 @@ export default function DeliverySuccess() {
           Your delivery has been successfully submitted
         </p>
         {/* Button */}
-        <Link to="/retail-shop" className="w-full max-w-[370px]">
+        <Link to="/drivers/delivery-form" className="w-full max-w-[370px]">
           <Button className="w-full bg-[#15221B] text-white text-[16px] font-medium rounded-lg h-12 mt-2">
             Done
           </Button>

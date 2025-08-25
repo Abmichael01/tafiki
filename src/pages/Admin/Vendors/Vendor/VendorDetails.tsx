@@ -16,23 +16,7 @@ import { getVendor } from "@/api/adminEndpoints";
 import { Order, Vendor, VendorDetails as VendorDetailsType } from "@/types/admin";
 import LoadingData from "@/components/Admin/LoadingData";
 
-const ownerContactData = [
-  {
-    label: "Name",
-    value: "David Kapac",
-  },
-  {
-    label: "Email",
-    value: "davidkapac@gmail.com",
-    icon: MailIcon,
-    copy: true,
-  },
-  {
-    label: "Phone",
-    value: "+44-0011-2233-44",
-    icon: AiOutlinePhone,
-  },
-];
+;
 
 export default function VendorDetails() {
   const { id } = useParams();
@@ -52,16 +36,34 @@ export default function VendorDetails() {
     },
     {
       label: "Email",
+      value: data?.vendor_details?.store_email as string,
+      icon: MailIcon,
+      copy: true,
+    },
+    {
+      label: "Phone",
+      value: data?.vendor_details?.store_phone as string,
+      icon: AiOutlinePhone,
+    },
+  ];
+
+  const ownerContactData = [
+    {
+      label: "Name",
+      value: data?.vendor_details?.name as string,
+    },
+    {
+      label: "Email",
       value: data?.vendor_details?.email as string,
       icon: MailIcon,
       copy: true,
     },
     {
       label: "Phone",
-      value: data?.vendor_details?.phone as string,
+      value: data?.vendor_details?.store_phone as string,
       icon: AiOutlinePhone,
     },
-  ];
+  ]
 
   if (isLoading) return <LoadingData />;
 
@@ -69,7 +71,7 @@ export default function VendorDetails() {
     <div className="space-y-10">
       <PageTitle
         title="Vendors"
-        subtitle={data?.vendor_details?.name}
+        subtitle={data?.vendor_details?.store_name}
         showBack={true}
       />
       <div className="flex flex-col md:flex-row sm:justify-between md:items-center gap-4">

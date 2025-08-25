@@ -92,22 +92,22 @@ export default function VendorsList({ data }: { data: Vendor[] }) {
                         className="size-[36px]"
                       />
                       <AvatarFallback className="size-[36px]">
-                        {getInitials(user.name)}
+                        {getInitials(user.store_name)}
                       </AvatarFallback>
                     </Avatar>
                     <div className="text-left">
                       <div className="font-semibold text-[15px]">
-                        {user.name}
+                        {user.store_name}
                       </div>
                       <div className="text-[14px] font-[500] text-[#929292]">
-                        {user.email}
+                        {user.store_email}
                       </div>
                     </div>
                   </Link>
                 </td>
                 {/* Owner */}
                 <td className="px-4 py-3 font-semibold  text-[15px]">
-                  {user.name}
+                  {user.store_name}
                 </td>
                 {/* Today's Remittance */}
                 <td className="px-4 py-3 font-semibold text-[15px]">

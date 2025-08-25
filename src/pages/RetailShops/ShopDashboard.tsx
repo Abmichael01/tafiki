@@ -8,9 +8,9 @@ export default function ShopDashboard() {
         <h1 className="text-sm ">Store #5663</h1>
         <h2 className="text-xl ">What are you doing today?</h2>
       </div>
-      <Link to="/retail-shop/delivery-form" className="w-full">
+      <Link to="#" className="w-full">
         <button className="w-full px-5 flex gap-2 items-center justify-center py-3 rounded-sm bg-primary hover:bg-primary/90 text-white text-sm cursor-pointer transition-all duration-300">
-          Receive Order <Package size={18} />{" "}
+          View Orders <Package size={18} />{" "}
         </button>
       </Link>
       <Link to="/retail-shop/remittance" className="w-full">

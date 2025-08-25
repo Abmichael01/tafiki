@@ -32,7 +32,7 @@ export default function Timeline({ status }: { status: string }) {
     onSuccess: () => {
       query.invalidateQueries({ queryKey: ["order", id] });
       toast.custom(
-        () => <Toast text="Withdrawal Approved" icon={<Package />} />,
+        () => <Toast text="Status Changed" icon={<Package />} />,
         {
           duration: 4000,
           position: "top-right",

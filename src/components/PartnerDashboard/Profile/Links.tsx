@@ -31,7 +31,7 @@ const links = [
   {
     name: "Help and Support",
     icon: <FiHelpCircle className="size-[20px]" />,
-    link: "#",
+    link: "mailto:Support@foodhybrid.com",
   },
 ];
 

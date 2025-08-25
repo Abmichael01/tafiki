@@ -53,7 +53,6 @@ import AdminWithdrawalPin from "./pages/Admin/AdminProfile/WithdrawalPin/Withdra
 import AdminCheckPin from "./pages/Admin/AdminProfile/WithdrawalPin/CheckPin";
 import AdminChangePin from "./pages/Admin/AdminProfile/WithdrawalPin/ChangePin";
 import Notifications from "./pages/Admin/Notifications";
-import DeliveryForm from "./pages/RetailShops/DeliveryForm";
 import DeliveryLayout from "./layouts/ShopLayout";
 import AdminLogin from "./pages/Admin/Login";
 import AdminOrderTransactionFlow from "./pages/Admin/Orders/OrderTransactionFlow";
@@ -62,6 +61,7 @@ import ShopDashboard from "./pages/RetailShops/ShopDashboard";
 import VendorLogin from "./pages/RetailShops/Login";
 import VendorRegister from "./pages/RetailShops/Register";
 import ProtectedRoute from "./layouts/ProtectedRoute";
+import DriversDeliveryForm from "./pages/Drivers/DeliveryForm";
 
 const App = () => {
   return (
@@ -92,9 +92,13 @@ const App = () => {
           <Route path="register" element={<VendorRegister />} />
           <Route element={<ProtectedRoute />}>
             <Route index element={<ShopDashboard />} />
-            <Route path="delivery-form" element={<DeliveryForm />} />
             <Route path="remittance" element={<Remittance />} />
           </Route>
+        </Route>
+
+        {/* Drivers Routes - No Authentication Required */}
+        <Route path="/drivers">
+          <Route path="delivery-form" element={<DriversDeliveryForm />} />
         </Route>
 
         <Route path="/admin/login" element={<AdminLogin />} />

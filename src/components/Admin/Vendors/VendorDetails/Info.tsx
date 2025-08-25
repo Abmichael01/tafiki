@@ -13,15 +13,15 @@ export default function Info({ data }: { data?: Vendor }) {
             className="size-[64px]"
           />
           <AvatarFallback className="size-[64px]">
-            {getInitials(data?.name as string)}
+            {getInitials(data?.store_name as string)}
           </AvatarFallback>
         </Avatar>
         <div className="space-y-[2px] sm:space-y-[4px] font-satoshi">
           <h2 className="text-[20px] sm:text-[24px] font-[900]">
-            {data?.name}
+            {data?.store_name}
           </h2>
           <p className="text-[14px] sm:text-[16px] font-[500] text-[#929292]">
-            {data?.name} | {data?.email}
+            {data?.store_name} | {data?.store_email}
           </p>
         </div>
       </div>
