@@ -154,7 +154,7 @@ export const initiateRemittance = async (data: { amount: string }): Promise<{
   return res.data;
 };
 
-export const confirmRemittanceOtp = async (data: { amount: string; otp: string; reference: string }): Promise<unknown> => {
+export const confirmRemittanceOtp = async (data: { amount: string; otp: number; reference: string }): Promise<unknown> => {
   const res = await apiClient.post("/wallet/remittance/confirm/", data);
   return res.data;
 };

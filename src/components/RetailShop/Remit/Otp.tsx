@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { Toast } from "@/components/Admin/Toast";
 import { HiMiniBuildingStorefront } from "react-icons/hi2";
 import errorMessage from "@/lib/errorMessage";
+import useVendorStore from "@/stores/vendorStore";
 
 const otpSlotClassName =
   "h-16 w-16 text-[32px] data-[active=true]:ring-[0px] border  first:rounded-l-[4px] last:rounded-r-[4px] rounded-[4px] shadow-none  border-[#15221B1A] data-[active=true]:border-[#494949]";
@@ -18,9 +19,10 @@ export default function Otp() {
   const [searchParams] = useSearchParams();
   const amount = searchParams.get("amount");
   const reference = searchParams.get("reference");
+  const vendor = useVendorStore((state) => state.vendor);
 
   const confirmOtpMutation = useMutation({
-    mutationFn: (data: { amount: string; otp: string; reference: string }) => confirmRemittanceOtp(data),
+    mutationFn: (data: { amount: string; otp: number; reference: string }) => confirmRemittanceOtp(data),
     onSuccess: () => {
       toast.custom(() => (
         <Toast text="Remittance successful" icon={<HiMiniBuildingStorefront />} />
@@ -28,6 +30,7 @@ export default function Otp() {
       navigate("/retail-shop/remittance?current=3");
     },
     onError: (error: Error) => {
+      console.log(error);
       toast.custom(() => (
         <Toast
           text={errorMessage(error)}
@@ -44,8 +47,9 @@ export default function Otp() {
 
   const handleConfirm = () => {
     if (otp.length === 4 && amount && reference) {
-      confirmOtpMutation.mutate({ amount, otp, reference });
+      confirmOtpMutation.mutate({ amount, otp: Number(otp), reference });
     }
+    console.log(otp, amount, reference);
   };
 
   const handleResendOtp = () => {
@@ -60,7 +64,7 @@ export default function Otp() {
           One-Time Passcode (OTP)
         </h1>
         <p className="text-[12px] font-satoshi font-medium">
-          Enter OTP sent to Vendor (kapacventures@email.com)
+          Enter OTP sent to Vendor ({vendor?.store_email})
         </p>
       </div>
       <InputOTP maxLength={4} value={otp} onChange={handleOtpChange}>
@@ -74,7 +78,7 @@ export default function Otp() {
       <p className="text-[12px] font-satoshi font-medium text-[#6E6E6E]">
         Didn't receive OTP? <span className="text-primary cursor-pointer" onClick={handleResendOtp}>Resend OTP</span>
       </p>
-      <Button 
+      <Button
         className="w-full bg-[#15221B] text-white py-3 px-4 rounded-lg font-medium"
         onClick={handleConfirm}
         disabled={otp.length !== 4 || confirmOtpMutation.isPending}
