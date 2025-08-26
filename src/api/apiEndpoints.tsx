@@ -141,12 +141,20 @@ export const fundWallet = async (data: FundWalletData): Promise<unknown> => {
   return res.data;
 };
 
-export const initiateRemittance = async (data: { amount: string }): Promise<unknown> => {
+export const initiateRemittance = async (data: { amount: string }): Promise<{
+  message: string;
+  remittance: {
+    amount: string;
+    created_at: string;
+    reference: string;
+    status: string;
+  };
+}> => {
   const res = await apiClient.post("/wallet/remittance/", data);
   return res.data;
 };
 
-export const confirmRemittanceOtp = async (data: { amount: string; otp: string }): Promise<unknown> => {
+export const confirmRemittanceOtp = async (data: { amount: string; otp: string; reference: string }): Promise<unknown> => {
   const res = await apiClient.post("/wallet/remittance/confirm/", data);
   return res.data;
 };

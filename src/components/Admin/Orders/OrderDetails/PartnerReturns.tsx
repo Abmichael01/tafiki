@@ -54,7 +54,7 @@ const PartnerReturns: React.FC<PartnerReturnsProps> = ({ roiData, roiPercentage 
               <span className="text-[#6E6E6E]">
                 Cycle {cycle.cycle}: {formatDate(cycle?.payout_date)} (+{roiPercentage}% to Portfolio)
               </span>
-              <span className="font-medium text-nowrap">+£{cycle.amount?.toFixed(2)}</span>
+              <span className="font-medium text-nowrap">+£{cycle.amount?.toLocaleString('en-GB')}</span>
             </div>
           </li>
         ))}

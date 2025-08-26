@@ -22,7 +22,7 @@ const PortfolioDetail: React.FC = () => {
     return userDetails.roi_over_time?.map(roi => ({
       type: "Remittance Inflow",
       time: format(new Date(roi.date), "H:mma, do MMM. yyyy"),
-      amount: `+£${roi.total.toFixed(2)}`
+      amount: `+£${roi.total.toLocaleString('en-GB')}`
     }));
   };
 

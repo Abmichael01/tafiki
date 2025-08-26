@@ -23,6 +23,8 @@ export default function Timeline({ status }: { status: string }) {
     { slug: "picked-up", title: "Order Picked up" },
     { slug: "in-transit", title: "In-Transit" },
     { slug: "delivered", title: "Order Delivered" },
+    { slug: "pending-settlement", title: "Pending Settlement" },
+    { slug: "settled", title: "Settled" },
   ];
 
   const query = useQueryClient();
@@ -88,56 +90,115 @@ export default function Timeline({ status }: { status: string }) {
     <div className="w-full flex flex-col items-center">
       {/* Timeline Dots and Lines */}
       {!isPending && (
-        <div className="relative w-full flex justify-between items-start">
-          {steps.map((step, index) => (
-            <div
-              key={index}
-              className="relative flex flex-col items-center text-center w-full cursor-pointer"
-              onClick={() => updateOrder(statusOrder[index].slug)}
-            >
-              {/* Dot + Check */}
-              <div className="z-10 mb-2">
-                <CheckCircle2
-                  className={cn(
-                    "size-5 text-white relative z-[2]",
-                    step.passed
-                      ? "fill-[#15221B]"
-                      : "fill-[#D0D3D1] stroke-transparent text-[#D0D3D1]"
-                  )}
-                />
-                {/* Line connecting to the next step */}
-                {index < steps.length - 1 && (
-                  <div
+        <>
+          {/* Desktop Timeline - Horizontal */}
+          <div className="hidden sm:block relative w-full">
+            <div className="relative w-full flex justify-between items-start">
+              {steps.map((step, index) => (
+                <div
+                  key={index}
+                  className="relative flex flex-col items-center text-center w-full cursor-pointer"
+                  onClick={() => updateOrder(statusOrder[index].slug)}
+                >
+                  {/* Dot + Check */}
+                  <div className="z-10 mb-2">
+                    <CheckCircle2
+                      className={cn(
+                        "size-5 text-white relative z-[2]",
+                        step.passed
+                          ? "fill-[#15221B]"
+                          : "fill-[#D0D3D1] stroke-transparent text-[#D0D3D1]"
+                      )}
+                    />
+                    {/* Line connecting to the next step */}
+                    {index < steps.length - 1 && (
+                      <div
+                        className={cn(
+                          "absolute top-2 left-1/2 h-px w-full border-t-2 border-dashed",
+                          steps[index + 1].passed
+                            ? "border-[#15221B]"
+                            : "border-[#15221B]/30"
+                        )}
+                      />
+                    )}
+                  </div>
+
+                  {/* Text Below */}
+                  <h1
                     className={cn(
-                      "absolute top-2 left-1/2 h-px w-full border-t-2 border-dashed",
-                      steps[index + 1].passed
-                        ? "border-[#15221B]"
-                        : "border-[#15221B]/30"
+                      "text-[13px] font-semibold",
+                      step.passed ? "text-[#15221B]" : "text-[#15221B]/40"
+                    )}
+                  >
+                    {step.status}
+                  </h1>
+                  <p
+                    className={cn(
+                      "text-xs max-w-[140px] mt-1 font-medium font-satoshi",
+                      step.passed ? "text-[#6E6E6E]" : "text-[#6E6E6E]/40"
+                    )}
+                  >
+                    {step.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile Timeline - Vertical */}
+          <div className="sm:hidden w-full space-y-4">
+            {steps.map((step, index) => (
+              <div
+                key={index}
+                className="relative flex items-start space-x-4 cursor-pointer"
+                onClick={() => updateOrder(statusOrder[index].slug)}
+              >
+                {/* Dot + Vertical Line */}
+                <div className="relative flex flex-col items-center">
+                  <CheckCircle2
+                    className={cn(
+                      "size-5 text-white relative z-[2] flex-shrink-0",
+                      step.passed
+                        ? "fill-[#15221B]"
+                        : "fill-[#D0D3D1] stroke-transparent text-[#D0D3D1]"
                     )}
                   />
-                )}
-              </div>
+                  {/* Vertical line connecting to the next step */}
+                  {index < steps.length - 1 && (
+                    <div
+                      className={cn(
+                        "w-px h-8 border-l-2 border-dashed mt-2",
+                        steps[index + 1].passed
+                          ? "border-[#15221B]"
+                          : "border-[#15221B]/30"
+                      )}
+                    />
+                  )}
+                </div>
 
-              {/* Text Below */}
-              <h1
-                className={cn(
-                  "text-[13px] font-semibold",
-                  step.passed ? "text-[#15221B]" : "text-[#15221B]/40"
-                )}
-              >
-                {step.status} {/* Display the title as it was originally */}
-              </h1>
-              <p
-                className={cn(
-                  "text-xs max-w-[140px] mt-1 font-medium font-satoshi",
-                  step.passed ? "text-[#6E6E6E]" : "text-[#6E6E6E]/40"
-                )}
-              >
-                {step.description}
-              </p>
-            </div>
-          ))}
-        </div>
+                {/* Text Content */}
+                <div className="flex-1 pb-2">
+                  <h1
+                    className={cn(
+                      "text-sm font-semibold",
+                      step.passed ? "text-[#15221B]" : "text-[#15221B]/40"
+                    )}
+                  >
+                    {step.status}
+                  </h1>
+                  <p
+                    className={cn(
+                      "text-xs mt-1 font-medium font-satoshi",
+                      step.passed ? "text-[#6E6E6E]" : "text-[#6E6E6E]/40"
+                    )}
+                  >
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
       )}
       {isPending && <LoadingData />}
     </div>

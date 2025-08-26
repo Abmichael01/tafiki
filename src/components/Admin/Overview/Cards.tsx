@@ -50,7 +50,8 @@ const Cards: React.FC<Partial<Overview>> = ({ todays_remittance, total_balance, 
         <div className="text-center font-satoshi h-full mt-[10px]">
           <h1 className="text-center text-[24px] font-satoshi font-[700] gap-[1px] flex items-center justify-center">
             {" "}
-            <span className=" text-[18px] text-[#15221B99]">£</span>{todays_remittance}
+            <span className=" text-[18px] text-white/60">£</span>
+            {todays_remittance?.toLocaleString("en-GB")}
           </h1>
         </div>
       </OverviewCard>
@@ -68,7 +69,8 @@ const Cards: React.FC<Partial<Overview>> = ({ todays_remittance, total_balance, 
         <div className="text-center font-satoshi h-full mt-[10px]">
           <h1 className="text-center text-[24px] font-satoshi font-[700] gap-[1px] flex items-center justify-center">
             {" "}
-            <span className=" text-[18px] text-[#15221B99]">£</span>{total_balance}
+            <span className=" text-[18px] text-white/60">£</span>
+            {total_balance?.toLocaleString("en-GB")}
           </h1>
         </div>
       </OverviewCard>

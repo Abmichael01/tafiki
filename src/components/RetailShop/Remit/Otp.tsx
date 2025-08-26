@@ -17,9 +17,10 @@ export default function Otp() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const amount = searchParams.get("amount");
+  const reference = searchParams.get("reference");
 
   const confirmOtpMutation = useMutation({
-    mutationFn: (data: { amount: string; otp: string }) => confirmRemittanceOtp(data),
+    mutationFn: (data: { amount: string; otp: string; reference: string }) => confirmRemittanceOtp(data),
     onSuccess: () => {
       toast.custom(() => (
         <Toast text="Remittance successful" icon={<HiMiniBuildingStorefront />} />
@@ -42,8 +43,8 @@ export default function Otp() {
   };
 
   const handleConfirm = () => {
-    if (otp.length === 4 && amount) {
-      confirmOtpMutation.mutate({ amount, otp });
+    if (otp.length === 4 && amount && reference) {
+      confirmOtpMutation.mutate({ amount, otp, reference });
     }
   };
 

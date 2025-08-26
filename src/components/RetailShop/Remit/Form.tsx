@@ -11,6 +11,16 @@ import { Toast } from "@/components/Admin/Toast";
 import { HiMiniBuildingStorefront } from "react-icons/hi2";
 import errorMessage from "@/lib/errorMessage";
 
+interface RemittanceResponse {
+  message: string;
+  remittance: {
+    amount: string;
+    created_at: string;
+    reference: string;
+    status: string;
+  };
+}
+
 const remitFormSchema = z.object({
   amount: z
     .string()
@@ -31,11 +41,12 @@ export default function Form() {
 
   const remittanceMutation = useMutation({
     mutationFn: (data: { amount: string }) => initiateRemittance(data),
-    onSuccess: (_, variables) => {
+    onSuccess: (data: RemittanceResponse, variables) => {
+      console.log(data);
       toast.custom(() => (
         <Toast text="OTP sent successfully" icon={<HiMiniBuildingStorefront />} />
       ));
-      navigate(`/retail-shop/remittance?current=2&amount=${variables.amount}`);
+      navigate(`/retail-shop/remittance?current=2&amount=${variables.amount}&reference=${data.remittance.reference}`);
     },
     onError: (error: Error) => {
       toast.custom(() => (

@@ -1,5 +1,11 @@
 import React from "react";
-import { ChevronRight, Upload, Plus, ArrowUpRight, Package } from "lucide-react";
+import {
+  ChevronRight,
+  Upload,
+  Plus,
+  ArrowUpRight,
+  Package,
+} from "lucide-react";
 import history from "@/assets/svgs/history.svg";
 import { Link } from "react-router-dom";
 import TransactionDetails from "./TransactionDetails";
@@ -7,7 +13,6 @@ import { Transaction } from "@/types/admin";
 import { formatDisplayTime } from "@/lib/formatDateTime";
 
 // Transaction type based on the provided data structure
-
 
 interface TransactionListProps {
   transactions: Transaction[];
@@ -42,9 +47,21 @@ const TransactionList: React.FC<TransactionListProps> = ({
     yesterday.setDate(yesterday.getDate() - 1);
 
     // Reset time to compare only dates
-    const transactionDateOnly = new Date(transactionDate.getFullYear(), transactionDate.getMonth(), transactionDate.getDate());
-    const todayOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-    const yesterdayOnly = new Date(yesterday.getFullYear(), yesterday.getMonth(), yesterday.getDate());
+    const transactionDateOnly = new Date(
+      transactionDate.getFullYear(),
+      transactionDate.getMonth(),
+      transactionDate.getDate()
+    );
+    const todayOnly = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate()
+    );
+    const yesterdayOnly = new Date(
+      yesterday.getFullYear(),
+      yesterday.getMonth(),
+      yesterday.getDate()
+    );
 
     if (transactionDateOnly.getTime() === todayOnly.getTime()) {
       return "Today";
@@ -61,7 +78,6 @@ const TransactionList: React.FC<TransactionListProps> = ({
   };
 
   // Helper function to format time for display
-  
 
   // Group transactions by date if groupByDate is true
   const groupedTransactions = groupByDate
@@ -81,11 +97,19 @@ const TransactionList: React.FC<TransactionListProps> = ({
   // Compose a "type" label from the transaction data
   const getTypeLabel = (transaction: Transaction) => {
     // Example: "Investment from Available Balance"
-    if (transaction.transaction_type && transaction.from_user && transaction.to) {
-      return `${capitalize(transaction.transaction_type)} from ${transaction.from_user} to ${transaction.to}`;
+    if (
+      transaction.transaction_type &&
+      transaction.from_user &&
+      transaction.to
+    ) {
+      return `${capitalize(transaction.transaction_type)} from ${
+        transaction.from_user
+      } to ${transaction.to}`;
     }
     if (transaction.transaction_type && transaction.from_user) {
-      return `${capitalize(transaction.transaction_type)} from ${transaction.from_user}`;
+      return `${capitalize(transaction.transaction_type)} from ${
+        transaction.from_user
+      }`;
     }
     return transaction.transaction_type
       ? capitalize(transaction.transaction_type)
@@ -120,10 +144,12 @@ const TransactionList: React.FC<TransactionListProps> = ({
       <div className="flex gap-3 items-center min-w-0 flex-1">
         <div
           className={`flex items-center justify-center rounded-full size-10 ${
-            (transaction.status?.toLowerCase() === "pending" &&
-              (transaction.transaction_type === "fund" || transaction.transaction_type === "withdraw"))
+            transaction.status?.toLowerCase() === "pending" &&
+            (transaction.transaction_type === "fund" ||
+              transaction.transaction_type === "withdraw")
               ? "bg-[#FFA5001A] text-[#FFA500]" // Orange for pending (only for fund/withdraw)
-              : transaction.transaction_type === "inflow" || transaction.transaction_type === "fund"
+              : transaction.transaction_type === "inflow" ||
+                transaction.transaction_type === "fund"
               ? "bg-[#16A34A1A] text-[#16A34A]"
               : transaction.transaction_type === "withdraw"
               ? "bg-[#B522171A] text-[#B52217]"
@@ -143,7 +169,6 @@ const TransactionList: React.FC<TransactionListProps> = ({
           ) : (
             <ArrowUpRight className="size-[20px]" />
           )}
-          
         </div>
         <div className="min-w-0 flex-1">
           <div className="font-satoshi font-[600] text-[15px] truncate text-nowrap">
@@ -157,23 +182,26 @@ const TransactionList: React.FC<TransactionListProps> = ({
           </div>
         </div>
       </div>
-      <div className="flex items-center">
-        {(transaction.transaction_type === "fund" || transaction.transaction_type === "withdraw") && showTransactionSign && (
-          <span className="text-[12px] font-medium mr-1 flex items-center justify-center h-full">
-            {transaction.transaction_type === "fund" ? "+" : "-"}
-          </span>
-        )}
-        <div className="flex flex-col items-end">
-          <div className="font-satoshi font-bold text-[15px] text-nowrap text-primary">
-                          £{Number(transaction.amount).toLocaleString('en-GB')}
-          </div>
-          {(transaction.transaction_type === "fund" || transaction.transaction_type === "withdraw") &&
-            transaction.status?.toLowerCase() === "pending" && (
-              <span className="text-[12px] font-medium text-[#FFA500] mt-1">
-                Pending
+      <div className="flex flex-col items-end">
+        <div className="flex items-center">
+          {(transaction.transaction_type === "fund" ||
+            transaction.transaction_type === "withdraw") &&
+            showTransactionSign && (
+              <span className="text-[12px] font-medium mr-1 flex items-center justify-center h-full">
+                {transaction.transaction_type === "fund" ? "+" : "-"}
               </span>
-          )}
+            )}
+          <div className="font-satoshi font-bold text-[15px] text-nowrap text-primary">
+            £{Number(transaction.amount).toLocaleString("en-GB")}
+          </div>
         </div>
+        {(transaction.transaction_type === "fund" ||
+          transaction.transaction_type === "withdraw") &&
+          transaction.status?.toLowerCase() === "pending" && (
+            <span className="text-[12px] font-medium text-[#FFA500] mt-1">
+              Pending
+            </span>
+          )}
       </div>
     </Link>
   );
@@ -181,7 +209,9 @@ const TransactionList: React.FC<TransactionListProps> = ({
   const renderTransactionList = (transactionList: Transaction[]) => (
     <div>
       {transactionList?.length > 0 ? (
-        transactionList.map((transaction, index) => renderTransaction(transaction, index))
+        transactionList.map((transaction, index) =>
+          renderTransaction(transaction, index)
+        )
       ) : (
         <div className="flex flex-col gap-3 lg:gap-5 justify-center items-center min-h-[100px] h-full">
           <img
@@ -200,7 +230,7 @@ const TransactionList: React.FC<TransactionListProps> = ({
       {heading && (
         <div className="flex justify-between items-center py-2">
           <h1 className="font-[600] text-[20px] text-primary">{heading}</h1>
-          {(showViewAll && transactions?.length !== 0 ) && (
+          {showViewAll && transactions?.length !== 0 && (
             <Link
               to={viewAllLink}
               className="text-xs text-[#1C274C] font-medium hover:underline flex gap-[2px] items-center"
@@ -214,14 +244,16 @@ const TransactionList: React.FC<TransactionListProps> = ({
 
       {groupByDate && groupedTransactions ? (
         <div className="space-y-6">
-          {Object.entries(groupedTransactions).map(([date, dateTransactions]) => (
-            <div key={date} className="space-y-3">
-              <h3 className="text-[14px] font-medium text-[#666] border-b border-gray-100 pb-2">
-                {date}
-              </h3>
-              {renderTransactionList(dateTransactions)}
-            </div>
-          ))}
+          {Object.entries(groupedTransactions).map(
+            ([date, dateTransactions]) => (
+              <div key={date} className="space-y-3">
+                <h3 className="text-[14px] font-medium text-[#666] border-b border-gray-100 pb-2">
+                  {date}
+                </h3>
+                {renderTransactionList(dateTransactions)}
+              </div>
+            )
+          )}
         </div>
       ) : (
         renderTransactionList(transactions)
@@ -229,15 +261,22 @@ const TransactionList: React.FC<TransactionListProps> = ({
 
       {/* Example TransactionDetails, you may want to pass real data */}
       <TransactionDetails
-        transaction={selected ? {
-          type: selected.transaction_type,
-          amount: String(selected.amount ?? '0.00'),
-          time: selected.created_at ?? new Date().toISOString(),
-          from: selected.from_user,
-          to: selected.to,
-          orderId: (selected as unknown as { order_id?: string }).order_id,
-          availableBalance: String(selected.available_balance_at_time ?? ''),
-        } : undefined}
+        transaction={
+          selected
+            ? {
+                type: selected.transaction_type,
+                amount: String(selected.amount ?? "0.00"),
+                time: selected.created_at ?? new Date().toISOString(),
+                from: selected.from_user,
+                to: selected.to,
+                orderId: (selected as unknown as { order_id?: string })
+                  .order_id,
+                availableBalance: String(
+                  selected.available_balance_at_time ?? ""
+                ),
+              }
+            : undefined
+        }
       />
     </div>
   );

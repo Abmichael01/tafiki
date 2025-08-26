@@ -105,7 +105,7 @@ const RecentOrders: React.FC<RecentOrdersProps> = ({
 
                   {/* Amount */}
                   <td className="px-4 py-3 font-bold text-[18px] text-center">
-                    £{order.amount}
+                    £{order.amount?.toLocaleString("en-GB")}
                   </td>
 
                   {/* Order Details or Status */}

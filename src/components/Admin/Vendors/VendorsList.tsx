@@ -3,64 +3,6 @@ import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getInitials } from "@/lib/getInitial";
 
-// Data rewritten to match the image exactly
-// const users = [
-//   {
-//     id: 1,
-//     name: "Kapac Ventures",
-//     email: "kapacventures@email.com",
-//     avatar: "https://i.pravatar.cc/40?img=10",
-//     owner: "David Kapac",
-//     todaysRemittance: "£300",
-//     totalRemittance: "£12,300.96",
-//   },
-//   {
-//     id: 2,
-//     name: "JIK Foods",
-//     email: "jiwest@email.com",
-//     avatar: "https://i.pravatar.cc/40?img=11",
-//     owner: "Jake Tut",
-//     todaysRemittance: "£2,300.20",
-//     totalRemittance: "£15,500.53",
-//   },
-//   {
-//     id: 3,
-//     name: "Penn Stores",
-//     email: "johndoe@email.com",
-//     avatar: "https://i.pravatar.cc/40?img=12",
-//     owner: "Chris Penn",
-//     todaysRemittance: "£0.0",
-//     totalRemittance: "£12,300.43",
-//   },
-//   {
-//     id: 4,
-//     name: "Kapac Ventures",
-//     email: "kapacventures@email.com",
-//     avatar: "https://i.pravatar.cc/40?img=10",
-//     owner: "David Kapac",
-//     todaysRemittance: "£500.50",
-//     totalRemittance: "£15,500.09",
-//   },
-//   {
-//     id: 5,
-//     name: "JIK Foods",
-//     email: "jiwest@email.com",
-//     avatar: "https://i.pravatar.cc/40?img=11",
-//     owner: "Jake Tut",
-//     todaysRemittance: "£2,300.20",
-//     totalRemittance: "£15,500.53",
-//   },
-//   {
-//     id: 6,
-//     name: "Penn Stores",
-//     email: "johndoe@email.com",
-//     avatar: "https://i.pravatar.cc/40?img=12",
-//     owner: "Chris Penn",
-//     todaysRemittance: "£0.0",
-//     totalRemittance: "£12,300.43",
-//   },
-// ];
-
 export default function VendorsList({ data }: { data: Vendor[] }) {
   console.log(data);
   return (
@@ -111,11 +53,11 @@ export default function VendorsList({ data }: { data: Vendor[] }) {
                 </td>
                 {/* Today's Remittance */}
                 <td className="px-4 py-3 font-semibold text-[15px]">
-                  £{user.today_remittance?.toLocaleString('en-GB')}
+                  £{user.today_remittance?.toLocaleString("en-GB")}
                 </td>
                 {/* Total Remittance */}
                 <td className="px-4 py-3 font-semibold text-[15px]">
-                  £{user.total_remittance?.toLocaleString('en-GB')}
+                  £{user.total_remittance?.toLocaleString("en-GB")}
                 </td>
               </tr>
             ))}

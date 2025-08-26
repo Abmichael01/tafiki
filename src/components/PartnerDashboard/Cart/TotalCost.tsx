@@ -13,7 +13,7 @@ const TotalCost: React.FC = () => {
         </div>
         <div className="flex items-center justify-between">
             <h2 className="">Delivery</h2>
-            <p className="">£50</p>
+            <p className="">£{(50).toLocaleString('en-GB')}</p>
         </div>
         <div className="flex items-center justify-between px-[24px] py-[12px] bg-[#F9F9F9]">
             <h2 className="text-[16px] font-[700]">Total Cost</h2>

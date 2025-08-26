@@ -30,7 +30,7 @@ export default function Overview({
       id: "portfolio-balance",
       label: "Portfolio Balance",
       icon: BiMoneyWithdraw, // Using money withdraw for portfolio balance
-      value: "£0",
+      value: `£${(0).toLocaleString('en-GB')}`,
     },
     {
       id: "wallet-balance",

@@ -22,7 +22,7 @@ const OrderTransactionFlow: React.FC = () => {
     return order?.payout_schedule.map((pay) => ({
       type: "Remittance Inflow",
       time: format(new Date(pay.payout_date), "H:mma, do MMM. yyyy"),
-      amount: `+£${pay.amount.toFixed(2)}`,
+      amount: `+£${pay.amount.toLocaleString('en-GB')}`,
     }));
   };
 
