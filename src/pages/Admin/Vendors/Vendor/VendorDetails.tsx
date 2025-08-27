@@ -114,8 +114,12 @@ export default function VendorDetails() {
         status={true}
         data={data?.vendor_details?.recent_orders as Order[]}
         link={`/admin/vendors/1/orders`}
+        showPartner={true}
       />
-      <Transactions showViewAll={true} />
+      <Transactions 
+        data={data?.vendor_details?.transactions} 
+        showViewAll={true} 
+      />
       <AddEditVendor data={data?.vendor_details as Vendor} />
       <RemoveVendor data={data?.vendor_details as Vendor} />
     </div>

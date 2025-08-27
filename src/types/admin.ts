@@ -90,7 +90,7 @@ export type Vendor = {
   today_remittance: number;
   recent_orders?: Order[];
   investments?: Order[];
-  transactions?: Transaction[];
+  transactions?: RemittanceHistory[];
   // Fields for saved vendor beneficiaries
   vendor_name?: string;
   vendor_email?: string;
@@ -139,18 +139,28 @@ export type WithdrawalData = {
   withdraw_id: string;
 };
 
+export type RemittanceHistory = {
+  remittance_id: string;
+  vendor_name: string;
+  amount: number;
+  status: "pending" | "completed";
+  created_at: string;
+};
+
 export type Overview = {
   pending_withdrawals: number;
   total_balance: number;
   todays_remittance: number;
   recent_orders: Order[];
   withdrawal_request: WithdrawalData[];
+  remittance_history: RemittanceHistory[];
 };
 
 export type VendorDetails = {
   total_remittance: number;
   today_remittance: number;
   vendor_details: Vendor;
+  remittance_history: RemittanceHistory[];
 };
 
 export type Notification = {

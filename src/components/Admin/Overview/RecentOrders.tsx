@@ -15,6 +15,7 @@ interface RecentOrdersProps {
   status?: boolean;
   link?: string;
   data: Order[];
+  showPartner?: boolean; // true to show partner name instead of vendor name
 }
 
 /**
@@ -25,6 +26,7 @@ const RecentOrders: React.FC<RecentOrdersProps> = ({
   status = false,
   link = "/admin/orders",
   data,
+  showPartner = false,
 }) => {
   return (
     <div className="bg-white text-sm overflow-hidden font-satoshi">
@@ -52,8 +54,7 @@ const RecentOrders: React.FC<RecentOrdersProps> = ({
             <thead>
               <tr className="text-[16px] text-[#6E6E6E] bg-[#F9F9F9] font-medium ">
                 <th className="px-4 py-2 text-center">Order ID and Date</th>
-                {/* Partner column removed per screenshot */}
-                <th className="px-4 py-2">To: Vendor</th>
+                <th className="px-4 py-2">To: {showPartner ? "Partner" : "Vendor"}</th>
                 <th className="px-4 py-2 text-center">Amount</th>
                 {!status && <th className="px-4 py-2">Order details</th>}
                 {status && <th className="px-4 py-2">Status</th>}
@@ -84,7 +85,7 @@ const RecentOrders: React.FC<RecentOrdersProps> = ({
                     </Link>
                   </td>
 
-                  {/* Vendor */}
+                  {/* Vendor or Partner */}
                   <td className="px-4 py-3 text-">
                     <div className="flex items-center gap-2">
                       <Avatar>
@@ -94,11 +95,11 @@ const RecentOrders: React.FC<RecentOrdersProps> = ({
                           className="size-[36px]"
                         />
                         <AvatarFallback className="size-[36px]">
-                          {getInitials(order.vendor_name)}
+                          {getInitials(showPartner ? order.partner_name : order.vendor_name)}
                         </AvatarFallback>
                       </Avatar>
                       <span className="text-[16px] font-[700]">
-                        {order.vendor_name}
+                        {showPartner ? order.partner_name : order.vendor_name}
                       </span>
                     </div>
                   </td>

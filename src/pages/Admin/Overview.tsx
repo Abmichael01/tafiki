@@ -29,8 +29,7 @@ export default function Overview() {
         pending_withdrawals={data?.pending_withdrawals}
       />
       <RecentOrders data={data?.recent_orders as Order[]} />
-      {/* <History heading="Remittance Inflow" data={dummyRemittanceData} /> */}
-      <RemittanceInflow />
+      <RemittanceInflow remittanceHistory={data?.remittance_history || []} />
       <WithdrawalRequests data={data?.withdrawal_request as WithdrawalData[]} />
     </div>
   );
