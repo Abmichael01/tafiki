@@ -1,10 +1,10 @@
 import React from "react";
-import { Transaction } from "@/types/admin";
+import { RemittanceHistory } from "@/types/admin";
 import TransactionCard from "./TransactionCard";
 import { TrendingUp } from "lucide-react";
 
 interface TransactionCardListProps {
-  transactions: Transaction[];
+  transactions: RemittanceHistory[];
   title?: string;
   emptyMessage?: string;
 }
@@ -37,7 +37,7 @@ const TransactionCardList: React.FC<TransactionCardListProps> = ({
       {/* Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {transactions.map((transaction) => (
-          <TransactionCard key={transaction.id} transaction={transaction} />
+          <TransactionCard key={transaction.remittance_id} transaction={transaction} />
         ))}
       </div>
     </div>

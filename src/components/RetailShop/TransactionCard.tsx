@@ -1,10 +1,10 @@
 import React from "react";
-import { Transaction } from "@/types/admin";
+import { RemittanceHistory } from "@/types/admin";
 import { formatDisplayTime } from "@/lib/formatDateTime";
 import { TrendingUp, Clock, CheckCircle, XCircle } from "lucide-react";
 
 interface TransactionCardProps {
-  transaction: Transaction;
+  transaction: RemittanceHistory;
 }
 
 const TransactionCard: React.FC<TransactionCardProps> = ({ transaction }) => {
@@ -50,7 +50,7 @@ const TransactionCard: React.FC<TransactionCardProps> = ({ transaction }) => {
           {getTransactionIcon()}
           <div>
             <h3 className="font-semibold text-lg text-gray-900">Remittance</h3>
-            <p className="text-sm text-gray-500">{transaction.partner_name}</p>
+            <p className="text-sm text-gray-500">from {transaction.vendor_name}</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -74,46 +74,26 @@ const TransactionCard: React.FC<TransactionCardProps> = ({ transaction }) => {
               isCredit ? "text-green-600" : "text-red-600"
             }`}
           >
-            {isCredit ? "+" : "-"}£{Number(transaction.amount).toLocaleString('en-GB')}
+            {isCredit ? "+" : "-"}£{transaction.amount.toLocaleString('en-GB')}
           </span>
         </div>
       </div>
 
       {/* Transaction Details */}
       <div className="space-y-2 mb-4">
-        {transaction.order_id && (
-          <div className="flex justify-between text-sm">
-            <span className="text-gray-600">Order ID:</span>
-            <span className="font-medium">{transaction.order_id}</span>
-          </div>
-        )}
+        <div className="flex justify-between text-sm">
+          <span className="text-gray-600">Remittance ID:</span>
+          <span className="font-medium font-mono text-xs">
+            {transaction.remittance_id}
+          </span>
+        </div>
 
-        {transaction.payment_method && (
-          <div className="flex justify-between text-sm">
-            <span className="text-gray-600">Payment Method:</span>
-            <span className="font-medium capitalize">
-              {transaction.payment_method}
-            </span>
-          </div>
-        )}
-
-        {transaction.reference && (
-          <div className="flex justify-between text-sm">
-            <span className="text-gray-600">Reference:</span>
-            <span className="font-medium font-mono text-xs">
-              {transaction.reference}
-            </span>
-          </div>
-        )}
-
-        {transaction.available_balance_at_time && (
-          <div className="flex justify-between text-sm">
-            <span className="text-gray-600">Balance at time:</span>
-            <span className="font-medium">
-              £{Number(transaction.available_balance_at_time).toLocaleString('en-GB')}
-            </span>
-          </div>
-        )}
+        <div className="flex justify-between text-sm">
+          <span className="text-gray-600">Vendor:</span>
+          <span className="font-medium">
+            {transaction.vendor_name}
+          </span>
+        </div>
       </div>
 
       {/* Date */}
@@ -122,7 +102,9 @@ const TransactionCard: React.FC<TransactionCardProps> = ({ transaction }) => {
           <span className="text-xs text-gray-500">
             {formatDisplayTime(transaction.created_at)}
           </span>
-          <span className="text-xs text-gray-500">ID: {transaction.id}</span>
+          <span className="text-xs text-gray-500">
+            {transaction.remittance_id.slice(-8)}
+          </span>
         </div>
       </div>
     </div>
