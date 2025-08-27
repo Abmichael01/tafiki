@@ -289,6 +289,7 @@ export default function AddEditVendor({ data }: NewVendorProps) {
                   <img src={imgIcon} alt="img" className="size-[40px]" />
                 )}
                 <input
+                  title="Change image"
                   ref={fileInputRef}
                   type="file"
                   accept="image/*"

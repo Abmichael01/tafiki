@@ -113,7 +113,7 @@ export default function VendorDetails() {
       <RecentOrders
         status={true}
         data={data?.vendor_details?.recent_orders as Order[]}
-        link={`/admin/vendors/1/orders`}
+        link={`/admin/vendors/${id}/orders`}
         showPartner={true}
       />
       <Transactions 

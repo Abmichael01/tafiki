@@ -93,7 +93,9 @@ const App = () => {
         <Route path="/retail-shop" element={<DeliveryLayout />}>
           <Route path="login" element={<VendorLogin />} />
           <Route path="register" element={<VendorRegister />} />
-          <Route element={<ProtectedRoute />}>
+        </Route>
+        <Route element={<ProtectedRoute />}>
+          <Route path="/retail-shop" element={<DeliveryLayout />}>
             <Route index element={<ShopDashboard />} />
             <Route path="orders" element={<RetailShopOrders />} />
             <Route path="transactions" element={<RetailShopTransactions />} />

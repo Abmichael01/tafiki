@@ -3,7 +3,7 @@ import { GoArrowLeft } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
 
 interface PageTitleProps {
-  title: string;
+  title?: string;
   subtitle?: string;
   showBack?: boolean;
   backLink?: string;
@@ -42,7 +42,7 @@ const PageTitle: React.FC<PageTitleProps> = ({
           </button>
         )}
         <h1 className="text-[20px] sm:text-[24px]">
-          {title}
+          {title && title}
           {subtitle && (
             <span className="font-[500] text-[14px] sm:text-[16px] text-[#929292]">
               /{subtitle}

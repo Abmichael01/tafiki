@@ -61,7 +61,7 @@ const LocatedAt: React.FC = () => {
             </div>
             <motion.h1
               dangerouslySetInnerHTML={{ __html: location.name }}
-              className="text-[16px] sm:text-[20px] sm:text-[24px] lg:text-[28px] font-[500] text-[#252525]"
+              className="text-[16px] sm:text-[20px] lg:text-[28px] font-[500] text-[#252525]"
             />
           </motion.div>
         ))}

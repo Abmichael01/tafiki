@@ -26,7 +26,7 @@ export default function Transactions() {
   }
 
   // Use transactions from vendor store
-  const transactions = vendor.transactions || [];
+  const transactions = vendor.remittances || [];
 
   return (
     <div className="space-y-6">

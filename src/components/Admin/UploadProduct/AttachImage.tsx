@@ -78,6 +78,7 @@ export default function AttachImage() {
           onClick={openFileDialog}
         >
           <input
+            title="Attach image"
             ref={fileInputRef}
             type="file"
             multiple

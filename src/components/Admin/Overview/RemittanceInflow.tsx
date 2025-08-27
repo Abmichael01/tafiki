@@ -1,6 +1,6 @@
 import React from "react";
 import { RemittanceHistory } from "@/types/admin";
-import { ChevronRight } from "lucide-react";
+// import { ChevronRight } from "lucide-react";
 import RemittanceCard from "./RemittanceCard";
 import history from "@/assets/svgs/history.svg";
 
@@ -13,10 +13,10 @@ const RemittanceInflow: React.FC<RemittanceInflowProps> = ({ remittanceHistory }
     <div className="space-y-[12px]">
       <div className="flex justify-between items-center">
         <h1 className="font-[600] text-[18px]">Remittance Inflow</h1>
-        <button className="hover:underline font-medium text-[14px] flex gap-[1px] items-center">
+        {/* <button className="hover:underline font-medium text-[14px] flex gap-[1px] items-center">
           View all
           <ChevronRight className="h-[15px] text-[#494949]" />
-        </button>
+        </button> */}
       </div>
 
       <div className="bg-white ">

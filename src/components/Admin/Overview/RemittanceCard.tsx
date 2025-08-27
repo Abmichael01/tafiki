@@ -5,9 +5,10 @@ import { formatDisplayTime } from "@/lib/formatDateTime";
 
 interface RemittanceCardProps {
   remittance: RemittanceHistory;
+  showFrom?: boolean; // Controls whether to show "from {vendor_name}"
 }
 
-const RemittanceCard: React.FC<RemittanceCardProps> = ({ remittance }) => {
+const RemittanceCard: React.FC<RemittanceCardProps> = ({ remittance, showFrom = true }) => {
   const { vendor_name, amount, status, created_at } = remittance;
   
   const statusColor = status === "completed" ? "text-[#16A34A]" : "text-[#F59E0B]";
@@ -21,9 +22,11 @@ const RemittanceCard: React.FC<RemittanceCardProps> = ({ remittance }) => {
         </div>
         <div className="font-satoshi">
           <h1 className="text-[16px] font-medium">Remittance</h1>
-          <p className="text-[12px] text-gray-500">
-            from {vendor_name}
-          </p>
+          {showFrom && (
+            <p className="text-[12px] text-gray-500">
+              from {vendor_name}
+            </p>
+          )}
           <p className="text-[10px] text-gray-400">
             {formatDisplayTime(created_at, { showYear: false, isRelative: true })}
           </p>

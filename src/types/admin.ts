@@ -91,6 +91,7 @@ export type Vendor = {
   recent_orders?: Order[];
   investments?: Order[];
   transactions?: RemittanceHistory[];
+  remittances?: RemittanceHistory[];
   // Fields for saved vendor beneficiaries
   vendor_name?: string;
   vendor_email?: string;

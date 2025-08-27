@@ -26,6 +26,7 @@ export default function ProductImages() {
             alt={`product-img-${index}`}
           />
           <button
+            title="Remove image"
             onClick={(e) => {
               e.stopPropagation();
               handleRemoveImage(index);
