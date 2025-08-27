@@ -5,10 +5,9 @@ import React from "react";
 import { GoArrowLeft } from "react-icons/go";
 import { Link, useSearchParams } from "react-router-dom";
 
-
 const NewBeneficiary: React.FC = () => {
-    const [params] = useSearchParams();
-    const current = params.get("current") || "addBeneficiary";
+  const [params] = useSearchParams();
+  const current = params.get("current") || "addBeneficiary";
 
   return (
     <div className="space-y-10">
@@ -22,9 +21,9 @@ const NewBeneficiary: React.FC = () => {
       </div>
       <div className=" flex justify-center">
         <div className="w-full md:w-[698px]">
-            {current === "addBeneficiary" && <AddBeneficiary /> }
-            {current === "confirmBeneficiary" && <ConfirmBeneficiary /> }
-            {current === "success" && <ConfirmSuccess /> }
+          {current === "addBeneficiary" && <AddBeneficiary />}
+          {current === "confirmBeneficiary" && <ConfirmBeneficiary />}
+          {current === "success" && <ConfirmSuccess />}
         </div>
       </div>
     </div>

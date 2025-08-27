@@ -7,10 +7,11 @@ import { useQuery } from "@tanstack/react-query";
 import { viewCart } from "@/api/apiEndpoints";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import LoadingData from "@/components/Admin/LoadingData";
 
 const Cart: React.FC = () => {
   const { items, updateCart } = useCartStore();
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["cartItems"],
     queryFn: viewCart,
   });
@@ -22,6 +23,8 @@ const Cart: React.FC = () => {
       updateCart(data.items as CartItemType[]);
     }
   }, [updateCart, data]);
+
+  if (isLoading) return <LoadingData />;
 
   return (
     <div className="space-y-[30px]">

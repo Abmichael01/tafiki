@@ -13,7 +13,6 @@ export default function SavedVendors() {
     queryFn: getVendorBeneficiaries,
   });
 
-  console.log(vendors)
 
   if (isLoading) return <LoadingData />;
 

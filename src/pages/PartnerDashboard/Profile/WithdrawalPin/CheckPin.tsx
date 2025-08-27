@@ -1,4 +1,5 @@
 import { checkTransactionPin } from "@/api/apiEndpoints";
+import LoadingData from "@/components/Admin/LoadingData";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
@@ -38,6 +39,8 @@ const CheckPin: React.FC = () => {
 
     setIsLoading(true);
   };
+
+  if (isLoading) return <LoadingData />;
 
   return (
     <div className="space-y-10">

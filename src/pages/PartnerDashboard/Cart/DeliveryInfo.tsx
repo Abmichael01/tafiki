@@ -9,12 +9,12 @@ import { viewCart } from "@/api/apiEndpoints";
 import { Link } from "react-router-dom";
 import { GoArrowLeft } from "react-icons/go";
 import TotalCost from "@/components/PartnerDashboard/Cart/TotalCost";
-
+import LoadingData from "@/components/Admin/LoadingData";
 
 
 const DeliveryInformation: React.FC = () => {
   const { items, updateCart } = useCartStore();
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["cartItems"],
     queryFn: viewCart,
   });
@@ -26,6 +26,8 @@ const DeliveryInformation: React.FC = () => {
       updateCart(data.items as CartItemType[]);
     }
   }, [updateCart, data]);
+
+  if (isLoading) return <LoadingData />;
 
   return (
     <div className="">

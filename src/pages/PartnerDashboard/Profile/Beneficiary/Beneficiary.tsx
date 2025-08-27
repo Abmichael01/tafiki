@@ -17,11 +17,12 @@ import {
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { deleteBeneficiary, getBeneficiaries } from "@/api/apiEndpoints";
 import { toast } from "sonner";
+import LoadingData from "@/components/Admin/LoadingData";
 
 
 
 const Beneficiary: React.FC = () => {
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["beneficiaries"],
     queryFn: getBeneficiaries,
   })
@@ -45,7 +46,8 @@ const Beneficiary: React.FC = () => {
   //     },
   //   });
   // }
-  console.log(data);
+  if (isLoading) return <LoadingData />;
+
   return (
     <div className="space-y-10">
       <div className="flex justify-between items-center">
