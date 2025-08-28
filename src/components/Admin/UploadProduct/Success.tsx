@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export default function Success() {
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState(""); 
 
   useEffect(() => {
     // Get URL parameters
