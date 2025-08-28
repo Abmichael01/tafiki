@@ -25,6 +25,7 @@ export default function ResetPassword() {
                     <div className="flex flex-col items-center gap-3">
                         <div className="w-full flex items-center">
                             <button
+                                title="Close"
                                 onClick={closeDialog}
                                 className="p-2 hover:bg-gray-100 rounded-full transition-colors"
                             >
@@ -49,6 +50,7 @@ export default function ResetPassword() {
                         
                         <div className="relative">
                             <input
+                                title="Current password"
                                 type={showPassword ? "text" : "password"}
                                 value={currentPassword}
                                 onChange={(e) => setCurrentPassword(e.target.value)}

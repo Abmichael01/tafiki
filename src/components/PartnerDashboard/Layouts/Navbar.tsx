@@ -93,7 +93,7 @@ const Navbar: React.FC = () => {
         to="#"
         className="px-[12px] py-[12px] text-[14px] bg-white rounded-[8px] h-full shrink-0 border flex items-center gap-[4px] border-[#F0F0F0]"
       >
-        <img src={notificationIcon} className="w-[20.5px] h-[18.7px]" />
+        <img title="notification" src={notificationIcon} className="w-[20.5px] h-[18.7px]" />
       </Link>
     </div>
   );

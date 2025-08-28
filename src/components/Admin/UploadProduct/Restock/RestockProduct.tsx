@@ -27,6 +27,7 @@ const formSchema = z.object({
 });
 
 export default function RestockProduct() {
+  const { productData } = useProductStore()
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,7 +35,6 @@ export default function RestockProduct() {
     },
   });
   const navigate = useNavigate()
-  const { productData } = useProductStore()
   const queryClient = useQueryClient()
 
   const { mutate, isPending } = useMutation<unknown, unknown, { id: number; stock_quantity: string }>({
@@ -46,8 +46,8 @@ export default function RestockProduct() {
   })
 
   const quantity = form.watch("quantity");
-  const bagsPerUnit = 5;
-  const units = parseInt(quantity, 10);
+  const bagsPerUnit = Number(productData.quantity_per_unit);
+  const units = Number(quantity)
   const isValidNumber = !isNaN(units) && units > 0;
   const totalBags = isValidNumber ? units * bagsPerUnit : 0;
 

@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getShopProducts } from "@/api/apiEndpoints";
 import useProductStore, { ProductData } from "@/stores/productStore";
+import LoadingData from "../../LoadingData";
 
 
 export default function Products() {
   const { updateProductData } = useProductStore()
   // Fetch real products from API
-  const { data: products = [] } = useQuery({
+  const { data: products = [], isLoading } = useQuery({
     queryKey: ["shopItems"],
     queryFn: getShopProducts,
   });
@@ -31,10 +32,12 @@ export default function Products() {
   };
 
   const getStatusByStock = (stock: number) => {
-    if (stock <= 5) return "Low";
-    if (stock <= 10) return "average";
+    if (stock <= 10) return "Low";
+    if (stock <= 20) return "Average";
     return "Good";
   };
+
+  if (isLoading) return <LoadingData />
 
   return (
     <div className="">
@@ -54,7 +57,7 @@ export default function Products() {
           {/* Product Rows */}
           <div className="divide-y divide-gray-100">
             {products?.map((product) => {
-              const units = Math.round( Number(product.stock_quantity) / Number(product.quantity_per_unit))
+              const units = Math.round( Number(product.stock_quantity))
               const bags = Number(product.stock_quantity) * Number(product.quantity_per_unit) || 0;
               const status = getStatusByStock(units as number);
 

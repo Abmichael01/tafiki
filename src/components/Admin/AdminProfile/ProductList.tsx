@@ -3,21 +3,6 @@ import { Link } from "react-router-dom";
 import { ShopProduct } from "@/types";
 import { cn } from "@/lib/utils";
 
-// Quantity status badge color mapping
-// const quantityStatusStyles: Record<string, { bg: string; text: string }> = {
-//   Good: {
-//     bg: "bg-green-100",
-//     text: "text-green-600",
-//   },
-//   Average: {
-//     bg: "bg-yellow-100",
-//     text: "text-yellow-600",
-//   },
-//   Low: {
-//     bg: "bg-red-100",
-//     text: "text-red-600",
-//   },
-// };
 
 interface Props {
   data: ShopProduct[];
@@ -70,8 +55,7 @@ function ProductList({ data }: Props) {
 
                 {/* Units available */}
                 <td className="px-4 py-3 text-[16px] text-center font-bold">
-                  {product.stock_quantity} units ({product.quantity_per_unit}{" "}
-                  bags)
+                  {product.stock_quantity} units ({Number(product.quantity_per_unit) * Number(product.stock_quantity)} bags)
                 </td>
 
                 {/* Quantity status */}
