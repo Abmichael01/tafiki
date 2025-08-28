@@ -41,7 +41,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
           <img src={garri} alt="" className="w-[106px]" />
           <div className="space-y-[8px]">
             <h2 className="text-[] font-[500]">{item.product_name}</h2>
-            <p className=""> { item.quantity } units = { item.quantity * 100} bags </p>
+            <p className=""> { item.quantity } units = 0 bags </p>
           </div>
         </div>
         <button

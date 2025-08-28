@@ -83,7 +83,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
       {/* Total Expected Returns */}
       <div className="flex justify-between items-center bg-[#16A34A0A] py-2 px-2">
         <span className="text-[14px] text-green-600">
-          Total Expected Returns: {roiPercentage}%
+          Total Expected Returns: {roiPercentage * items.length}%
         </span>
         <span className="text-[16px] font-semibold text-green-600">
           {formatCurrency(totalExpectedReturns)}
