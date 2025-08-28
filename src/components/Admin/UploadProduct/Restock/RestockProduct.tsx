@@ -27,35 +27,39 @@ const formSchema = z.object({
 });
 
 export default function RestockProduct() {
-  const { productData } = useProductStore()
+  const { productData } = useProductStore();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       quantity: "",
     },
   });
-  const navigate = useNavigate()
-  const queryClient = useQueryClient()
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
-  const { mutate, isPending } = useMutation<unknown, unknown, { id: number; stock_quantity: string }>({
+  const { mutate, isPending } = useMutation<
+    unknown,
+    unknown,
+    { id: number; stock_quantity: string }
+  >({
     mutationFn: ({ id, stock_quantity }) => restockProduct(id, stock_quantity),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["products"] })
-      navigate(`?dialog=upload-product&current=success&title=Product Restocked&description=${productData.name} has successfully been restocked!`)
-    }
-  })
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+      navigate(
+        `?dialog=upload-product&current=success&title=Product Restocked`
+      );
+    },
+  });
 
   const quantity = form.watch("quantity");
   const bagsPerUnit = Number(productData.quantity_per_unit);
-  const units = Number(quantity)
+  const units = Number(quantity);
   const isValidNumber = !isNaN(units) && units > 0;
   const totalBags = isValidNumber ? units * bagsPerUnit : 0;
 
   const handleSubmit = (values: { quantity: string }) => {
-    mutate({ id: productData.id as number, stock_quantity: values.quantity })
+    mutate({ id: productData.id as number, stock_quantity: values.quantity });
   };
-
-
 
   return (
     <div className="">
@@ -63,7 +67,10 @@ export default function RestockProduct() {
 
       <div className="p-4 space-y-6">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-[24px]">
+          <form
+            onSubmit={form.handleSubmit(handleSubmit)}
+            className="space-y-[24px]"
+          >
             {/* Product Name */}
             <div className="text-center">
               <h2 className="text-[14px] font-[600] text-[#252525]">
@@ -125,7 +132,7 @@ export default function RestockProduct() {
               className="w-full rounded-[8px]"
               disabled={!form.formState.isValid || isPending}
             >
-              {isPending ? 'Restocking...' : 'Restock'}
+              {isPending ? "Restocking..." : "Restock"}
             </Button>
           </form>
         </Form>

@@ -70,6 +70,9 @@ const ShopItemDetails: React.FC = () => {
                 <p className="text-[14px] font-satoshi font-[500]">
                   1 unit = {data?.quantity_per_unit} bags
                 </p>
+                <p className="text-[14px] font-satoshi font-[500]">
+                  available: {data?.stock_quantity} units
+                </p>
                 <span className="inline-flex items-center px-2 py-1 rounded-full text-[11px] font-semibold bg-primary/10 text-primary">
                   Vendor: {data?.company_name}
                 </span>

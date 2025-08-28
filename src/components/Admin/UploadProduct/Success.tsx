@@ -10,7 +10,7 @@ export default function Success() {
     const urlParams = new URLSearchParams(window.location.search);
     const titleParam = urlParams.get("title") || "Product Restocked";
     const descriptionParam =
-      urlParams.get("description") || "has successfully been restocked!";
+      urlParams.get("description") || "";
 
     setTitle(titleParam);
     setDescription(descriptionParam);

@@ -47,18 +47,18 @@ const History: React.FC<Props> = ({ heading, data }) => {
               <div
                 className={cn(
                   "p-2 rounded-full",
-                  item.type === "Remittance Inflow" ||
-                    item.type === "Wallet Funding"
-                    ? "bg-[#16A34A1A] text-[#16A34A]"
-                    : item.status === "pending"
+                  item.status === "pending"
                     ? "bg-[#FEF3C7] text-[#D97706]"
+                    : item.type === "Remittance Inflow" ||
+                      item.type === "Wallet Funding"
+                    ? "bg-[#16A34A1A] text-[#16A34A]"
                     : "bg-[#B522171A] text-[#B52217]"
                 )}
               >
-                {item.type == "Withdrawal" ? (
-                  <FiUpload className="size-[15px]" />
-                ) : item.type == "Pending Withdrawal" ? (
+                {item.status === "pending" ? (
                   <HistoryIcon className="size-[15px]" />
+                ) : item.type === "Withdrawal" ? (
+                  <FiUpload className="size-[15px]" />
                 ) : (
                   <FiPlus className="size-[15px]" />
                 )}

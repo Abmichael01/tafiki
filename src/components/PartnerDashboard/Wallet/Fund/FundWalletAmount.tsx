@@ -25,6 +25,7 @@ const FundWalletAmount: React.FC = () => {
     onSuccess: (data: StripePaymentResponse) => {
       console.log("Stripe payment data:", data);
       queryClient.invalidateQueries({ queryKey: ["userDetails"] });
+      queryClient.invalidateQueries({ queryKey: ["walletTransactions"] });
       
       // Store the payment data and navigate to Stripe payment
       if (data?.client_secret) {

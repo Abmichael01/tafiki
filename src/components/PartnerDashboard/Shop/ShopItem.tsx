@@ -40,7 +40,7 @@ const ShopItem: React.FC<Props> = ({ item }) => {
     <div className="flex flex-col gap-y-5 sm:flex-row sm:justify-between sm:items-center lg:px-[24px] py-[20px] border-b border-[#F0F0F0]">
       <div className="flex gap-[24px] items-center">
         <img src={garri} alt="" className="w-[106px]" />
-        <div className="space-y-2">
+        <div className="space-y-1">
           <div className="flex flex-col gap-2 sm:gap-4">
             <h1 className="text-[16px] font-semibold">
               {item.name} ({item.kg_per_unit}kg)
@@ -49,6 +49,10 @@ const ShopItem: React.FC<Props> = ({ item }) => {
           <p className="text-[14px]">
             1 unit ={" "}
             <span className="font-semibold">{item.quantity_per_unit} bags</span>
+          </p>
+          <p className="text-[14px]">
+            available: {" "}
+            (<span className="font-semibold">{item.stock_quantity}</span> units)
           </p>
           <span className="inline-flex items-center px-2 py-1 rounded-full text-[11px] font-semibold bg-primary/10 text-primary">
               Vendor: {item.company_name}

@@ -22,21 +22,34 @@ const Activities: React.FC<Props> = ({ title }) => {
           // Determine transaction type and sign
           const isInflow = transaction.transaction_type === "fund";
           const sign = isInflow ? "+" : "-";
-          
-          // Format the type label
-          const typeLabel = (() => {
+
+          // Format the type label with pending logic for all types
+          let typeLabel: string;
+          if (transaction.status === "pending") {
+            if (transaction.transaction_type === "fund") {
+              typeLabel = "Pending Wallet Funding";
+            } else if (transaction.transaction_type === "withdraw") {
+              typeLabel = "Pending Withdrawal";
+            } else {
+              // For any other transaction type, show "Pending" + type
+              typeLabel = `Pending ${transaction.transaction_type.charAt(0).toUpperCase() + transaction.transaction_type.slice(1)}`;
+            }
+          } else {
             switch (transaction.transaction_type) {
               case "fund":
-                return "Wallet Funding";
+                typeLabel = "Wallet Funding";
+                break;
               case "withdraw":
-                return transaction.status === "pending" ? "Pending Withdrawal" : "Withdrawal";
+                typeLabel = "Withdrawal";
+                break;
               case "investment":
-                return "Investment";
+                typeLabel = "Investment";
+                break;
               default:
-                return transaction.transaction_type;
+                typeLabel = transaction.transaction_type;
             }
-          })();
-    
+          }
+
           return {
             type: typeLabel,
             time: format(new Date(transaction.created_at), "H:mma, do MMM. yyyy"),

@@ -19,7 +19,7 @@ import { useMutation } from "@tanstack/react-query";
 import { addProduct, updateProduct } from "@/api/adminEndpoints";
 
 interface Props {
-  edit: boolean
+  edit: boolean;
 }
 
 export default function ProductSpecsForm({ edit }: Props) {
@@ -47,13 +47,14 @@ export default function ProductSpecsForm({ edit }: Props) {
     mutationFn: (data: FormData) => addProduct(data),
     onSuccess: () => {
       navigate(
-        "?dialog=upload-product&current=success&title=New Product Added&description=Food Hybrid Beans has successfully been added!"
+        "?dialog=upload-product&current=success&title=New Product Added"
       );
     },
   });
 
   const { mutate: update, isPending: isUpdating } = useMutation({
-    mutationFn: (data: FormData) => updateProduct(productData.id as number, data),
+    mutationFn: (data: FormData) =>
+      updateProduct(productData.id as number, data),
     onSuccess: () => {
       navigate(
         "?dialog=upload-product&current=success&title=New Product Added&description=Food Hybrid Beans has successfully been added!"
@@ -79,8 +80,7 @@ export default function ProductSpecsForm({ edit }: Props) {
     console.log("Complete Product Data:", completeProductData);
     console.log("FormData for submission:", formData);
 
-
-    const mutation = edit ? update : mutate
+    const mutation = edit ? update : mutate;
     mutation(formData);
     // Navigate to success page
   };
@@ -154,7 +154,13 @@ export default function ProductSpecsForm({ edit }: Props) {
             className="w-full text-white py-[16px] rounded-[8px] font-[500] text-[16px]"
             disabled={isPending || isUpdating}
           >
-            {isPending || isUpdating ? (isUpdating ? "Update Product..." : " Adding Product... " ) : (isUpdating ? "Update" : "Next" )}
+            {isPending || isUpdating
+              ? isUpdating
+                ? "Update Product..."
+                : " Adding Product... "
+              : isUpdating
+              ? "Update"
+              : "Next"}
           </Button>
         </form>
       </Form>
