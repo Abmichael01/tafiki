@@ -2,16 +2,52 @@ import React from "react";
 import { RemittanceHistory } from "@/types/admin";
 import { FiPlus } from "react-icons/fi";
 import { formatDisplayTime } from "@/lib/formatDateTime";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
+import { Check, X, Loader2 } from "lucide-react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { approveRemittance } from "@/api/adminEndpoints";
+import { toast } from "sonner";
 
 interface RemittanceCardProps {
   remittance: RemittanceHistory;
   showFrom?: boolean; // Controls whether to show "from {vendor_name}"
+  admin?: boolean;
 }
 
-const RemittanceCard: React.FC<RemittanceCardProps> = ({ remittance, showFrom = true }) => {
-  const { vendor_name, amount, status, created_at } = remittance;
+const RemittanceCard: React.FC<RemittanceCardProps> = ({
+  remittance,
+  showFrom = true,
+  admin = false,
+}) => {
+  const { vendor_name, amount, status, created_at, remittance_id } = remittance;
   
-  const statusColor = status === "completed" ? "text-[#16A34A]" : "text-[#F59E0B]";
+  const queryClient = useQueryClient();
+
+  const { mutate: handleRemittanceAction, isPending } = useMutation({
+    mutationFn: ({ remittance_id, action }: { remittance_id: string; action: "approve" | "reject" }) => {
+      const apiAction = action === "reject" ? "decline" : action;
+      return approveRemittance(remittance_id, apiAction);
+    },
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({ queryKey: ["remittances"] });
+      queryClient.invalidateQueries({ queryKey: ["overview"] });
+      const actionText = variables.action === "approve" ? "approved" : "rejected";
+      toast.success(`Remittance ${actionText} successfully`);
+    },
+    onError: (error) => {
+      console.error("Error processing remittance:", error);
+      toast.error("Failed to process remittance. Please try again.");
+    },
+  });
+
+  const statusColor =
+    status === "completed" ? "text-[#16A34A]" : "text-[#F59E0B]";
   const statusBg = status === "completed" ? "bg-[#16A34A1A]" : "bg-[#F59E0B1A]";
 
   return (
@@ -23,19 +59,70 @@ const RemittanceCard: React.FC<RemittanceCardProps> = ({ remittance, showFrom = 
         <div className="font-satoshi">
           <h1 className="text-[16px] font-medium">Remittance</h1>
           {showFrom && (
-            <p className="text-[12px] text-gray-500">
-              from {vendor_name}
-            </p>
+            <p className="text-[12px] text-gray-500">from {vendor_name}</p>
           )}
           <p className="text-[10px] text-gray-400">
-            {formatDisplayTime(created_at, { showYear: false, isRelative: true })}
+            {formatDisplayTime(created_at, {
+              showYear: false,
+              isRelative: true,
+            })}
           </p>
         </div>
       </div>
-      <div className="text-right">
+      <div className="text-right space-y-2">
         <h1 className="text-[16px] font-[700] font-satoshi">
-          +£{amount.toLocaleString('en-GB')}
+          +£{amount.toLocaleString("en-GB")}
         </h1>
+        {(admin && (status !== "approved" && status !== "rejected")  ) && (
+          <TooltipProvider>
+            <div className="flex items-center gap-2">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button 
+                    variant="outline" 
+                    size="icon" 
+                    className="size-[25px]"
+                    disabled={isPending}
+                    onClick={() => {
+                      handleRemittanceAction({ remittance_id, action: "approve" });
+                    }}
+                  >
+                    {isPending ? (
+                      <Loader2 className="size-[15px] animate-spin" />
+                    ) : (
+                      <Check className="size-[15px]" />
+                    )}
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Approve</p>
+                </TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button 
+                    variant="outline" 
+                    size="icon" 
+                    className="size-[25px]"
+                    disabled={isPending}
+                    onClick={() => {
+                      handleRemittanceAction({ remittance_id, action: "reject" });
+                    }}
+                  >
+                    {isPending ? (
+                      <Loader2 className="size-[15px] animate-spin" />
+                    ) : (
+                      <X className="size-[15px]" />
+                    )}
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Reject</p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
+          </TooltipProvider>
+        )}
       </div>
     </div>
   );

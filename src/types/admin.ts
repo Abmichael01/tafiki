@@ -144,7 +144,7 @@ export type RemittanceHistory = {
   remittance_id: string;
   vendor_name: string;
   amount: number;
-  status: "pending" | "completed";
+  status: string;
   created_at: string;
 };
 

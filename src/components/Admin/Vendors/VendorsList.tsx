@@ -2,14 +2,6 @@ import { Vendor } from "@/types/admin";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getInitials } from "@/lib/getInitial";
-import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Check, X } from "lucide-react";
 
 export default function VendorsList({ data }: { data: Vendor[] }) {
   console.log(data);
@@ -63,30 +55,7 @@ export default function VendorsList({ data }: { data: Vendor[] }) {
                 <td className="px-4 py-3 font-semibold text-[15px]">
                   <div className="flex items-center justify-center gap-2">
                     <p className="text-[14px]">£{user.today_remittance?.toLocaleString("en-GB")}</p>
-                    <TooltipProvider>
-                      <div className="flex items-center gap-2">
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Button variant="outline" size="icon" className="size-[25px]">
-                              <Check className="size-[15px]" />
-                            </Button>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Accept</p>
-                          </TooltipContent>
-                        </Tooltip>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Button variant="outline" size="icon" className="size-[25px]">
-                              <X className="size-[15px]" />
-                            </Button>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Decline</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </div>
-                    </TooltipProvider>
+                    
                   </div>
                 </td>
                 {/* Total Remittance */}

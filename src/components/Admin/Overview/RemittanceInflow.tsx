@@ -24,6 +24,7 @@ const RemittanceInflow: React.FC<RemittanceInflowProps> = ({ remittanceHistory }
           <div className="divide-y divide-[#F0F0F0]">
             {remittanceHistory.slice(0, 4).map((remittance) => (
               <RemittanceCard 
+                admin={true}
                 key={remittance.remittance_id} 
                 remittance={remittance} 
               />

@@ -17,7 +17,8 @@ const CartSummary: React.FC<CartSummaryProps> = ({
     (sum, item) => sum + item.total_roi,
     0
   );
-  const roiPercentage = items.length > 0 ? items[0].roi_percentage : 0; // Assuming same ROI for all items
+  const roiPercentage = items.reduce((sum, item) => sum + item.roi_percentage, 0);
+  const averageRoiPercentage = items.length > 0 ? roiPercentage / items.length : 0;
 
   // Get all ROI cycles from all items
   const allRoiCycles = items.flatMap((item) =>
@@ -83,7 +84,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
       {/* Total Expected Returns */}
       <div className="flex justify-between items-center bg-[#16A34A0A] py-2 px-2">
         <span className="text-[14px] text-green-600">
-          Total Expected Returns: {roiPercentage * items.length}%
+          Total Expected Returns: {roiPercentage}%
         </span>
         <span className="text-[16px] font-semibold text-green-600">
           {formatCurrency(totalExpectedReturns)}
@@ -97,7 +98,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
             <div className="flex justify-between gap-4 items-center">
               <span className="text-[#6E6E6E]">
               Cycle {cycle.cycle}: {formatDate(cycle.start_date)} -{" "}
-              {formatDate(cycle.payout_date)} (+{roiPercentage}% to Account Inflow)
+              {formatDate(cycle.payout_date)} (+{averageRoiPercentage}% to Account Inflow)
               </span>
               <span className="font-medium text-nowrap">
               +{formatCurrency(cycle.amount)}

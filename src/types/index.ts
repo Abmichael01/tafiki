@@ -31,6 +31,8 @@ export type ShopProduct = {
   kg_per_unit: number | string;
   quantity_per_unit: number | string;
   images?: string[]
+  total_bags?: number;
+
 }
 
 export type Order = {
@@ -132,6 +134,7 @@ export type CartItem = {
   roi_percentage: number;
   total_roi: number;
   roi_cycles: RoiCycle[];
+  total_bags: number;
 };
 
 export type ViewCartData = {
