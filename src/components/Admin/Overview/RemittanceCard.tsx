@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react";  
 import { RemittanceHistory } from "@/types/admin";
 import { FiPlus } from "react-icons/fi";
 import { formatDisplayTime } from "@/lib/formatDateTime";
@@ -31,7 +31,7 @@ const RemittanceCard: React.FC<RemittanceCardProps> = ({
 
   const { mutate: handleRemittanceAction, isPending } = useMutation({
     mutationFn: ({ remittance_id, action }: { remittance_id: string; action: "approve" | "reject" }) => {
-      const apiAction = action === "reject" ? "decline" : action;
+      const apiAction = action === "reject" ? "reject" : action;
       return approveRemittance(remittance_id, apiAction);
     },
     onSuccess: (_, variables) => {
@@ -46,9 +46,20 @@ const RemittanceCard: React.FC<RemittanceCardProps> = ({
     },
   });
 
-  const statusColor =
-    status === "completed" ? "text-[#16A34A]" : "text-[#F59E0B]";
-  const statusBg = status === "completed" ? "bg-[#16A34A1A]" : "bg-[#F59E0B1A]";
+  const isApproved = status === "approved";
+  const isRejected = status === "rejected";
+
+  const statusColor = isApproved
+    ? "text-[#16A34A]"
+    : isRejected
+    ? "text-[#B52217]"
+    : "text-[#F59E0B]";
+
+  const statusBg = isApproved
+    ? "bg-[#16A34A1A]"
+    : isRejected
+    ? "bg-[#B522171A]"
+    : "bg-[#F59E0B1A]";
 
   return (
     <div className="flex justify-between items-center py-[12px] border-b border-[#F0F0F0] last:border-b-0">
@@ -73,7 +84,8 @@ const RemittanceCard: React.FC<RemittanceCardProps> = ({
         <h1 className="text-[16px] font-[700] font-satoshi">
           +£{amount.toLocaleString("en-GB")}
         </h1>
-        {(admin && (status !== "approved" && status !== "rejected")  ) && (
+        {status === "pending" && <p className="text-[12px] text-gray-500">Confirming Otp...</p>}
+        {(admin && status === "completed"  ) && (
           <TooltipProvider>
             <div className="flex items-center gap-2">
               <Tooltip>

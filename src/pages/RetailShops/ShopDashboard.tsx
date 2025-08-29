@@ -1,9 +1,11 @@
-import { Package, Wallet } from "lucide-react";
+import { Package, Wallet, LogOut } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useVendor } from "@/hooks/useVendor";
+import useAuthStore from "@/stores/authStore";
 
 export default function ShopDashboard() {
   const { vendor, isVendorLoaded } = useVendor();
+  const { logout } = useAuthStore();
   console.log(vendor);
   return (
     <div className="space-y-3 flex flex-col">
@@ -33,6 +35,12 @@ export default function ShopDashboard() {
           Transactions <Wallet size={18} />
         </button>
       </Link>
+      <button
+        onClick={logout}
+        className="w-full px-5 flex gap-2 items-center justify-center py-3 rounded-sm bg-primary/10 hover:bg-primary/20 text-primary text-sm cursor-pointer transition-all duration-300"
+      >
+        Logout <LogOut size={18} />
+      </button>
     </div>
   );
 }

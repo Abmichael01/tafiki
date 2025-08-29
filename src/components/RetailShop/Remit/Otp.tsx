@@ -64,7 +64,7 @@ export default function Otp() {
           One-Time Passcode (OTP)
         </h1>
         <p className="text-[12px] font-satoshi font-medium">
-          Enter OTP sent to Vendor ({vendor?.store_email})
+          Enter OTP sent to Vendor ({vendor?.vendor_email})
         </p>
       </div>
       <InputOTP maxLength={4} value={otp} onChange={handleOtpChange}>

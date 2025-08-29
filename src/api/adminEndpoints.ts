@@ -106,7 +106,7 @@ export const getNotifications = async (): Promise<Notification[]> => {
   return res.data;
 };
 
-export const approveRemittance = async (remittance_id: string, action: "approve" | "decline"): Promise<unknown> => {
+export const approveRemittance = async (remittance_id: string, action: "approve" | "reject"): Promise<unknown> => {
   const res = await apiClient.post(`/wallet/remittance/${remittance_id}/approve/`, { action });
   return res.data;
 };
