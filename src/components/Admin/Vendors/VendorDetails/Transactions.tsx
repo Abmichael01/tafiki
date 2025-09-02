@@ -36,6 +36,7 @@ export default function Transactions({
                 key={remittance.remittance_id}
                 remittance={remittance}
                 showFrom={false}
+                admin={true}
               />
             ))}
           </div>

@@ -17,13 +17,13 @@ export default function Overview({ total_remittance, today_remittance, recent_or
             id: "todays-remittance",
             label: "Today's Remittance",
             icon: FaCirclePlus,
-            value: total_remittance,
+            value: today_remittance,
         },
         {
             id: "total-remittance",
             label: "Total Remittance",
             icon: BsArrowUpRightCircleFill,
-            value: today_remittance,
+            value: total_remittance,
         },
     ];
     return (

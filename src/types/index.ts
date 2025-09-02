@@ -30,7 +30,7 @@ export type ShopProduct = {
   description: string;
   kg_per_unit: number | string;
   quantity_per_unit: number | string;
-  images?: string[]
+  images?: string[] | File[];
   total_bags?: number;
 
 }

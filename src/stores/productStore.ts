@@ -2,9 +2,9 @@
 import { ShopProduct } from '@/types';
 import { create } from 'zustand'
 
-// Define the shape of product data
-export type ProductData = ShopProduct & {
-  images: string[];
+// Define the shape of product data for the store (extends ShopProduct but with File[] images)
+export type ProductData = Omit<ShopProduct, 'images'> & {
+  images: File[];
 }
 
 // Define the state and actions
@@ -46,7 +46,7 @@ const useProductStore = create<ProductStore>((set, get) => ({
     set((state) => ({
       productData: {
         ...state.productData,
-        images: [...state.productData.images, URL.createObjectURL(file)],
+        images: [...state.productData.images, file],
       },
     })),
 

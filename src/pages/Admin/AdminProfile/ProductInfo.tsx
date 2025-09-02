@@ -57,33 +57,35 @@ export default function ProductInfo() {
       />
 
       {/* Main Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-[30px]">
+      <div className="grid grid-cols-1 gap-[10px] lg:grid-cols-3 lg:gap-[30px]">
         {/* Product Images Section */}
-        <div className="">
+        <div className="flex flex-col justify-center items-center">
           {/* Main Image with Navigation */}
-          <div className="relative mb-4 flex items-center gap-2 p-2">
+          <div className="relative mb-4 flex items-center gap-2 p-2 w-full max-w-[300px] lg:max-w-none">
             <button
               title="Previous Image"
               type="button"
               onClick={prevImage}
-              className=" bg-white p-2 rounded-full hover:shadow-md cursor-pointer"
+              className="bg-white p-2 rounded-full hover:shadow-md cursor-pointer flex-shrink-0"
             >
               <ChevronLeft className="size-5 text-gray-700" />
             </button>
-            {(product?.images as string[]) ? (
-              <img
-                src={(product?.images as string[])[currentImageIndex]}
-                alt={product?.name}
-                className="size-[173px] object-contain rounded-lg"
-              />
-            ) : (
-              <div className="size-[173px] rounded-xl bg-[#f9f9f9]" />
-            )}
+            <div className="flex-1 min-w-0 flex justify-center">
+              {(product?.images as string[]) ? (
+                <img
+                  src={(product?.images as string[])[currentImageIndex]}
+                  alt={product?.name}
+                  className="max-w-full max-h-[200px] lg:max-h-[173px] object-contain rounded-lg"
+                />
+              ) : (
+                <div className="w-full h-[150px] lg:h-[173px] rounded-xl bg-[#f9f9f9]" />
+              )}
+            </div>
             <button
               title="Next Image"
               type="button"
               onClick={nextImage}
-              className=" bg-white p-2 rounded-full hover:shadow-md cursor-pointer"
+              className="bg-white p-2 rounded-full hover:shadow-md cursor-pointer flex-shrink-0"
             >
               <ChevronRight className="size-5 text-gray-700" />
             </button>
@@ -102,7 +104,7 @@ export default function ProductInfo() {
                 }`}
               >
                 <img
-                  src={image}
+                  src={image as string}
                   alt={`${product.name} ${index + 1}`}
                   className="w-full h-full object-contain"
                 />

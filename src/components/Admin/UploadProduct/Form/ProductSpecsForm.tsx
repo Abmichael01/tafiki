@@ -13,7 +13,7 @@ import Header from "./../Header";
 import clsx from "clsx";
 import useProductStore, { ProductData } from "@/stores/productStore";
 import { productSpecsSchema, productSpecsFields } from "./formSchemas";
-import ProductImages from "../ImageSelector";
+import ImageSelector from "../ImageSelector";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { addProduct, updateProduct } from "@/api/adminEndpoints";
@@ -92,12 +92,14 @@ export default function ProductSpecsForm({ edit }: Props) {
         Fill in details of new product
       </h2>
 
-      <div className="flex justify-center w-full">
+      {/* <div className="flex justify-center w-full">
         <div className="grid grid-cols-3 gap-5 scale-[0.7] w-full max-w-[80%]">
           <ProductImages />
         </div>
+      </div> */}
+      <div className="scale-[0.7] w-full m-auto">
+        <ImageSelector />
       </div>
-
       {/* Form */}
       <Form {...form}>
         <form
