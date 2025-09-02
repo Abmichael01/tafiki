@@ -17,6 +17,8 @@ import ImageSelector from "../ImageSelector";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { addProduct, updateProduct } from "@/api/adminEndpoints";
+import { toast } from "sonner";
+import errorMessage from "@/lib/errorMessage";
 
 interface Props {
   edit: boolean;
@@ -50,6 +52,10 @@ export default function ProductSpecsForm({ edit }: Props) {
         "?dialog=upload-product&current=success&title=New Product Added"
       );
     },
+    onError: (error: Error) => {
+      toast.error(errorMessage(error));
+      console.log(error);
+    },
   });
 
   const { mutate: update, isPending: isUpdating } = useMutation({
@@ -57,8 +63,12 @@ export default function ProductSpecsForm({ edit }: Props) {
       updateProduct(productData.id as number, data),
     onSuccess: () => {
       navigate(
-        "?dialog=upload-product&current=success&title=New Product Added&description=Food Hybrid Beans has successfully been added!"
+        "?dialog=upload-product&current=success&title=Product Updated"
       );
+    },
+    onError: (error: Error) => {
+        toast.error(errorMessage(error));
+        console.log(error);
     },
   });
 
