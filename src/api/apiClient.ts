@@ -4,8 +4,8 @@ import useAuthStore from "@/stores/authStore";
 
 // export const API_BASE_URL = import.meta.env.VITE_API_URL 
 
-export const API_BASE_URL = " https://backend.foodhybrid.com/api"
-// export const API_BASE_URL = " https://food-hybrid-backend.vercel.app/api"
+// export const API_BASE_URL = " https://backend.foodhybrid.com/api"
+export const API_BASE_URL = "https://foo-dhybrid-backend.onrender.com/api"
 
 // Create Axios instance
 const apiClient = axios.create({

@@ -12,6 +12,11 @@ export const getPartner = async (id: string): Promise<PartnerDetails> => {
   return res.data;
 };
 
+export const deletePartner = async (id: string): Promise<unknown> => {
+  const res = await apiClient.delete(`/users/partners/${id}/delete`);
+  return res.data;
+};
+
 export const getOverview = async (): Promise<Overview> => {
   const res = await apiClient.get("/users/admin/overview/");
   return res.data;

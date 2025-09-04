@@ -1,5 +1,6 @@
 interface ApiError extends Error {
   response?: {
+    status?: number;
     data:
       | {
           detail?: string;
@@ -18,15 +19,17 @@ interface ApiError extends Error {
 
 export default function errorMessage(error: ApiError | null): string {
   const data = error?.response?.data;
+  const status = error?.response?.status;
 
-  if (typeof data === "string") return data;
-
-  if (Array.isArray(data)) {
-    return data[0];
-  }
-
-  if (typeof data === "object" && data !== null) {
-    return (
+  // Get the error message
+  let message = "";
+  
+  if (typeof data === "string") {
+    message = data;
+  } else if (Array.isArray(data)) {
+    message = data[0];
+  } else if (typeof data === "object" && data !== null) {
+    message = (
       data.detail ??
       data.message ??
       data.error ??
@@ -38,7 +41,28 @@ export default function errorMessage(error: ApiError | null): string {
       Object.values(data)[0]?.[0] ??
       error?.message
     );
+  } else {
+    message = error?.message || "";
   }
 
-  return error?.message as string;
+  // If message is too long (more than 100 characters), show status message instead
+  if (message && message.length > 100) {
+    if (status) {
+      return `Request failed with status ${status}`;
+    } else {
+      return "Request failed";
+    }
+  }
+
+  // If no message but we have status, show status message
+  if (!message && status) {
+    return `Request failed with status ${status}`;
+  }
+
+  // If no message and no status, show generic error
+  if (!message) {
+    return "An error occurred";
+  }
+
+  return message;
 }

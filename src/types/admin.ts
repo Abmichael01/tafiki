@@ -33,6 +33,7 @@ export type StatusData = {
 };
 
 export type Partner = {
+  id: number;
   name: string;
   email: string;
   username: string;
