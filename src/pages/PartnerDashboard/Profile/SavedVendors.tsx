@@ -19,9 +19,9 @@ export default function SavedVendors() {
   if (error) {
     return (
       <div className="space-y-6">
-        <PageTitle title="Saved Vendors" showBack={true} />
+        <PageTitle title="Saved Retail Shops" showBack={true} />
         <div className="flex flex-col items-center justify-center h-64">
-          <p className="text-red-600">Failed to load saved vendors</p>
+          <p className="text-red-600">Failed to load saved retail shops</p>
         </div>
       </div>
     );
@@ -29,7 +29,7 @@ export default function SavedVendors() {
 
   return (
     <div className="space-y-6">
-      <PageTitle title="Saved Vendors" showBack={true} />
+      <PageTitle title="Saved Retail Shops" showBack={true} />
       
     
 
@@ -47,7 +47,7 @@ export default function SavedVendors() {
                     <AvatarFallback>{getInitials(vendor.vendor_name || "")}</AvatarFallback>
                   </Avatar>
                   <div className="space-y-1">
-                    <h3 className="text-sm font-semibold text-gray-900">{vendor.vendor_name || "Unknown Vendor"}</h3>
+                    <h3 className="text-sm font-semibold text-gray-900">{vendor.vendor_name || "Unknown Retail Shop"}</h3>
                     <div className="flex items-center space-x-4 text-xs text-gray-500">
                       <span className="flex items-center space-x-1">
                         <Phone className="h-3 w-3" />
@@ -67,9 +67,9 @@ export default function SavedVendors() {
       ) : (
         <div className="flex flex-col items-center justify-center h-64">
           <Building2 className="h-12 w-12 text-gray-300 mb-3" />
-          <h3 className="text-sm font-medium text-gray-900 mb-1">No saved vendors</h3>
+          <h3 className="text-sm font-medium text-gray-900 mb-1">No saved retail shops</h3>
           <p className="text-xs text-gray-500 text-center">
-            You haven't saved any vendors to your beneficiary list yet.
+            You haven't saved any retail shops to your beneficiary list yet.
           </p>
         </div>
       )}

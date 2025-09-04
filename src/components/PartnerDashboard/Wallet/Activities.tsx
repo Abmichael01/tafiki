@@ -53,7 +53,7 @@ const Activities: React.FC<Props> = ({ title }) => {
           return {
             type: typeLabel,
             time: format(new Date(transaction.created_at), "H:mma, do MMM. yyyy"),
-            amount: `${sign}£${parseFloat(transaction.amount).toLocaleString('en-GB')}`,
+            amount: `${sign}$${parseFloat(transaction.amount).toLocaleString('en-GB')}`,
             status: transaction.status,
           };
         });

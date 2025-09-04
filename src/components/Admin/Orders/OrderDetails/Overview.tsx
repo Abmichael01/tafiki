@@ -75,7 +75,7 @@ const Overview: React.FC<Props> = ({ data }) => {
             Amount paid
           </p>
           <p className="text-[14px] sm:text-[16px] font-[700]">
-            £{order?.amount_invested?.toLocaleString('en-GB')}
+            ${order?.amount_invested?.toLocaleString('en-GB')}
           </p>
         </div>
 
@@ -86,7 +86,7 @@ const Overview: React.FC<Props> = ({ data }) => {
           <p className="text-[14px] sm:text-[16px] font-[700] text-[#16A34A]">
             <span>+{order?.roi_rate}%</span>
             <span> | </span>
-            <span>£{order?.total_roi?.toLocaleString('en-GB')}</span>
+            <span>${order?.total_roi?.toLocaleString('en-GB')}</span>
           </p>
         </div>
       </div>

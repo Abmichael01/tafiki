@@ -56,7 +56,7 @@ export default function PartnerList({ data }: Props) {
 
                 {/* Total Purchase */}
                 <td className="px-4 py-3 font-semibold text-[15px]">
-                  £{user.total_purchase?.toLocaleString("en-GB")}
+                  ${user.total_purchase?.toLocaleString("en-GB")}
                 </td>
 
                 {/* Total Orders */}
@@ -66,7 +66,7 @@ export default function PartnerList({ data }: Props) {
 
                 {/* Total Balance */}
                 <td className="px-4 py-3 font-semibold text-[15px]">
-                  £{user.balance?.toLocaleString("en-GB")}
+                  ${user.balance?.toLocaleString("en-GB")}
                 </td>
               </tr>
             ))}

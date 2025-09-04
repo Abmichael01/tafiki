@@ -61,7 +61,7 @@ const FundWalletAmount: React.FC = () => {
       <div className="flex flex-col gap-[12px] items-center w-full">
         <h1 className="text-[20px] font-[500] ">Amount</h1>
         <h1 className="text-[44px] font-[900] flex items-center gap-[8px]">
-          <span className="text-[24px] font-[700]">£</span>
+          <span className="text-[24px] font-[700]">$</span>
           <span
             contentEditable
             autoFocus

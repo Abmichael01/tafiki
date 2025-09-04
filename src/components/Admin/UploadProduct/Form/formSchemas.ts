@@ -63,7 +63,7 @@ export const productSpecsFields: {
     label: "Price",
     placeholder: "Enter product price",
     type: "input",
-    suffix: "£",
+    suffix: "$",
   },
   {
     name: "stock_quantity",

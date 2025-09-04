@@ -45,7 +45,7 @@ const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
       {/* Amount */}
       <div className="mb-3">
         <span className="text-sm text-gray-600">
-          Amount: <span className="font-semibold text-primary">£{order.amount_invested?.toLocaleString('en-GB')}</span>
+          Amount: <span className="font-semibold text-primary">${order.amount_invested?.toLocaleString('en-GB')}</span>
         </span>
       </div>
 
@@ -53,7 +53,7 @@ const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
       {order.total_roi && (
         <div className="mb-3">
           <span className="text-sm text-gray-600">
-            ROI: <span className="font-semibold text-green-600">£{order.total_roi?.toLocaleString('en-GB')}</span>
+            ROI: <span className="font-semibold text-green-600">${order.total_roi?.toLocaleString('en-GB')}</span>
             {order.roi_rate && (
               <span className="text-xs text-gray-500 ml-1">({order.roi_rate}%)</span>
             )}
@@ -83,7 +83,7 @@ const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
             {order.roi_cycles.slice(0, 3).map((cycle, index) => (
               <div key={index} className="flex justify-between text-xs">
                 <span className="text-gray-600">Cycle {cycle.cycle}:</span>
-                <span className="font-medium">£{cycle.amount?.toLocaleString('en-GB')}</span>
+                <span className="font-medium">${cycle.amount?.toLocaleString('en-GB')}</span>
               </div>
             ))}
             {order.roi_cycles.length > 3 && (

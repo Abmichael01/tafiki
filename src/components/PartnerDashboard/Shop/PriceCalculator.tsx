@@ -39,7 +39,7 @@ const PriceCalculator: React.FC<Props> = ({ price, unit, setUnit }) => {
       </Select>
       <p className="font-[700] text-[20px] text-[#6E6E6E]"> = </p>
       <h1 className="text-[20px] text-[#252525] font-[700] font-satoshi">
-        £{totalPrice}
+        ${totalPrice}
       </h1>
     </div>
   );

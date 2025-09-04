@@ -77,7 +77,7 @@ export default function Products() {
                       <h3 className="text-sm font-medium text-gray-900">
                         {product.name}
                       </h3>
-                      <p className="text-xs text-gray-500">£{formatPrice(product.price)} per unit</p>
+                      <p className="text-xs text-gray-500">${formatPrice(product.price)} per unit</p>
                     </div>
                   </div>
 

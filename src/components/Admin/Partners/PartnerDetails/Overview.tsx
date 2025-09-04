@@ -24,19 +24,19 @@ export default function Overview({
       id: "total-purchases",
       label: "Total Purchase(s)",
       icon: IoMdBriefcase, // Using briefcase for purchases
-      value: "£"+data?.total_invested?.toLocaleString('en-GB'),
+      value: "$"+data?.total_invested?.toLocaleString('en-GB'),
     },
     {
       id: "portfolio-balance",
       label: "Portfolio Balance",
       icon: BiMoneyWithdraw, // Using money withdraw for portfolio balance
-      value: `£${(0).toLocaleString('en-GB')}`,
+      value: `$${(0).toLocaleString('en-GB')}`,
     },
     {
       id: "wallet-balance",
       label: "Wallet Balance",
       icon: FaWallet, // Using wallet icon for wallet balance
-      value: "£"+data?.balance?.toLocaleString('en-GB'),
+      value: "$"+data?.balance?.toLocaleString('en-GB'),
     },
   ];
   return (

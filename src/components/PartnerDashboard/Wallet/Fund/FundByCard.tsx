@@ -61,7 +61,7 @@ const FundByCard: React.FC = () => {
         <p>Your payment will be processed securely by Stripe. We don't store your card details.</p>
       </div>
       <div className="text-sm text-gray-600">
-        <p><strong>Amount to pay:</strong> £{amount}</p>
+        <p><strong>Amount to pay:</strong> ${amount}</p>
         <p><strong>Payment method:</strong> Credit/Debit Card</p>
       </div>
       <Button 

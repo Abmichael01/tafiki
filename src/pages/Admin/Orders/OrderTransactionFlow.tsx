@@ -29,7 +29,7 @@ const OrderTransactionFlow: React.FC = () => {
     return order?.roi_cycles.map((pay) => ({
       type: "Remittance Inflow",
       time: format(new Date(pay.payout_date), "H:mma, do MMM. yyyy"),
-      amount: `+£${pay.amount.toLocaleString('en-GB')}`,
+      amount: `+$${pay.amount.toLocaleString('en-GB')}`,
     }));
   };
 

@@ -94,14 +94,14 @@ const ApproveWithdrawal: React.FC<Props> = ({ data }) => {
             <AvatarFallback>{getInitials(data?.partner_name)}</AvatarFallback>
           </Avatar>
           <p className="text-[30px]  text-primary font-[700] font-satoshi">
-            £{data.amount}
+            ${data.amount}
           </p>
         </div>
 
         {/* Details */}
         <div className="font-satoshi space-y-[8px]">
           <p className="text-sm text-gray-500">
-            Available balance: <strong>£{data.balance}</strong>
+            Available balance: <strong>${data.balance}</strong>
           </p>
           <p className="text-sm text-gray-500">
             Withdrawal type:{" "}

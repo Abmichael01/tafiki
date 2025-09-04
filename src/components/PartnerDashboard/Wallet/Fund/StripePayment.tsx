@@ -79,7 +79,7 @@ const StripePaymentForm: React.FC = () => {
         <h3 className="font-semibold text-lg mb-2">Payment Summary</h3>
         <div className="flex justify-between items-center">
           <span>Amount:</span>
-          <span className="font-bold text-xl">£{amount}</span>
+          <span className="font-bold text-xl">${amount}</span>
         </div>
         <div className="flex justify-between items-center text-sm text-gray-600">
           <span>Reference:</span>
@@ -130,7 +130,7 @@ const StripePaymentForm: React.FC = () => {
             Processing Payment...
           </>
         ) : (
-          `Pay £${amount}`
+          `Pay $${amount}`
         )}
       </Button>
 

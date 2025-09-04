@@ -41,7 +41,7 @@ const Orders: React.FC<Props> = ({ orders, tab }) => {
           </div>
           <div className="flex flex-col justify-between items-end">
             <h1 className="text-[18px] text-[#252525] font-[700]">
-              £{order.amount_invested?.toLocaleString('en-GB')}
+              ${order.amount_invested?.toLocaleString('en-GB')}
             </h1>
             <p
               className={cn(

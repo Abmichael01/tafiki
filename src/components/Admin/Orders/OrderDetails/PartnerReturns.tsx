@@ -37,7 +37,7 @@ const PartnerReturns: React.FC<PartnerReturnsProps> = ({ roiData, roiPercentage 
 
         <div className="flex gap-1 items-center">
           <span className="text-green-700 font-semibold text-base">
-            £{totalExpectedReturn?.toLocaleString()}
+            ${totalExpectedReturn?.toLocaleString()}
           </span>
           <div className="bg-[#15221B]/20 gap-[1px] flex items-center text-white text-xs px-[3px] py-[1px] rounded-full font-medium">
             Paid
@@ -54,7 +54,7 @@ const PartnerReturns: React.FC<PartnerReturnsProps> = ({ roiData, roiPercentage 
               <span className="text-[#6E6E6E]">
                 Cycle {cycle.cycle}: {formatDate(cycle?.payout_date)} (+{roiPercentage}% to Portfolio)
               </span>
-              <span className="font-medium text-nowrap">+£{cycle.amount?.toLocaleString('en-GB')}</span>
+              <span className="font-medium text-nowrap">+${cycle.amount?.toLocaleString('en-GB')}</span>
             </div>
           </li>
         ))}

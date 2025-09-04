@@ -11,6 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getVendorsist } from "@/api/adminEndpoints";
 import { Vendor } from "@/types/admin";
 import LoadingData from "@/components/Admin/LoadingData";
+import AddEditVendor from "@/components/Admin/Vendors/AddEditVendor";
 
 export default function VendorsList() {
   const [params] = useSearchParams();
@@ -27,7 +28,7 @@ export default function VendorsList() {
   return (
     <div className="space-y-5">
       <PageTitle
-        title="Vendors List"
+        title="Retail Shops List"
         showBack={true}
         backLink="/admin/profile"
       />
@@ -47,14 +48,14 @@ export default function VendorsList() {
               className="hover:bg-[#15221B0A] text-primary px-4 py-2 rounded-full text-[14px] font-medium flex items-center gap-2"
             >
               <Edit3Icon className="size-[16px]" />
-              Edit Vendors List
+              Edit Retail Shops List
             </Link>
             <Link
               to="?dialog=add-edit-vendor"
               className="bg-[#15221B0A] text-primary px-4 py-2 rounded-full text-[14px] font-medium flex items-center gap-2"
             >
               <FiPlus />
-              New Vendor
+              New Retail Shop
             </Link>
           </div>
         ) : (
@@ -69,7 +70,7 @@ export default function VendorsList() {
               )}
             >
               <Trash className="size-[16px]" />
-              Remove Vendor(s)
+              Remove Retail Shop(s)
             </Link>
           </div>
         )}
@@ -80,6 +81,7 @@ export default function VendorsList() {
         <VendorsListComponent data={data?.vendors as Vendor[]} />
       )}
       <RemoveVendor />
+      <AddEditVendor />
     </div>
   );
 }

@@ -67,7 +67,7 @@ const WithdrawalRequests: React.FC<Props> = ({ all: viewAll, data }) => {
             </Link>
 
             <h1 className="text-[18px] font-[700] font-satoshi text-end">
-              £{item.amount}
+              ${item.amount}
             </h1>
           </div>
         ))}

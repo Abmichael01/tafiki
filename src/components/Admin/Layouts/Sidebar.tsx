@@ -33,7 +33,7 @@ const navs = [
     link: "/admin/partners",
   },
   {
-    name: "Vendors",
+    name: "Retail Shops",
     icon: <CiShop className="size-[20px]" />,
     slug: "vendors",
     link: "/admin/vendors",

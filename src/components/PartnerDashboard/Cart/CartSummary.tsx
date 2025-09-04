@@ -53,7 +53,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
   }));
 
   const formatCurrency = (amount: number) => {
-    return `£${amount.toLocaleString('en-GB')}`;
+    return `$${amount.toLocaleString('en-GB')}`;
   };
 
   const formatDate = (dateString: string) => {

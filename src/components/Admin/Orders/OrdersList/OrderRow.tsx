@@ -65,7 +65,7 @@ const OrderRow: React.FC<{ order: Order; status: boolean }> = ({
     {/* Amount */}
     <td className="py-3 px-4 text-right">
       <span className="text-[16px] font-[700]">
-                 £{Number(order.amount_invested).toLocaleString('en-GB')}
+                 ${Number(order.amount_invested).toLocaleString('en-GB')}
       </span>
     </td>
 

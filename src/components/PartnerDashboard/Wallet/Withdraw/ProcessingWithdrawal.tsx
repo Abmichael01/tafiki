@@ -13,7 +13,7 @@ const ProcessingWithdrawal: React.FC = () => {
         <FaMoneyBill className="fill-[#157811] size-[95.58px]" />
         <h1 className="text-[24px] font-[600]">Withdrawal processing</h1>
         <p className="text-[24px] font-[500] font-satoshi">
-          Your withdrawal request of £{withdrawal.amount} is being processed
+          Your withdrawal request of ${withdrawal.amount} is being processed
         </p>
       </div>
       <Button onClick={() => {close(); clearWithdrawal()}} className="w-full bg-[#15221B] mt-[60px]">Done</Button>

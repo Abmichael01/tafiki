@@ -7,11 +7,11 @@ export function cn(...inputs: ClassValue[]) {
 
 // Currency formatting utility
 export function formatCurrency(amount: number | string | undefined | null): string {
-  if (amount === undefined || amount === null) return "£0";
+  if (amount === undefined || amount === null) return "$0";
   
   const numAmount = typeof amount === 'string' ? parseFloat(amount) : amount;
   
-  if (isNaN(numAmount)) return "£0";
+  if (isNaN(numAmount)) return "$0";
   
-  return `£${numAmount.toLocaleString('en-GB')}`;
+  return `$${numAmount.toLocaleString('en-GB')}`;
 }

@@ -54,13 +54,13 @@ export default function VendorsList({ data }: { data: Vendor[] }) {
                 {/* Today's Remittance */}
                 <td className="px-4 py-3 font-semibold text-[15px]">
                   <div className="flex items-center justify-center gap-2">
-                    <p className="text-[14px]">£{user.today_remittance?.toLocaleString("en-GB")}</p>
+                    <p className="text-[14px]">${user.today_remittance?.toLocaleString("en-GB")}</p>
                     
                   </div>
                 </td>
                 {/* Total Remittance */}
                 <td className="px-4 py-3 font-semibold text-[15px]">
-                  £{user.total_remittance?.toLocaleString("en-GB")}
+                  ${user.total_remittance?.toLocaleString("en-GB")}
                 </td>
               </tr>
             ))}

@@ -45,7 +45,7 @@ function ProductList({ data }: Props) {
 
                 {/* Price per unit */}
                 <td className="px-4 py-3 text-center text-[16px] font-bold">
-                  £{product.price}
+                  ${product.price}
                 </td>
 
                 {/* Bags per unit */}

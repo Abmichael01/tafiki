@@ -20,7 +20,7 @@ const WithdrawalAmount: React.FC = () => {
         <div className="space-y-[8px]">
           <p className="">Amount</p>
           <div className="px-[16px] bg-[#F0F0F0] rounded-[12px] w-full text-[18px] flex items-center">
-            <span className="font-[500] text-[#929292]">£</span>
+            <span className="font-[500] text-[#929292]">$</span>
             <input
               value={amount}
               onChange={(e) => setAmount(Number(e.target.value))}

@@ -70,7 +70,7 @@ export default function VendorDetails() {
   return (
     <div className="space-y-10">
       <PageTitle
-        title="Vendors"
+        title="Retail Shops"
         subtitle={data?.vendor_details?.store_name}
         showBack={true}
       />
@@ -89,7 +89,7 @@ export default function VendorDetails() {
             className="flex gap-[8px] items-center cursor-pointer px-[12px] py-[4px] rounded-[4px] hover:bg-primary/5 transition-all duration-300 text-primary"
           >
             <Trash className="size-[16px]" />
-            Remove Vendor
+            Remove Retail Shop
           </Link>
         </div>
       </div>

@@ -192,7 +192,7 @@ const TransactionList: React.FC<TransactionListProps> = ({
               </span>
             )}
           <div className="font-satoshi font-bold text-[15px] text-nowrap text-primary">
-            £{Number(transaction.amount).toLocaleString("en-GB")}
+            ${Number(transaction.amount).toLocaleString("en-GB")}
           </div>
         </div>
         {(transaction.transaction_type === "fund" ||

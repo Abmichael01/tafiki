@@ -8,7 +8,7 @@ export default function Overview( data: Vendors ) {
   const statsData = [
     {
       id: "total-vendors",
-      label: "Total Vendors",
+      label: "Total Retail Shops",
       icon: HiUsers, // People icon representing vendors
       value: data.total_vendors,
     },

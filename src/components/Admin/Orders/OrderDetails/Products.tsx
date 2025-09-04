@@ -40,7 +40,7 @@ const Products: React.FC<Props> = ({ transactionsPage, products }) => {
               <h1 className="text-[18px] font-[500] text-[#494949]">
                 {product}
               </h1>
-              <p className="font-[900] text-[14px]">£{product}</p>
+              <p className="font-[900] text-[14px]">${product}</p>
               {/* <p className="text-[14px] font-[500] text-[#6E6E6E]">
                 {Math.floor(order_amount / Number(product.price))} units (
                 {Math.floor(

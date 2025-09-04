@@ -18,21 +18,21 @@ const partners: Partner[] = [
     name: "John Doe",
     email: "johndoe@email.com",
     avatar: "https://i.pravatar.cc/40?img=1",
-    amountDue: "£12,300",
+    amountDue: "$12,300",
   },
   {
     id: "2",
     name: "John Doe",
     email: "johndoe@email.com",
     avatar: "https://i.pravatar.cc/40?img=1",
-    amountDue: "£12,300",
+    amountDue: "$12,300",
   },
   {
     id: "3",
     name: "John Doe",
     email: "johndoe@email.com",
     avatar: "https://i.pravatar.cc/40?img=1",
-    amountDue: "£12,300",
+    amountDue: "$12,300",
   },
 ];
 

@@ -74,7 +74,7 @@ const TransactionCard: React.FC<TransactionCardProps> = ({ transaction }) => {
               isCredit ? "text-green-600" : "text-red-600"
             }`}
           >
-            {isCredit ? "+" : "-"}£{transaction.amount.toLocaleString('en-GB')}
+            {isCredit ? "+" : "-"}${transaction.amount.toLocaleString('en-GB')}
           </span>
         </div>
       </div>

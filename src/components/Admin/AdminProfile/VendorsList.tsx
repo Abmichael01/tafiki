@@ -4,6 +4,7 @@ import { useDataSelect } from "@/stores/useDataSelect";
 import { Vendor } from "@/types/admin";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getInitials } from "@/lib/getInitial";
+import { Link } from "react-router-dom";
 
 // Mock vendors data
 
@@ -76,12 +77,13 @@ const VendorsList: React.FC<VendorsListProps> = ({ select = false, data }) => {
                       </span>
                     </div>
 
-                    <button
+                    <Link
+                      to="/admin/profile/vendors-list"
                       onClick={handleCancel}
                       className="text-blue-600 hover:text-blue-700 text-sm font-medium"
                     >
                       Cancel
-                    </button>
+                    </Link>
                   </div>
                 </td>
               </tr>
@@ -106,7 +108,7 @@ const VendorsList: React.FC<VendorsListProps> = ({ select = false, data }) => {
                     )}
                     <Avatar className="size-10 text-primary">
                       <AvatarImage
-                        src="https://github.com/shadcn.pn"
+                        src=""
                         alt="@shadcn"
                       />
                       <AvatarFallback className=" bg-primary/40">{getInitials(vendor.store_name)}</AvatarFallback>

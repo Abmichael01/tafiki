@@ -82,7 +82,7 @@ const RemittanceCard: React.FC<RemittanceCardProps> = ({
       </div>
       <div className="text-right space-y-2">
         <h1 className="text-[16px] font-[700] font-satoshi">
-          +£{amount.toLocaleString("en-GB")}
+          +${amount.toLocaleString("en-GB")}
         </h1>
         {status === "pending" && <p className="text-[12px] text-gray-500">Confirming Otp...</p>}
         {(admin && status === "completed"  ) && (
