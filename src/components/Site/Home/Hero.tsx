@@ -24,7 +24,7 @@ export default function Hero() {
           whileInView="animate"
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeInUp}
-          className="font-gilroy text-[40px] md:text-[60px] font-[400] leading-none"
+          className="font-gilroy text-[40px] md:text-[60px] font-[700] leading-none"
         >
           Smarter Food Logistics
         </motion.h1>

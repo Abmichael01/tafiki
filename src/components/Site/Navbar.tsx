@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 import { Menu } from 'lucide-react';
 import { useSidebarStore } from '@/stores/sidebarStore';
 import MobileNavbar from './MobileNavbar';
-import { fadeInUp, slideInLeft, slideInRight, staggerContainer } from '@/lib/animations';
+import { fadeInUp, slideInLeft, slideInRight } from '@/lib/animations';
 
 const navItems = [
   { name: 'Home', href: '/home' },

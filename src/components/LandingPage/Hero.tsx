@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <div className="relative flex items-center justify-between w-full gap-[30px] min-h-[650px]">
       <div className=" section-padding-left max-w-[90%] sm:max-w-[80%] md:max-w-[60%] lg:max-w-[48%] relative z-[1]">
-        <h1 className="font-gilroy text-[40px] md:text-[60px] font-[400] leading-none">
+        <h1 className="font-gilroy text-[40px] md:text-[60px] font-[700] leading-none">
           Smarter Food Logistics
         </h1>
         <p className="text-[16px] md:text-[18px] font-[400] text-[#5D5D5D] leading-[24px] mt-[20px]">
