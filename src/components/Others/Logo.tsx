@@ -7,10 +7,10 @@ interface LogoProps {
   noLink?: boolean;
   width?: number;
   height?: number;
-  color?: 'white' | 'dark';
+  color?: 'white' | 'black';
 }
 
-const Logo: React.FC<LogoProps> = ({ className, noLink, width, height, color = 'dark' }) => {
+const Logo: React.FC<LogoProps> = ({ className, noLink, width, height, color = 'black' }) => {
   const logoSrc = color === 'white' ? '/logoWhite.svg' : '/logo.svg';
   
   return (
