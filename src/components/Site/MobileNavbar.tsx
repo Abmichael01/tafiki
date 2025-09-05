@@ -30,7 +30,7 @@ const MobileNavbar: React.FC = () => {
           exit={{ left: "-400px", opacity: 0 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
           className={cn(
-            "w-[300px] lg:hidden fixed top-0 h-[100vh] bg-white shrink-0 flex flex-col gap-4 pb-10 justify-between border shadow-xl z-[102]"
+            "w-[300px] lg:hidden fixed top-0 h-[100vh] bg-white shrink-0 flex flex-col gap-4 pb-10 justify-between border shadow-xl z-[19234]"
           )}
         >
           <div className="space-y-8 flex flex-col">

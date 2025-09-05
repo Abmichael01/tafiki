@@ -1,4 +1,6 @@
 import Logo from "@/components/Others/Logo";
+import { motion } from "framer-motion";
+import { fadeInUp, slideInLeft, slideInRight, staggerContainer, zoomIn } from "@/lib/animations";
 
 const steps = [
   {
@@ -24,16 +26,26 @@ const steps = [
 export default function HowItWorks() {
   return (
     <div className="section-padding section-spacing">
-      <div className="flex gap-4 items-center justify-center text-[48px] text-[#5D5D5D] font-satoshi leading-none font-[950] mb-20">
+      <motion.div 
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeInUp}
+        className="flex gap-4 items-center justify-center text-[48px] text-[#5D5D5D] font-satoshi leading-none font-[950] mb-20"
+      >
         <h1 className="">How</h1>
         <Logo noLink className="w-[150px]" />
         {"Works"}
-      </div>
+      </motion.div>
 
       <div className="space-y-50 font-satoshi">
         {steps.map((step, index) => (
-          <div
+          <motion.div
             key={step.number}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={index % 2 === 0 ? slideInLeft : slideInRight}
             className={`flex items-center gap-8 ${
               index % 2 === 0 ? "flex-row" : "flex-row-reverse"
             } min-h-[100px]`}
@@ -70,7 +82,7 @@ export default function HowItWorks() {
               </div>
             </div>
             <div className="flex-1"></div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

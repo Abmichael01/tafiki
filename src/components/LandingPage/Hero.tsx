@@ -1,4 +1,5 @@
 import { IoGlobeOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
@@ -12,16 +13,16 @@ export default function Hero() {
           local communities, and bringing Africa’s rich food legacy to the
           world.
         </p>
-        <button className="flex items-center gap-2 px-4 py-2 bg-primary rounded-full text-white mt-[40px]">
+        <Link to="/home" className="flex items-center gap-2 px-4 py-2 bg-primary rounded-full w-fit text-white mt-[40px]">
           <span>Visit Our Website</span>
           <IoGlobeOutline />
-        </button>
+        </Link>
       </div>
       <img
         src="/landinghero.png"
         alt="hero"
         loading="lazy"
-        className="lg:h-[700px] object-cover absolute top-0 right-0 min-[200px]:size-[150px] min-[300px]:size-[200px] min-[400px]:size-[250px] sm:size-[300px] md:size-[400px] rounded-bl-full lg:rounded-bl-none lg:w-auto"
+        className="lg:h-[700px] object-cover absolute lg:relative top-0 right-0 min-[200px]:size-[150px] min-[300px]:size-[200px] min-[400px]:size-[250px] sm:size-[300px] md:size-[400px] rounded-bl-full lg:rounded-bl-none lg:w-auto"
       />
       {/* <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-r from-[white] to-transparent " /> */}
     </div>
