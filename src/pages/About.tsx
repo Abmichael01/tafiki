@@ -1,23 +1,26 @@
-import Allergy from '@/components/Site/About/Allergy'
-import AtFoodHybrid from '@/components/Site/About/AtFoodHybrid'
 import Expertise from '@/components/Site/About/Expertise'
 import Hero from '@/components/Site/About/Hero'
-import OurStandards from '@/components/Site/About/OurStandards'
-import RootedAndDriven from '@/components/Site/About/RootedAndDriven'
-import Welcome from '@/components/Site/About/Welcome'
+// import OurStandards from '@/components/Site/About/OurStandards'
 import NewsLetter from '@/components/Site/Home/NewsLetter'
 import React from 'react'
+import GlobalFootprint from '@/components/Site/Home/GlobalFootprint'
+import AtTafiki from '@/components/Site/About/AtTafiki'
+import OurStandards from '@/components/Site/Home/OurStandards'
+import OurFacility from '@/components/Site/Home/OurFacility'
+import FoodSafety from '@/components/Site/Home/FoodSafety'
+import Tafiki from '@/components/Site/About/Tafiki'
 
 const About: React.FC = () => {
   return (
     <div>
         <Hero />
-        <Welcome />
-        <RootedAndDriven />
+        <GlobalFootprint />
+        <AtTafiki />
         <OurStandards />
-        <Allergy />
+        <OurFacility />
+        <FoodSafety />
         <Expertise />
-        <AtFoodHybrid />
+        <Tafiki />
         <NewsLetter />
     </div>
   )

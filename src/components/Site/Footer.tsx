@@ -1,143 +1,102 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Mail, MapPin, PhoneIcon, ChevronDown } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { Link } from "react-router-dom";
+import { Mail, PhoneIcon } from "lucide-react";
 import Logo from "../Others/Logo";
-import Motto from "../Others/Motto";
-import { FaFacebook, FaInstagram, FaXTwitter } from "react-icons/fa6";
-import { Separator } from "../ui/separator";
+import { FaFacebookF, FaInstagram, FaXTwitter } from "react-icons/fa6";
 
 const links = [
   { name: "Home", link: "/" },
-  { name: "About", link: "/about" },
-  { name: "FAQ", link: "/faq" },
-  { name: "Reward and loyalty programme", link: "/loyalty" },
+  { name: "About Us", link: "/about" },
+  { name: "Reward & Loyalty Program", link: "/loyalty" },
   { name: "Contact", link: "/contact" },
 ];
 
-const CustomSeparator: React.FC = () => {
-  return (
-    <div className="w-[80%]">
-      <Separator className="lg:hidden sm:block hidden bg-[#3C474166] " />
-    </div>
-  );
-};
-
 const Footer: React.FC = () => {
-  const navigate = useNavigate();
   return (
-    <footer className="section-padding bg-[#15221B] text-white overflow-hidden">
-      <div className="flex flex-col lg:flex-row items-start sm:items-center lg:items-start gap-[25px] sm:gap-[40px] lg:gap-[10px] justify-between py-20 w-full">
-        {/* Logo and Motto */}
-        <div className="space-y-[40px] flex flex-col items-start sm:items-center lg:items-start">
-          <Logo color="white" className="w-[112px] h-[55.53px] object-cover" />
-          <Motto
-            className="flex flex-col items-start sm:items-center lg:items-start  text-nowrap"
-            sizes={["text-[32px]", "text-[18px]"]}
-          />
-        </div>
-
-        <CustomSeparator />
-
-        {/* Navigation Links */}
-        <nav className="hidden space-y-[12px] sm:flex flex-col items-start sm:items-center lg:items-start">
-          {links.map((link, index) => (
-            <Link to={link.link} key={index} className="hover:underline">
-              {link.name}
-            </Link>
-          ))}
-        </nav>
-
-        <nav className=" sm:hidden flex flex-col gap-8 text-white p-[15px] bg-[#111C16CC] rounded-[16px] w-full">
-          <Link to="/home">Home</Link>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex gap-1 justify-between items-center outline-none cursor-pointer w-full">
-              Company
-              <ChevronDown className="w-4 h-4" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="z-[99999]">
-              <DropdownMenuItem onClick={() => navigate("/about")}>
-                About us
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => navigate("/faq")}>
-                FAQ
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => navigate("/reward-loyalty-program")}
-              >
-                Rewards & Loyalty Program
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <Link to="/contact">Contact</Link>
-        </nav>
-
-        <CustomSeparator />
-
-        {/* Contact Information */}
-        <div className="space-y-[40px]">
-          <div className="space-y-[20px] flex flex-col items-start sm:items-center lg:items-start">
+    <footer className="bg-[#3D8A42] text-white overflow-hidden relative font-satoshi">
+      <div className="section-padding pt-16 pb-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          {/* Logo and Social Media */}
+          <div className="space-y-4 sm:space-y-6">
             <div className="flex items-center gap-2">
-              <PhoneIcon />
-              <h2 className="text-[18px] text-nowrap">
-                02035762136
-              </h2>
+              <Logo color="white" className="w-[120px] h-[40px]" />
             </div>
-
-            <div className="flex items-center gap-2">
-              <Mail />
-              <h2>info@foodhybrid.co.uk</h2>
-            </div>
-
-            <div className="flex items-start gap-2">
-              <MapPin />
-              <h2 className="flex flex-col items-start sm:items-center lg:items-start gap-2 text-start sm:text-center lg:text-start">
-                <span>
-                  Hybrid Foods & Mart Limited <br /> Plots 2-6, Owode Street,
-                  Lagere <br /> Ile-Ife, Nigeria
-                </span>
-                <span>
-                  Food Hybrid (UK) Limited 128 <br />City road, London <br />{" "}
-                  EC1V 2NX
-                </span>
-              </h2>
+            <p className="text-white/90 text-lg font-medium">
+              Smarter Food Logistics
+            </p>
+            <div className="flex gap-4">
+              <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors cursor-pointer">
+                <FaFacebookF className="text-white text-lg" />
+              </div>
+              <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors cursor-pointer">
+                <FaInstagram className="text-white text-lg" />
+              </div>
+              <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors cursor-pointer">
+                <FaXTwitter className="text-white text-lg" />
+              </div>
             </div>
           </div>
-          <div className="lg:flex hidden gap-[10px] pl-[32px]">
-            <FaFacebook />
-            <FaInstagram />
-            <FaXTwitter />
+
+          {/* Navigation Links */}
+          <div className="space-y-4">
+            <nav className="space-y-3">
+              {links.map((link, index) => (
+                <Link
+                  to={link.link}
+                  key={index}
+                  className="block text-white hover:text-gray-300 transition-colors"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </nav>
           </div>
-        </div>
 
-        <CustomSeparator />
+          {/* Contact Information */}
+          <div className="space-y-4">
+            <div className="space-y-3">
+              <div className="flex items-start gap-3">
+                <PhoneIcon className="text-white text-lg mt-1 flex-shrink-0" />
+                <span className="text-white/90 text-sm leading-relaxed">
+                  1800-121-3637, +91-7052-101-786
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <Mail className="text-white/90 text-lg mt-1 flex-shrink-0" />
+                <span className="text-white/90 text-sm">info@tafiki.co.uk</span>
+              </div>
+            </div>
+          </div>
 
-        {/* Call to Action */}
-        <div className="space-y-[24px] flex flex-col items-center lg:items-start">
-          <h2 className="font-semibold sm:font-medium text-[20px] text-nowrap text-center">
-            Get started with Food Hybrid <br className="hidden lg:block" />{" "}
-            today!
-          </h2>
-          <button className="bg-white text-[#15221B] rounded-[4px] w-[70%] sm:w-full py-[10px] hover:bg-gray-100 transition">
-            Sign up
-          </button>
-          <div className="flex lg:hidden justify-center lg:justify-start gap-[40px] lg:gap-[10px] pl-[32px]">
-            <FaFacebook className="size-[40px]" />
-            <FaInstagram className="size-[40px]" />
-            <FaXTwitter className="size-[40px]" />
+          {/* Call to Action */}
+          <div className="space-y-4">
+            <h3 className="text-white font-bold text-xl">
+              Join the Tafiki Movement
+            </h3>
+            <p className="text-white/80 text-sm leading-relaxed">
+              Ready to become a virtual distributor or retail partner?
+            </p>
+            <button className="bg-white text-[#1E4109] rounded-full w-full px-6 py-3 font-semibold hover:bg-gray-100 transition-colors">
+              Get started
+            </button>
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-center flex-col text-center pb-20 relative ">
-        <h2 className="">Copyright © 2024 Food Hybrid. All Rights Reserved</h2>
-        <h2 className="absolute -bottom-[clamp(30px,5vw,100px)] left-0 right-0 text-[clamp(50.82px,10vw,177.65px)] text-nowrap lg:text-[177.65px] bg-gradient-to-b from-[#FFFFFF]/20 to-[#15221B]/20 font-[700] bg-clip-text text-transparent ">
-          Food Hybrid
-        </h2>
+
+      {/* Bottom Section */}
+      <div className="flex flex-col sm:flex-row justify-between items-center sm:items-end mt-8 sm:mt-12 relative">
+        <div className="section-padding pb-4 sm:pb-5 order-2 sm:order-1">
+          <p className="text-white text-sm text-center sm:text-left">
+            Copyright © 2024 Tafiki Ltd. All Rights Reserved 
+          </p>
+        </div>
+        <div className="order-1 sm:order-2 flex-shrink-0">
+          <img
+            src="/box.png"
+            alt=""
+            className="w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] lg:w-[250px] lg:h-[250px] object-contain"
+          />
+        </div>
       </div>
     </footer>
   );

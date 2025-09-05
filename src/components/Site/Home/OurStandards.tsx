@@ -31,9 +31,9 @@ const OurStandards: React.FC = () => {
       initial="initial"
       whileInView="animate"
       viewport={{ once: true }}
-      className="section-padding space-y-[60px] mt-[60px]"
+      className="section-padding section-spacing"
     >
-      <div className="flex flex-col items-center gap-[8px] sm:gap-[16px] lg:gap-[24px]">
+      <div className="flex flex-col items-center gap-[8px] ">
         <motion.h1
           variants={zoomIn}
           className="section-title"
@@ -50,7 +50,7 @@ const OurStandards: React.FC = () => {
 
       <motion.div
         variants={staggerContainer}
-        className="flex flex-col sm:flex-row gap-y-[40px] justify-between items-center w-full"
+        className="flex flex-col sm:flex-row gap-y-[40px] justify-between items-center w-full mt-10"
       >
         {standards.map((standard, index) => (
           <motion.div

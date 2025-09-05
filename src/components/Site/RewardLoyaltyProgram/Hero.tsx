@@ -28,23 +28,20 @@ const Hero: React.FC = () => {
       className="section-padding pl-0 relative h-fit sm:h-[500px] lg:h-[709px] flex flex-col sm:flex-row sm:items-center gap-[50px] sm:gap-5 sm:justify-between justify-center"
     >
       {/* Text Content */}
-      <div className="space-y-[px] relative z-[1] w-full sm:w-[60%] mt-[120px] sm:mt-0">
-        <motion.h2 variants={fadeInUp} className="font-[600] text-[16px] sm:text-[20px] text-[#15221B52]">
-          Food Hybrid's
-        </motion.h2>
+      <div className=" relative z-[1] w-full sm:w-[60%] mt-[120px] sm:mt-0">
         <motion.h2 variants={zoomIn} className="text-[32px] lg:text-[48px] font-[600]">
           Rewards & Loyalty <br /> Program
         </motion.h2>
         <motion.h3
           variants={fadeInUp}
-          className="text-[18px] sm:text-[24px] font-satoshi font-[500] text-[#252525]"
+          className="text-[18px] sm:text-[24px] font-satoshi font-[500] text-[#252525] mt-[35px]"
         >
           Become a Partner and Earn with Our Distribution Program!
         </motion.h3>
         <motion.div variants={fadeInUp}>
           <Link
             to="/partner"
-            className="button bg-[#15221B] text-[14px] sm:text-[16px] text-white mt-[30px] sm:mt-[60px] w-fit inline-block"
+            className="px-5 py-2 rounded-full bg-primary text-[14px] sm:text-[16px] text-white mt-[45px] w-fit inline-block"
           >
             Become a partner
           </Link>

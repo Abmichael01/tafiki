@@ -67,10 +67,10 @@ interface Props {
 const MaximizeEarnings: React.FC<Props> = ({ dashboard = false }) => {
   return (
     <div className={cn(
-      "space-y-[60px] ",
-      dashboard ? "mt-[200px]" : "section-padding"
+      "space-y-[40px] ",
+      dashboard ? "mt-[200px]" : "section-padding section-spacing"
     )}>
-      <h1 className="text-[18px] lg:text-[22px] font-[700]">
+      <h1 className="text-[18px] lg:text-[22px] font-[500] font-satoshi">
         Explore how to maximize your earnings with cashback, bonuses, and
         exclusive perks;
       </h1>

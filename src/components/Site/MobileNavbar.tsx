@@ -1,25 +1,25 @@
 import Logo from "@/components/Others/Logo";
 import { Separator } from "@/components/ui/separator";
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { X, ChevronDown } from "lucide-react";
+import { X } from "lucide-react";
 import { useSidebarStore } from "@/stores/sidebarStore";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { motion, AnimatePresence } from "framer-motion";
 import useAuthStore from "@/stores/authStore";
 
+const navItems = [
+  { name: 'Home', href: '/home' },
+  { name: 'About Us', href: '/about' },
+  { name: 'Reward & Loyalty', href: '/reward-loyalty-program' },
+  { name: 'Contact', href: '/contact' }
+]
+
 const MobileNavbar: React.FC = () => {
   const { isOpen, toggle } = useSidebarStore();
-  const navigate = useNavigate();
   const { isAuthenticated } = useAuthStore()
   return (
     <AnimatePresence>
@@ -54,27 +54,11 @@ const MobileNavbar: React.FC = () => {
             </div>
 
             <nav className="flex flex-col gap-8 text-[#252525] px-10">
-              <Link to="/home" onClick={toggle}>Home</Link>
-              <DropdownMenu>
-                <DropdownMenuTrigger className="flex gap-1 items-center outline-none cursor-pointer w-full">
-                  Company
-                  <ChevronDown className="w-4 h-4" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="z-[99999]">
-                  <DropdownMenuItem onClick={() => {navigate("/about"); toggle()}}>
-                    About us
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => {navigate("/faq"); toggle()}}>
-                    FAQ
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    onClick={() => {navigate("/reward-loyalty-program"); toggle()}}
-                  >
-                    Rewards & Loyalty Program
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-              <Link onClick={toggle} to="/contact">Contact</Link>
+              {navItems.map((item) => (
+                <Link key={item.name} to={item.href} onClick={toggle} className="text-[#5D5D5D] hover:text-primary transition-colors">
+                  {item.name}
+                </Link>
+              ))}
               <Link onClick={toggle} to={isAuthenticated ? "partner/portfolio" : "/partner"} className="w-full shadow-xl">
                 <button className="bg-[#15221B] w-full cursor-pointer rounded-sm border border-primary text-white py-[10px] px-7 ">
                   {isAuthenticated ? "Dashboard" : "Login"}

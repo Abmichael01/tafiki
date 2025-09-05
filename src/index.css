@@ -27,6 +27,22 @@
   font-display: swap; /* Important for performance */
 }
 
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/gilroy-free/Gilroy-FREE/Gilroy-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/gilroy-free/Gilroy-FREE/Gilroy-ExtraBold.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -70,6 +86,7 @@
   --font-satoshi: "Satoshi", sans-serif;
   --font-distant-stroke: "Distant Stroke", sans-serif;
   --font-afro: "Zilap Afro", sans-serif;
+  --font-gilroy: "Gilroy", sans-serif;
 }
 
 :root {
@@ -80,7 +97,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #15221B;
+  --primary: #1E4109;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -175,12 +192,20 @@ html{
   }
 }
 
+.section-spacing {
+  @apply mt-20 sm:mt-40
+}
+
 .section-padding {
   @apply lg:px-20 md:px-12 sm:px-8 px-5
 }
 
+.section-padding-left {
+  @apply lg:pl-20 md:pl-12 sm:pl-8 pl-5
+}
+
 .section-title {
-  @apply text-[18px] sm:text-[20px] lg:text-[32px] text-[#15221B] font-semibold text-center
+  @apply text-center text-[20px] text-[#5D5D5D] font-satoshi leading-none font-[900]
 }
 
 .button {

@@ -49,15 +49,6 @@ const OurStandards: React.FC = () => {
           <motion.h1 variants={fadeInUp} className="section-title">
             Our Standards
           </motion.h1>
-          <motion.p
-            variants={fadeInUp}
-            className="lg:px-20 sm:px-10 text-[16px] text-start sm:text-center font-satoshi sm:text-[20px] lg:text-[22px]"
-          >
-            We are committed to quality and excellence, adhering to global best
-            practices in food safety and hygiene. Our FDA, NAFDAC, and
-            international certifications ensure rigorous quality control and
-            compliance with top industry standards.
-          </motion.p>
         </div>
 
         <motion.div

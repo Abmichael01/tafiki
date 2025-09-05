@@ -11,6 +11,7 @@ import {
   zoomIn,
   staggerContainer,
 } from "@/lib/animations";
+import { Link } from "react-router-dom";
 
 const JoinUs: React.FC = () => {
   return (
@@ -24,27 +25,29 @@ const JoinUs: React.FC = () => {
       {/* Content */}
       <motion.div
         variants={slideInLeft}
-        className="relative z-[1] space-y-[10px] sm:space-y-[20px] px-5 sm:px-0 "
+        className="relative z-[1] space-y-[10px] sm:space-y-[20px] px-5 sm:px-0 sm:max-w-[65%]"
       >
-        <h1 className="text-[20px] sm:text-[24px] lg:text-[40px] font-[700]">
-          Join Our Rewards and Loyalty <br /> Program Today!
+        <h1 className="text-[20px] sm:text-[24px] lg:text-[40px] font-[700] font-gilroy">
+          Join Our Rewards and Loyalty Program Today!
         </h1>
-        <p className="text-[16px] sm:text-[18px] lg:text-[22px] font-[500] text-[#494949] leading-[28px]">
-          At Food Hybrid Ltd, we believe in rewarding those who help us bring{" "}
-          <br />
-          our innovative products to market. Our Rewards and Loyalty Program is{" "}
-          <br />
-          here to support your business, reward your hard work, and build a{" "}
-          <br />
-          lasting, successful partnership.
+        <p className="text-[16px] sm:text-[18px] lg:text-[22px] font-[500] text-[#252525] leading-[28px] ">
+          At Tafiki, we believe in rewarding those who help us bring our
+          innovative products to market. Our Rewards and Loyalty Program is here
+          to support your business, reward your hard work, and build a lasting,
+          successful partnership.
         </p>
         <motion.button
           variants={fadeInUp}
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
-          className="button max-[600px]:text-[15px] bg-[#15221BCC] text-white mt-[40px] sm:mt-[60px]"
+          className=""
         >
-          Become a partner
+          <Link
+            to="/partner"
+            className="px-5 py-2 rounded-full bg-primary text-[14px] sm:text-[16px] text-white mt-[45px] w-fit inline-block"
+          >
+            Become a partner
+          </Link>
         </motion.button>
       </motion.div>
 

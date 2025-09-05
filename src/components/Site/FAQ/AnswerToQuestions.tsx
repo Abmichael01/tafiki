@@ -17,29 +17,29 @@ const answers = [
     category: "General",
     questions: [
       {
-        question: "What is Food Hybrid?",
+        question: "What is Tafiki?",
         answer:
-          "Food Hybrid is a trading name of Hybrid Food & Mart Limited, a company that connects investors (partners) with food retail stores that need capital to stock food products. Partners fund the supply of goods, and profits are shared between the shop and the partner.",
+          "Tafiki is a revolutionary food logistics brand that transforms the way food moves. We use AI, Data, and a Virtual Distribution model to bridge the gap between food producers, processors, and retailers, without warehouses or middlemen.",
       },
       {
-        question: "How does the Food Hybrid model work?",
+        question: "How does the Tafiki model work?",
         answer: [
-          "A partner selects a shop through our online portal and funds the supply of food stock.",
-          "The company supplies the staple food goods and shop confirms receipt.",
-          "The shop sells the products and returns the sales revenue.",
-          "The partner and the shop share the profit based on a set percentage.",
-          "The entire process is monitored and managed online to ensure full transparency and security.",
+          "We connect virtual distributors with retail shops in a seamless food logistics platform.",
+          "Retail-ready food products are funded by virtual distributors and fulfilled by Hybrid.",
+          "Shops stock on credit and pay only after making sales.",
+          "We use real-time inventory sync with AI to match demand and supply.",
+          "The entire process eliminates MOQ barriers and reduces overstock and waste.",
         ],
       },
       {
         question: "Who can become a partner?",
         answer:
-          "Anyone looking for a passive business opportunity can invest through Food Hybrid. No prior experience in food retail is needed.",
+          "Anyone looking to invest in food logistics and retail can become a partner with Tafiki. We welcome both individual investors and institutional partners who want to participate in our virtual distribution model.",
       },
       {
         question: "What type of shops are involved?",
         answer:
-          "Shops are small and medium-sized food retail stores that have an established customer base but limited capital to stock products.",
+          "We work with small and medium-sized retail shops that have established customer bases but need capital to stock products. These include grocery stores, convenience stores, and food retail outlets across our operational regions.",
       },
     ],
   },
@@ -49,41 +49,42 @@ const answers = [
       {
         question: "How does the investment cycle work?",
         answer: [
-          "The investment cycle lasts 5 weeks from the time a partner funds stock to when they receive their first return.",
-          "Partners earn a 3% return at the end of each 5-week cycle.",
-          "On week 5, they receive their first 3% return.",
-          "On week 10, they receive another 3% return.",
-          "On week 15, they receive their capital plus the final 3% return.",
+          "Partners invest in virtual distribution opportunities through our platform.",
+          "Funds are used to supply retail shops with food products on credit.",
+          "Shops pay back the investment plus returns after sales are made.",
+          "Returns are typically structured over 5-15 week cycles depending on the investment type.",
+          "All transactions are tracked and managed through our online portal.",
         ],
       },
       {
-        question:
-          "How does Food Hybrid ensure financial security for partners?",
+        question: "How does Tafiki ensure financial security for partners?",
         answer: [
-          "Pre-screened retail shops: Only verified food retail shops with a proven sales track record are allowed to participate.",
-          "Controlled stock limits: Each store has a maximum stock allocation to prevent over-supply and ensure a quick turnaround.",
-          "Smart financial controls: All payments, transactions, and profit sharing are automated and monitored through the online portal, ensuring transparency.",
-          "Diversified revenue model: Food Hybrid earns from the supply of goods, not from partner investments, ensuring a sustainable business model.",
+          "Pre-screened retail shops: Only verified shops with proven sales track records participate.",
+          "Real-time inventory monitoring: AI-powered systems track stock movement and sales.",
+          "Diversified portfolio: Partners can invest across multiple shops and product categories.",
+          "Automated payment systems: All returns are processed automatically through our platform.",
+          "Risk management protocols: We maintain strict controls to minimize investment risks.",
         ],
       },
       {
-        question: "Is my capital safe with Food Hybrid?",
+        question: "Is my capital safe with Tafiki?",
         answer: [
-          "No funds are held without stock allocation—your capital is always linked to real food stock.",
-          "Sales data is monitored in real time to ensure timely returns.",
-          "Partners receive structured payments every cycle, reducing risk exposure.",
-          "Business continuity is secured through our diversified operations in food supply and retail partnerships.",
+          "Your capital is always linked to real food stock and retail operations.",
+          "We maintain strict financial controls and monitoring systems.",
+          "All transactions are transparent and tracked through our online portal.",
+          "We have established partnerships with verified retail shops only.",
+          "Our business model is built on actual food sales, not speculative investments.",
         ],
       },
       {
         question: "Can I track my investment?",
         answer:
-          "Yes. The Food Hybrid online portal provides real-time tracking, showing stock movement, sales progress, and return payments.",
+          "Yes. The Tafiki online portal provides real-time tracking of your investments, showing stock movement, sales progress, and return payments. You can monitor your portfolio performance 24/7.",
       },
       {
         question: "What happens if the shop does not sell all the products?",
         answer:
-          "Shops are carefully selected based on their sales performance. However, in rare cases of slow sales, the cycle may extend slightly until all stock is sold. Food Hybrid ensures that only high-demand food products are supplied to minimize delays.",
+          "Our AI-powered inventory management system helps prevent overstocking by matching supply with actual demand. In rare cases of slow sales, we work with shops to optimize their inventory and may extend the cycle slightly. We only supply high-demand food products to minimize such risks.",
       },
     ],
   },
@@ -93,12 +94,12 @@ const answers = [
       {
         question: "How do I choose a shop to invest in?",
         answer:
-          "Available food retail shops are listed on the Food Hybrid online portal, where partners can review details and select one.",
+          "Available retail shops are listed on the Tafiki online portal with detailed information including sales history, location, and performance metrics. Partners can review these details and select shops that align with their investment preferences.",
       },
       {
         question: "Is there a maximum investment limit?",
         answer:
-          "Yes. Each shop has a maximum stock capacity to ensure quick sales turnover. The online portal prevents over-supply to any shop.",
+          "Yes. Each shop has a maximum stock capacity to ensure quick sales turnover and optimal inventory management. The online portal prevents over-supply to any single shop, maintaining the efficiency of our virtual distribution model.",
       },
     ],
   },
@@ -106,26 +107,27 @@ const answers = [
     category: "Risk & Security",
     questions: [
       {
-        question: "How does Food Hybrid ensure my investment is secure?",
+        question: "How does Tafiki ensure my investment is secure?",
         answer: [
-          "The entire process is controlled through our online portal for full transparency.",
-          "Shops are pre-screened to ensure they have consistent sales history.",
-          "Stock limits prevent excess supply, ensuring quicker turnover.",
+          "The entire process is controlled through our secure online portal for full transparency.",
+          "Shops are pre-screened and verified to ensure they have consistent sales history.",
+          "AI-powered inventory management prevents excess supply and ensures quicker turnover.",
           "Automated tracking and structured payment schedules prevent financial mismanagement.",
-          "Partners receive regular updates and reports via the portal.",
+          "Partners receive regular updates and detailed reports via the portal.",
         ],
       },
       {
-        question: "Is Food Hybrid a legally registered company?",
+        question: "Is Tafiki a legally registered company?",
         answer:
-          "Yes, Hybrid Food & Mart Limited is a fully registered and compliant business entity, operating under established laws and regulations.",
+          "Yes, Tafiki operates as a fully registered and compliant business entity, operating under established laws and regulations in all our operational regions including Nigeria, UK, and USA.",
       },
       {
         question: "What happens if a shop fails to return sales revenue?",
         answer: [
-          "The shop is blacklisted from future participation.",
-          "Alternative recovery measures are applied.",
-          "The company maintains reserve stock and liquidity strategies to cover unforeseen risks.",
+          "The shop is immediately flagged and removed from our platform.",
+          "We implement alternative recovery measures and work with legal channels if necessary.",
+          "Our diversified portfolio and risk management systems help mitigate such occurrences.",
+          "We maintain reserve funds and insurance coverage to protect partner investments.",
         ],
       },
     ],
@@ -136,17 +138,17 @@ const answers = [
       {
         question: "Can I invest in multiple shops at the same time?",
         answer:
-          "No. Each partner can invest in only one shop at a time to maintain fairness and ensure quick stock turnover.",
+          "Yes. Unlike traditional models, Tafiki allows partners to invest in multiple shops simultaneously, providing better diversification and risk management for your investment portfolio.",
       },
       {
         question: "How do I track my investment and returns?",
         answer:
-          "The Food Hybrid online portal provides a dashboard where you can track your stock, sales, and profit in real time.",
+          "The Tafiki online portal provides a comprehensive dashboard where you can track all your investments, monitor stock movement, sales progress, and returns in real time. You'll receive regular updates and detailed reports.",
       },
       {
         question: "Can I withdraw my investment early?",
         answer:
-          "No. Once an investment cycle starts, the funds are committed for the full 15-week period until the capital and all returns are received.",
+          "Investment terms vary depending on the specific opportunity. Some investments allow for early withdrawal with certain conditions, while others are committed for the full cycle. All terms are clearly outlined before you make an investment decision.",
       },
     ],
   },
@@ -156,7 +158,7 @@ const AnswerToQuestions: React.FC = () => {
   return (
     <motion.section
       initial="initial"
-      className="section-padding space-y-[20px] lg:space-y-[60px] mt-[200px]"
+      className="section-padding space-y-[20px] lg:space-y-[60px] section-spacing"
     >
       <h1 className="font-[700] text-[#15221B] text-[20px] sm:text-[24px] lg:text-[32px] text-center">
         Answers to Your Questions

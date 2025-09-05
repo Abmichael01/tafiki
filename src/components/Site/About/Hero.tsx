@@ -3,7 +3,7 @@
 "use client";
 
 import React from "react";
-import africa from "@/assets/images/africa.webp";
+import africa from "@/assets/images/africa.svg";
 import hand from "@/assets/images/hand.webp";
 import greenEarth from "@/assets/images/greenEarth.webp";
 import { motion } from "framer-motion";

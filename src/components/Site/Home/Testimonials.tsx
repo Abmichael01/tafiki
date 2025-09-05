@@ -15,6 +15,7 @@ import {
   slideInLeft,
   slideInRight,
 } from "@/lib/animations";
+import Logo from "@/components/Others/Logo";
 
 const testimonials = [
   {
@@ -70,11 +71,15 @@ const Testimonials: React.FC = () => {
       initial="initial"
       whileInView="animate"
       viewport={{ once: true }}
-      className="section-padding pr-0 mt-40"
+      className="section-padding section-spacing"
     >
-      <div className="space-y-[20px] sm:space-y-[40px] lg:space-y-[60px]">
+      <div className="">
         <motion.h2 variants={fadeInUp} className="section-title">
-          Take It From Our Clients
+          <div className="flex gap-4 items-center justify-center text-[28px] sm:text-[32px] lg:text-[48px] text-[#5D5D5D] font-satoshi leading-none font-[950] mb-8">
+            <h1 className="">Take It From Other</h1>
+            <Logo noLink className="w-[150px]" />
+            {"Users"}
+          </div>
         </motion.h2>
 
         {/* Desktop Testimonials */}

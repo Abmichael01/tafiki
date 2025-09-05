@@ -1,82 +1,61 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { ChevronDown, MenuIcon } from "lucide-react";
+import { Link, useLocation } from 'react-router-dom';
+import Logo from '../Others/Logo'
+import { cn } from '@/lib/utils';
+import { Menu } from 'lucide-react';
+import { useSidebarStore } from '@/stores/sidebarStore';
+import MobileNavbar from './MobileNavbar';
 
-import Logo from "../Others/Logo";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { cn } from "@/lib/utils";
-import MobileNavbar from "./MobileNavbar";
-import { useSidebarStore } from "@/stores/sidebarStore";
-import useAuthStore from "@/stores/authStore";
+const navItems = [
+  { name: 'Home', href: '/home' },
+  { name: 'About Us', href: '/about' },
+  { name: 'Reward & Loyalty', href: '/reward-loyalty-program' },
+  { name: 'Contact', href: '/contact' }
+]
 
-const Navbar: React.FC = () => {
-  const { isOpen, toggle } = useSidebarStore();
-  const navigate = useNavigate();
-  const { isAuthenticated } = useAuthStore()
+export default function Navbar() {
+  const { pathname } = useLocation();
+  const { toggle } = useSidebarStore();
+  
   return (
     <>
-      <header
-        className={cn(
-          "section-padding bg-transparent w-full fixed flex justify-between items-center py-6 top-0 left-0 right-0 z-[9999] backdrop-blur-xl"
-        )}
-      >
-        {/* Logo */}
-        <Logo color="black" className="w-[83px] h-[44px]" />
+      <div className='section-padding w-full flex justify-between items-center py-[40px] absolute top-0 left-0 right-0 z-[9999]'>
+          <Logo className='w-[84px] shrink-0' />
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex gap-10 items-center text-[#252525]">
-          <Link to="/home">Home</Link>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex gap-1 items-center outline-none cursor-pointer">
-              Company
-              <ChevronDown className="w-4 h-4" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="z-[9999]">
-              <DropdownMenuItem onClick={() => navigate("/about")}>
-                About us
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => navigate("/faq")}>
-                FAQ
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => navigate("/reward-loyalty-program")}
-              >
-                Rewards & Loyalty Program
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <Link to="/contact">Contact</Link>
-          <Link to={isAuthenticated ? "partner/portfolio" : "/partner"}>
-            <button className="bg-transparent hover:bg-transparent text-[#252525] rounded-sm border border-primary py-[5px] px-7 ">
-              {isAuthenticated ? "Dashboard" : "Login"}
-            </button>
-          </Link>
-        </nav>
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex gap-8 px-6 py-2 backdrop-blur-lg rounded-full shadow-xl">
+            {navItems.map((item) => (
+              <Link key={item.name} to={item.href} className={cn("text-[#5D5D5D] hover:text-primary transition-colors text-sm", pathname === item.href && "text-[#F87525]")}>
+                {item.name}
+              </Link>
+            ))}
+          </nav>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="lg:hidden focus:outline-none z-[99999] cursor-pointer"
-          onClick={toggle}
-        >
-          <MenuIcon className="w-10 h-10 text-[#252525]" />
-        </button>
-
-        <MobileNavbar />
-
-        {isOpen && (
-          <div
+          {/* Mobile Menu Button */}
+          <button 
             onClick={toggle}
-            className="lg:hidden fixed top-0 left-0 right-0 bottom-0 w-screen h-screen bg-black/50 z-[99]"
-          ></div>
-        )}
-      </header>
-    </>
-  );
-};
+            className="lg:hidden bg-transparent border border-priamry text-primary p-2 rounded-full"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
 
-export default Navbar;
+          {/* Desktop Login Button */}
+          { pathname === "/home" && <button className="hidden lg:block bg-transparent border border-white text-sm text-white px-6 py-2 rounded-full">
+            Login
+          </button>}
+          { pathname === "/about" && <button className="hidden lg:block bg-primary text-sm text-white px-6 py-2 rounded-full">
+            Get Started
+          </button>}
+          { pathname === "/reward-loyalty-program" && <button className="hidden lg:block bg- border border-primary text-sm text-primary px-6 py-2 rounded-full">
+            Get Started
+          </button>}
+          { pathname === "/contact" && <button className="hidden lg:block bg-transparent border border-white text-sm text-white px-6 py-2 rounded-full">
+            Login
+          </button>}
+
+      </div>
+      
+      {/* Mobile Navigation */}
+      <MobileNavbar />
+    </>
+  )
+}

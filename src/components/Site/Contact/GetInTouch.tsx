@@ -1,17 +1,9 @@
-// GetInTouch.tsx
-
-"use client";
-
 import React from "react";
 import { motion } from "framer-motion";
-import { MdPhone } from "react-icons/md";
-import { IoIosMail } from "react-icons/io";
-import { FaFacebook } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import rice from "@/assets/images/rice.webp";
-import beans from "@/assets/images/beans.webp";
+import { TiMail } from "react-icons/ti";
+import { FaFacebookF, FaInstagram, FaXTwitter } from "react-icons/fa6";
 import { slideUpAndFade, staggerContainer } from "@/lib/animations";
+import { MdOutlinePhone } from "react-icons/md";
 
 const GetInTouch: React.FC = () => {
   return (
@@ -20,90 +12,56 @@ const GetInTouch: React.FC = () => {
       whileInView="animate"
       viewport={{ once: true, amount: 0.3 }}
       variants={staggerContainer}
-      className="section-padding mt-[120px] space-y-[100px] sm:space-y-[150px]"
+      className="section-padding mt-50 space-y-[40px]"
     >
       {/* Title Section */}
       <motion.div variants={slideUpAndFade} className="text-center w-full">
-        <h2 className="about-us-text bg-clip-text text-transparent font-[700]">
-          CONTACT
-        </h2>
-        <h2 className=" text-[45px] sm:text-[36px] lg:text-[55px] font-[600]">
+        <h2 className="text-[32px] sm:text-[36px] lg:text-[40px] font-bold text-[#252525]">
           Get in Touch with Us
         </h2>
       </motion.div>
 
-      {/* Contact Info + Background Images */}
+      {/* Contact Info Box */}
       <motion.div
-        variants={staggerContainer}
-        className="flex flex-col gap-[20px] sm:gap-[40px] items-center relative w-full"
+        variants={slideUpAndFade}
+        className="relative max-w-2xl mx-auto"
       >
-        {/* Background Images */}
-        <motion.img
-          variants={slideUpAndFade}
-          src={rice}
-          alt=""
-          className="w-[120px] h-[150px] sm:w-[166.2px] sm:h-[246.14px] lg:w-[432px] lg:h-[520.7px] absolute left-[-50px] sm:left-[-80px] lg:left-[-200px]"
-        />
-        <motion.img
-          variants={slideUpAndFade}
-          src={beans}
-          alt=""
-          className="w-[120px] h-[150px] sm:w-[166.2px] sm:h-[246.14px] lg:w-[432px] lg:h-[520.7px] absolute right-[-50px] sm:right-[-80px] lg:right-[-200px]"
-        />
+        {/* Main Contact Box */}
+        <div className="relative bg-primary rounded-2xl p-8 sm:p-12 text-white overflow-hidden">
+          <img src="/about/capa.svg" alt="" className="absolute bottom-0 left-0" />
+          <img src="/about/capa2.svg" alt="" className="absolute top-0 right-0" />
+          {/* Content */}
+          <div className="relative z-10 space-y-8 flex flex-col gap-4 items-center">
+            {/* Phone Numbers */}
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <MdOutlinePhone className="text-4xl text-white" />
+              <div className="font-satoshi text-lg sm:text-xl">
+                <span>1800-121-3637, +91-7052-101-786</span>
+              </div>
+            </div>
 
-        {/* Phone */}
-        <motion.div
-          variants={slideUpAndFade}
-          className="flex flex-col sm:flex-row items-center gap-2"
-        >
-          <MdPhone className="size-[30.71px] sm:size-[44.29px]" />
-          <h2 className="font-satoshi items-center text-[20px] sm:text-[24px] lg:text-[28px] flex flex-col sm:flex-row">
-            <span>02035762136</span>
-          </h2>
-        </motion.div>
+            {/* Email */}
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <TiMail className="text-4xl text-white" />
+              <div className="font-satoshi text-lg sm:text-xl">
+                <span>info@tafiki.co.uk</span>
+              </div>
+            </div>
 
-        {/* Email */}
-        <motion.div
-          variants={slideUpAndFade}
-          className="flex flex-col sm:flex-row items-center gap-2"
-        >
-          <IoIosMail className="size-[30.71px] sm:size-[44.29px]" />
-          <h2 className="text-nowrap font-satoshi text-[20px] sm:text-[24px] lg:text-[28px]">
-            info@foodhybrid.co.uk
-          </h2>
-        </motion.div>
-
-        {/* Social Icons */}
-        <motion.div
-          variants={{
-            initial: {},
-            animate: {
-              transition: {
-                staggerChildren: 0.15,
-              },
-            },
-          }}
-          className="flex gap-[40px] items-center"
-        >
-          <motion.div
-            variants={slideUpAndFade}
-            className="size-[40px] lg:size-[60px] bg-[#25252566] flex items-center justify-center rounded-full"
-          >
-            <FaFacebook className="size-[25px] lg:size-[45px] text-white" />
-          </motion.div>
-          <motion.div
-            variants={slideUpAndFade}
-            className="size-[40px] lg:size-[60px] bg-[#25252566] flex items-center justify-center rounded-full"
-          >
-            <FaInstagram className="size-[25px] lg:size-[45px] text-white" />
-          </motion.div>
-          <motion.div
-            variants={slideUpAndFade}
-            className="size-[40px] lg:size-[60px] bg-[#25252566] flex items-center justify-center rounded-full"
-          >
-            <FaXTwitter className="size-[25px] lg:size-[45px] text-white" />
-          </motion.div>
-        </motion.div>
+            {/* Social Media Icons */}
+            <div className="flex items-center gap-6 pt-4">
+              <div className="w-12 h-12 bg-white/50 rounded-full flex items-center justify-center hover:bg-gray-400 transition-colors cursor-pointer">
+                <FaFacebookF className="text-white text-xl" />
+              </div>
+              <div className="w-12 h-12 bg-white/50 rounded-full flex items-center justify-center hover:bg-gray-400 transition-colors cursor-pointer">
+                <FaInstagram className="text-white text-xl" />
+              </div>
+              <div className="w-12 h-12 bg-white/50 rounded-full flex items-center justify-center hover:bg-gray-400 transition-colors cursor-pointer">
+                <FaXTwitter className="text-white text-xl" />
+              </div>
+            </div>
+          </div>
+        </div>
       </motion.div>
     </motion.section>
   );

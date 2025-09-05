@@ -22,8 +22,8 @@ const fadeIn = {
 
 const Root: React.FC = () => {
   return (
-    <div className="relative mt-60">
-      <div className="section-padding pr-0 flex items-center justify-between w-full overflow-x-hidden">
+    <div className="relative section-spacing">
+      <div className="section-padding pr-0 flex gap-20 items-center justify-between w-full overflow-x-hidden">
         <motion.div
           className="space-y-5 w-full sm:max-w-[60%]"
           initial="initial"
@@ -32,7 +32,7 @@ const Root: React.FC = () => {
           variants={slideIn}
         >
           <div>
-            <h1 className="w-[70%] sm:w-full text-[20px] sm:text-[24px] lg:text-[35px] text-[#15221B] font-[600]">
+            <h1 className="w-90% min-[500px]:w-[70%] sm:w-full text-[20px] sm:text-[24px] lg:text-[35px] text-[#15221B] font-[600]">
               Rooted in African Tradition
             </h1>
             <div className="h-[1px] w-[40%] bg-[#15221B] relative">
@@ -41,17 +41,17 @@ const Root: React.FC = () => {
           </div>
 
           <motion.p
-            className="sm:text-[18px] lg:text-[24px] text-[#252525]"
+            className="text-[16px] md:text-[18px] lg:text-[20px] text-[#252525]"
             variants={fadeIn}
           >
-            With each product carrying the taste of home, designed to meet the
-            needs of Africans diaspora in the United Kingdom🇬🇧 (UK) and beyond.
-            Introducing the world to the authentic flavors of the continent.
+            Reimagining how food moves, empowering smarter distribution,
+            enriching local communities, and bringing Africa’s rich food legacy
+            to the world.
           </motion.p>
         </motion.div>
 
         <motion.div
-          className=""
+          className="shrink-0"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{
             opacity: 1,
@@ -63,7 +63,7 @@ const Root: React.FC = () => {
           <img
             src={pattern}
             alt=""
-            className="w-[150px] h-[150px] sm:size-[278px] lg:size-[480px] rounded-full sm:translate-x-[70px] absolute top-[-100px] right-[-50px] sm:top-0 sm:right-0 sm:relative object-cover"
+            className="w-[150px] h-[150px] sm:size-[278px] lg:size-[440px] rounded-full sm:translate-x-[100px] lg:translate-x-[200px] absolute top-[-100px] right-[-50px] sm:top-0 sm:right-0 sm:relative object-cover"
             loading="lazy"
           />
         </motion.div>

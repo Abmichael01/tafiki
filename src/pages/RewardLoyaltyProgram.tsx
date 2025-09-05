@@ -1,3 +1,4 @@
+import AnswerToQuestions from '@/components/Site/FAQ/AnswerToQuestions'
 import NewsLetter from '@/components/Site/Home/NewsLetter'
 import Hero from '@/components/Site/RewardLoyaltyProgram/Hero'
 import JoinUs from '@/components/Site/RewardLoyaltyProgram/JoinUs'
@@ -12,6 +13,7 @@ const RewardLoyaltyProgram: React.FC = () => {
         <Value />
         <MaximizeEarnings />
         <JoinUs />
+        <AnswerToQuestions />
         <NewsLetter />
     </div>
   )

@@ -31,7 +31,7 @@ const Expertise: React.FC = () => {
         alt=""
         className="absolute rounded-full size-[237px] sm:size-[304.9px] lg:size-[400px] left-[50%] translate-x-[-50%]"
       />
-      
+
       {/* Content Wrapper */}
       <motion.div
         variants={staggerContainer}
@@ -62,11 +62,11 @@ const Expertise: React.FC = () => {
         {/* Description Paragraph */}
         <motion.p
           variants={fadeInUp}
-          className="font-satoshi text-[18px] sm:text-[20px] lg:text-[28px] text-center text-[#252525] font-[700] max-w-[800px]"
+          className="font-satoshi text-[18px] sm:text-[20px] lg:text-[26px] text-center text-[#252525] font-[700] max-w-[800px]"
         >
-          Our team blends Traditional African Food Processing with Modern
-          Technology, Delivering Authentic, High-Quality Products that meet
-          Global Market Needs.
+          Our team blends Traditional Food processing expertise with smart
+          packaging and global logistics to deliver products that meet
+          international market standards.
         </motion.p>
       </motion.div>
     </motion.section>

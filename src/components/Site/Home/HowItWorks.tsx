@@ -1,92 +1,78 @@
-import { FaBoxOpen, FaTruck, FaStore } from "react-icons/fa";
-import { MdWarehouse, MdAttachMoney } from "react-icons/md";
-import { AiOutlineSync } from "react-icons/ai";
-import { HiShieldCheck } from "react-icons/hi";
-import FlowDropdown from "./FlowDropdown";
+import Logo from "@/components/Others/Logo";
 
-// Data arrays
-const howItWorksData = [
+const steps = [
   {
+    number: 1,
     title: "Fund Food Products Virtually",
-    desc: "Entrepreneur sponsors inventory supply to retail shops without handling any goods",
-    icon: <FaBoxOpen className="w-10 h-10 text-[#d8291b]" />,
+    description:
+      "Entrepreneurs sponsor inventory for shops without handling any goods.",
   },
   {
-    title: "Food Hybrid Fulfil Orders to Shops",
-    desc: "We deliver directly to partnered retailers from manufacturers.",
-    icon: <FaTruck className="w-10 h-10 text-[#d8291b]" />,
+    number: 2,
+    title: "Tafiki Fulfils Orders",
+    description:
+      "Products go directly from processors to partnered retail shops.",
   },
   {
-    title: "Retailers Sell & Pay After Sales",
-    desc: "Retailers stock shelves with no upfront cost. Tafiki collects payments after sales.",
-    icon: <FaStore className="w-10 h-10 text-[#d8291b]" />,
-  },
-];
-
-const benefitsData = [
-  {
-    title: "No Warehouse Needed",
-    desc: "Entrepreneurs sponsors inventory supply without the need for a warehouse.",
-    icon: <MdWarehouse className="w-10 h-10 text-[#d8291b]" />,
-  },
-  {
-    title: "Zero Upfront Cost for Shops",
-    desc: "Retailers stock shelves on credit, pay only after sales.",
-    icon: <MdAttachMoney className="w-10 h-10 text-[#d8291b]" />,
-  },
-  {
-    title: "Real-Time Inventory Matching",
-    desc: "Low risk & quick turnaround powered by AI.",
-    icon: <AiOutlineSync className="w-10 h-10 text-[#d8291b]" />,
-  },
-  {
-    title: "Supports Small Businesses",
-    desc: "Reduce food waste with smart routing.",
-    icon: <HiShieldCheck className="w-10 h-10 text-[#d8291b]" />,
+    number: 3,
+    title: "Retailers Sell First, Pay Later",
+    description:
+      "Shops receive stock with no upfront payment and Tafiki collects after sales.",
   },
 ];
 
 export default function HowItWorks() {
   return (
-    <section className="mt-[120px] md:mt-[180px] space-y-16 bg-white text-center section-padding">
-      {/* How It Works */}
-      <div>
-        <h2 className="text-xl font-bold mb-8 uppercase text-[#15221B]">
-          How It Works
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-5xl mx-auto px-4">
-          {howItWorksData.map((item) => (
-            <div
-              key={item.title}
-              className="flex flex-col items-center space-y-3 p-4 rounded-xl transition"
-            >
-              {item.icon}
-              <h3 className="font-semibold">{item.title}</h3>
-              <p className="text-sm">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-        <FlowDropdown />
+    <div className="section-padding section-spacing">
+      <div className="flex gap-4 items-center justify-center text-[48px] text-[#5D5D5D] font-satoshi leading-none font-[950] mb-20">
+        <h1 className="">How</h1>
+        <Logo noLink className="w-[150px]" />
+        {"Works"}
       </div>
 
-      {/* Benefits */}
-      <div>
-        <h2 className="text-xl font-bold mb-8 uppercase text-[#15221B]">
-          Benefits
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto px-4">
-          {benefitsData.map((item) => (
-            <div
-              key={item.title}
-              className="relative flex flex-col items-center space-y-3 p-5 py-8 bg-[#d8291b]/5 rounded-lg"
-            >
-              {item.icon}
-              <h3 className="font-medium">{item.title}</h3>
-              <p className="text-sm text-gray-600 text-center">{item.desc}</p>
+      <div className="space-y-50 font-satoshi">
+        {steps.map((step, index) => (
+          <div
+            key={step.number}
+            className={`flex items-center gap-8 ${
+              index % 2 === 0 ? "flex-row" : "flex-row-reverse"
+            } min-h-[100px]`}
+          >
+            <div className="flex-1 h-full relative">
+              <div className="bg-white rounded-lg p-8 shadow-2xl border border-gray-100 h-full min-h-[100px]">
+                {index === 0 && (
+                  <img
+                    src="/htwLine1.svg"
+                    alt=""
+                    className="absolute top-[100%] left-[50%]"
+                  />
+                )}
+                {index === 2 && (
+                  <img
+                    src="/htwLine2.svg"
+                    alt=""
+                    className="absolute bottom-[99%] left-[50%]"
+                  />
+                )}
+                <div className="flex items-start gap-6 h-full z-[1] relative">
+                  <div className="bg-[#86BF4C] text-white w-12 h-full rounded-lg flex items-center justify-center font-bold text-xl flex-shrink-0 min-h-[100px]">
+                    {step.number}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">
+                      {step.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
+            <div className="flex-1"></div>
+          </div>
+        ))}
       </div>
-    </section>
+    </div>
   );
 }

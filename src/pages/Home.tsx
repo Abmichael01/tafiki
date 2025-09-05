@@ -1,4 +1,3 @@
-import HowWeOperate from '@/components/LandingPage/HowWeOperate'
 import Hero from '@/components/Site/Home/Hero'
 import HowItWorks from '@/components/Site/Home/HowItWorks'
 import NewsLetter from '@/components/Site/Home/NewsLetter'
@@ -8,19 +7,30 @@ import OurTaste from '@/components/Site/Home/OurTaste'
 import Testimonials from '@/components/Site/Home/Testimonials'
 import Welcome from '@/components/Site/Home/Welcome'
 import React from 'react'
+import Vendors from '@/components/Site/Home/Vendors'
+import FoodSafety from '@/components/Site/Home/FoodSafety'
+import FlowChart from '@/components/Site/Home/FlowChart'
+import CoreBenefits from '@/components/Site/Home/CoreBenefits'
+import Promise from '@/components/Site/Home/Promise'
+import Gallery from '@/components/Site/Home/Gallery'
 
 const Home: React.FC = () => {
   return (
     <div>
         <Hero />
+        <Vendors />
         <Welcome />
-        <OurFacility />
+        <FoodSafety />
         <OurStandards />
+        <OurFacility />
         <HowItWorks />
+        <FlowChart />
+        <CoreBenefits />
         <OurTaste  />
-        <HowWeOperate title />
+        <Promise />
         <Testimonials />
         <NewsLetter />
+        <Gallery />
     </div>
   )
 }
