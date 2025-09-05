@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import { fadeInUp, zoomIn } from "@/lib/animations";
+import { zoomIn } from "@/lib/animations";
 
 export default function FlowChart() {
   return (

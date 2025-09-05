@@ -1,6 +1,6 @@
 import Logo from "@/components/Others/Logo";
 import { motion } from "framer-motion";
-import { fadeInUp, slideInLeft, slideInRight, staggerContainer, zoomIn } from "@/lib/animations";
+import { fadeInUp, slideInLeft, slideInRight, } from "@/lib/animations";
 
 const steps = [
   {

@@ -1,6 +1,6 @@
 import Logo from "@/components/Others/Logo";
 import { motion } from "framer-motion";
-import { fadeInUp, staggerContainer, zoomIn } from "@/lib/animations";
+import { fadeInUp, zoomIn } from "@/lib/animations";
 
 export default function Tafiki() {
   return (
