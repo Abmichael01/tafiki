@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
           {/* Logo and Social Media */}
           <motion.div variants={slideInLeft} className="space-y-4 sm:space-y-6">
             <div className="flex items-center gap-2">
-              <Logo color="white" className="w-[120px] h-[40px]" />
+              <Logo color="white" className="w-[120px]" />
             </div>
             <p className="text-white/90 text-lg font-medium">
               Smarter Food Logistics
@@ -133,7 +133,7 @@ const Footer: React.FC = () => {
       >
         <motion.div 
           variants={fadeInUp}
-          className="section-padding pb-4 sm:pb-5 order-2 sm:order-1"
+          className="section-padding pb-4 sm:pb-5 "
         >
           <p className="text-white text-sm text-center sm:text-left">
             Copyright © 2024 Tafiki Ltd. All Rights Reserved 
@@ -141,12 +141,12 @@ const Footer: React.FC = () => {
         </motion.div>
         <motion.div 
           variants={zoomIn}
-          className="order-1 sm:order-2 flex-shrink-0"
+          className=" flex-shrink-0 self-end"
         >
           <img
             src="/box.png"
             alt=""
-            className="w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] lg:w-[250px] lg:h-[250px] object-contain"
+            className="w-[150px] sm:w-[200px]  lg:w-[250px] "
           />
         </motion.div>
       </motion.div>

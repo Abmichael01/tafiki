@@ -21,7 +21,7 @@ export default function Mission({ about = false }: { about?: boolean }) {
           <span> is to make African food products </span>
           <span className=" mt-2">
             <span className="font-[600]">Accessible, Trusted, and Loved</span>{" "}
-            worldwide, while
+            worldwide, while {' '}
           </span>
           <span className=" mt-2">
             Empowering a new class of{" "}

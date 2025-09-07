@@ -30,7 +30,7 @@ const countries = [
 
 const GlobalFootprint: React.FC = () => {
   return (
-    <div className="space-y-5 ">
+    <div className="space-y-5  section-spacing">
       <h1 className="section-title">
         Our Global Footprint
       </h1>

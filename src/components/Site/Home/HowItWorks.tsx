@@ -31,14 +31,14 @@ export default function HowItWorks() {
         whileInView="animate"
         viewport={{ once: true, amount: 0.3 }}
         variants={fadeInUp}
-        className="flex gap-4 items-center justify-center text-[48px] text-[#5D5D5D] font-satoshi leading-none font-[950] mb-20"
+        className="flex gap-4 items-center justify-center text-[30px] sm:text-[48px] text-[#5D5D5D] font-satoshi leading-none font-[950] mb-20"
       >
         <h1 className="">How</h1>
-        <Logo noLink className="w-[150px]" />
+        <Logo noLink className="w-[100px] sm:w-[150px] shrink-0" />
         {"Works"}
       </motion.div>
 
-      <div className="space-y-50 font-satoshi">
+      <div className="flex flex-col gap-10 sm:gap-20 md:gap-30 lg:gap-49 font-satoshi  mx-auto">
         {steps.map((step, index) => (
           <motion.div
             key={step.number}
@@ -46,42 +46,44 @@ export default function HowItWorks() {
             whileInView="animate"
             viewport={{ once: true, amount: 0.3 }}
             variants={index % 2 === 0 ? slideInLeft : slideInRight}
-            className={`flex items-center gap-8 ${
-              index % 2 === 0 ? "flex-row" : "flex-row-reverse"
-            } min-h-[100px]`}
+            className={`
+              relative
+              w-full
+              max-w-[95vw]
+              md:max-w-[500px]
+              lg:max-w-[600px]
+              ${index === 1 ? "self-end" : "self-start"}
+            `}
           >
-            <div className="flex-1 h-full relative">
-              <div className="bg-white rounded-lg p-8 shadow-2xl border border-gray-100 h-full min-h-[100px]">
-                {index === 0 && (
-                  <img
-                    src="/htwLine1.svg"
-                    alt=""
-                    className="absolute top-[100%] left-[50%]"
-                  />
-                )}
-                {index === 2 && (
-                  <img
-                    src="/htwLine2.svg"
-                    alt=""
-                    className="absolute bottom-[99%] left-[50%]"
-                  />
-                )}
-                <div className="flex items-start gap-6 h-full z-[1] relative">
-                  <div className="bg-[#86BF4C] text-white w-12 h-full rounded-lg flex items-center justify-center font-bold text-xl flex-shrink-0 min-h-[100px]">
-                    {step.number}
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">
-                      {step.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
+            {/* Decorative lines */}
+            {index === 0 && (
+              <img
+                src="/htwLine1.svg"
+                alt=""
+                className="absolute top-full left-1/2 hidden md:block w-[320px]  lg:w-auto "
+              />
+            )}
+            {index === 2 && (
+              <img
+                src="/htwLine2.svg"
+                alt=""
+                className="absolute bottom-full left-1/2 hidden md:block w-[320px]  lg:w-auto "
+              />
+            )}
+
+            <div className="bg-white rounded-lg p-8 shadow-2xl border border-gray-100 flex items-start gap-6 min-h-[100px] relative z-[1]">
+              <div className="bg-[#86BF4C] text-white w-12 min-h-[100px] rounded-lg flex items-center justify-center font-bold text-xl flex-shrink-0">
+                {step.number}
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  {step.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {step.description}
+                </p>
               </div>
             </div>
-            <div className="flex-1"></div>
           </motion.div>
         ))}
       </div>

@@ -13,6 +13,9 @@ export default function AtTafiki() {
     >
       <motion.div 
         variants={staggerContainer}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true }}
         className="section-padding space-y-5 text-center font-gilroy font-[400] relative"
       >
         <motion.h1 
@@ -38,6 +41,9 @@ export default function AtTafiki() {
       </motion.div>
       <motion.div 
         variants={slideInRight}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true }}
         className="flex justify-end"
       >
         <img
@@ -48,6 +54,9 @@ export default function AtTafiki() {
       </motion.div>
       <motion.h1 
         variants={fadeInUp}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true }}
         className="text-[32px] text-white/50 font-satoshi section-padding"
       >
         Rooted in the richness of{" "}
@@ -61,6 +70,9 @@ export default function AtTafiki() {
       <Mission about />
       <motion.div 
         variants={staggerContainer}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true }}
         className="text-center section-padding space-y-8"
       >
         <motion.h1 
@@ -73,6 +85,9 @@ export default function AtTafiki() {
         </motion.h1>
         <motion.div 
           variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
           className="relative"
         >
           <motion.img
@@ -83,6 +98,9 @@ export default function AtTafiki() {
           />
           <motion.div 
             variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
             className="bg-[#193607] p-10 relative rounded-xl flex flex-col-reverse lg:flex-row gap-10 lg:h-[450px] items-center"
           >
             <motion.div 
@@ -97,6 +115,9 @@ export default function AtTafiki() {
               </p>
               <motion.ul 
                 variants={staggerContainer}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true }}
                 className="list-disc pl-6 space-y-3"
               >
                 {[

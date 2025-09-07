@@ -10,10 +10,10 @@ export default function Promise() {
         whileInView="animate"
         viewport={{ once: true, amount: 0.3 }}
         variants={fadeInUp}
-        className="flex gap-4 items-center justify-center text-[48px] text-[#5D5D5D] font-satoshi leading-none font-[950] mb-20"
+        className="flex gap-4 items-center justify-center text-[28px] sm:text-[32px] lg:text-[48px] text-[#5D5D5D] font-satoshi leading-none font-[950] mb-20"
       >
         <h1 className="">The</h1>
-        <Logo noLink className="w-[150px]" />
+        <Logo noLink className="w-[100px] md:w-[120px] lg:w-[150px]" />
         {"Promise"}
       </motion.div>
       <div className="flex flex-col lg:flex-row gap-10 lg:h-[573px] items-center">
@@ -31,14 +31,14 @@ export default function Promise() {
           whileInView="animate"
           viewport={{ once: true, amount: 0.3 }}
           variants={slideInRight}
-          className="h-full flex-1 bg-primary rounded-xl p-10 space-y-10 font-gilroy text-white flex flex-col justify-center"
+          className="h-full flex-1 bg-primary rounded-xl p-5 sm:p-10 space-y-5 sm:space-y-10 font-gilroy text-white flex flex-col justify-center"
         >
           <motion.p 
             initial="initial"
             whileInView="animate"
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeInUp}
-            className="text-[30px] font-[400] font-gilroy"
+            className="text-[24px] sm:text-[30px] font-[400] font-gilroy"
           >
             <span className="text-[#86BF4C]">Our recipe</span> is simple;
           </motion.p>
@@ -47,7 +47,7 @@ export default function Promise() {
             whileInView="animate"
             viewport={{ once: true, amount: 0.3 }}
             variants={staggerContainer}
-            className="list-disc pl-8 space-y-4 text-[22px] font-[400]"
+            className="list-disc pl-8 space-y-4 text-[18px] sm:text-[22px] font-[400]"
           >
             {[
               "Natural Ingredients",

@@ -18,47 +18,88 @@ import {
 import Logo from "@/components/Others/Logo";
 
 const testimonials = [
+  // Virtual Distributors
   {
-    name: "Damilola O.",
-    profession: "Restaurant Owner",
+    name: "Adebola O.",
+    profession: "Virtual Distributor",
+    location: "Texas, USA",
     testimonial:
-      "“FoodHybrid has completely transformed the way I source fresh produce. The ordering process is seamless, and the quality of the products is always top-notch!”",
+      "Tafiki makes food distribution seamless—no warehouses, no heavy costs. Just pure growth at my fingertips.",
     img: testimonials1Img,
   },
   {
-    name: "Chinedu M.",
-    profession: "Catering Business Owner",
+    name: "Kwame A.",
+    profession: "Virtual Distributor",
+    location: "Accra, Ghana",
     testimonial:
-      "“I love how FoodHybrid ensures timely deliveries. My business relies on fresh ingredients, and they never disappoint. Highly recommended!”",
+      "I expanded into three new regions in under 6 months thanks to Tafiki's digital distribution model.",
     img: testimonials2Img,
   },
   {
-    name: "Miriam K.",
-    profession: "Food Supplier",
+    name: "Maria L.",
+    profession: "Virtual Distributor",
+    location: "Houston, USA",
     testimonial:
-      "“I’ve been using FoodHybrid for months, and they’ve never let me down. Reliable service, quality products, and secure transactions all in one place!”",
+      "The platform lets me scale like a big player without the upfront capital—Tafiki is a true game-changer.",
     img: testimonials3Img,
   },
+  // Retailers
   {
-    name: "Damilola O.",
-    profession: "Restaurant Owner",
+    name: "Chinedu E.",
+    profession: "Retailer",
+    location: "Abuja, Nigeria",
     testimonial:
-      "“FoodHybrid has completely transformed the way I source fresh produce. The ordering process is seamless, and the quality of the products is always top-notch!”",
+      "With Tafiki, I stock fresh products without tying up cash in bulky inventory. Risk is zero, margins are better.",
     img: testimonials1Img,
   },
   {
-    name: "Chinedu M.",
-    profession: "Catering Business Owner",
+    name: "Sarah B.",
+    profession: "Grocery Owner",
+    location: "London, UK",
     testimonial:
-      "“I love how FoodHybrid ensures timely deliveries. My business relies on fresh ingredients, and they never disappoint. Highly recommended!”",
+      "I've cut supply delays by half—Tafiki connects me directly to reliable suppliers on demand.",
     img: testimonials2Img,
   },
   {
-    name: "Miriam K.",
-    profession: "Food Supplier",
+    name: "David R.",
+    profession: "Retailer",
+    location: "New York, USA",
     testimonial:
-      "“I’ve been using FoodHybrid for months, and they’ve never let me down. Reliable service, quality products, and secure transactions all in one place!”",
+      "My store shelves are always full and my customers keep coming back. Tafiki keeps me competitive.",
     img: testimonials3Img,
+  },
+  // Vendors (Suppliers)
+  {
+    name: "Kofi M.",
+    profession: "Food Supplier",
+    location: "Kumasi, Ghana",
+    testimonial:
+      "Tafiki opened doors to retailers I could never reach on my own. Sales doubled within months.",
+    img: testimonials1Img,
+  },
+  {
+    name: "Ngozi I.",
+    profession: "Farmer & Vendor",
+    location: "Enugu, Nigeria",
+    testimonial:
+      "Instead of worrying about logistics, I focus on production—Tafiki handles the rest.",
+    img: testimonials2Img,
+  },
+  {
+    name: "Olaoluwa G.",
+    profession: "Vendor",
+    location: "Iseyin, Nigeria",
+    testimonial:
+      "The consignment model means I only grow when my partners grow. It's fair and sustainable.",
+    img: testimonials3Img,
+  },
+  {
+    name: "Olu A.",
+    profession: "Export Vendor",
+    location: "Lagos, Nigeria",
+    testimonial:
+      "Tafiki gave my products visibility in the U.S. market without the massive marketing spend.",
+    img: testimonials1Img,
   },
 ];
 
@@ -75,9 +116,9 @@ const Testimonials: React.FC = () => {
     >
       <div className="">
         <motion.h2 variants={fadeInUp} className="section-title">
-          <div className="flex gap-4 items-center justify-center text-[28px] sm:text-[32px] lg:text-[48px] text-[#5D5D5D] font-satoshi leading-none font-[950] mb-8">
+          <div className=" max-sm:flex-col flex gap-4 items-center justify-center text-[28px] sm:text-[32px] lg:text-[48px] text-[#5D5D5D] font-satoshi leading-none font-[950] mb-8">
             <h1 className="">Take It From Other</h1>
-            <Logo noLink className="w-[150px]" />
+            <Logo noLink className="w-[100px] md:w-[120px] lg:w-[150px]" />
             {"Users"}
           </div>
         </motion.h2>
@@ -108,6 +149,7 @@ const Testimonials: React.FC = () => {
                     {testimonial.name}
                   </h1>
                   <h2 className="sm:text-[12px]">{testimonial.profession}</h2>
+                  <h3 className="sm:text-[10px] text-gray-600">{testimonial.location}</h3>
                 </div>
               </div>
               <p className="sm:text-[10.42px] lg:text-[18px] font-satoshi italic">
@@ -143,6 +185,9 @@ const Testimonials: React.FC = () => {
                 <h2 className="sm:text-[12px]">
                   {testimonials[index].profession}
                 </h2>
+                <h3 className="sm:text-[10px] text-gray-600">
+                  {testimonials[index].location}
+                </h3>
               </div>
             </div>
             <p className="sm:text-[10.42px] lg:text-[18px] font-satoshi italic">
@@ -152,7 +197,7 @@ const Testimonials: React.FC = () => {
         </div>
 
         {/* Mobile Pagination & Arrows */}
-        <div className="flex justify-between sm:hidden items-center">
+        <div className="flex justify-between sm:hidden items-center mt-10">
           <div
             onClick={() => {
               if (index > 0) setIndex(index - 1);
