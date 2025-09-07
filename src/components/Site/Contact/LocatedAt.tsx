@@ -20,15 +20,15 @@ const locations = [
     country: "NG",
   },
   {
-    name: "Food Hybrid (UK) Limited <br /> 128, City road, London <br /> EC1V 2NX",
+    name: "Tafiki Technology LLC <br /> 1523 North Owens Avenue Tyler <br /> Texas 75702, United States",
     flag: (
       <img
-        src="https://flagcdn.com/w320/gb.png"
-        alt="United Kingdom Flag"
+        src="https://flagcdn.com/w320/us.png"
+        alt="United States Flag"
         className="w-[28px]"
       />
     ),
-    country: "UK",
+    country: "US",
   },
 ];
 

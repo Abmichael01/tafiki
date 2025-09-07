@@ -33,7 +33,7 @@ const OurStandards: React.FC = () => {
       viewport={{ once: true }}
       className="section-padding section-spacing"
     >
-      <div className="flex flex-col items-center gap-[8px] ">
+      <div className="flex flex-col items-center gap-10 ">
         <motion.h1
           variants={zoomIn}
           className="section-title"

@@ -18,7 +18,7 @@ export default function Tafiki() {
         whileInView="animate"
         viewport={{ once: true, amount: 0.3 }}
         variants={fadeInUp}
-        className="text-[65px] font-satoshi font-[700] text-[#AEAEAE] text-center leading-none "
+        className=" text-[35px] sm:text-[45px] lg:text-[65px] font-satoshi font-[700] text-[#AEAEAE] text-center leading-none "
       >
         isn't just feeding the world. We're feeding it right
       </motion.h1>

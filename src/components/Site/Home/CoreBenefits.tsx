@@ -18,25 +18,25 @@ const benefits = [
   {
     title: "💳 Zero Upfront for Retailers",
     description: "Shops stock on credit, pay only after making sales.",
-    color: "text-[#AEAEAE]",
-    descriptionColor: "text-[#AEAEAE]",
-    bulletColor: "bg-[#AEAEAE]",
+    color: "text-[#1E4109]",
+    descriptionColor: "text-[#343434]",
+    bulletColor: "bg-[#1E4109]",
   },
   {
     title: "📈 Real-Time Inventory Sync with AI",
     description:
       "Smart matching of demand and supply to reduce overstock and waste.",
-    color: "text-[#AEAEAE]",
-    descriptionColor: "text-[#AEAEAE]",
-    bulletColor: "bg-[#AEAEAE]",
+    color: "text-[#1E4109]",
+    descriptionColor: "text-[#343434]",
+    bulletColor: "bg-[#1E4109]",
   },
   {
     title: "🤝 Power to Small Businesses",
     description:
       "We eliminate MOQ barriers. Retailers access wholesale prices without bulk orders.",
-    color: "text-[#AEAEAE]",
-    descriptionColor: "text-[#AEAEAE]",
-    bulletColor: "bg-[#AEAEAE]",
+    color: "text-[#1E4109]",
+    descriptionColor: "text-[#343434]",
+    bulletColor: "bg-[#1E4109]",
   },
 ];
 

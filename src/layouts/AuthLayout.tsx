@@ -13,7 +13,7 @@ const AuthLayout: React.FC = () => {
       <div className=" p-0 md:p-5 w-full md:w-1/2 shrink-0 bottom-0 h-full top-0 left-0 absolute md:fixed">
         <div className="md:rounded-xl h-full overflow-hidden relative before:absolute before:inset-0 before:bg-black/20 before:backdrop-blur-[2px] ">
           <div className="absolute top-0 right-0 left-0 z-[3] flex justify-center mt-5">
-            <Logo className=" max-[500px]:w-[92px] max-[500px]:h-[46px] " color="black" />{" "}
+            <Logo className=" max-[500px]:w-[92px] " color="black" />{" "}
           </div>
           <Motto className="absolute bottom-5 left-5 " />
           <img src={image} alt="" className="w-full h-full object-cover" />

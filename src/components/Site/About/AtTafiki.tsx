@@ -57,7 +57,7 @@ export default function AtTafiki() {
         initial="initial"
         whileInView="animate"
         viewport={{ once: true }}
-        className="text-[32px] text-white/50 font-satoshi section-padding"
+        className=" text-[22px] sm:text-[32px] lg:text-[32px] text-white/50 font-satoshi section-padding text-justify"
       >
         Rooted in the richness of{" "}
         <span className="text-white">African tradition</span>, we're building a{" "}

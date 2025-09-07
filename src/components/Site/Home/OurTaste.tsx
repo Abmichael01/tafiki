@@ -14,7 +14,6 @@ import {
   slideInLeft,
   slideInRight,
   fadeInUp,
-  staggerContainer,
 } from "@/lib/animations";
 
 const tastes = [
@@ -67,7 +66,7 @@ const OurTaste: React.FC = () => {
         variants={fadeInUp}
         className="text-center mb-4"
       >
-        <h1 className="section-title">Our Recipe, Your Taste</h1>
+        <h1 className="section-title">Our Products</h1>
       </motion.div>
 
       {/* Description Section */}
@@ -85,16 +84,13 @@ const OurTaste: React.FC = () => {
       </motion.div>
 
       {/* Taste Grid Section */}
-      <motion.div
-        variants={staggerContainer}
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true, amount: 0.1 }}
-        className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-x-20 lg:gap-y-10 mt-16 px-4 lg:px-10"
-      >
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-x-20 lg:gap-y-10 mt-16 px-4 lg:px-10">
         {tastes.map((taste, index) => (
           <motion.div
             key={index}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true, amount: 0.3 }}
             variants={index % 2 === 0 ? slideInLeft : slideInRight}
             className="flex flex-col items-center space-y-6 bg-[#F9F9F9] rounded-xl p-8"
           >
@@ -111,7 +107,7 @@ const OurTaste: React.FC = () => {
             </div>
           </motion.div>
         ))}
-      </motion.div>
+      </div>
     </section>
   );
 };

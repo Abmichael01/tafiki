@@ -4,19 +4,25 @@ import { Mail, PhoneIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import Logo from "../Others/Logo";
 import { FaFacebookF, FaInstagram, FaXTwitter } from "react-icons/fa6";
-import { fadeInUp, staggerContainer, slideInLeft, slideInRight, zoomIn } from "@/lib/animations";
+import {
+  fadeInUp,
+  staggerContainer,
+  slideInLeft,
+  slideInRight,
+  zoomIn,
+} from "@/lib/animations";
 
 const links = [
   { name: "Home", link: "/" },
   { name: "About Us", link: "/about" },
-  { name: "Reward & Loyalty Program", link: "/loyalty" },
+  { name: "Reward & Loyalty Program", link: "/reward-loyalty-program" },
   { name: "Contact", link: "/contact" },
 ];
 
 const Footer: React.FC = () => {
   return (
     <footer className="bg-[#3D8A42] text-white overflow-hidden relative font-satoshi">
-      <motion.div 
+      <motion.div
         initial="initial"
         whileInView="animate"
         viewport={{ once: true, amount: 0.3 }}
@@ -32,23 +38,20 @@ const Footer: React.FC = () => {
             <p className="text-white/90 text-lg font-medium">
               Smarter Food Logistics
             </p>
-            <motion.div 
-              variants={staggerContainer}
-              className="flex gap-4"
-            >
-              <motion.div 
+            <motion.div variants={staggerContainer} className="flex gap-4">
+              <motion.div
                 variants={fadeInUp}
                 className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors cursor-pointer"
               >
                 <FaFacebookF className="text-white text-lg" />
               </motion.div>
-              <motion.div 
+              <motion.div
                 variants={fadeInUp}
                 className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors cursor-pointer"
               >
                 <FaInstagram className="text-white text-lg" />
               </motion.div>
-              <motion.div 
+              <motion.div
                 variants={fadeInUp}
                 className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors cursor-pointer"
               >
@@ -61,11 +64,7 @@ const Footer: React.FC = () => {
           <motion.div variants={fadeInUp} className="space-y-4">
             <nav className="space-y-3">
               {links.map((link, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  custom={index}
-                >
+                <motion.div key={index} variants={fadeInUp} custom={index}>
                   <Link
                     to={link.link}
                     className="block text-white hover:text-gray-300 transition-colors"
@@ -80,7 +79,7 @@ const Footer: React.FC = () => {
           {/* Contact Information */}
           <motion.div variants={fadeInUp} className="space-y-4">
             <div className="space-y-3">
-              <motion.div 
+              <motion.div
                 variants={fadeInUp}
                 className="flex items-start gap-3"
               >
@@ -89,7 +88,7 @@ const Footer: React.FC = () => {
                   1800-121-3637, +91-7052-101-786
                 </span>
               </motion.div>
-              <motion.div 
+              <motion.div
                 variants={fadeInUp}
                 className="flex items-start gap-3"
               >
@@ -101,48 +100,48 @@ const Footer: React.FC = () => {
 
           {/* Call to Action */}
           <motion.div variants={slideInRight} className="space-y-4">
-            <motion.h3 
+            <motion.h3
               variants={fadeInUp}
               className="text-white font-bold text-xl"
             >
               Join the Tafiki Movement
             </motion.h3>
-            <motion.p 
+            <motion.p
               variants={fadeInUp}
               className="text-white/80 text-sm leading-relaxed"
             >
               Ready to become a virtual distributor or retail partner?
             </motion.p>
-            <motion.button 
-              variants={zoomIn}
-              className="bg-white text-[#1E4109] rounded-full w-full px-6 py-3 font-semibold hover:bg-gray-100 transition-colors"
-            >
-              Get started
-            </motion.button>
+            <Link to="/partner/register?stage=1" className="w-full">
+              <motion.button
+                variants={zoomIn}
+                className="bg-white text-[#1E4109] rounded-full w-full px-6 py-3 font-semibold hover:bg-gray-100 transition-colors"
+                
+              >
+                Get started
+              </motion.button>
+            </Link>
           </motion.div>
         </div>
       </motion.div>
 
       {/* Bottom Section */}
-      <motion.div 
+      <motion.div
         initial="initial"
         whileInView="animate"
         viewport={{ once: true, amount: 0.3 }}
         variants={staggerContainer}
         className="flex flex-col sm:flex-row justify-between items-center sm:items-end mt-8 sm:mt-12 relative"
       >
-        <motion.div 
+        <motion.div
           variants={fadeInUp}
           className="section-padding pb-4 sm:pb-5 "
         >
           <p className="text-white text-sm text-center sm:text-left">
-            Copyright © 2024 Tafiki Ltd. All Rights Reserved 
+            Copyright © 2024 Tafiki Ltd. All Rights Reserved
           </p>
         </motion.div>
-        <motion.div 
-          variants={zoomIn}
-          className=" flex-shrink-0 self-end"
-        >
+        <motion.div variants={zoomIn} className=" flex-shrink-0 self-end">
           <img
             src="/box.png"
             alt=""

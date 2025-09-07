@@ -36,7 +36,7 @@ const GetInTouch: React.FC = () => {
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <MdOutlinePhone className="text-4xl text-white" />
               <div className="font-satoshi text-lg sm:text-xl">
-                <span>1800-121-3637, +91-7052-101-786</span>
+                <span>+14705837872</span>
               </div>
             </div>
 

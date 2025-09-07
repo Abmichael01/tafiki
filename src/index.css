@@ -20,6 +20,13 @@
 }
 
 @font-face {
+  font-family: "Satoshi-Bold";
+  src: url("./assets/fonts/Satoshi-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'Zilap Afro';
   src: url('./assets/fonts/ZilapAfroDemo-1wD4.ttf') format('truetype');
   font-weight: normal;
@@ -87,6 +94,7 @@
   --font-distant-stroke: "Distant Stroke", sans-serif;
   --font-afro: "Zilap Afro", sans-serif;
   --font-gilroy: "Gilroy", sans-serif;
+  --font-satoshi-bold: "Satoshi-Bold", sans-serif;
 }
 
 :root {
@@ -205,7 +213,7 @@ html{
 }
 
 .section-title {
-  @apply text-center text-[20px] text-[#5D5D5D] font-satoshi leading-none font-[900]
+  @apply text-center text-[20px] font-satoshi sm:text-[30px] lg:text-[40px] leading-none font-[600]
 }
 
 .button {

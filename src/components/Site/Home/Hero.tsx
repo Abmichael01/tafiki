@@ -71,7 +71,7 @@ export default function Hero() {
                 custom={index}
                 className="text-start"
               >
-                <h3 className="text-[24px] font-bold text-[#86BF4C] ">{stat.number}</h3>
+                <h3 className="text-[19px] sm:text-[24px] font-satoshi-bold font-[700] text-[#86BF4C] ">{stat.number}</h3>
                 <p className="text-[#5D5D5D] text-xs font-[500]">{stat.label}</p>
               </motion.div>
             ))}
