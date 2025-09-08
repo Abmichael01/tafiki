@@ -85,7 +85,7 @@ const Footer: React.FC = () => {
               >
                 <PhoneIcon className="text-white text-lg mt-1 flex-shrink-0" />
                 <span className="text-white/90 text-sm leading-relaxed">
-                  1800-121-3637, +91-7052-101-786
+                  +14705837872
                 </span>
               </motion.div>
               <motion.div
@@ -93,7 +93,7 @@ const Footer: React.FC = () => {
                 className="flex items-start gap-3"
               >
                 <Mail className="text-white/90 text-lg mt-1 flex-shrink-0" />
-                <span className="text-white/90 text-sm">info@tafiki.co.uk</span>
+                <span className="text-white/90 text-sm">info@tafiki.com</span>
               </motion.div>
             </div>
           </motion.div>
@@ -116,7 +116,6 @@ const Footer: React.FC = () => {
               <motion.button
                 variants={zoomIn}
                 className="bg-white text-[#1E4109] rounded-full w-full px-6 py-3 font-semibold hover:bg-gray-100 transition-colors"
-                
               >
                 Get started
               </motion.button>

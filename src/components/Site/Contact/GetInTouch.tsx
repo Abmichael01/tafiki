@@ -44,7 +44,7 @@ const GetInTouch: React.FC = () => {
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <TiMail className="text-4xl text-white" />
               <div className="font-satoshi text-lg sm:text-xl">
-                <span>info@tafiki.co.uk</span>
+                <span>info@tafiki.com</span>
               </div>
             </div>
 
