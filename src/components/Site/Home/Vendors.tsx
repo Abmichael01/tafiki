@@ -1,9 +1,9 @@
 // import { motion } from 'framer-motion'
 
-const vendors = [
-  { name: "FoodHybrid", logo: "/foodhybrid.png" },
-  { name: "FoodCore", logo: "/foodcore.jpg" },
-];
+// const vendors = [
+//   { name: "FoodHybrid", logo: "/foodhybrid.png" },
+//   { name: "FoodCore", logo: "/foodcore.jpg" },
+// ];
 
 // Full vendors array for scrolling (commented out for now)
 // const allVendors = [
