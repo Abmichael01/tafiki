@@ -7,7 +7,7 @@ import rice from "@/assets/images/rice.webp";
 import beans from "@/assets/images/beans.webp";
 import yamFlour from "@/assets/images/yamFlour.webp";
 import riceFlour from "@/assets/images/riceFlour.webp";
-import plantainFlour from "@/assets/images/plantainFlour.webp";
+import plantainFlour from "@/assets/images/plantainFlour.png";
 import garri from "@/assets/images/garri.webp";
 import { motion } from "framer-motion";
 import {

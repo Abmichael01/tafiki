@@ -1,94 +1,99 @@
-// import { motion } from 'framer-motion'
+import { motion } from 'framer-motion'
+import { useState, useEffect, useRef } from 'react'
 
-// const vendors = [
-//   { name: "FoodHybrid", logo: "/foodhybrid.png" },
-//   { name: "FoodCore", logo: "/foodcore.jpg" },
-// ];
+const vendors = [
+  { name: "FoodHybrid", logo: "/foodhybrid.png", height: "60px" },
+  { name: "FoodCore", logo: "/foodcore.jpg", height: "100px" },
+  { name: "GreenOasis", logo: "/green_oasis.png", height: "80px" }
+]
 
-// Full vendors array for scrolling (commented out for now)
-// const allVendors = [
-//   { name: "FoodHybrid", logo: "/foodhybrid.svg" },
-//   { name: "AgriCorp", logo: "/foodhybrid.svg" },
-//   { name: "FarmFresh", logo: "/foodhybrid.svg" },
-//   { name: "GreenHarvest", logo: "/foodhybrid.svg" },
-//   { name: "OrganicPlus", logo: "/foodhybrid.svg" },
-//   { name: "NatureFoods", logo: "/foodhybrid.svg" },
-//   { name: "PureHarvest", logo: "/foodhybrid.svg" },
-//   { name: "EcoFarms", logo: "/foodhybrid.svg" }
-// ]
+// Full vendors array for scrolling
 
 export default function Vendors() {
+  const [shouldScroll, setShouldScroll] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const checkOverflow = () => {
+      if (containerRef.current && contentRef.current) {
+        const containerWidth = containerRef.current.offsetWidth
+        const contentWidth = contentRef.current.scrollWidth
+        setShouldScroll(contentWidth > containerWidth)
+      }
+    }
+
+    checkOverflow()
+    window.addEventListener('resize', checkOverflow)
+    
+    return () => window.removeEventListener('resize', checkOverflow)
+  }, [])
+
   return (
     <div className="section-padding mt-30 flex flex-col gap-5 mask-l-from-80% mask-l-to-90% mask-r-to-90% mask-r-from-80%">
       <h1 className="font-[900] font-satoshi text-[#5D5D5D] text-[20px] text-center">
         Our Trusted Vendors
       </h1>
 
-      {/* Static display of two vendor logos */}
-      <div className="flex items-center justify-center gap-8">
-        {/* {vendors.map((vendor, index) => (
-            <img 
-              key={index}
-              src={vendor.logo} 
-              alt={vendor.name} 
-              className="h-[60px] flex-shrink-0" 
-            />
-          ))} */}
-        <img
-          src={"/foodhybrid.png"}
-          alt="FoodHybrid"
-          className="h-[60px] flex-shrink-0"
-        />
-        <img
-          src={"/foodcore.jpg"}
-          alt="FoodCore"
-          className="h-[100px] flex-shrink-0"
-        />
-        <img
-          src={"/green_oasis.png"}
-          alt="FoodCore"
-          className="h-[80px] flex-shrink-0"
-        />
-      </div>
-
-      {/* Scrolling animation code (commented out for now) */}
-      {/* 
-        <div className="overflow-hidden">
+      <div ref={containerRef} className="w-full overflow-hidden">
+        {shouldScroll ? (
+          // Auto-scroll when content overflows
           <motion.div 
-            className="flex gap-8"
+            ref={contentRef}
+            className="flex gap-8 items-center"
             animate={{ 
-              x: [0, -100 * allVendors.length]
+              x: [0, -100 * vendors.length]
             }}
             transition={{ 
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 20,
+                duration: 12,
                 ease: "linear"
               }
             }}
           >
             {/* First set of logos */}
-      {/* {allVendors.map((vendor, index) => (
+            {vendors.map((vendor, index) => (
               <img 
                 key={`first-${index}`}
                 src={vendor.logo} 
                 alt={vendor.name} 
-                className="size-[100px] flex-shrink-0" 
+                className={`h-[${vendor.height}] flex-shrink-0`} 
               />
             ))}
             {/* Duplicate set for seamless loop */}
-      {/* {allVendors.map((vendor, index) => (
+            {vendors.map((vendor, index) => (
               <img 
                 key={`second-${index}`}
                 src={vendor.logo} 
                 alt={vendor.name} 
-                className="size-[100px] flex-shrink-0" 
+                className={`h-[${vendor.height}] flex-shrink-0`} 
+              />
+            ))}
+            {vendors.map((vendor, index) => (
+              <img 
+                key={`second-${index}`}
+                src={vendor.logo} 
+                alt={vendor.name} 
+                className={`h-[${vendor.height}] flex-shrink-0`} 
               />
             ))}
           </motion.div>
-        </div>
-        */}
+        ) : (
+          // Static display when content fits
+          <div ref={contentRef} className="flex items-center justify-center gap-8">
+            {vendors.map((vendor, index) => (
+              <img 
+                key={index}
+                src={vendor.logo} 
+                alt={vendor.name} 
+                className={`h-[${vendor.height}] flex-shrink-0`} 
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
