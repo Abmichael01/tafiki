@@ -44,6 +44,11 @@ export default function Vendors() {
           alt="FoodCore"
           className="h-[100px] flex-shrink-0"
         />
+        <img
+          src={"/green_oasis.png"}
+          alt="FoodCore"
+          className="h-[80px] flex-shrink-0"
+        />
       </div>
 
       {/* Scrolling animation code (commented out for now) */}
